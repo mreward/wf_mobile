@@ -28,7 +28,7 @@ const PROD = {
             }
         }
     ],
-    idChanel: 'CM5JRHF6V', // required
+    // idChanel: 'CM5JRHF6V', // required
     logRocketId: LogRocketId.PROD,
     hockeyAppID: '', // required
     googleAnalyticsTrackId: '',
