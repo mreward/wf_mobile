@@ -1,0 +1,22 @@
+export default {
+    m_profile_birthday: 'Date de naissance',
+    m_profile_cancel: 'Annuler',
+    m_profile_change_password: 'Changer le mot de passe de connexion',
+    m_profile_change_profile_picture: 'Envoyer la photo',
+    m_profile_city: 'Ville',
+    m_profile_contacts: 'Contacts',
+    m_profile_edit_profile: 'Données personnelles',
+    m_profile_edit_profile_success: 'Informations sauvegardées',
+    m_profile_email: 'Email',
+    m_profile_fname: 'prénom',
+    m_profile_from_gallery: 'Choisir parmi la galerie',
+    m_profile_gender: 'Sol',
+    m_profile_language: 'Langue',
+    m_profile_lname: 'Nom de famille',
+    m_profile_logout: 'Sortir',
+    m_profile_middel_name: 'deuxième nom',
+    m_profile_save: 'sauvegarder',
+    m_profile_settings: 'Réglages',
+    m_profile_take_picture: 'Caméra',
+    m_profile_terms_loyalty: 'Conditions du programme de fidélité'
+}

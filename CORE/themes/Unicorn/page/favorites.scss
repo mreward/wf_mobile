@@ -1,0 +1,46 @@
+.favorites-search {
+    .input__inner {
+        @extend .margin-bottom--none;
+    }
+    //box-shadow: $favorites-search-box-shadow;
+    @extend .position--relative;
+
+    border-radius: $favorites-search-border-radius;
+}
+
+.favorites-wrap {
+    margin-top: $favorites-favorites-wrap-margin-top;
+
+    .list-item__header {
+        max-width: 230px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}
+
+.favorites-list {
+    box-shadow: none;
+
+    .list-item {
+        box-shadow: $shadow-block !important;
+
+        &:first-child {
+            min-height: $favorites-list-item-first-min-height;
+        }
+    }
+
+    .center {
+        padding-top: $favorites-list-item-center-padding-top;
+        align-items: flex-start !important;
+
+        @extend .flex--column;
+        @extend .flex;
+    }
+
+    .right {
+        .ons-icon {
+            color: $favorites-list-item-right-icon-color;
+        }
+    }
+}

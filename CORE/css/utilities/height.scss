@@ -1,0 +1,9 @@
+@include b(height) {
+    @include m(full) {
+        height: 100%;
+    }
+
+    @include m(auto) {
+        height: auto;
+    }
+}

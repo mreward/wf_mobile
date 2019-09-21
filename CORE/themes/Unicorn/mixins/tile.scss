@@ -1,0 +1,27 @@
+@mixin hook-tile-title() {
+    margin-top: 6px;
+    padding-top: 6px;
+    color: $tile-title-color;
+    font-weight: $tile-title-font-weight;
+    font-size: $tile-title-font-size-main;
+    line-height: $tile-title-line-height;
+    letter-spacing: 0.2px;
+    text-align: center;
+
+    .tile__badge-container {
+        top: 16px !important;
+        right: 8px !important;
+    }
+}
+
+@mixin hook-tile-icon() {
+    .ons-icon {
+        background: $tile-icon-background;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}
+
+@mixin hook-tile() {
+    box-shadow: $shadow-block;
+}

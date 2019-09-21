@@ -1,0 +1,165 @@
+.onboarding {
+    .page__content {
+        padding: 0 !important;
+        bottom: 0;
+    }
+
+    ons-bottom-toolbar.info-button {
+        @extend .text--center;
+        @extend .width--full;
+        @extend .background--transparent;
+        @extend .position--absolute;
+        @extend .position--bottom-center;
+
+        line-height: 48px;
+        box-sizing: content-box;
+        padding-bottom: 14px;
+
+        ons-row {
+            @extend .flex;
+            @extend .flex--justify-center;
+            @extend .flex--align-center;
+        }
+
+        .dots {
+            span {
+                @include size($onboarding-dots-size, $onboarding-dots-size);
+
+                display: inline-block;
+                font-size: $onboarding-dots-font-size;
+                margin: 0 2px;
+                background-color: $onboarding-dots-background;
+                border-radius: 50%;
+                opacity: 0.4;
+                transition: all 0.3s;
+                line-height: normal;
+
+                &.active {
+                    @include size($onboarding-dots-width-size-active, $onboarding-dots-size-active);
+                    background-color: $onboarding-dots-active-background;
+                    transition: opacity 0.6s ease-in-out;
+                    opacity: 1;
+                    border-radius: $onboarding-dots-border-radius-active;
+                }
+            }
+        }
+    }
+
+    .button {
+        &--quiet {
+            padding: 30px 16px 0 0;
+            z-index: 1;
+            cursor: pointer;
+
+            @extend .position--absolute;
+            @extend .position--top-right;
+        }
+
+        &--auth {
+            @extend .padding--none;
+            @extend .margin-horizontal--auto;
+            @extend .position--relative;
+
+            max-width: $onboarding-button-auth-max-width;// 140px;
+            border-radius: 25px;
+            font-size: $onboarding-button-auth-font-size;// rem(13);
+            background: $onboarding-button-auth-background;
+            color: $onboarding-button-auth-color !important;
+            box-shadow: $shadow-block;
+
+            &:active,
+            &:hover {
+                background: $onboarding-button-auth-background;
+                color: $onboarding-button-auth-color !important;
+                box-shadow: $shadow-block;
+            }
+        }
+
+        &.skip, &.next {
+            @extend .padding-top--none;
+
+            font-size: $onboarding-button-action-font-size;// rem(13);
+            color: $onboarding-button-action-color !important;
+        }
+
+        &.skip {
+            color: $onboarding-button-action-skip-color !important;
+        }
+
+        &.next {
+            color: $onboarding-button-action-next-color !important;
+        }
+
+        &.close {
+            font-size: $onboarding-button-action-font-size; // rem(13);
+            color: $onboarding-button-close-color;
+
+            .ons-icon {
+                color: $onboarding-button-close-icon-color;
+                font-size: $onboarding-button-close-icon-font-size; // rem(28);
+            }
+        }
+    }
+
+    .intro {
+        &--wrapper {
+            @extend .position--absolute;
+            @extend .width--full;
+
+            left: 50%;
+            transform: translate(-50%, -50%);
+            top: calc(50% + #{$onboarding-intro-text-padding-button});
+        }
+    }
+
+    .intro-image {
+        @include size($onboarding-button-intro-image-size, $onboarding-button-intro-image-size);
+        @extend .flex;
+        @extend .flex--justify-center;
+
+        padding-bottom: $onboarding-intro-image-padding-bottom;
+        margin: 0 auto;
+
+        img {
+            @extend .width--full;
+        }
+    }
+
+    .intro-text {
+        padding: 0 $onboarding-intro-text-padding;
+        padding-bottom: $onboarding-intro-text-padding-button;
+
+        @extend .text--center;
+
+        &__title {
+            color: $onboarding-button-intro-title-color;
+            font-size: $onboarding-button-intro-text-title-font-size;
+            text-transform: $onboarding-button-intro-text-title-text-transform; // uppercase;
+
+            @extend .text--bold;
+            @extend .text--center;
+        }
+
+        &__desc {
+            color: $onboarding-button-intro-text-color;
+            font-size: $onboarding-button-intro-text-desc-font-size;
+            line-height: 22px;
+            margin-top: 4px;
+
+            @extend .text--center;
+            @extend .text--normal;
+        }
+    }
+}
+
+html[onsflag-iphonex-portrait] {
+    .intro {
+        &--wrapper {
+            top: calc(50% + #{$onboarding-intro-text-iphonex-padding-button});
+        }
+    }
+
+    ons-bottom-toolbar.info-button {
+        padding-bottom: 34px;
+    }
+}

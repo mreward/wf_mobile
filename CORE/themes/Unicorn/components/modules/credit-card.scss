@@ -1,0 +1,95 @@
+.card-pan-wrap {
+    @extend .flex;
+    @extend .flex--align-bottom;
+
+    img {
+        margin-top: -8px;
+        margin-right: -8px;
+
+        @include size(auto, 56px);
+    }
+}
+
+.card--disable {
+    opacity: 0.5;
+}
+
+.credit-card {
+    @extend .flex--justify-between;
+
+    padding-bottom: 40px !important;
+
+    .input--default {
+        min-height: auto;
+
+        .input__inner {
+            @extend .text--normal;
+        }
+    }
+    .input--error {
+        .input--default {
+            border-color: $credit-card-validation!important;
+        }
+    }
+    .input--error {
+        .input__error-message::before {
+            color: $credit-card-validation!important;
+        }
+    }
+    .grid {
+        @extend .flex--align-bottom;
+
+        > * {
+            @extend .margin-bottom--none;
+
+            .input {
+                @extend .margin-bottom--none;
+            }
+        }
+    }
+
+    > div {
+        @extend .flex;
+        @extend .flex--align-bottom;
+
+        min-height: 48px;
+
+        .input {
+            @extend .margin-bottom--none;
+        }
+
+        &:last-child {
+            @extend .margin-bottom--none;
+        }
+    }
+
+    &.is-edit-card {
+        .input {
+            border-bottom: 2px solid $white;
+            opacity: 0.3;
+
+            input {
+                @extend .text--normal;
+
+                &::placeholder {
+                    color: rgba($white, 1) !important;
+                }
+            }
+
+            &.add-card__name {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.block-cards {
+    .not-found-items__action-button {
+        @extend .margin-top--none;
+
+        .button {
+            @extend .margin-top--middle;
+        }
+    }
+}
+

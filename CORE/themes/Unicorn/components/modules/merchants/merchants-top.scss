@@ -1,0 +1,17 @@
+.merchants-top {
+    margin-bottom: 32px;
+    &__header {
+    }
+    &__title {
+        color: $black;
+        font-size: rem(15);
+        font-weight: $bold;
+        line-height: rem(17);
+    }
+    &__link {
+        color: $primary;
+        font-size: rem(14);
+        font-weight: $bold;
+        line-height: rem(16);
+    }
+}

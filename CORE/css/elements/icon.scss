@@ -1,0 +1,7 @@
+.ons-icon {
+
+}
+
+@if (mixin-exists(hook-icon-misc)) {
+    @include hook-icon-misc();
+}

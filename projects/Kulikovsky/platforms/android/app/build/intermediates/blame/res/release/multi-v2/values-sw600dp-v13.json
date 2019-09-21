@@ -1,0 +1,36 @@
+{
+    "logs": [
+        {
+            "outputFile": "/ARSHE/arshe/Desktop/mWallet_v4.0/projects/Kulikovsky/platforms/android/app/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-sw600dp-v13/values-sw600dp-v13.xml",
+            "map": [
+                {
+                    "source": "/ARSHE/arshe/.gradle/caches/transforms-1/files-1.1/firebase-inappmessaging-display-18.0.0.aar/c94f4d11cf90e33ed04c34a080268df1/res/values-sw600dp-v13/values-sw600dp-v13.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,128",
+                        "endColumns": "72,71",
+                        "endOffsets": "123,195"
+                    },
+                    "to": {
+                        "startLines": "10,11",
+                        "startColumns": "4,4",
+                        "startOffsets": "611,684",
+                        "endColumns": "72,71",
+                        "endOffsets": "679,751"
+                    }
+                },
+                {
+                    "source": "/ARSHE/arshe/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.0.aar/8c86dad11b0ae2505378394b7148b7fc/res/values-sw600dp-v13/values-sw600dp-v13.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,124,193,263,337,413,472,543",
+                        "endColumns": "68,68,69,73,75,58,70,67",
+                        "endOffsets": "119,188,258,332,408,467,538,606"
+                    }
+                }
+            ]
+        }
+    ]
+}

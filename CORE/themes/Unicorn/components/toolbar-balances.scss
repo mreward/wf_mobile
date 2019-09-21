@@ -1,0 +1,101 @@
+.balances {
+    @include size(100vw, vw(100));
+
+    min-height: 100px;
+    max-height: 110px;
+    margin: $toolbar-balances-margin;
+    background-color: $toolbar-balances-background;
+    box-shadow: $toolbar-balances-box-shadow;
+
+    @extend .flex;
+    @extend .flex--align-center;
+    @extend .flex--justify-center;
+
+    &__title {
+        @extend .text--normal;
+        @extend .padding-bottom--small-m;
+
+        color: $toolbar-balances-title-color;
+        font-size: $toolbar-balances-title-font-size;
+        line-height: $toolbar-balances-title-line-height;
+
+        &--center {
+            text-align: center;
+        }
+    }
+
+    &__amount {
+        @extend .text--normal;
+
+        .amount__currency {
+            //@extend .margin-right--small;
+        }
+
+        color: $toolbar-balances-amount-color;
+        font-size: $toolbar-balances-amount-font-size;
+        line-height: $toolbar-balances-amount-line-height;
+    }
+
+    &__separator {
+        display: $toolbar-balances-separator-display;
+        box-sizing: border-box;
+        border: 0.5px solid $toolbar-balances-separator-color;
+
+        @include size(1px, 30px);
+    }
+
+    .amount__currency {
+        color: $toolbar-balances-amount-currency-color;
+        font-size: $toolbar-balances-amount-currency-font-size;
+        line-height: $toolbar-balances-amount-currency-line-height;
+    }
+
+    & > ons-col, & > .balances__item {
+        @extend .flex;
+        @extend .flex--align-center;
+        @extend .flex--justify-center;
+    }
+
+    .loader-overlay {
+        @extend .flex;
+        @extend .flex--align-center;
+        @extend .width--full;
+        @extend .height--full;
+        @extend .padding-vertical--default;
+
+        & > ons-col, & > .balances__item {
+            @extend .height--full;
+            @extend .flex;
+            @extend .flex--justify-center;
+
+            & > div {
+                @extend .flex;
+                @extend .flex--column;
+                @extend .flex--align-top;
+                @extend .height--full;
+            }
+        }
+    }
+
+    .is-single {
+        .balances__title {
+            @extend .text--center;
+
+            font-size: rem(14) !important;
+        }
+
+        .balances__amount {
+            font-size: rem(32) !important;
+        }
+    }
+
+    // TODO: remove .balances__amount_red
+    &__amount_red,
+    &__amount--invalid {
+        color: $red-negative-balance;
+
+        & .amount__currency {
+            color: $red-negative-balance;
+        }
+    }
+}

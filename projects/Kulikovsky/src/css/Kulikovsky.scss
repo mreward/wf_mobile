@@ -1,0 +1,17 @@
+@import "~_CORE/css/variables";
+// 1. Your custom variables and variable overwrites.
+@import "variables";
+// 2. Import plugins, vendor files, fonts.
+@import "~_PROJECT/projects/Kulikovsky/src/fonts/icons/icons.css";
+// 3. Import default variables and available mixins.
+
+//@import "~_CORE/themes/Unicorn/variables";
+
+@import "~_CORE/css/mixins";
+// 4. Your custom mixin overwrites.
+
+// 5. Import core UIkit
+@import "~_CORE/css/uikit";
+
+// 6. Import main
+@import "main";

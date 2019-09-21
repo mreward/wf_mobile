@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="pro.mwallet.kulikovskysit" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <feature name="Clipboard">
+        <param name="android-package" value="com.verso.cordova.clipboard.Clipboard" />
+    </feature>
+    <feature name="FingerprintAuth">
+        <param name="android-package" value="com.cordova.plugin.android.fingerprintauth.FingerprintAuth" />
+    </feature>
+    <feature name="Permissions">
+        <param name="android-package" value="com.android.plugins.Permissions" />
+    </feature>
+    <feature name="AppAvailability">
+        <param name="android-package" value="com.ohh2ahh.appavailability.AppAvailability" />
+    </feature>
+    <feature name="Camera">
+        <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
+    </feature>
+    <feature name="Contacts">
+        <param name="android-package" value="org.apache.cordova.contacts.ContactManager" />
+    </feature>
+    <feature name="DatePickerPlugin">
+        <param name="android-package" value="com.plugin.datepicker.DatePickerPlugin" />
+    </feature>
+    <feature name="Device">
+        <param name="android-package" value="org.apache.cordova.device.Device" />
+    </feature>
+    <feature name="Accelerometer">
+        <param name="android-package" value="org.apache.cordova.devicemotion.AccelListener" />
+    </feature>
+    <feature name="File">
+        <param name="android-package" value="org.apache.cordova.file.FileUtils" />
+        <param name="onload" value="true" />
+    </feature>
+    <allow-navigation href="cdvfile:*" />
+    <feature name="FileTransfer">
+        <param name="android-package" value="org.apache.cordova.filetransfer.FileTransfer" />
+    </feature>
+    <feature name="FirebasePlugin">
+        <param name="android-package" value="org.apache.cordova.firebase.FirebasePlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="InAppBrowser">
+        <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
+    </feature>
+    <feature name="ListPicker">
+        <param name="android-package" value="am.armsoft.plugins.ListPicker" />
+    </feature>
+    <feature name="NetworkStatus">
+        <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
+    </feature>
+    <feature name="QRScanner">
+        <param name="android-package" value="com.bitpay.cordova.qrscanner.QRScanner" />
+    </feature>
+    <feature name="SplashScreen">
+        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="StatusBar">
+        <param name="android-package" value="org.apache.cordova.statusbar.StatusBar" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Whitelist">
+        <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="SocialSharing">
+        <param name="android-package" value="nl.xservices.plugins.SocialSharing" />
+    </feature>
+    <feature name="CordovaGoogleMaps">
+        <param name="android-package" value="plugin.google.maps.CordovaGoogleMaps" />
+        <param name="onload" value="true" />
+        <param name="onreset" value="true" />
+    </feature>
+    <feature name="PluginMap">
+        <param name="android-package" value="plugin.google.maps.PluginMap" />
+    </feature>
+    <feature name="PluginPolyline">
+        <param name="android-package" value="plugin.google.maps.PluginPolyline" />
+    </feature>
+    <feature name="PluginPolygon">
+        <param name="android-package" value="plugin.google.maps.PluginPolygon" />
+    </feature>
+    <feature name="PluginMarker">
+        <param name="android-package" value="plugin.google.maps.PluginMarker" />
+    </feature>
+    <feature name="PluginCircle">
+        <param name="android-package" value="plugin.google.maps.PluginCircle" />
+    </feature>
+    <feature name="PluginTileOverlay">
+        <param name="android-package" value="plugin.google.maps.PluginTileOverlay" />
+    </feature>
+    <feature name="PluginGroundOverlay">
+        <param name="android-package" value="plugin.google.maps.PluginGroundOverlay" />
+    </feature>
+    <feature name="PluginKmlOverlay">
+        <param name="android-package" value="plugin.google.maps.PluginKmlOverlay" />
+    </feature>
+    <feature name="PluginGeocoder">
+        <param name="android-package" value="plugin.google.maps.PluginGeocoder" />
+    </feature>
+    <feature name="PluginLocationService">
+        <param name="android-package" value="plugin.google.maps.PluginLocationService" />
+    </feature>
+    <feature name="PluginEnvironment">
+        <param name="android-package" value="plugin.google.maps.PluginEnvironment" />
+    </feature>
+    <feature name="PluginMarkerCluster">
+        <param name="android-package" value="plugin.google.maps.PluginMarkerCluster" />
+    </feature>
+    <feature name="PluginStreetViewPanorama">
+        <param name="android-package" value="plugin.google.maps.PluginStreetViewPanorama" />
+    </feature>
+    <feature name="Keyboard">
+        <param name="android-package" onload="true" value="io.ionic.keyboard.IonicKeyboard" />
+    </feature>
+    <allow-navigation href="http://localhost/*" />
+    <allow-navigation href="https://localhost/*" />
+    <allow-navigation href="ionic://*" />
+    <feature name="IonicWebView">
+        <param name="android-package" value="com.ionicframework.cordova.webview.IonicWebView" />
+    </feature>
+    <title>Kulikovsky SIT</title>
+    <description>Kulikovsky SIT application.</description>
+    <author email="app@walletfactory.com" href="https://walletfactory.com/">
+        © 2015-2019 Managed by walletfactory.com
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <allow-navigation href="*" />
+    <allow-intent href="market:*" />
+    <preference name="loglevel" value="DEBUG" />
+    <preference name="webView" value="com.ionicframework.cordova.webview.IonicWebViewEngine" />
+    <preference name="android-minSdkVersion" value="21" />
+    <preference name="Fullscreen" value="false" />
+    <preference name="Orientation" value="portrait" />
+    <preference name="StatusBarOverlaysWebView" value="true" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="SplashScreen" value="false" />
+    <preference name="SplashScreenDelay" value="2000" />
+    <preference name="ShowSplashScreenSpinner" value="false" />
+    <preference name="show-splash-screen-spinner" value="false" />
+    <preference name="auto-hide-splash-screen" value="true" />
+    <preference name="AutoHideSplashScreen" value="true" />
+    <preference name="FadeSplashScreen" value="false" />
+    <preference name="SplashShowOnlyFirstTime" value="false" />
+    <preference name="AndroidLaunchMode" value="singleTask" />
+    <preference name="GOOGLE_MAPS_ANDROID_API_KEY" value="AIzaSyAxCXah1ycNBb7keqjBW1ZQ92FqNSgEdC8" />
+    <preference name="GOOGLE_MAPS_IOS_API_KEY" value="AIzaSyAxCXah1ycNBb7keqjBW1ZQ92FqNSgEdC8" />
+    <preference name="xwalkZOrderOnTop" value="true" />
+    <preference name="BackgroundColor" value="0" />
+    <preference name="SplashMaintainAspectRatio" value="true" />
+    <preference name="loadUrlTimeoutValue" value="700000" />
+</widget>

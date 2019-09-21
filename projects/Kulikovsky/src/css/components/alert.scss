@@ -1,0 +1,42 @@
+.alert {
+    &--default {
+        .alert__body {
+            @extend .padding--base;
+        }
+        
+        .alert__heading {
+            font-size: rem(18);
+
+            @extend .text--center;
+            @extend .margin-bottom--base;
+        }
+
+        .alert__text {
+            @extend .text--muted;
+            @extend .text--center;
+            @extend .margin-bottom--base;
+
+            font-size: rem(15);
+        }
+
+        .alert__buttons {
+            .alert__button {
+                &-primary {
+                    @extend .button--main;
+                }
+
+                &-cancel {
+                    min-height: 48px;
+                }
+            }
+
+            &.is-length {
+
+            }
+        }
+    }
+
+    &--error {
+
+    }
+}

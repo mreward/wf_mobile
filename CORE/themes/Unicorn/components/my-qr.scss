@@ -1,0 +1,32 @@
+.my-qr {
+    &__container {
+        @extend .position--relative;
+
+        .my-qr-title {
+            @extend .text--center;
+            @extend .margin-bottom--base;
+            @extend .text--bold;
+
+            color: $my-qr-title-color; //white;
+            font-size: rem(18);
+        }
+    }
+
+    &__code {
+        @extend .padding--base;
+        @extend .margin-horizontal--auto;
+
+        @include size(vw(190), vw(190));
+
+        background: $white;
+        border-radius: 6px;
+        box-shadow: $shadow;
+
+        img {
+            @include size(100%, 100%);
+        }
+        canvas {
+            @include size(100%, 100%);
+        }
+    }
+}

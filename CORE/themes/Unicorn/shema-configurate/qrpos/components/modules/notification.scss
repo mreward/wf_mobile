@@ -1,0 +1,15 @@
+.list--notifications {
+    .list-item {
+        &--notification {
+            &.list-item--unread {
+                background: $white !important;
+            }
+
+            .list-item__header {
+                font-size: rem(18);
+
+                @extend .text--normal;
+            }
+        }
+    }
+}

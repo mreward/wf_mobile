@@ -1,0 +1,10 @@
+@mixin hook-action-sheet-phones-item-active() {
+    background: $grey-light;
+}
+
+@mixin hook-action-sheet-phones-close-active() {
+    @extend .background-color--none;
+
+    border-radius: unset;
+    opacity: 0.7;
+}

@@ -1,0 +1,10 @@
+.popover-edit {
+    .popover {
+        right: 35px !important;
+
+        &__arrow {
+            right: 0 !important;
+            transform: translateY(-6px) translateX(-9px) rotate(44deg);
+        }
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "/ARSHE/arshe/Desktop/mWallet_v4.0/projects/Kulikovsky/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v11/values-v11.xml",
+            "map": [
+                {
+                    "source": "/ARSHE/arshe/.gradle/caches/transforms-1/files-1.1/jetified-zxing-android-embedded-3.3.0.aar/3096d59a877829a680e276e620467ff5/res/values-v11/values-v11.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "3",
+                        "endColumns": "10",
+                        "endOffsets": "150"
+                    }
+                }
+            ]
+        }
+    ]
+}

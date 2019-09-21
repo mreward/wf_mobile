@@ -1,0 +1,55 @@
+{
+  "_from": "git+https://github.com/oarsheo/cordova-plugin-android-fingerprint-auth.git",
+  "_id": "cordova-plugin-android-fingerprint-auth@1.5.1",
+  "_inBundle": false,
+  "_integrity": "",
+  "_location": "/cordova-plugin-android-fingerprint-auth",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "git+https://github.com/oarsheo/cordova-plugin-android-fingerprint-auth.git",
+    "rawSpec": "git+https://github.com/oarsheo/cordova-plugin-android-fingerprint-auth.git",
+    "saveSpec": "git+https://github.com/oarsheo/cordova-plugin-android-fingerprint-auth.git",
+    "fetchSpec": "https://github.com/oarsheo/cordova-plugin-android-fingerprint-auth.git",
+    "gitCommittish": null
+  },
+  "_requiredBy": [
+    "#DEV:/",
+    "#USER"
+  ],
+  "_resolved": "git+https://github.com/oarsheo/cordova-plugin-android-fingerprint-auth.git#96db6f94506fff078edbae3080284ee9c1791f68",
+  "_spec": "git+https://github.com/oarsheo/cordova-plugin-android-fingerprint-auth.git",
+  "_where": "/Users/dashaperfilieva/Desktop/work/mWallet_v4/projects/Kulikovsky",
+  "author": {
+    "name": "Matthew Wheatley"
+  },
+  "bugs": {
+    "url": "https://github.com/mjwheatley/cordova-plugin-android-fingerprint-auth/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-android-fingerprint-auth",
+    "platforms": [
+      "android"
+    ]
+  },
+  "deprecated": false,
+  "description": "Cordova plugin to use Android fingerprint authentication API",
+  "homepage": "https://github.com/mjwheatley/cordova-plugin-android-fingerprint-auth#readme",
+  "keywords": [
+    "cordova",
+    "plugin",
+    "android",
+    "fingerprint",
+    "authentication",
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "license": "Apache 2.0",
+  "name": "cordova-plugin-android-fingerprint-auth",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mjwheatley/cordova-plugin-android-fingerprint-auth.git"
+  },
+  "version": "1.5.1"
+}

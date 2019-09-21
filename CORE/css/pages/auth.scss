@@ -1,0 +1,18 @@
+@include b(auth) {
+    @include e(modal) {
+        position: relative;
+        height: calc(100vh - 100px);
+        margin: 100px 0 0;
+        padding: 0 16px;
+        overflow: visible;
+        background-color: transparent;
+
+        & .modal__content {
+            @extend .card__body;
+
+            display: block;
+            height: 100%;
+            -webkit-overflow-scrolling: touch;
+        }
+    }
+}

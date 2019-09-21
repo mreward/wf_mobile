@@ -1,0 +1,19 @@
+.screen-about-release {
+    .card--secondary {
+        background-color: white;
+    }
+
+    .screen-about-release__image {
+        box-shadow: none;
+
+        img {
+            top: 0;
+            max-width: 80%;
+            height: 100%;
+        }
+    }
+
+    .list .list-header--transparent {
+        text-align: left;
+    }
+}

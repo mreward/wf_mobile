@@ -1,0 +1,10 @@
+.country-list {
+    .v-list-item__title {
+        display: flex;
+        justify-content: space-between;
+
+        .ons-icon {
+            color: $violet;
+        }
+    }
+}

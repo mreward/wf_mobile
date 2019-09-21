@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="30px" height="30px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 57.1 (83088) - https://sketch.com -->
+    <title>Logo/Telegram</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="99.635%" id="linearGradient-1">
+            <stop stop-color="#42BCE8" offset="0%"></stop>
+            <stop stop-color="#23A7DC" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Logo/Telegram" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="telegram">
+            <circle id="Oval" fill="url(#linearGradient-1)" cx="15" cy="15" r="15"></circle>
+            <path d="M22.632,8.10825 L19.76925,22.72725 C19.76925,22.72725 19.36875,23.74125 18.26775,23.2545 L11.661,18.1245 L9.25875,16.9485 L5.21475,15.57 C5.21475,15.57 4.59375,15.34725 4.53375,14.8605 C4.47375,14.37375 5.23425,14.1105 5.23425,14.1105 L21.31125,7.7235 C21.3105,7.72275 22.632,7.13475 22.632,8.10825 Z" id="Path" fill="#FFFFFF"></path>
+            <path d="M11.1525,22.56225 C11.1525,22.56225 10.95975,22.54425 10.719,21.77325 C10.479,21.003 9.25725,16.94775 9.25725,16.94775 L18.9675,10.7025 C18.9675,10.7025 19.52775,10.3575 19.50825,10.7025 C19.50825,10.7025 19.608,10.76325 19.308,11.0475 C19.008,11.33175 11.67975,18.00225 11.67975,18.00225" id="Path" fill="#D2E5F1"></path>
+            <path d="M14.19375,20.091 L11.58075,22.50375 C11.58075,22.50375 11.37675,22.6605 11.15325,22.56225 L11.6535,18.08025" id="Path" fill="#B5CFE4"></path>
+        </g>
+    </g>
+</svg>

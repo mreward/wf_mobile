@@ -1,0 +1,206 @@
+@import "../../variables";
+
+// Base
+$black: rgba(25, 24, 28, 1);
+$grey-light: #f5f7fa;
+$grey-light-second: #e3e8ef;
+$red-light: #f50707;
+$muted: #9b9fa2;
+$purple-gradient: #50d2c2;
+$global-font-family: "HelveticaNeueCyr", sans-serif;
+$purple: rgba(223, 184, 239, 1);
+$page-background: $grey-light;
+
+$grey-2: #e3e8ef;
+$red-2: #f50707;
+
+// Global
+$shadow: 0 8px 15px 0 rgba(39, 45, 45, 0.06);
+$shadow-lite: 0 8px 15px 0 rgba(33, 49, 52, 0.15);
+$shadow-block: 0 8px 15px 0 rgba(39, 45, 45, 0.06);
+
+$bold: 500;
+$primary: #50d2c2;
+$letter-spacing: 0.2px;
+$card-shadow: $shadow-block;
+$secondary-gradient: $major-gradient;
+
+$colors: (
+    default: $black,
+    primary: $primary,
+    muted: $muted,
+    danger: $danger,
+    warning: $warning,
+    success: $success,
+);
+
+$paddings: (
+    xsmall: 4px,
+    small-m: 6px,
+    small: 16px,
+    xmiddle: 8px,
+    middle: 12px,
+    base: 16px,
+    default: 24px,
+    medium: 35px,
+    large: 45px,
+    large-m: 65px,
+    xlarge: 100px,
+);
+
+$layout-auth-logo-height: 30px;
+$layout-auth-logo-width: 103.78px;
+$layout-auth-code-color: $primary;
+$layout-auth-code-font-weight: 500;
+$layout-auth-text-message-font-size: rem(16);
+$layout-auth-text-message-color: $black;
+$layout-auth-text-message-letter-spacing: $letter-spacing;
+$layout-auth-text-message-line-height: rem(20);
+$layout-auth-text-message-font-weight: 300;
+
+$layout-auth-input-innerr-color: $black;
+$layout-auth-input-inner-font-weight: 300;
+$layout-auth-input-inner-font-size: rem(24);
+$layout-auth-input-inner-line-height: rem(20);
+$layout-auth-input-inner-letter-spacing: $letter-spacing;
+
+$layout-auth-button-text-letter-spacing: $letter-spacing;
+$layout-auth-button-text-font-weight: normal;
+
+$button-outline-border-color: $primary;
+$button-outline-color: $primary;
+$button-primary-color: $white;
+$button-primary-background: $primary;
+$button-main-background: $primary;
+
+$tile-title-color: $black;
+$tile-title-font-weight: 300;
+$tile-title-font-size: vw(16);
+$tile-title-line-height: rem(20);
+$tile-icon-background: $primary;
+$tile-box-shadow: $shadow-block;
+
+$tabbar-background: $primary;
+$tabbar-button-circle-shadow: $shadow-lite;
+$tabbar-button-circle-background: #6878f7;
+$tabbar-button-tab-circle-icon-color: white;
+
+$tabbar-button-tab-background: $white;
+$tabbar-button-tab-active-background: $grey-light;
+$tabbar-button-tab-lablel-color: $black;
+$tabbar-qr-button-tab-lable-color: $black;
+$tabbar-gift-content-top: 50px;
+
+$toolbar-background-color: $white;
+$toolbar-color: $black;
+$toolbar-font-size: rem(24);
+$toolbar-font-weight: $bold;
+$toolbar-line-height: rem(24);
+$toolbar-text-transform: unset;
+
+// Alerts
+$alert-text: rem(16);
+$alert-letter-spacing: normal;
+$alert-line-height: rem(20);
+$alert-color: $black;
+$alert-font-weight: 300;
+$alert-button-cancel-background: $grey-light;
+$alert-button-cancel-color: $black;
+$alert-icon-info: $primary;
+$alert-icon-error: $indifferent-gradient;
+$alert-icon-success: $primary;
+$alert-button-cancel-box-shadow: $shadow-block;
+
+$contacts-icon-color: $primary;
+
+$input-underbar-border-active: 2px solid $primary;
+$input-validation-error-color: $red-light;
+
+$toolbar-auth-color: $black;
+$toolbar-auth-font-weight: $bold;
+$toolbar-auth-font-size: rem(18);
+$toolbar-auth-line-height: rem(24);
+$toolbar-auth-letter-spacing: $letter-spacing;
+$toolbar-auth-text-transform: initial;
+
+$history-not-found-items-color: $muted;
+
+$qr-scanner-laser-background: $primary;
+
+$personal-edit-border-bottom-color: $grey-light-second;
+$personal-edit-border-radius: 6px;
+
+$personal-edit-checkmark-active-dot-color: $primary;
+$personal-edit-checkmark-border-active: $primary;
+$personal-edit-checkmark-border: $grey-light-second;
+$payment-tools-header-shadow: $shadow-block;
+
+$gift-list-item-border-bottom: 1px solid $grey-light;
+$screen-gift-discount-background: $primary;
+$screen-gift-price-color: $primary;
+$screen-gift-details-price-color: $primary;
+
+$checkbox-square-border-color: $primary;
+$checkbox-square-checkmark-border: 2px solid $primary;
+
+$list-item-notification-height: 100px;
+
+$list-header-color: $black;
+$list-header-font-weight: $bold;
+$list-header-font-size: rem(15);
+$list-header-line-height: rem(52);
+$list-header-height: rem(42);
+$list-header-letter-spacing: $letter-spacing;
+
+$list-notifications-header-color: $black;
+$list-notifications-header-font-weight: 300;
+$list-notifications-header-font-size: rem(20);
+$list-notifications-header-line-height: rem(22);
+$list-notifications-header-letter-spacing: $letter-spacing;
+
+$list-notifications-description-height: 40px;
+$list-notifications-description-color: $black;
+$list-notifications-description-font-weight:  300;
+$list-notifications-description-font-size: rem(16);
+$list-notifications-description-line-height: rem(20);
+$list-notifications-description-letter-spacing: $letter-spacing;
+
+$list-notifications-time-color: rgba(155, 159, 162, 1);
+$list-notifications-time-font-weight: 300;
+$list-notifications-time-font-size: rem(12);
+$list-notifications-time-line-height: rem(14);
+$list-notifications-time-letter-spacing: $letter-spacing;
+
+$list-notifications-icon-background: $primary;
+$list-notifications-icon-font-size: rem(24);
+
+$languages-border-color: $primary;
+
+$invoices-tabbar-label-color: $black;
+
+$input-checkmark-checked-border: 2px solid $primary;
+$input-checkmark-circle-active-dot-color: $primary;
+
+$history-calendar-cell-size: 33px;
+$history-calendar-title-size: 34px;
+
+$history-calendar-cell-background: $primary;
+$history-calendar-cell-ranged: 0.2;
+$history-calendar-cell-selected: 1;
+
+$screen-contacts-header-height: 20px;
+$screen-contacts-line-height: $screen-contacts-header-height;
+
+$sidebar-menu-icon-color: $primary;
+
+$tabbar-button-tab-background: #e3e5ee;
+$tabbar-button-tab-active-background: $primary;
+$tabbar-button-tab-active-lablel-color: white;
+
+//$card-color-first: #9b3e87;
+//$card-color-second: #ff791f;
+//$card-color-third: #6878f7;
+//$card-color-fourth: #50d2c2;
+//$card-color-fifth: #202438;
+
+$history-calendar-cell-background: $primary;

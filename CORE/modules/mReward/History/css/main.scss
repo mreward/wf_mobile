@@ -1,0 +1,118 @@
+[page*=history] {
+    .page__layout {
+        overflow: hidden;
+    }
+}
+
+.history {
+    &__logo,
+    &__name,
+    &__address {
+        text-align: center;
+        color: $black;
+    }
+
+    &__name {
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 24px;
+    }
+
+    &__address {
+        font-size: 13px;
+        line-height: 18px;
+
+    }
+
+    &__separator {
+        margin: 16px 0;
+        border-bottom: 1px dashed $grey-light-third;
+    }
+
+    &__product {
+        margin-bottom: 8px;
+
+        .product__header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            line-height: 18px;
+            color: $black;
+            margin-bottom: 4px;
+        }
+
+        .product__sum {
+            padding-left: 16px;
+        }
+
+        .product__footer {
+            font-size: 12px;
+            line-height: 16px;
+            color: $grey-dark;
+        }
+    }
+
+    &__sum {
+        display: flex;
+        justify-content: space-between;
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 20px;
+        color: $black;
+    }
+
+    &__info-row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 13px;
+        line-height: 18px;
+        margin-bottom: 8px;
+        color: $black;
+    }
+
+    &__date {
+        margin-top: 35px;
+        font-size: 12px;
+        line-height: 16px;
+        color: $grey-dark;
+    }
+    &__logo {
+        font-size: rem(48);
+        color: $primary;
+    }
+
+    &__filter-date {
+        position: absolute;
+        left: 16px;
+        top: 0;
+        z-index: 1;
+        width: calc(100% - 24px);
+        background: $grey-light-second;
+
+        + * {
+            height: calc(100% - 70px);
+            margin-top: 70px;
+            overflow: scroll;
+        }
+    }
+}
+
+html[onsflag-iphonex-portrait] {
+    .history__filter-date {
+        top: 23px;
+
+        + * {
+            margin-top: 94px;
+        }
+    }
+}
+
+.row--text {
+    font-size: rem(17);
+    line-height: rem(22);
+    letter-spacing: -0.41px;
+    text-transform: capitalize;
+
+    @extend .text--bold;
+    @extend .margin-bottom--small-base;
+}

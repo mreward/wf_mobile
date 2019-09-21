@@ -1,0 +1,24 @@
+.success-page {
+    &__text {
+        line-height: $success-text-line-height;
+    }
+
+    &__icon {
+        @extend .margin-bottom--base;
+
+        .ons-icon {
+            @include text-gradient-one($success-icon-color);
+        }
+
+        .ons-icon.fa-created-invoice {
+            @include text-gradient-one($wait-icon-color);
+        }
+
+        @extend .flex;
+        @extend .flex--justify-center;
+        @extend .flex--align-center;
+        @extend .padding--base;
+
+        font-size: rem(50);
+    }
+}

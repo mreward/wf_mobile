@@ -1,0 +1,117 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "com.verso.cordova.clipboard": {
+      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
+    },
+    "cordova-android-support-gradle-release": {
+      "ANDROID_SUPPORT_VERSION": "27.+",
+      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
+    },
+    "cordova-plugin-add-swift-support": {
+      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
+    },
+    "cordova-plugin-android-fingerprint-auth": {
+      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
+    },
+    "cordova-plugin-android-permissions": {
+      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
+    },
+    "cordova-plugin-androidx": {
+      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
+    },
+    "cordova-plugin-androidx-adapter": {
+      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
+    },
+    "cordova-plugin-appavailability": {
+      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
+    },
+    "cordova-plugin-camera": {
+      "ANDROID_SUPPORT_V4_VERSION": "27.+",
+      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
+    },
+    "cordova-plugin-contacts": {
+      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
+    },
+    "cordova-plugin-datepicker": {
+      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
+    },
+    "cordova-plugin-decimal-keyboard-wkwebview": {
+      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
+    },
+    "cordova-plugin-device-motion": {
+      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
+    },
+    "cordova-plugin-firebase-lib": {
+      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
+    },
+    "cordova-plugin-ionic-keyboard": {
+      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
+    },
+    "cordova-plugin-ionic-webview": {
+      "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+",
+      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
+    },
+    "cordova-plugin-ios-keychain": {
+      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
+    },
+    "cordova-plugin-listpicker": {
+      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
+    },
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
+    },
+    "cordova-plugin-qrscanner": {
+      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
+    },
+    "cordova-plugin-shake": {
+      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
+    },
+    "cordova-plugin-touch-id": {
+      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
+    },
+    "cordova-plugin-wkwebview-inputfocusfix": {
+      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
+    },
+    "cordova-plugin-x-socialsharing": {
+      "ANDROID_SUPPORT_V4_VERSION": "24.1.1+",
+      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
+    },
+    "es6-promise-plugin": {
+      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
+    },
+    "cordova-plugin-googlemaps": {
+      "PLAY_SERVICES_VERSION": "15.0.1",
+      "ANDROID_SUPPORT_V4_VERSION": "27.+",
+      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
+    }
+  },
+  "dependent_plugins": {}
+}

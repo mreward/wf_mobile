@@ -1,0 +1,67 @@
+.edit-profile__actions-button {
+    .list-item {
+        @extend .width--full;
+
+        .button {
+            @extend .margin-bottom--base;
+        }
+    }
+}
+
+.edit-profile__user-identify {
+    .list-item {
+        .center {
+            .ons-icon {
+                color: $green;
+
+                @extend .margin-right--small;
+            }
+        }
+    }
+}
+
+.edit-profile__datepicker {
+    .list-item {
+        padding-top: 4px;
+
+        .center {
+            box-shadow: none !important;
+
+            @extend .input--default;
+
+            .datepicker-custom--wrapper {
+                @extend .position--relative;
+                @extend .width--full;
+
+                height: 31px;
+                min-height: 31px;
+
+                padding-left: 0;
+                border-bottom: 2px solid $grey-light-second;
+
+                .datepicker-custom--input {
+                    padding-left: 0;
+                }
+
+                div {
+                    padding-left: 8px;
+                    font-size: rem(20);
+                    line-height: 22px;
+
+                    @extend .text--normal; }
+
+                > * {
+
+                    min-height: 31px;
+                    line-height: 31px;
+
+                    @extend .height--full;
+                }
+            }
+        }
+    }
+}
+
+.page[page="screen-edit-profile"] .page__content {
+    -webkit-overflow-scrolling: auto;
+}

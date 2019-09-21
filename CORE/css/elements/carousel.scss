@@ -1,0 +1,129 @@
+@include b(carousel-dots) {
+    @extend .flex;
+    @extend .flex--justify-center;
+
+    @if (mixin-exists(hook-carousel-dots)) {
+        @include hook-carousel-dots();
+    }
+
+    @include e(item) {
+        width: $carousel-dots-item-size;
+        height: $carousel-dots-item-size;
+        background-color: $carousel-dots-item-fill;
+        border-radius: 50%;
+
+        @if (mixin-exists(hook-carousel-dots-item)) {
+            @include hook-carousel-dots-item();
+        }
+
+        @else {
+            opacity: 0.5;
+        }
+
+        & ~ .carousel-dots__item {
+            margin-left: $carousel-dots-item-spacing;
+        }
+
+        @include when(active) {
+            @if (mixin-exists(hook-carousel-dots-item-active)) {
+                @include hook-carousel-dots-item-active();
+            }
+
+            @else {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+@include b(carousel) {
+
+    width: 100%;
+    margin: 0 auto;
+
+    @extend .overflow-visible;
+
+    @include e(container) {
+        position: relative;
+    }
+
+    @include m(scaled) {
+        width: calc(100% - 36px);
+        transform: scale(0.97);
+
+        @include e(item) {
+            transition: all 0.1s linear;
+
+            &:not(.is-active) {
+                transform: scale(0.93);
+            }
+
+            @include when(active) {
+                transform: scale(1.05);
+            }
+        }
+    }
+
+    @include m(default) {
+        @include e(item) {
+            padding-right: 4px;
+            padding-left: 4px;
+        }
+    }
+
+    @include m(base) {
+        width: calc(100% - 200px);
+
+        @include e(item) {
+            @extend .padding-horizontal--small;
+
+            transition: all 0.5s ease-in-out;
+
+            &:not(.is-active) {
+                z-index: 1;
+                opacity: 0.2;
+            }
+
+            @include when(active) {
+                z-index: 1000;
+            }
+
+            &.is-prev {
+                transform: scale(0.8) translateX(90%);
+            }
+
+            &.is-next {
+                transform: scale(0.8) translateX(-90%);
+            }
+
+            &:not(.is-prev):not(.is-next):not(.is-active) {
+                opacity: 0;
+            }
+        }
+    }
+}
+
+@include b(carousel-arrows) {
+    &__prev,
+ &__next {
+        width: 40px;
+        height: 40px;
+        color: $carousel-arrows-button-color;
+        background-color: $carousel-arrows-button-background-color;
+        border-radius: 50%;
+
+        @extend .flex;
+        @extend .flex--justify-center;
+        @extend .flex--align-center;
+    }
+
+    @include e(prev) {
+        @extend .position--absolute;
+        @extend .position--center-left;
+    }
+
+    @include e(next) {
+        @extend .position--absolute;
+        @extend .position--center-right;
+    }
+}

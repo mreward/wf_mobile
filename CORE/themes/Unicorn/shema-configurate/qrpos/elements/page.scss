@@ -1,0 +1,23 @@
+.page--wrapper > .page__background {
+    display: block;
+}
+
+.settings--list {
+    @extend .margin-top--none;
+
+    .list {
+        @extend .margin-bottom--none;
+    }
+
+    .list-item {
+        @extend .padding--none;
+    }
+}
+
+.modal-main {
+    .button--close {
+        .ons-icon {
+            font-size: rem(16);
+        }
+    }
+}

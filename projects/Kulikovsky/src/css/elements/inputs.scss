@@ -1,0 +1,293 @@
+body .v-application {
+    .primary--text {
+        color: $muted !important;
+        caret-color: $muted !important;
+    }
+
+    .accent--text {
+        color: $primary !important;
+        caret-color: $primary !important;
+    }
+}
+
+.theme--light {
+    &.v-text-field {
+        margin-top: 0;
+        padding-top: 0;
+
+        input {
+            line-height: normal;
+        }
+
+        &>.v-input__control {
+            &>.v-input__slot {
+                &::before {
+                    border-color: $grey-light-third;
+                }
+
+                .v-text-field__slot {
+                    .v-label {
+                        color: $muted;
+                    }
+                }
+
+                &::after {
+                    border-color: $primary !important;
+                }
+            }
+        }
+
+        &:not(.v-input--is-disabled) input {
+            color: $black;
+        }
+
+        &:not(.v-input--has-state)>.v-input__control>.v-input__slot:hover::before {
+            //border-color: $black;
+        }
+
+        .v-input__control {
+            .v-input__slot {
+                .v-text-field__slot {
+                    .v-label {
+                        left: 0 !important;
+                    }
+                }
+            }
+        }
+
+        &.v-input--is-label-active {
+            &>.v-input__control {
+                &>.v-input__slot {
+                    &::before {
+                        border-color: $black;
+                    }
+                }
+            }
+        }
+
+        [type="password"] {
+            font-size: rem(22);
+            letter-spacing: 1.8px;
+        }
+    }
+}
+
+.v-input {
+    .v-icon.v-icon {
+        font-size: rem(20);
+        font-style: normal;
+        font-family: 'icons' !important;
+        color: $grey-light-third;
+    }
+
+    &.v-input--is-focused {
+        .v-label--active {
+            color: $primary !important;
+        }
+    }
+
+    &__append-inner {
+        min-width: 40px;
+
+        .v-input__icon--append {
+            @extend .flex--justify-right;
+
+            & [class*=icon-eye] {
+                color: $grey-light-third !important;
+            }
+        }
+    }
+
+    &--checkbox {
+        margin-top: 0;
+
+        .v-input__slot {
+            @extend .margin-bottom--none;
+        }
+
+        .v-messages {
+            display: none;
+        }
+
+        .accent--text {
+            color: $violet !important;
+        }
+    }
+}
+
+.input {
+    @extend .padding--none;
+
+    &__prefix,
+    &__inner {
+        @extend .text--normal;
+
+        font-size: $input-font-size;
+    }
+
+    &__prefix {
+        @extend .margin-right--base;
+    }
+
+    &__inner {
+        color: $black;
+        height: auto;
+
+        @include placeholder($input-default-placeholder-color);
+    }
+
+    &--underbar {
+        .input__prefix,
+        .input__inner {
+            border-bottom: 1px solid $black;
+        }
+
+        &.is-active {
+            .input__prefix,
+            .input__inner {
+                border-bottom: 2px solid $primary;
+            }
+        }
+    }
+
+    &--default {
+        min-height: $input-default-max-height; // 60px
+        max-height: $input-default-max-height; // 60px
+    }
+
+    &--search {
+        font-size: rem(15);
+        min-height: 36px;
+        border-radius: 10px;
+        background: $grey-light;
+
+        @extend .width--full;
+
+        &.v-text-field--solo {
+            >.v-input__control {
+                >.v-input__slot {
+                    background: $grey-light;
+                    border-radius: $border-radius;
+                    margin-bottom: 0;
+                }
+            }
+
+            .v-input__control {
+                min-height: 36px;
+            }
+        }
+
+        .v-input {
+
+            &__slot {
+                @extend .padding-left--none;
+
+                box-shadow: none !important;
+
+                .v-text-field__slot {
+                    font-weight: normal;
+                    line-height: normal;
+                    height: 100%;
+                }
+
+                .v-input__prepend-inner {
+                    @extend .padding-left--xsmall;
+
+                    .v-icon {
+                        font-size: rem(14);
+
+                        @extend .text--muted;
+                    }
+                }
+            }
+        }
+
+        .v-label {
+            @extend .text--muted;
+
+            display: flex;
+            align-items: center;
+            line-height: 22px;
+            height: auto;
+            font-weight: normal;
+            font-size: rem(15);
+            letter-spacing: rem(-0.24);
+        }
+    }
+
+    &--pin {
+        @include size(100%, 48px);
+
+        @extend .flex--justify-center;
+
+        .input__inner {
+            @extend .margin-horizontal--small-base;
+            @extend .text--center;
+            @extend .padding--none;
+
+            @include size(48px, 48px);
+
+            max-width: 48px;
+
+            input {
+                border: 1px solid $grey-light-third;
+                border-radius: $border-radius;
+                font-size: rem(15);
+
+                @include transition();
+
+                @extend .width--full;
+                @extend .height--full;
+
+                &:focus {
+                    @include transition();
+
+                    border-width: 2px !important;
+                    border-color: $primary !important;
+                }
+            }
+
+            &.is-active {
+                input {
+                    @include transition();
+
+                    border-width: 1px;
+                    border-color: $black;
+                }
+            }
+        }
+    }
+
+    &--error {
+        @extend .width--full;
+
+        .layout-auth__input {
+            @extend .margin-bottom--none;
+        }
+
+        .input__inner {
+            @extend .text--default;
+        }
+
+        & label {
+            @extend .text--primary;
+        }
+
+        .input__error-message {
+            min-height: 18px;
+            display: block;
+
+            @extend .text--muted;
+            @extend .text--normal;
+            @extend .margin-bottom--small;
+            @extend .margin-top--xsmall;
+        }
+    }
+}
+
+label {
+    font-size: $text-font-size-small;
+
+    @extend .text--normal;
+    @extend .text--muted;
+}

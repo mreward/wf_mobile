@@ -1,0 +1,60 @@
+.input--error {
+    & .text-input {
+        transition: color 0.2s ease-in-out;
+    }
+
+    .input {
+        &.is-active {
+            border-bottom: none;
+        }
+    }
+
+    .input--underbar {
+        transition: border 0.2s ease-in-out;
+
+        &.is-active {
+            border-bottom: 2px solid $red-light;
+        }
+    }
+
+    .input__error-message {
+        z-index: 5;
+        min-height: $input-error-message-min-height;
+        color: $white;
+        line-height: 12px;
+        word-break: break-all;
+        background: $input-validation-error-color;
+        border-radius: $input-error-message-border-radius;
+
+        @extend .flex;
+        @extend .flex--justify-center;
+        @extend .flex--align-center;
+        @extend .text--center;
+        @extend .width--full;
+        @extend .padding--xsmall;
+        @extend .margin-top--small;
+        @extend .position--relative;
+
+        &::after {
+            position: absolute;
+            top: 0;
+            left: calc(50% - 6.5px);
+            z-index: -1;
+            background: $input-validation-error-color;
+            transform: rotate(45deg) translateY(-50%);
+            content: '';
+
+            @extend .position--absolute;
+
+            @include size(7px, 7px);
+        }
+    }
+}
+
+.layout-auth__card {
+    .input--error {
+        & .text-input:focus {
+            color: $black;
+        }
+    }
+}

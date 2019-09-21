@@ -1,0 +1,22 @@
+.modal-merchant-rate {
+    &__heading {
+        margin-top: $base-size;
+    }
+    &__title {
+        margin-top: $base-size;
+        font-weight: $normal;
+        font-size: rem(32);
+    }
+    &__rating-stars {
+        font-size: rem(24);
+        margin-top: $base-size;
+        & * {
+            margin-left: 20px;
+            color: $grey-light-second;
+        }
+    }
+}
+
+.star--fill {
+    color: $yellow;
+}

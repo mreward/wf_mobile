@@ -1,0 +1,97 @@
+.layout-auth {
+    &__button-text {
+        @extend .text--bold;
+        @extend .text--center;
+
+        color: $muted;
+        line-height: normal !important;
+    }
+
+    &__button {
+        .button {
+            @extend .text--normal;
+        }
+
+        ons-icon {
+            display: none;
+        }
+    }
+
+    &__input {
+        .input--underbar {
+            @extend .padding-horizontal--xmiddle;
+        }
+
+        @media screen and (max-width: 320px) {
+            .input__inner {
+                font-size: rem(20);
+            }
+        }
+    }
+
+    &__card {
+        .button--text {
+            color: $muted;
+        }
+
+        .button {
+            &--main {
+                ons-icon {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .input.input--underbar {
+        @extend .padding-top--none;
+        @extend .padding-bottom--small-m;
+
+        .input__prefix {
+            margin-right: 8px;
+            line-height: $layout-auth-input-prefix-line-height;// 18px;
+
+            @extend .margin-right--small-base;
+        }
+    }
+
+    .checkbox_block-square {
+        @extend .position--relative;
+
+        height: $layout-auth-checkbox-square-height;
+
+        > div {
+            @extend .position--bottom-center;
+            @extend .position--absolute;
+
+            width: $layout-auth-checkbox-square-width;
+        }
+    }
+
+    & .toolbar {
+        background: transparent;
+    }
+}
+
+.layout-cover, .layout-tab-cover {
+    .toolbar {
+        background-color: transparent;
+    }
+    & .toolbar-main {
+        & * {
+            color: white !important;
+        }
+    }
+
+    .page__background--cover {
+        height: $layout-cover-page-background-height; // 160
+        background-color: $layout-cover-page-background-color; // $white
+
+        @include background(cover !important, center, no-repeat !important);
+    }
+
+    .page__layout--cover {
+        margin-top: $layout-cover-page-layout-margin-top;
+        background-color: $layout-cover-page-background-color !important;
+    }
+}

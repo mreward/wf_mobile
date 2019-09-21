@@ -1,0 +1,50 @@
+.screen-contacts {
+    .list {
+        .list-item {
+            .center {
+                @extend .text--normal;
+
+                font-size: rem(20);
+            }
+
+            .right {
+                @extend .flex;
+                @extend .flex--justify-right;
+                @extend .flex--align-top;
+
+                &.is-centered {
+                    @extend .flex--align-center;
+                }
+
+                .ons-icon {
+                    @include text-gradient-one($contacts-icon-color);
+                }
+            }
+        }
+
+        .list-header {
+            @extend .margin-top--base;
+            @extend .margin-bottom--small;
+
+            height: $screen-contacts-header-height;
+            min-height: $screen-contacts-header-height;
+            color: $muted;
+            font-size: rem(16);
+            line-height: $screen-contacts-line-height;
+
+            @extend .text--normal;
+            @extend .text--left;
+        }
+    }
+}
+
+.grid.messangers {
+    > * {
+        margin-bottom: $messangers-tile-margin-bottom !important;
+    }
+
+    .tile__title {
+        @extend .margin-top--none;
+        @extend .padding-top--none;
+    }
+}

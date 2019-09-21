@@ -1,0 +1,22 @@
+export default {
+    m_profile_birthday: 'تاريخ الولادة',
+    m_profile_cancel: 'إلغاء',
+    m_profile_change_password: 'تغيير كلمة مرور تسجيل الدخول',
+    m_profile_change_profile_picture: 'حمل الصورة',
+    m_profile_city: 'مدينة',
+    m_profile_contacts: 'جهات الاتصال',
+    m_profile_edit_profile: 'بيانات شخصية',
+    m_profile_edit_profile_success: 'المعلومات المحفوظة',
+    m_profile_email: 'البريد الإلكتروني',
+    m_profile_fname: 'اسم',
+    m_profile_from_gallery: 'اختر من المعرض',
+    m_profile_gender: 'أرضية',
+    m_profile_language: 'لسان',
+    m_profile_lname: 'لقب',
+    m_profile_logout: 'اذهب للخارج',
+    m_profile_middel_name: 'الاسم الوسطى',
+    m_profile_save: 'حفظ',
+    m_profile_settings: 'الإعدادات',
+    m_profile_take_picture: 'الة تصوير',
+    m_profile_terms_loyalty: 'شروط برنامج الولاء'
+}

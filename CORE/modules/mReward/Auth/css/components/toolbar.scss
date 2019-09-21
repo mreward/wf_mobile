@@ -1,0 +1,77 @@
+.toolbar {
+    &--auth {
+        background-color: $white !important;
+
+        @extend .padding-top--none;
+        @extend .flex--justify-between;
+
+        .left,
+        .right {
+            @extend .width--auto;
+            @extend .margin-horizontal--none;
+
+            .button {
+                overflow: visible;
+            }
+        }
+
+        .left {
+            &:not(:empty) {
+                @extend .padding-left--base;
+            }
+
+            .back-button {
+                @extend .padding-left--none;
+
+                .ons-icon {
+                    font-size: rem(20);
+                    line-height: rem(20) !important;
+                }
+            }
+        }
+
+        .center {
+            @extend .flex;
+            @extend .flex--justify-left;
+            @extend .padding-left--base;
+
+            flex-grow: 1;
+
+            .toolbar-main__title {
+                text-transform: initial;
+                font-size: rem(22);
+                line-height: rem(28);
+
+                @extend .text--left;
+                @extend .padding-horizontal--base;
+            }
+        }
+
+        .right {
+            @extend .padding-horizontal--base;
+            @extend .margin-right--none;
+
+            > * {
+                @extend .width--full;
+                @extend .padding--none;
+                @extend .margin-right--none;
+            }
+
+            .button {
+                font-size: rem(13);
+                justify-content: flex-end;
+
+                @extend .width--full;
+                @extend .padding-horizontal--none;
+                @extend .margin-right--none;
+                @extend .background--transparent;
+                @extend .text--bold;
+                @extend .text--primary;
+            }
+        }
+
+        .toolbar-main__title {
+            @extend .padding-horizontal--none;
+        }
+    }
+}

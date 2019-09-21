@@ -1,0 +1,80 @@
+.onboarding {
+    .page__background {
+        background-image: none;
+        background: $grey-light-second !important;
+    }
+
+    .ons-swiper {
+        bottom: 75px;
+    }
+
+    .intro {
+
+    }
+
+    .intro-image {
+        @include size(100vw, 100vw);
+
+        top: 0;
+        left: 0;
+
+        img {
+            @include size(100vw, 100vw);
+
+            top: 64px;
+            left: 0;
+        }
+    }
+
+    .intro-text {
+        //@extend .padding-bottom--none;
+        bottom: 80px;
+        z-index: 2;
+
+        &__title {
+            @extend .text--bold;
+            @extend .margin-bottom--small-base;
+
+            word-break: break-word;
+            display: block;
+            line-height: rem(24);
+        }
+
+        &__desc {
+            line-height: rem(18);
+            letter-spacing: -0.08px;
+        }
+    }
+
+    ons-bottom-toolbar.info-button {
+        padding-bottom: 32px;
+
+        .dots span {
+            background-color: $muted;
+
+            &.active {
+                @extend .background-color--primary;
+            }
+        }
+    }
+
+    .info-button {
+        @extend .background-color--primary;
+
+        .button {
+            color: white !important;
+            max-width: calc(100% - 32px);
+
+            @extend .width--full;
+            @extend .button--default;
+        }
+    }
+
+    .button--text {
+        @extend .text--primary;
+
+        .ons-icon {
+            @extend .text--primary;
+        }
+    }
+}

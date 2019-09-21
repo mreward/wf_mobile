@@ -1,0 +1,12 @@
+:checked + .switch__toggle {
+    background-color: $switch-background-color-active;
+    box-shadow: $switch-box-shadow-active;
+
+    @if (mixin-exists(hook-switch-checked)) {
+        @include hook-switch-checked();
+    }
+}
+
+@if (mixin-exists(hook-switch-misc)) {
+    @include hook-switch-misc();
+}

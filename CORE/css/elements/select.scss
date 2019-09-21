@@ -1,0 +1,31 @@
+@include b(select-base) {
+    & .list-item__top {
+        @if (mixin-exists(hook-select-base-top)) {
+            @include hook-select-base-top();
+        }
+    }
+
+    & .list-item__expandable-content {
+        @if (mixin-exists(hook-select-base-expandable)) {
+            @include hook-select-base-expandable();
+        }
+
+        & .list-item {
+            @if (mixin-exists(hook-select-base-expandable-list-item)) {
+                @include hook-select-base-expandable-list-item();
+            }
+        }
+    }
+
+    @if (mixin-exists(hook-select-base)) {
+        @include hook-select-base();
+    }
+}
+
+@include b(select-group) {
+    @extend .width--full;
+
+    @if (mixin-exists(hook-select-group)) {
+        @include hook-select-group();
+    }
+}

@@ -1,0 +1,57 @@
+@include b(modal) {
+    @if (mixin-exists(hook-modal)) {
+        @include hook-modal();
+    }
+
+    @include e(body) {
+        @if (mixin-exists(hook-modal-body)) {
+            @include hook-modal-body();
+        }
+    }
+
+    @include e(input) {
+        @if (mixin-exists(hook-modal-input)) {
+            @include hook-modal-input();
+        }
+    }
+
+    @include e(title) {
+        font-size: $modal-title-font-size;
+
+        @if (mixin-exists(hook-modal-title)) {
+            @include hook-modal-title();
+        }
+    }
+
+    @include e(subtitle) {
+        font-size: $modal-subtitle-font-size;
+
+        @if (mixin-exists(hook-modal-subtitle)) {
+            @include hook-modal-subtitle();
+        }
+    }
+}
+
+@include b(modal-filter) {
+    @if (mixin-exists(hook-modal-filter)) {
+        @include hook-modal-filter();
+    }
+
+    & .modal-body {
+        @if (mixin-exists(hook-modal-filter-body)) {
+            @include hook-modal-filter-body();
+        }
+    }
+}
+
+.modal-gift {
+    padding: map-get($paddings, base);
+
+    .modal__title {
+        color: $black;
+    }
+
+    .img-bar {
+        margin-top: map-get($margins, base);
+    }
+}

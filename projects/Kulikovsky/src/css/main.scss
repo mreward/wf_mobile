@@ -1,0 +1,134 @@
+// Elements
+@import "elements/button";
+@import "elements/inputs";
+@import "elements/checkbox";
+@import "elements/page";
+@import "elements/popover";
+@import "elements/progress";
+@import "elements/toast";
+@import "elements/dialog";
+// Components
+@import "components/list";
+@import "components/card";
+@import "components/alert";
+@import "components/select";
+@import "components/toolbar";
+@import "components/tabbar";
+@import "components/not-found-items";
+// Modules
+@import "modules/onboarding";
+// layout
+@import "layout/layout-cover";
+@import "layout/layout-tabs";
+
+//TODO move this code to ..?
+.layout-tab-cover {
+    & .toolbar-main {
+        & * {
+            color: white !important;
+        }
+    }
+
+    .page__background--text {
+        position: absolute;
+        left: map_get($margins, base);
+        width: 100%;
+        color: $white;
+
+        &-title {
+            position: absolute;
+            top: -60px;
+            font-size: rem(20);
+            line-height: rem(24);
+            letter-spacing: rem(0.2);
+        }
+
+        &-sub {
+            position: absolute;
+            top: -36px;
+            font-size: rem(15);
+            line-height: rem(20);
+            letter-spacing: rem(-0.24);
+        }
+    }
+
+    .page__background--color {
+        background-color: $grey-light-second;
+    }
+
+    .page-content {
+        margin-right: 16px;
+        margin-left: 16px;
+        border-radius: $border-radius;
+        overflow: visible;
+    }
+    .page__content {
+        .cover__content {
+            background: transparent;
+            padding: 0;
+        }
+    }
+    .page__background--cover {
+        background-color: transparent;
+    }
+    .v-btn--fab.v-btn--edit {
+        right: 44px;
+    }
+}
+
+.registration-terms {
+    margin-bottom: 16px;
+    text-align: center;
+    margin-top: 16px;
+    font-size: 13px;
+    color: $grey-dark;
+
+    span {
+        font-weight: 600;
+        color: $violet;
+    }
+}
+
+html[onsflag-iphonex-portrait] {
+    .layout-tab-cover {
+        .page__layout--cover {
+            margin-top: $layout-cover-page-layout-margin-top-iphonex;
+        }
+    }
+}
+
+.v-icon.v-icon, .v-icon {
+    //font-family: 'Material Icons' !important;
+    font-family: 'icons' !important;
+
+    &::before {
+        font-family: 'icons';
+    }
+}
+
+.is-underline {
+    &::after {
+        @extend .position--absolute;
+
+        @include size(100%, 1px);
+
+        left: 0;
+        bottom: 0;
+        content: '';
+        background-color: $grey-light-third;
+    }
+
+    &:last-child {
+        &::after {
+            display: none;
+        }
+    }
+}
+
+.onboarding {
+    .intro {
+        &--wrapper {
+            top: calc(50% - 30px);
+        }
+    }
+}

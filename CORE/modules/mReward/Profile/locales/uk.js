@@ -1,0 +1,22 @@
+export default {
+    m_profile_birthday: 'Дата народження',
+    m_profile_cancel: 'Скасувати',
+    m_profile_change_password: 'Змінення пароля для входу',
+    m_profile_change_profile_picture: 'Завантажте фото',
+    m_profile_city: 'Місто',
+    m_profile_contacts: 'Контакти',
+    m_profile_edit_profile: 'Особисті дані',
+    m_profile_edit_profile_success: 'Інформація збережена',
+    m_profile_email: 'Електронна пошта',
+    m_profile_fname: 'Ім\'я',
+    m_profile_from_gallery: 'Виберіть із галереї',
+    m_profile_gender: 'Підлога',
+    m_profile_language: 'Язик',
+    m_profile_lname: 'Прізвище',
+    m_profile_logout: 'Вийди',
+    m_profile_middel_name: 'прізвище',
+    m_profile_save: 'Зберегти',
+    m_profile_settings: 'Налаштування',
+    m_profile_take_picture: 'Камера',
+    m_profile_terms_loyalty: 'Умови програми лояльності'
+}

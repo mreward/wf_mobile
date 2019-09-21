@@ -1,0 +1,65 @@
+{
+  "_from": "git+https://github.com/leecrossley/cordova-plugin-shake.git",
+  "_id": "cordova-plugin-shake@0.6.0",
+  "_inBundle": false,
+  "_integrity": "",
+  "_location": "/cordova-plugin-shake",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "git+https://github.com/leecrossley/cordova-plugin-shake.git",
+    "rawSpec": "git+https://github.com/leecrossley/cordova-plugin-shake.git",
+    "saveSpec": "git+https://github.com/leecrossley/cordova-plugin-shake.git",
+    "fetchSpec": "https://github.com/leecrossley/cordova-plugin-shake.git",
+    "gitCommittish": null
+  },
+  "_requiredBy": [
+    "#DEV:/",
+    "#USER"
+  ],
+  "_resolved": "git+https://github.com/leecrossley/cordova-plugin-shake.git#77ff6e2348255e6a9ebd21ac9bba04f72839577d",
+  "_spec": "git+https://github.com/leecrossley/cordova-plugin-shake.git",
+  "_where": "/Users/dashaperfilieva/Desktop/work/mWallet_v4/projects/Kulikovsky",
+  "author": {
+    "name": "Lee Crossley",
+    "email": "leee@hotmail.co.uk",
+    "url": "http://ilee.co.uk/"
+  },
+  "bugs": {
+    "url": "https://github.com/leecrossley/cordova-plugin-shake-detection/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-shake",
+    "platforms": []
+  },
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
+  },
+  "deprecated": false,
+  "description": "Cordova Plugin to detect when a physical device performs a shake gesture.",
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=5.0.0"
+    }
+  ],
+  "homepage": "https://github.com/leecrossley/cordova-plugin-shake-detection#readme",
+  "keywords": [
+    "cordova",
+    "shake",
+    "gesture",
+    "accelerometer",
+    "acceleration",
+    "detection",
+    "ecosystem:cordova"
+  ],
+  "license": "MIT",
+  "name": "cordova-plugin-shake",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leecrossley/cordova-plugin-shake-detection.git"
+  },
+  "version": "0.6.0"
+}

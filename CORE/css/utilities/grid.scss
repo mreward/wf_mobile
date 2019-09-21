@@ -1,0 +1,94 @@
+$grid-gutter: map_get($paddings, base);
+$grid-gutter-small: map_get($paddings, small);
+$grid-gutter-large: map_get($paddings, large);
+
+@mixin grid($gutter) {
+    $margin: $gutter / 2;
+
+    margin-right: -#{$margin};
+    margin-left: -#{$margin};
+
+    &.list {
+        width: calc(100% + #{$gutter}) !important;
+    }
+
+    & > * {
+        width: 100%;
+        margin: 0 $gutter/2 $gutter !important;
+    }
+
+    &.child-width {
+        @for $i from 2 through 10 {
+            &--1-#{$i} {
+                & > * {
+                    width: calc(#{100%/$i} - #{$gutter});
+                }
+            }
+        }
+    }
+
+    @each $breakpoint, $value in $--breakpoints {
+        @media only screen and #{$value} {
+            &.child-width {
+                @for $i from 1 through 10 {
+                    &--1-#{$i}\@#{$breakpoint} {
+                        & > * {
+                            width: calc(#{100%/$i} - #{$gutter});
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    & .width {
+        @for $i from 2 through 10 {
+            &--1-#{$i} {
+                width: calc(#{100%/$i} - #{$gutter});
+            }
+
+            $numerator: $i - 1;
+
+            &--#{$numerator}-#{$i} {
+                width: calc(#{100%/$i*$numerator} - #{$gutter});
+            }
+        }
+    }
+}
+
+@include b(grid) {
+    display: flex;
+    flex-wrap: wrap;
+
+    @include grid($grid-gutter);
+
+    @include m(small) {
+        @include grid($grid-gutter-small);
+    }
+
+    @include m(large) {
+        @include grid($grid-gutter-large);
+    }
+
+    @include m(masonry) {
+        columns: $grid-masonry-columns; // 136px
+        column-gap: $grid-masonry-margin; // 0.5rem
+
+        > * {
+             break-inside: avoid-column;
+             margin-bottom: $grid-masonry-margin // 0.5rem
+        }
+    }
+}
+
+@each $breakpoint, $value in $--breakpoints {
+    @media only screen and #{$value} {
+        .grid--small\@#{$breakpoint} {
+            @include grid($grid-gutter-small);
+        }
+
+        .grid--large\@#{$breakpoint} {
+            @include grid($grid-gutter-large);
+        }
+    }
+}

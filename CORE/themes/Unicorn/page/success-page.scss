@@ -1,0 +1,45 @@
+.success-page {
+    & .success-page__text {
+        color: $black;
+        word-break: break-word;
+
+        @extend .text--normal;
+        @extend .margin-top--small;
+    }
+
+    &__icon {
+        @extend .margin-bottom--none;
+
+        .ons-icon {
+            padding-bottom: 1px;
+        }
+    }
+
+    &__heading {
+        color: $black;
+        line-height: 24px;
+
+        @extend .margin-top--none;
+    }
+
+    &__button {
+        max-width: 140px !important;
+        &.button--main {
+            max-width: 140px;
+        }
+    }
+
+    .button--add {
+        @extend .flex--justify-center;
+        @extend .flex--align-center;
+        @extend .margin-top--small;
+        @extend .text--muted;
+
+        .ons-icon {
+            width: 26px;
+            padding-left: 1px;
+
+            @include text-gradient-one($success-page-add-icon-background);
+        }
+    }
+}

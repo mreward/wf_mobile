@@ -1,0 +1,24 @@
+@mixin hook-tabbar-top-button-active() {
+    background: $tabbar-button-tab-active-background;
+    opacity: $tabbar-button-tab-active-opacity;
+}
+
+@mixin hook-tabbar() {
+    &__item--circle {
+        .tabbar__icon {
+            color: $tabbar-button-tab-circle-icon-color;
+        }
+    }
+
+    &::before {
+        background: $tabbar-button-tab-background !important;
+    }
+
+    .tabbar__item--circle {
+        .tabbar__icon {
+            .ons-icon {
+                font-size: $tabbar-button-tab-icon-size;
+            }
+        }
+    }
+}

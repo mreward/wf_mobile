@@ -1,0 +1,47 @@
+.calendar-holder {
+    .arrow-left,
+    .arrow-right {
+        top: 4px !important;
+        color: $black;
+        font-size: rem(32);
+    }
+
+    .title {
+        color: $black;
+        font-weight: 500 !important;
+    }
+}
+
+.history__filters {
+    .daterange-picker {
+        .inputs-container {
+            .divider {
+                width: 10px;
+            }
+
+            input {
+                &::selection,
+                &:focus {
+                    background: transparent;
+                }
+            }
+        }
+
+        .calendar-holder {
+            top: 36px;
+            width: calc(100vw - 30px);
+
+            .arrow-right.disabled {
+                color: $black;
+            }
+        }
+    }
+
+    .select-block {
+        .displays-list {
+            .expandable-content {
+                width: calc(100vw - 30px);
+            }
+        }
+    }
+}

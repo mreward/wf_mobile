@@ -1,0 +1,47 @@
+.layout-cover, .layout-tab-cover {
+    > .toolbar {
+        background: transparent;
+
+        &:not(.toolbar--cover-content) + .page__background + .page__content {
+            top: 0px !important;
+            background-color: #fff !important;
+        }
+
+        .back-button {
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: $violet;
+            color: $white;
+        }
+    }
+
+    .page__background {
+        &--cover {
+            position: fixed;
+            top: 0 !important;
+            background-color: #fff;
+            width: 100%;
+            z-index: -1;
+
+            img {
+                width: 100%;
+            }
+        }
+    }
+
+    .page__content {
+        padding: 0 0 40px 0 !important;
+
+        .cover__content {
+            background: $white;
+            padding: 16px;
+            border-radius: $border-radius $border-radius 0 0;
+        }
+
+        .page-content {
+            z-index: 1;
+        }
+    }
+}

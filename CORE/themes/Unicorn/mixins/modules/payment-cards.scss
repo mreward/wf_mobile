@@ -1,0 +1,7 @@
+@mixin hook-payment-cards-item() {
+    width: calc(100vw - 32px);
+}
+
+@mixin hook-payment-cards-item-checkmark() {
+    font-size: rem(12);
+}

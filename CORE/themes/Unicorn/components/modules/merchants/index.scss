@@ -1,0 +1,38 @@
+@import "merchants-search";
+@import "merchants-top";
+@import "merchant-item";
+@import "merchant-info";
+@import "modal-merchant-rate";
+
+.layout-map__header {
+    font-size: rem(15);
+    line-height: rem(17);
+    color: $black;
+    font-weight: $bold;
+}
+
+.layout-map__content {
+    background-color: #F5F7FA;
+    padding: $base-size;
+}
+
+.layout-map .my-location {
+    background-color: $white;
+    box-shadow: $shadow;
+    color: $primary;
+}
+
+.merchants-search {
+    @extend .margin-bottom--base;
+}
+
+.merchants-list {
+    //height: 100%;
+    overflow: scroll;
+
+    .merchant-item {
+        &:first-child {
+            @extend .margin-top--none;
+        }
+    }
+}

@@ -1,0 +1,13 @@
+.not-found-items {
+    min-height: 60px;
+
+    &__icon {
+        display: none;
+    }
+
+    &__text {
+        letter-spacing: -0.08px;
+        font-size: rem(13);
+        line-height: rem(18);
+    }
+}

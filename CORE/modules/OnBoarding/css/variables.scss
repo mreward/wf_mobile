@@ -1,0 +1,35 @@
+$onboarding-background: $white !default;
+
+$onboarding-dots-size: 8px !default;
+$onboarding-dots-size-active: 10px !default;
+$onboarding-dots-width-size-active: $onboarding-dots-size-active !default;
+$onboarding-dots-font-size: 30px !default;
+$onboarding-dots-background: $white !default;
+$onboarding-dots-active-background: $white !default;
+
+$onboarding-dots-border-radius-active: 50% !default;
+$onboarding-button-action-skip-color: $black !default;
+$onboarding-button-action-next-color: $black !default;
+$onboarding-button-close-color: $primary !default;
+$onboarding-button-close-icon-font-size: rem(28) !default;
+$onboarding-button-close-icon-color: $white !default;
+$onboarding-button-action-font-size: rem(13) !default;
+$onboarding-button-action-color: $black !default;
+$onboarding-button-auth-max-width: 140px !default;
+$onboarding-button-auth-font-size: rem(15) !default;
+$onboarding-button-auth-background: $white !default;
+$onboarding-button-auth-color: $black !default;
+
+$onboarding-button-intro-image-size: 90vw !default;
+
+$onboarding-button-intro-title-color: $white !default;
+$onboarding-button-intro-text-color: $white !default;
+$onboarding-intro-text-padding: 32px !default;
+$onboarding-intro-image-padding-bottom: 40px !default;
+$onboarding-intro-text-padding-button: 40px !default;
+$onboarding-intro-text-iphonex-padding-button: 94px !default;
+$onboarding-button-intro-text-title-font-size: rem(30) !default;
+$onboarding-button-intro-text-desc-font-size: rem(16) !default;
+$onboarding-button-intro-text-title-text-transform: uppercase !default;
+
+$onboarding-iphonex-intro-text-top: calc(100vw + 85px) !default;

@@ -1,0 +1,167 @@
+{
+  "project_info": {
+    "project_number": "345883744686",
+    "firebase_url": "https://kulikovsky-8e8ce.firebaseio.com",
+    "project_id": "kulikovsky-8e8ce",
+    "storage_bucket": "kulikovsky-8e8ce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:345883744686:android:7c695a32d72dbfc4",
+        "android_client_info": {
+          "package_name": "pro.mwallet.kulikovsky"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "345883744686-1l0t211u869ijs1uekuu3oecca3mipqi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "pro.mwallet.kulikovsky",
+            "certificate_hash": "ad7284a8cb11dce0ee4922f5b578d61a2e19998c"
+          }
+        },
+        {
+          "client_id": "345883744686-4n7vnfgdhj3h0eq0fn1beintek30k220.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "pro.mwallet.kulikovsky",
+            "certificate_hash": "9354f80d5467aef07ff239f87dacdb4bec1f72e7"
+          }
+        },
+        {
+          "client_id": "345883744686-qfp7ts5oocjcb1nnu160qmt0ker0kkn8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzFLo3DNuOdvmKetNY9r64bvBaFWPAAgE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "345883744686-qfp7ts5oocjcb1nnu160qmt0ker0kkn8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "345883744686-80ifroa4dmvpfefuvq1a6ns0henrr1p6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "pro.mwallet.kulikovskysit"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:345883744686:android:d9e53942a1928e74",
+        "android_client_info": {
+          "package_name": "pro.mwallet.kulikovskysit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "345883744686-o60frec3pktdca43j1mjpbag8sjns67o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "pro.mwallet.kulikovskysit",
+            "certificate_hash": "ad7284a8cb11dce0ee4922f5b578d61a2e19998c"
+          }
+        },
+        {
+          "client_id": "345883744686-iqe57itk47i67bhhn9v7ojer7fdqtob2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "pro.mwallet.kulikovskysit",
+            "certificate_hash": "9354f80d5467aef07ff239f87dacdb4bec1f72e7"
+          }
+        },
+        {
+          "client_id": "345883744686-qfp7ts5oocjcb1nnu160qmt0ker0kkn8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzFLo3DNuOdvmKetNY9r64bvBaFWPAAgE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "345883744686-qfp7ts5oocjcb1nnu160qmt0ker0kkn8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "345883744686-80ifroa4dmvpfefuvq1a6ns0henrr1p6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "pro.mwallet.kulikovskysit"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:345883744686:android:0fe165aed9b968c1",
+        "android_client_info": {
+          "package_name": "pro.mwallet.kulikovskyuat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "345883744686-ko8uv0070hgcmskjkgv9jodadj76v3m0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "pro.mwallet.kulikovskyuat",
+            "certificate_hash": "ad7284a8cb11dce0ee4922f5b578d61a2e19998c"
+          }
+        },
+        {
+          "client_id": "345883744686-rl79f9tm98ugksueai6punv0f7bjv867.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "pro.mwallet.kulikovskyuat",
+            "certificate_hash": "9354f80d5467aef07ff239f87dacdb4bec1f72e7"
+          }
+        },
+        {
+          "client_id": "345883744686-qfp7ts5oocjcb1nnu160qmt0ker0kkn8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzFLo3DNuOdvmKetNY9r64bvBaFWPAAgE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "345883744686-qfp7ts5oocjcb1nnu160qmt0ker0kkn8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "345883744686-80ifroa4dmvpfefuvq1a6ns0henrr1p6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "pro.mwallet.kulikovskysit"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

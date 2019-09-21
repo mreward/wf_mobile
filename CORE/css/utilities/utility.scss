@@ -1,0 +1,59 @@
+@each $valOverflow in hidden, visible, touch {
+    @if $valOverflow == touch {
+        @include b(overflow-#{$valOverflow}) {
+            -webkit-overflow-scrolling: touch;
+            overflow: scroll;
+        }
+    }
+
+    @else {
+        @include b(overflow-#{$valOverflow}) {
+            overflow: $valOverflow !important;
+        }
+    }
+}
+
+.shadow {
+    box-shadow: $shadow;
+}
+// Background generate
+
+@include b(background) {
+    &-color {
+        @each $color, $value in $colors {
+            @include m(#{$color}) {
+                background-color: $value;
+            }
+        }
+
+        @include m(none) {
+            background-color: transparent;
+        }
+    }
+
+    &-gradient {
+        @each $gradient, $value in $gradients {
+            @include m(#{$gradient}) {
+                background-image: $value;
+            }
+        }
+
+        @include m(none) {
+            background-image: none;
+        }
+    }
+
+    @each $color, $value in $colors {
+        @include m(#{$color}) {
+            background: $value;
+        }
+    }
+
+    @include m(none) {
+        background-image: none;
+    }
+
+    @include m('transparent') {
+        background: transparent;
+    }
+}

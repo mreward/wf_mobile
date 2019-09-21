@@ -1,0 +1,82 @@
+.alert--notification {
+    .dialog {
+        top: 50% !important;
+    }
+}
+
+.notification-item {
+    @extend .padding--base;
+
+    &__content {
+        @extend .position--relative;
+    }
+
+    &__title-wrap {
+        padding-left: 40px;
+
+        @extend .flex;
+        @extend .flex--justify-between;
+        @extend .flex--align-center;
+        @extend .margin-bottom--small;
+    }
+
+    &__title {
+        @extend .text--normal;
+
+        font-size: rem(20);
+    }
+
+    &__icon {
+        font-size: rem(24);
+
+        @include size(24px, 24px);
+
+        @extend .position--absolute;
+        @extend .position--top-left;
+    }
+
+    &__time {
+        @extend .text--muted;
+
+        font-size: rem(12);
+    }
+
+    &__text {
+        padding-left: 40px;
+        font-size: rem(16);
+        line-height: 20px;
+    }
+
+    .alert__button-primary {
+        max-width: 140px;
+    }
+}
+
+.list--notifications {
+    .left {
+        > .list-item__icon {
+            width: 24px;
+        }
+
+        .status {
+            @extend .position--relative;
+            @include size(24px, 24px);
+
+            .status-icon {
+                @extend .position--absolute;
+
+                right: 0;
+                top: -16px;
+                line-height: rem(16) !important;
+
+                &.orb-green {
+                    @extend .text-gradient--success;
+                }
+
+                &.orb-red {
+                    @extend .text-gradient--danger;
+                }
+            }
+        }
+    }
+}

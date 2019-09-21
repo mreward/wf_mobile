@@ -1,0 +1,236 @@
+@include b(input) {
+    @extend .position--relative;
+    @extend .width--full;
+    @extend .flex;
+    @extend .flex--align-center;
+
+    @if (mixin-exists(hook-input)) {
+        @include hook-input();
+    }
+
+    @include m(default) {
+        @if (mixin-exists(hook-input-default)) {
+            @include hook-input-default();
+        }
+    }
+
+    @include m(amount) {
+        @if (mixin-exists(hook-input-amount)) {
+            @include hook-input-amount();
+        }
+    }
+
+    @include m(underbar) {
+        font-size: $input-underbar-font-size;
+        border-bottom: $input-underbar-border;
+
+        @extend .padding-horizontal--small;
+
+        @include when(active) {
+            border-bottom: $input-underbar-border-active;
+        }
+
+        & .text-input--underbar {
+            border-bottom: none !important;
+        }
+
+        @if (mixin-exists(hook-input-underbar)) {
+            @include hook-input-underbar();
+        }
+    }
+
+    textarea {
+        font-size: $input-font-size;
+        border: 0;
+    }
+
+    input {
+        line-height: normal;
+        appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+    }
+
+    > .show-password-button {
+        color: $icon-eye-gray;
+
+        @extend .position--absolute;
+        @extend .position--center-right;
+
+        @if (mixin-exists(hook-input-password-button)) {
+            @include hook-input-password-button();
+        }
+    }
+
+    @include e(inner) {
+        //height: $input-height;
+
+        text-decoration: none;
+        font-style: normal;
+        font-variant: normal;
+        text-transform: none;
+        font-size: $input-font-size;
+        vertical-align: middle;
+        line-height: normal;
+        border: 0;
+
+        &::placeholder,
+        &::-webkit-input-placeholder {
+            overflow: visible;
+            line-height: inherit;
+            font-size: inherit;
+
+            @if (mixin-exists(hook-input-inner-placeholder)) {
+                @include hook-input-inner-placeholder();
+            }
+        }
+
+        @extend .width--full;
+
+        @if (mixin-exists(hook-input-inner)) {
+            @include hook-input-inner();
+        }
+    }
+
+    @include e(prefix) {
+        margin-right: $input-prefix-suffix-margin;
+        font-size: $input-prefix-font-size;
+
+        @if (mixin-exists(hook-input-prefix)) {
+            @include hook-input-prefix();
+        }
+    }
+
+    @include e(suffix) {
+        margin-left: auto;
+    }
+
+    @include m(error) {
+        & .text-input {
+            color: $danger;
+
+            @include placeholder($danger, inherit);
+        }
+    }
+
+    @include e(error-message) {
+        color: $danger;
+        font-size: rem(12);
+    }
+}
+
+@if (mixin-exists(hook-input-misc)) {
+    @include hook-input-misc();
+}
+
+@include b(input-phone) {
+    .input__suffix {
+        @extend .flex;
+
+        .icon {
+            &.clearable {
+                margin: 0 rem(6);
+                font-size: rem(14);
+
+                .ons-icon {
+                    padding: rem(2);
+                    color: $black;
+                    font-size: rem(14);
+                    background: $grey;
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
+
+    @if (mixin-exists(hook-input-phone)) {
+        @include hook-input-phone();
+    }
+}
+
+@include b(input-group) {
+    @extend .flex;
+    @extend .flex--align-center;
+    @extend .width--full;
+
+    @if (mixin-exists(hook-input-group)) {
+        @include hook-input-group();
+    }
+
+    @include e(suffix) {
+        height: $input-height;
+
+        @extend .flex;
+        @extend .flex--justify-right;
+        @extend .flex--align-center;
+
+        @if (mixin-exists(hook-input-group-suffix)) {
+            @include hook-input-group-suffix();
+        }
+    }
+
+    @include e(prefix) {
+        height: $input-height;
+
+        @extend .flex;
+        @extend .flex--justify-left;
+        @extend .flex--align-center;
+
+        @if (mixin-exists(hook-input-group-prefix)) {
+            @include hook-input-group-prefix();
+        }
+    }
+}
+
+@if (mixin-exists(hook-input-group-misc)) {
+    @include hook-input-group-misc();
+}
+
+@include b(input-pin) {
+    display: flex;
+
+    & > :not(:last-child) {
+        @extend .margin-right--base;
+    }
+
+    & > * {
+        flex: 1;
+    }
+
+    & .input-pin__inner .text-input {
+        @extend .text--center;
+    }
+
+    & .input--error {
+        .input-pin__inner {
+            border-bottom: $input-underbar-border-error;
+        }
+    }
+
+    @if (mixin-exists(hook-input-pin)) {
+        @include hook-input-pin();
+    }
+
+    @include e(inner) {
+        @extend .padding-horizontal--small;
+
+        height: $input-height;
+        border-bottom: $input-underbar-border;
+
+        & input {
+            font-size: $input-pin-font-size !important;
+        }
+
+        @include when(active) {
+            border-bottom: $input-underbar-border-active;
+        }
+
+        @if (mixin-exists(hook-input-pin-inner)) {
+            @include hook-input-pin-inner();
+        }
+    }
+}
+
+@if (mixin-exists(hook-input-pin-misc)) {
+    @include hook-input-pin-misc();
+}

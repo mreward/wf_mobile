@@ -1,0 +1,88 @@
+.checkbox_block {
+    .input--error {
+        .input__error-message {
+            display: none;
+        }
+
+        .checkbox_block-square {
+            .checkbox {
+                &__checkmark {
+                    &::before {
+                        border-color: $danger;
+                    }
+                }
+
+            }
+        }
+    }
+
+    &-square {
+        @extend .flex;
+        @extend .flex--justify-center;
+        @extend .flex--align-center;
+
+        width: calc(100vw - 82px);
+        margin-right: 20px;
+        margin-left: -20px;
+
+        .text {
+            font-size: $checkbox-square-text-font-size;
+            line-height: $checkbox-square-text-line-height;
+            letter-spacing: 0.2px;
+
+            span {
+                font-weight: 600;
+                font-size: inherit;
+                letter-spacing: 0.2px;
+            }
+        }
+
+        .checkbox {
+            @extend .margin-right--small-base;
+
+            .checkbox--material__checkmark {
+                @include size($checkbox-square-size, $checkbox-square-size);
+
+                &::before {
+                    @include size(inherit, inherit);
+
+                    border: $checkbox-square-checkmark-border;
+                }
+
+                &::after {
+                    border-color: $checkbox-square-border-color;
+                }
+            }
+
+            .checkbox--material__input {
+                &::before {
+                    background-color: $checkbox-square-checkmark-checked-mask-color;
+                    box-shadow: 0 0 0 11px $checkbox-square-checkmark-checked-mask-color;
+
+                    @include size(inherit, inherit);
+                }
+
+                :checked {
+                    &::before {
+                        background-color: $checkbox-square-checkmark-checked-mask-color;
+                        box-shadow: 0 0 0 11px $checkbox-square-checkmark-checked-mask-color;
+                    }
+                }
+            }
+
+            :checked + .checkbox--material__checkmark {
+                &::before {
+                    background: none;
+                    border: $checkbox-square-checkmark-checked-border;
+                }
+
+                &::after {
+                    @include size($checkbox-square-checkmark-checked-width, $checkbox-square-checkmark-checked-height);
+
+                    top: $checkbox-square-checkmark-checked-top-left;
+                    left: $checkbox-square-checkmark-checked-top-left;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>Icon/16x16/promotion</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Icon/16x16/promotion" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" transform="translate(0.000000, 0.000000)">
+            <path d="M1,10 L15,10 L15,15 C15,15.5522847 14.5522847,16 14,16 L2,16 C1.44771525,16 1,15.5522847 1,15 L1,10 Z" id="Rectangle" fill="#FFFFFF"></path>
+            <rect id="Rectangle" fill="#FFFFFF" x="0" y="7" width="16" height="1" rx="0.5"></rect>
+            <path d="M12,4.49719238 C11.9986839,1.83052572 11.1912942,0.497192383 9.57783091,0.497192383 C7.15763603,0.497192383 8.01811576,2.74695135 8.90263454,3.58802934 C9.49231373,4.148748 10.5247689,4.45180235 12,4.49719238 Z" id="Path-2" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" transform="translate(10.000000, 2.497192) scale(-1, 1) translate(-10.000000, -2.497192) "></path>
+            <path d="M8,4.49719238 C7.99868386,1.83052572 7.19129417,0.497192383 5.57783091,0.497192383 C3.15763603,0.497192383 4.01811576,2.74695135 4.90263454,3.58802934 C5.49231373,4.148748 6.52476888,4.45180235 8,4.49719238 Z" id="Path-2" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round"></path>
+        </g>
+    </g>
+</svg>

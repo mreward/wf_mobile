@@ -1,0 +1,198 @@
+@mixin hook-button-auth() {
+    //color: $white;
+    //font-weight: 600;
+    //font-size: rem(14);
+    //line-height: rem(19);
+    //letter-spacing: 0.4px;
+    //@extend .text--center;
+    @extend .width--full;
+}
+
+@mixin hook-button-main() {
+    @extend .button--primary;
+    @extend .width--full;
+    @extend .text--center;
+    @extend .margin-horizontal--auto;
+    @extend .text--bold;
+
+    max-width: 200px;
+    color: $white;
+    font-size: rem(14);
+    background: $button-main-background;
+    border-radius: $button-main-border-radius;//25px;
+    box-shadow: $button-main-box-shadow; // $shadow;
+    &:hover, &:active {
+        box-shadow: $button-main-box-shadow; // $shadow;
+    }
+}
+
+@mixin hook-button-main-active() {
+    color: $white !important;
+    background: $button-main-background !important;
+}
+
+@mixin hook-button-text() {
+    //color: $primary;
+    color: $muted !important;
+    font-size: rem(14);
+
+    @extend .text--primary;
+    @extend .text--bold;
+}
+
+@mixin hook-button-default() {
+    @extend .text--bold;
+
+    font-size: rem(14);
+    border: 2px solid $grey-bg-2;
+}
+
+@mixin hook-button-primary() {
+    @extend .button--main;
+
+    width: fit-content;
+    min-width: 140px;
+    padding: 0 36px;
+}
+
+@mixin hook-button-outline() {
+    font-size: rem(14);
+
+    @extend .text--bold;
+}
+
+@mixin hook-button-misc() {
+    @include b(button) {
+        @include m(outline-secondary) {
+            @extend .text--bold;
+
+            color: $grey-dark;
+            font-size: rem(14);
+            border: 2px solid $grey-dark;
+        }
+
+        @include m(secondary) {
+            @extend .text--bold;
+
+            color: $black;
+            font-size: rem(14);
+            border: 2px solid $black;
+        }
+    }
+}
+
+@mixin hook-button-expanded() {
+    justify-content: flex-start !important;
+
+    @extend .text--bold;
+    @extend .padding-horizontal--none;
+
+    color: $black !important;
+    font-size: rem(14);
+}
+
+@mixin hook-layout-auth-button-text() {
+    min-height: $button-control-height;
+    padding: $button-padding;
+    color: $button-color-muted !important;
+    line-height: $button-control-height;
+}
+
+@mixin hook-button-text-active() {
+    color: $muted;
+    background: none;
+    box-shadow: none;
+    opacity: 1;
+}
+
+@mixin hook-button-clear() {
+    @extend .position--center-right;
+    @extend .position--absolute;
+    @extend .padding--none;
+
+    min-height: $input-clear-button-min-height;
+    line-height: $input-clear-button-line-height;
+    background: $input-clear-button-background-color;
+    border-radius: 50%;
+
+    @include size($input-clear-button-size, $input-clear-button-size);
+
+    .ons-icon {
+        color: $input-clear-button-icon-color;
+        font-size: $input-clear-button-font-size;
+    }
+}
+
+@mixin hook-button-clear-active() {
+    width: $input-clear-button-size;
+    min-width: auto;
+    background: $input-clear-button-background-color;
+    opacity: 1;
+}
+
+@mixin hook-button-outline() {
+    @extend .margin-horizontal--auto;
+    @extend .text--bold;
+
+    max-width: $button-outline-max-width;
+    max-height: $button-outline-max-height;
+    color: $button-outline-color;
+    font-size: $button-outline-font-size;
+    border: $button-outline-border;
+    border-radius: $button-outline-border-radius;
+}
+
+@mixin hook-button-outline-active() {
+    border: $button-outline-border;
+    opacity: 1;
+
+    @extend .background-color--none;
+}
+
+@mixin hook-button-add() {
+    @extend .flex;
+    @extend .flex--align-center;
+    @extend .flex--justify-left;
+    @extend .text--muted;
+    @extend .text--bold;
+    @extend .padding-horizontal--none;
+    @extend .position--relative;
+    @extend .overflow-visible;
+
+    z-index: 2;
+    font-size: $button-add-font-size;
+
+    .ons-icon {
+        z-index: 2;
+        font-size: $button-add-icon-font-size;
+
+        @extend .overflow-visible;
+        //@extend .padding--none;
+        @extend .margin-right--small-base;
+
+        @include size($button-add-icon-size, $button-add-icon-size);
+        @include text-gradient-one($secondary-gradient);
+
+        &::before {
+            @include size($button-add-icon-before-size, $button-add-icon-before-size);
+        }
+    }
+}
+
+@mixin hook-button-quiet() {
+    opacity: 1 !important;
+}
+
+@mixin hook-button-quiet-active() {
+    color: inherit;
+    box-shadow: initial;
+}
+
+@mixin hook-button-add-active() {
+    color: $muted !important;
+    opacity: 1;
+}
+
+@mixin hook-button-active() {
+    opacity: 1;
+}

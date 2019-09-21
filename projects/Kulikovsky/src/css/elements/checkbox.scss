@@ -1,0 +1,54 @@
+.checkbox_block {
+    .input--error {
+        .input__error-message {
+
+        }
+
+        .checkbox_block-square {
+            .checkbox {
+                &__checkmark {
+                    &::before {
+
+                    }
+                }
+
+            }
+        }
+    }
+
+    &-square {
+        .checkbox {
+            .checkbox--material__checkmark {
+                &::before {
+
+                }
+
+                &::after {
+
+                }
+            }
+
+            .checkbox--material__input {
+                &::before {
+
+                }
+
+                :checked {
+                    &::before {
+
+                    }
+                }
+            }
+
+            :checked + .checkbox--material__checkmark {
+                &::before {
+
+                }
+
+                &::after {
+
+                }
+            }
+        }
+    }
+}

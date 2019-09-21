@@ -1,0 +1,66 @@
+{
+  "_from": "cordova-plugin-wkwebview-inputfocusfix@^1.0.4",
+  "_id": "cordova-plugin-wkwebview-inputfocusfix@1.0.4",
+  "_inBundle": false,
+  "_integrity": "sha512-6UUV+ESf6IcoeJy3gZua/ZdVj+5N6KtWPXnIjcGgKUTOk6dLbz7w4Vw95swFz7YOpyYmMyTBklAGPqE+vdcDAw==",
+  "_location": "/cordova-plugin-wkwebview-inputfocusfix",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "cordova-plugin-wkwebview-inputfocusfix@^1.0.4",
+    "name": "cordova-plugin-wkwebview-inputfocusfix",
+    "escapedName": "cordova-plugin-wkwebview-inputfocusfix",
+    "rawSpec": "^1.0.4",
+    "saveSpec": null,
+    "fetchSpec": "^1.0.4"
+  },
+  "_requiredBy": [
+    "#DEV:/",
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-wkwebview-inputfocusfix/-/cordova-plugin-wkwebview-inputfocusfix-1.0.4.tgz",
+  "_shasum": "a8ff3f3b09e67152d418d2573cf284293e4ea17f",
+  "_spec": "cordova-plugin-wkwebview-inputfocusfix@^1.0.4",
+  "_where": "/Users/dashaperfilieva/Desktop/work/mWallet_v4/projects/Kulikovsky",
+  "author": {
+    "name": "Önder Ceylan",
+    "email": "onderceylan@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/onderceylan/cordova-plugin-wkwebview-inputfocusfix/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-wkwebview-inputfocusfix",
+    "platforms": [
+      "ios"
+    ]
+  },
+  "deprecated": false,
+  "description": "Cordova plugin for fixing auto focus issue of html elements on WKWebView",
+  "engines": {
+    "cordovaDependencies": {
+      ">1.0.0": {
+        "cordova": ">=3.2.0"
+      }
+    }
+  },
+  "homepage": "https://github.com/onderceylan/cordova-plugin-wkwebview-inputfocusfix#readme",
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-ios",
+    "input",
+    "focus",
+    "auto-focus",
+    "wkwebview",
+    "ionic"
+  ],
+  "license": "MIT",
+  "name": "cordova-plugin-wkwebview-inputfocusfix",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onderceylan/cordova-plugin-wkwebview-inputfocusfix.git"
+  },
+  "version": "1.0.4"
+}

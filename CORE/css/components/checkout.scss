@@ -1,0 +1,78 @@
+@include b(checkout) {
+    &__item ~ &__item {
+        border-top: $checkout-item-border;
+    }
+
+    @include e(header) {
+        height: $checkout-header-height;
+        padding-left: 0 !important;
+        font-size: $checkout-header-font-size;
+        line-height: $checkout-header-height;
+
+        @extend .text--center;
+
+        @if (mixin-exists(hook-checkout-header)) {
+            @include hook-checkout-header();
+        }
+    }
+
+    @include e(list) {
+        @extend .padding--base;
+
+        @if (mixin-exists(hook-checkout-list)) {
+            @include hook-checkout-list();
+        }
+    }
+
+    @include e(footer) {
+        @if (mixin-exists(hook-checkout-footer)) {
+            @include hook-checkout-footer();
+        }
+    }
+
+    @include e(item) {
+        & .list__item {
+            border-bottom: 0;
+        }
+
+        & > .list_item__center {
+            @extend .padding-left--base;
+        }
+
+        & .list-item:not(:last-child) .list-item__center {
+            @extend .padding-bottom--none;
+        }
+
+        @if (mixin-exists(hook-checkout-item)) {
+            @include hook-checkout-item();
+        }
+    }
+
+    @include e(title) {
+        @extend .text--muted;
+
+        @if (mixin-exists(hook-checkout-title)) {
+            @include hook-checkout-title();
+        }
+    }
+
+    @include e(price) {
+        & .amount__value {
+            font-size: $checkout-item-price-font-size;
+        }
+    }
+
+    &__field-item {
+        @if (mixin-exists(hook-checkout-field-item)) {
+            @include hook-checkout-field-item();
+        }
+    }
+
+    @if (mixin-exists(hook-card-checkout)) {
+        @include hook-card-checkout();
+    }
+}
+
+@if (mixin-exists(hook-card-checkout-misc)) {
+    @include hook-card-checkout-misc();
+}

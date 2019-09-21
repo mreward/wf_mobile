@@ -1,0 +1,38 @@
+.notification-list {
+    .icon-wrap {
+        height: 30px;
+        width: 30px;
+        background-color: #6d0978;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 28px;
+        margin-right: 15px;
+    }
+    .ons-icon::before{
+        color: $white;
+        vertical-align: middle;
+    }
+    .title_notification {
+        font-size: 15px;
+        font-weight: 600;
+        padding-top: 6px;
+    }
+    .message {
+        font-size: 13px;
+    }
+    .time {
+        font-size: 12px;
+    }
+    .left, .center  {
+        align-items: flex-start;
+    }
+    .center {
+        flex-direction: column;
+    }
+}
+.hide-notifications-counter.ons-icon::after {
+    display: none;
+}
+.card--default.notification-card {
+    padding-top: 5px;
+}

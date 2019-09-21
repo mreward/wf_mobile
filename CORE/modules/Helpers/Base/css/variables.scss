@@ -1,0 +1,11 @@
+$grey-light-second: #e3e8ef !default;
+
+$success-text-line-height: 20px;
+
+$fail-down-background: $grey-light-second;
+$fail-down-width: calc(100% - 10px);
+$fail-down-bottom: -40px;
+
+$success-icon-color: linear-gradient(-90deg, #57b21a 2%, #7ed321 100%);
+$fail-icon-color: linear-gradient(-90deg, #e32c2c 0%, #f56060 100%);
+$wait-icon-color: linear-gradient(90deg, #ffa400 0%, #f76b1c 100%);

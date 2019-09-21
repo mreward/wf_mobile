@@ -1,0 +1,62 @@
+@import "../../variables";
+
+// Base
+$malin-gradient: linear-gradient(137.49deg, #ff4238 0%, #9e1c96 100%);
+$malin-gradient-transparent: linear-gradient(137.49deg, rgba(255, 66, 56, 0.3) 0%, rgba(158, 28, 150, 0.3) 100%);
+
+$primary: #9e1c96;
+
+// Global
+
+
+$button-outline-border-color: $primary;
+$button-outline-color: $primary;
+$button-primary-background: $primary;
+$button-main-background: $primary;
+
+$layout-auth-code-color: $black;
+$list-header-default-color: $black;
+
+$contacts-icon-color: $primary;
+$card-color-first: $malin-gradient;
+
+$checkbox-square-border-color: $primary;
+$checkbox-square-checkmark-border: 2px solid $primary;
+
+$input-checkmark-checked-border: 2px solid $primary;
+$input-checkmark-circle-active-dot-color: $primary;
+$input-underbar-border-active: 2px solid $primary;
+
+$invoices-list-item-expandable-content-background: $white;
+
+$qr-progress-text-color: $black;
+
+$tile-icon-background: $primary;
+
+$personal-edit-checkmark-active-dot-color: $primary;
+$personal-edit-checkmark-border-active: $primary;
+
+// $tabbar-button-tab-background: #e3e5ee;
+$tabbar-button-tab-active-lablel-color: white;
+$tabbar-background: $malin-gradient;
+$tabbar-button-circle-background: white;
+$tabbar-button-tab-background: $primary;
+$tabbar-button-tab-circle-icon-color: black;
+$tabbar-fotter-before-opacity: 1;
+$tabbar-button-tab-lablel-color: #9b9fa2;
+
+$tabbar-button-tab-background: transparent;
+$tabbar-button-tab-active-background: $malin-gradient;
+
+$tabbar-bottom-footer-background-color: transparent;
+$tabbar-bottom-footer-background-image: $malin-gradient-transparent;
+
+$sidebar-menu-icon-color: $primary;
+$screen-gift-price-color: $primary;
+$screen-gift-a-link-border-color: $primary;
+$screen-gift-icon-color: $primary;
+$screen-gift-discount-background: $malin-gradient;
+
+$history-calendar-cell-background: $primary;
+
+$my-qr-title-color: $black;

@@ -1,0 +1,9 @@
+@mixin hook-tabbar-top-label-active() {
+    @extend .text--bold;
+}
+
+@mixin hook-text-misc() {
+    [class^="text--"] {
+        font-size: rem(15);
+    }
+}

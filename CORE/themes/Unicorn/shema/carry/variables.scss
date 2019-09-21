@@ -1,0 +1,241 @@
+@import "~_CORE/fonts/HelveticaNeue/index.css";
+@import "../../variables";
+
+// Base
+$black: rgba(25, 24, 28, 1);
+$grey-light: #f5f7fa;
+$grey-light-second: #e3e8ef;
+$grey-light-third: rgba(205,210,213,1);
+$grey-dark-second: rgba(54, 51, 53, 1);
+$red-light: #f50707;
+$muted: #9b9fa2;
+$base-size: 16px;
+
+$global-font-family: "HelveticaNeueCyr", sans-serif;
+$page-background: $grey-light;
+
+$grey-2: #e3e8ef;
+$green: #7ED321;
+$red-2: #f50707;
+
+// Global
+$shadow: 0 8px 15px 0 rgba(33, 49, 52, 0.2);
+$shadow-lite: 0 8px 15px 0 rgba(33, 49, 52, 0.2);
+$shadow-block: 0 8px 15px 0 rgba(39, 45, 45, 0.06);
+$shadow-second:  0 8px 15px 0 rgba(144,95,40,0.15);
+
+$bold: 500;
+$primary: rgba(172,132,0,1);
+$letter-spacing: 0.2px;
+$card-shadow: $shadow-block;
+
+$lower-gradient: $primary;
+$secondary-gradient: $primary;
+
+$colors: (
+    default: $black,
+    primary: $primary,
+    muted: $muted,
+    danger: $danger,
+    warning: $warning,
+    success: $success,
+);
+
+$paddings: (
+    xsmall: 4px,
+    small-m: 6px,
+    small: 16px,
+    xmiddle: 8px,
+    middle: 12px,
+    base: 16px,
+    default: 24px,
+    medium: 35px,
+    large: 45px,
+    large-m: 65px,
+    xlarge: 100px,
+);
+
+$switch-background-color-active: $primary !important;
+
+$layout-auth-logo-height: 30px;
+$layout-auth-logo-width: 103.78px;
+$layout-auth-code-color: $primary;
+$layout-auth-code-font-weight: 500;
+$layout-auth-text-message-font-size: rem(16);
+$layout-auth-text-message-color: $black;
+$layout-auth-text-message-letter-spacing: $letter-spacing;
+$layout-auth-text-message-line-height: rem(20);
+$layout-auth-text-message-font-weight: 300;
+
+$layout-auth-input-inner-color: $black;
+$layout-auth-input-inner-font-weight: 300;
+$layout-auth-input-inner-font-size: rem(24);
+$layout-auth-input-inner-line-height: rem(20);
+$layout-auth-input-inner-letter-spacing: $letter-spacing;
+
+$layout-auth-button-text-letter-spacing: $letter-spacing;
+$layout-auth-button-text-font-weight: normal;
+$layout-auth-input-prefix-line-height: rem(26);
+
+$layout-auth-button-shadow: $shadow-second;
+$button-main-border-radius: rem(100);
+
+$button-outline-border-color: $lower-gradient;
+$button-outline-color: $lower-gradient;
+$button-primary-color: $white;
+$button-primary-background: $lower-gradient;
+$button-main-background: $lower-gradient;
+$button-main-box-shadow: $shadow-second;
+
+$tile-title-color: $black;
+$tile-title-font-weight: 300;
+$tile-title-font-size: vw(16);
+$tile-title-line-height: rem(20);
+$tile-icon-background: $lower-gradient;
+$tile-box-shadow: $shadow-block;
+
+$tabbar-background: $lower-gradient;
+$tabbar-button-circle-shadow: 0 8px 15px 0 rgba(53,24,16,0.20);
+$tabbar-button-circle-background: $white;
+$tabbar-button-tab-circle-icon-color: $black;
+
+$tabbar-button-tab-background: $white;
+$tabbar-button-tab-active-background: $grey-light;
+$tabbar-button-tab-lablel-color: $black;
+$tabbar-qr-button-tab-lable-color: $black;
+$tabbar-gift-content-top: 50px;
+
+$toolbar-main-tabbar-background: $white;
+$toolbar-background-color: $grey-light;
+$toolbar-color: $black;
+$toolbar-font-size: rem(24);
+$toolbar-font-weight: $bold;
+$toolbar-line-height: rem(24);
+$toolbar-text-transform: unset;
+
+// Alerts
+$alert-text: rem(16);
+$alert-letter-spacing: normal;
+$alert-line-height: rem(20);
+$alert-color: $black;
+$alert-font-weight: 300;
+$alert-button-cancel-background: $grey-light;
+$alert-button-cancel-color: $black;
+$alert-icon-info: $lower-gradient;
+$alert-icon-error: $indifferent-gradient;
+$alert-icon-success: $success;
+$alert-button-cancel-box-shadow: $shadow-block;
+
+$contacts-icon-color: $lower-gradient;
+
+$input-underbar-border-active: 2px solid $primary;
+$input-validation-error-color: $red-light;
+
+$input-font-size: rem(20);
+
+$toolbar-auth-color: $black;
+$toolbar-auth-font-weight: $bold;
+$toolbar-auth-font-size: rem(18);
+$toolbar-auth-line-height: rem(24);
+$toolbar-auth-letter-spacing: $letter-spacing;
+$toolbar-auth-text-transform: initial;
+
+$history-not-found-items-color: $muted;
+
+$qr-scanner-laser-background: $major-gradient;
+
+$personal-edit-border-bottom-color: $grey-light-second;
+$personal-edit-border-active-bottom-color: $primary;
+$personal-edit-border-radius: 6px;
+
+$personal-edit-checkmark-active-dot-color: $lower-gradient;
+$personal-edit-checkmark-border-active: $lower-gradient;
+$personal-edit-checkmark-border: $grey-light-second;
+$payment-tools-header-shadow: $shadow-block;
+
+$gift-list-item-border-bottom: 1px solid $grey-light;
+$screen-gift-discount-background: $lower-gradient;
+$screen-gift-price-color: $primary;
+$screen-gift-details-price-color: $primary;
+
+$checkbox-square-border-color: $primary;
+$checkbox-square-checkmark-border: 2px solid $primary;
+
+$list-item-notification-height: 100px;
+
+$list-header-color: $black;
+$list-header-font-weight: $bold;
+$list-header-font-size: rem(15);
+$list-header-line-height: rem(52);
+$list-header-height: rem(42);
+$list-header-letter-spacing: $letter-spacing;
+
+$list-notifications-header-color: $black;
+$list-notifications-header-font-weight: 300;
+$list-notifications-header-font-size: rem(20);
+$list-notifications-header-line-height: rem(22);
+$list-notifications-header-letter-spacing: $letter-spacing;
+
+$list-notifications-description-height: 40px;
+$list-notifications-description-color: $black;
+$list-notifications-description-font-weight:  300;
+$list-notifications-description-font-size: rem(16);
+$list-notifications-description-line-height: rem(20);
+$list-notifications-description-letter-spacing: $letter-spacing;
+
+$list-notifications-time-color: rgba(155, 159, 162, 1);
+$list-notifications-time-font-weight: 300;
+$list-notifications-time-font-size: rem(12);
+$list-notifications-time-line-height: rem(14);
+$list-notifications-time-letter-spacing: $letter-spacing;
+
+$list-notifications-icon-background: $lower-gradient;
+$list-notifications-icon-font-size: rem(24);
+
+$languages-border-color: $primary;
+
+$invoices-tabbar-label-color: $black;
+
+$input-checkmark-checked-border: 2px solid $primary;
+$input-checkmark-circle-active-dot-color: $lower-gradient;
+
+$history-calendar-cell-size: 33px;
+$history-calendar-title-size: 34px;
+
+$history-calendar-cell-background: #FFC800;
+$history-calendar-cell-ranged: 0.2;
+$history-calendar-cell-selected: 1;
+$history-calendar-cell-color: $black;
+
+$screen-contacts-header-height: 20px;
+$screen-contacts-line-height: $screen-contacts-header-height;
+
+$sidebar-menu-icon-color: $lower-gradient;
+
+$tabbar-button-tab-background: #e3e5ee;
+$tabbar-button-tab-active-background: white;
+$tabbar-button-tab-font-weight: 700 !important;
+$tabbar-button-tab-active-lablel-color: $black !important;
+$invoices-tabbar-label-color: #9B9FA2;
+
+$input-autocomplete-icon-color: $green !default;
+$input-autocomplete-results-item-border: 1px solid $grey-light !default;
+$input-autocomplete-clear-icon-color: #ccc;
+
+$onboarding-dots-size: 6px;
+$onboarding-dots-size-active: 6px;
+$onboarding-dots-background: $grey-light-third;
+$onboarding-dots-active-background: $primary;
+
+$onboarding-button-intro-title-color: $black;
+$onboarding-button-intro-text-color: $black;
+$onboarding-button-intro-text-title-font-size: rem(18);
+$onboarding-button-intro-text-desc-font-size: rem(16);
+$onboarding-button-auth-background: $primary;
+$onboarding-button-auth-color: $white;
+$onboarding-button-action-font-size: rem(14);
+$onboarding-button-action-skip-color: $muted;
+$onboarding-button-action-next-color: $primary;
+$onboarding-dots-width-size-active: 14px;
+$onboarding-dots-border-radius-active: $onboarding-dots-width-size-active / 2;
+$onboarding-button-auth-max-width: calc(100% - 64px);

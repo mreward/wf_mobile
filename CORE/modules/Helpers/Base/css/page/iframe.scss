@@ -1,0 +1,7 @@
+.page {
+    &[page="iframe"] {
+        .page__layout {
+            padding: 0 !important;
+        }
+    }
+}

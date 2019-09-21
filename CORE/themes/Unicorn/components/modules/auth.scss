@@ -1,0 +1,84 @@
+.layout-auth {
+    &__card {
+        box-shadow: $layout-auth-card-shadow;
+
+        @extend .flex;
+        @extend .flex--column;
+
+        form {
+            height: auto;
+        }
+
+        &.layout-auth__card--fingerprint {
+            .button--text {
+                @extend .margin-top--base;
+            }
+        }
+
+        .button--text {
+            @extend .margin-top--medium;
+
+            color: $muted;
+        }
+
+        .input--underbar {
+            input {
+                line-height: rem(26);
+            }
+        }
+    }
+
+    &__input-pin {
+        @extend .position--relative;
+        @extend .width--full;
+
+        .button--quiet {
+            font-size: rem(24);
+        }
+
+        .input_main {
+            @extend .padding-left--base;
+            @extend .width--full;
+
+            border-bottom: $input-underbar-border;
+
+            &.is-active {
+                border-bottom: $input-underbar-border-active;
+            }
+
+            input {
+                min-height: 40px;
+                font-size: $input-font-size;
+            }
+        }
+
+        &--pass {
+            input:not(:focus) {
+                font-size: 1.5rem !important;
+                font-family: 'InputPass' !important;
+            }
+
+            input {
+                font-size: 1.5rem !important;
+                font-family: 'InputPass' !important;
+            }
+        }
+
+        &__inner {
+            @extend .flex--justify-center;
+        }
+    }
+
+    .screen-auth__text-message {
+        @extend .margin-vertical--small;
+        @extend .text--normal;
+    }
+
+    .screen-auth__pin-message {
+        margin-bottom: $screen-auth-pin-message;
+    }
+
+    .page__content {
+        -webkit-overflow-scrolling: auto;
+    }
+}

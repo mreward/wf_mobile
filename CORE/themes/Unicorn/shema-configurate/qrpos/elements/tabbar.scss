@@ -1,0 +1,35 @@
+ons-tabbar[position="top"] {
+    background: transparent;
+}
+
+@include b(tabbar-home) {
+    .tabbar-large--wrapper {
+        &::before {
+            background: $tabbar-background;
+        }
+    }
+
+    .tabbar__item--circle {
+        .tabbar__button {
+            //@include size(px, 50px);
+
+            background: $tabbar-button-background;
+            transform: translate3d(0, -12px, 0);
+        }
+    }
+
+    .tabbar__item {
+        .tabbar__label {
+            letter-spacing: 0.2px;
+        }
+    }
+}
+
+@include b(tabbar-large) {
+    .tabbar__item {
+        .tabbar__icon {
+            padding-top: 1px !important;
+        }
+    }
+
+}

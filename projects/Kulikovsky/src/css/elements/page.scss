@@ -1,0 +1,116 @@
+ons-tabbar {
+    .page {
+        &::before {
+            background: transparent;
+        }
+    }
+}
+[page*=adresses] {
+    .page__background {
+        background: $white !important;
+    }
+
+    .list--fullpage {
+        top: 28px;
+        border-radius: 0 0 $border-radius $border-radius;
+        box-shadow: $shadow-block;
+    }
+}
+
+[page*=home] {
+    .page__content,
+    .page__background {
+        top: 112px !important;
+    }
+
+    .page__content {
+        padding-top: map_get($paddings, base) !important;
+    }
+
+    .toolbar-upper {
+        @extend .padding-horizontal--base;
+
+        height: 112px;
+    }
+}
+
+[page*=city] {
+    @extend .layout-auth;
+
+    .toolbar {
+        padding-top: 20px !important;
+
+        @extend .toolbar--auth;
+    }
+}
+
+[page*=profile] {
+    overflow: hidden;
+}
+[page*=profile].layout-tab-cover {
+    .page__content {
+        overflow-y: visible!important;
+    }
+}
+html[onsflag-iphonex-portrait] {
+    [page*=home] {
+        .page__content {
+            //padding-top: 40px !important;
+        }
+
+        .page__content,
+        .page__background {
+            top: 136px !important;
+        }
+
+        .toolbar-upper {
+            padding-top: 40px !important;
+            height: 136px;
+        }
+    }
+
+    [page*=adresses] {
+        .toolbar--search {
+            &::after {
+                left: 0;
+                top: 0;
+                content: '';
+                z-index: 1;
+
+                @include size(calc(100vw), 44px);
+
+                @extend .position--absolute;
+                @extend .background-color--base;
+            }
+        }
+
+        .list--fullpage {
+            top: 44px;
+        }
+    }
+
+    [page*=city] {
+        .toolbar {
+            padding-top: 44px !important;
+        }
+    }
+
+    [page*=registration] {
+        .page__content {
+            padding-bottom: 0;
+
+            .registration-terms {
+                margin-bottom: 50px;
+            }
+        }
+    }
+}
+
+ons-navigator > div:first-child {
+    background-color: $grey-light-second !important;
+}
+[page*=auth] {
+    .page__content {
+        overflow: visible;
+    }
+}

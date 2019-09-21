@@ -1,0 +1,29 @@
+@mixin hook-sidebar() {
+    @extend .height--full;
+}
+
+@mixin hook-sidebar-menu() {
+    @extend .padding-vertical--xmiddle;
+    @extend .padding-horizontal--default;
+
+    font-size: rem(16);
+}
+
+@mixin hook-sidebar-footer() {
+    @extend .flex--justify-between;
+
+    padding: 0 24px;
+
+    & .button {
+        @extend .padding-horizontal--none;
+        @extend .padding-top--base;
+        @extend .padding-bottom--medium;
+        @extend .text--muted;
+        @extend .text--normal;
+
+        min-height: 17px;
+        overflow: visible;
+        font-size: rem(14);
+        line-height: 17px;
+    }
+}

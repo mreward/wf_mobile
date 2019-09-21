@@ -1,0 +1,22 @@
+export default {
+    m_profile_birthday: 'Date of Birth',
+    m_profile_cancel: 'Cancel',
+    m_profile_change_password: 'Change login password',
+    m_profile_change_profile_picture: 'Upload your photo',
+    m_profile_city: 'City',
+    m_profile_contacts: 'Contacts',
+    m_profile_edit_profile: 'Personal data',
+    m_profile_edit_profile_success: 'Information saved',
+    m_profile_email: 'Email',
+    m_profile_fname: 'First name',
+    m_profile_from_gallery: 'Choose from gallery',
+    m_profile_gender: 'Sex',
+    m_profile_language: 'Language',
+    m_profile_lname: 'Last name',
+    m_profile_logout: 'Log out',
+    m_profile_middel_name: 'Middle name',
+    m_profile_save: 'Save',
+    m_profile_settings: 'Settings',
+    m_profile_take_picture: 'Camera',
+    m_profile_terms_loyalty: 'Loyalty Program Terms'
+}

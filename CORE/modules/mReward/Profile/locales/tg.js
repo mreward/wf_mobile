@@ -1,0 +1,22 @@
+export default {
+    m_profile_birthday: 'Таърихи таввалуд',
+    m_profile_cancel: 'Бекор кардан',
+    m_profile_change_password: 'Ивази парол',
+    m_profile_change_profile_picture: 'Суратро бор кунед',
+    m_profile_city: 'Шаҳр',
+    m_profile_contacts: 'Тамос',
+    m_profile_edit_profile: 'Маълумоти шахсӣ',
+    m_profile_edit_profile_success: 'Маълумот захира карда шуд',
+    m_profile_email: 'Почтаи электронӣ',
+    m_profile_fname: 'Ном',
+    m_profile_from_gallery: 'Аз галерея интихоб кунед',
+    m_profile_gender: 'Ошёна',
+    m_profile_language: 'Забони',
+    m_profile_lname: 'Фамилия',
+    m_profile_logout: 'Баромадан',
+    m_profile_middel_name: 'номи Миёна',
+    m_profile_save: 'Сарфа',
+    m_profile_settings: 'Танзимот',
+    m_profile_take_picture: 'Камера',
+    m_profile_terms_loyalty: 'Шартҳои барномаи вафодорӣ'
+}

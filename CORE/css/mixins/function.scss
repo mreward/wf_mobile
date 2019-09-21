@@ -1,0 +1,74 @@
+@import "config";
+
+@function rem($pixels, $context: $browser-context) {
+    @return #{$pixels/$context}rem;
+}
+
+@function rem-to-px($rem, $context: $browser-context) {
+    @return $rem * ($context * 1px);
+}
+
+/* BEM support Func
+ -------------------------- */
+@function selectorToString($selector) {
+    $selector: inspect($selector);
+    $selector: str-slice($selector, 2, -2);
+
+    @return $selector;
+}
+
+@function containsModifier($selector) {
+    $selector: selectortostring($selector);
+
+    @if str-index($selector, $modifier-separator) {
+        @return true;
+    }
+
+    @else {
+        @return false;
+    }
+}
+
+@function containWhenFlag($selector) {
+    $selector: selectortostring($selector);
+
+    @if str-index($selector, '.' + $state-prefix) {
+        @return true; }
+
+    @else {
+        @return false; }
+}
+
+@function containPseudoClass($selector) {
+    $selector: selectortostring($selector);
+
+    @if str-index($selector, ':') {
+        @return true; }
+
+    @else {
+        @return false; }
+}
+
+@function hitAllSpecialNestRule($selector) {
+    @return containsModifier($selector) or containWhenFlag($selector) or containPseudoClass($selector);
+}
+
+@function vw($object) {
+    $vw: (320 * 0.01) * 1px;
+
+    @return ($object * 1px / $vw) * 1vw;
+}
+
+//@function dynamic-size($maxLength, $maxSize) {
+//    $length: attr(length);
+//    $step: $maxSize/$maxLength;
+//
+//    @return calc(#{rem($maxSize)} - (#{$length} / #{$maxLength}));
+//
+//    //@if $length > $maxLength {
+//    //    @return $maxSize - ($length / $maxLength);
+//    //}
+//    //@else {
+//    //    @return $maxSize;
+//    //}
+//}

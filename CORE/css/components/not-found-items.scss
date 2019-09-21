@@ -1,0 +1,30 @@
+@include b(not-found-items) {
+    height: $not-found-items-height-size;
+
+    @extend .flex;
+    @extend .flex--column;
+    @extend .flex--align-center;
+    @extend .flex--justify-center;
+    @extend .margin-horizontal--large;
+
+    @include e(icon) {
+        @extend .text--muted;
+
+        @include size($not-found-items-icon-size, $not-found-items-icon-size);
+
+        font-size: $not-found-items-icon-size;
+    }
+
+    @include e(text) {
+        @extend .text--center;
+        @extend .text--muted;
+    }
+
+    @include e(button) {
+    }
+}
+
+@if (mixin-exists(hook-not-found-items-misc)) {
+    @include hook-not-found-items-misc();
+}
+

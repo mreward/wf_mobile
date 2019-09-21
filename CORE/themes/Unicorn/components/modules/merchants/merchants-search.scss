@@ -1,0 +1,21 @@
+.merchants-search {
+    display: flex;
+    align-items: center;
+    &__input {
+        height: 50px;
+        max-height: 50px;
+    }
+
+    &__button {
+        margin-left: 8px;
+        @extend .button--circle;
+        background-color: $white;
+        max-height: 50px;
+        width: 50px;
+        box-shadow: $shadow-block;
+        color: $primary;
+        & .ons-icon {
+            font-size: rem(20);
+        }
+    }
+}

@@ -1,0 +1,58 @@
+.alert {
+    &--default {
+        .alert__body {
+            box-shadow: $alert-body-shadow;
+        }
+
+        .alert__icon {
+            ons-icon[icon*=call-center] {
+                @include text-gradient-one($alert-icon-success);
+            }
+        }
+    }
+
+    &--success {
+        .alert__icon {
+            ons-icon {
+                background: $alert-icon-success;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            ons-icon.fa-error {
+                background: $alert-icon-error;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+    }
+
+    &--error {
+        .alert__icon {
+            ons-icon {
+                background: $alert-icon-error;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+    }
+
+    &--info {
+        .alert__icon {
+            ons-icon {
+                background: $alert-icon-info;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+    }
+
+    .dialog {
+        overflow: visible;
+    }
+
+    .dialog-container {
+        overflow: visible;
+        border-radius: 6px;
+        -webkit-mask-image: unset !important;
+    }
+}

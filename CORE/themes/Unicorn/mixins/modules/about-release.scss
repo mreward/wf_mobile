@@ -1,0 +1,7 @@
+@mixin hook-about-release() {
+    .card--secondary {
+        margin-bottom: $about-release-secondary-margin-bottom;
+        border-radius: $about-release-secondary-border-radius;
+    }
+}
+

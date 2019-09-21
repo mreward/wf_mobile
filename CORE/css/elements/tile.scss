@@ -1,0 +1,71 @@
+@include b(tile) {
+    @extend .card__body;
+    @extend .text--center;
+    @extend .position--relative;
+    @extend .flex;
+    @extend .flex--align-center;
+
+    @include m(vertical) {
+        @extend .flex--justify-center;
+        @extend .flex--column;
+    }
+
+    @if (mixin-exists(hook-tile)) {
+        @include hook-tile();
+    }
+
+    &:not(.tile--vertical) {
+        @include e(title) {
+            @extend .margin-left--base;
+        }
+    }
+
+    @include e(title) {
+        font-size: $tile-title-font-size;
+
+        @if (mixin-exists(hook-tile-title)) {
+            @include hook-tile-title();
+        }
+    }
+
+    @include e(icon) {
+        font-size: $tile-icon-size;
+
+        @extend .flex;
+        @extend .flex--justify-center;
+        @extend .flex--align-center;
+
+        @include m(small) {
+            @include size($tile-icon-size-small, $tile-icon-size-small);
+        }
+
+        @if (mixin-exists(hook-tile-icon)) {
+            @include hook-tile-icon();
+        }
+    }
+
+    @include e(badge-container) {
+        @extend .margin--small;
+        @extend .position--absolute;
+        @extend .position--top-right;
+    }
+
+    @include e(badge) {
+        @extend .tile__badge-container;
+        min-width: $badge-size;
+        height: $badge-size;
+        font-size: $badge-font-size;
+        line-height: $badge-size;
+
+        background-color: $badge-background-color;
+        border-radius: 50%;
+
+        @if (mixin-exists(hook-tile-badge)) {
+            @include hook-tile-badge();
+        }
+    }
+}
+
+@if (mixin-exists(hook-tile-misc)) {
+    @include hook-tile-misc();
+}

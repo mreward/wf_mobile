@@ -1,0 +1,24 @@
+@include b(display) {
+
+    @include m(block) {
+        display: block;
+    }
+
+    @include m(inline) {
+        display: inline;
+    }
+
+    @include m(child) {
+        @each $variate in inline, block, flex, none {
+            &-#{$variate} {
+                > * {
+                    display: $variate;
+                }
+            }
+
+            &-reset {
+                display: initial;
+            }
+        }
+    }
+}

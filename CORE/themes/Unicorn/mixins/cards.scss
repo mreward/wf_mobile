@@ -1,0 +1,16 @@
+@mixin hook-card-input-error() {
+    .input__error-message {
+        top: calc(100% + -8px);
+        justify-content: flex-start;
+        height: auto;
+        min-height: 14px;
+        font-weight: normal;
+        line-height: 14px;
+        letter-spacing: 0.2px;
+        background: none;
+
+        &::after {
+            display: none;
+        }
+    }
+}

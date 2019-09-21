@@ -1,0 +1,13 @@
+.settings--list {
+    & .list {
+        @extend .list--default;
+    }
+
+    & .list-item {
+        .center {
+            @extend .text--normal;
+
+            font-size: rem(16);
+        }
+    }
+}

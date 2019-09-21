@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en_US</string>
+	<key>CFBundleDisplayName</key>
+    <string>Kulikovsky UAT</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+    <string>0.0.3</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+			</array>
+		</dict>
+	</array>
+	<key>CFBundleVersion</key>
+    <string>40932</string>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<true/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>viber</string>
+		<string>tg</string>
+		<string>fb-messenger</string>
+		<string>whatsapp</string>
+		<string>googlechromes</string>
+		<string>comgooglemaps</string>
+		<string>fb</string>
+		<string>twitter</string>
+		<string>instagram</string>
+	</array>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>The camera is used to scan QR codes.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>For quick authentication.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>To locate you</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This app wants to get your location always, even this app runs in background.</string>
+	<key>NSLocationUsageDescription</key>
+	<string>To locate you</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app wants to get your location while this app runs only.</string>
+	<key>NSMainNibFile</key>
+	<string/>
+	<key>NSMainNibFile~ipad</key>
+	<string/>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>This app requires photo library access to function properly.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app requires photo library access to function properly.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
+	<key>UIInterfaceOrientation</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>CDVLaunchScreen</string>
+	<key>UIRequiresFullScreen</key>
+	<true/>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+	</array>
+</dict>
+</plist>

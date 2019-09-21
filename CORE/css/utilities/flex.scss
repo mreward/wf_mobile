@@ -1,0 +1,57 @@
+@include b(flex) {
+    display: flex;
+
+    $justified: (
+        center: center,
+        left: flex-start,
+        right: flex-end,
+        between: space-between,
+        around: space-around,
+    );
+
+    @each $key, $value in $justified {
+        @include m(justify-#{$key}) {
+            justify-content: $value;
+        }
+    }
+
+    @each $directions in column, column-reverse, row, row-reverse {
+        @include m($directions) {
+            flex-direction: $directions;
+        }
+    }
+
+    @include m(align-center) {
+        align-items: center;
+    }
+
+    @include m(align-top) {
+        align-items: flex-start;
+    }
+
+    @include m(align-bottom) {
+        align-items: flex-end;
+    }
+
+    @include m(wrap) {
+        flex-wrap: wrap;
+    }
+
+    @include m(nowrap) {
+        flex-wrap: nowrap;
+    }
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.col {
+    flex: 1;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}

@@ -1,0 +1,116 @@
+.tabbar {
+    & .tabbar__button {
+        color: $grey-light-third;
+
+        .tabbar__label {
+            color: $muted;
+        }
+    }
+
+    &:not(.tabbar--top) {
+        .tabbar__item {
+            &.active .tabbar__button {
+                .tabbar__label {
+                    color: $black;
+                }
+            }
+        }
+    }
+
+    &__item {
+        &--circle {
+            .tabbar__button {
+                z-index: 0;
+                color: $black;
+                background: none;
+                display: inline-flex;
+                box-shadow: none;
+                transform: translate3d(0, -5px, 0);
+                overflow: visible;
+
+                @include size(46px, 46px);
+
+                @extend .position--relative;
+                @extend .flex--justify-center;
+                @extend .flex--align-center;
+
+                .tabbar__icon {
+                    @include size(26px, 24px);
+
+                    z-index: 5;
+                }
+
+                &::after,
+                &::before {
+                    @extend .position--absolute;
+                    @extend .position--center;
+
+                    content: '';
+                    border-radius: 50%;
+                }
+
+                &::after {
+                    @include size(calc(100% + 14px), calc(100% + 14px));
+
+                    z-index: 2;
+                    background-color: $white;
+                }
+
+                &::before {
+                    @include size(100%, 100%);
+
+                    z-index: 5;
+                    background-color: $primary;
+                }
+            }
+        }
+    }
+
+    &--top {
+        height: $tabbar-top-height;
+        border-radius: $border-radius;
+
+        &::after {
+            z-index: -1;
+            background-color: $white;
+            content: '';
+            border-radius: $border-radius;
+
+            @include size(calc(100% - 32px), 100%);
+
+            @extend .position--absolute;
+            @extend .position--top-center;
+
+        }
+
+        &__item {
+            &.active .tabbar__button {
+                border-radius: $border-radius;
+
+                .tabbar__label {
+                    color: $white;
+                }
+            }
+
+            .tabbar__label {
+                font-size: rem(13);
+
+                @extend .text--bold;
+                @extend .text--muted;
+            }
+        }
+    }
+}
+
+html[onsflag-iphonex-portrait] {
+    .tabbar {
+        &--top {
+            &::after {
+                top: unset;
+                bottom: 0;
+
+                @include size(calc(100% - 32px), 32px);
+            }
+        }
+    }
+}

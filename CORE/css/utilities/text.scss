@@ -1,0 +1,97 @@
+
+@include b(text) {
+    font-size: $text-font-size;
+
+    @each $color, $value in $colors {
+        @include m($color) {
+            color: $value;
+        }
+    }
+
+    @include m(small) {
+        font-size: $text-font-size;
+    }
+
+    @include m(center) {
+        text-align: center;
+    }
+
+    @include m(left) {
+        text-align: left;
+    }
+
+    @include m(right) {
+        text-align: right;
+    }
+
+    @include m(bold) {
+        font-weight: $bold;
+    }
+
+    @include m(normal) {
+        font-weight: $normal;
+    }
+
+    @include m(ellipsis) {
+        @include utils-ellipsis();
+    }
+
+    @include m(underline) {
+        border-bottom: $text-underline-border;
+    }
+
+    @include m(security) {
+        -webkit-text-security: disc !important;
+
+        i {
+            -webkit-text-security: none !important;
+        }
+    }
+
+    @include m(word-break-new-line) {
+        line-height: 1 !important;
+        white-space: pre-line;
+    }
+
+    @include m(nowrap) {
+        white-space: nowrap;
+    }
+
+    @include m(background) {
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    @if (mixin-exists(hook-text)) {
+        @include hook-text();
+    }
+}
+
+// Text gradient generate
+
+@include b(text-gradient) {
+    @include m(none) {
+        color: initial;
+        background-image: none;
+    }
+
+    @each $gradient, $value in $gradients {
+        @include m(#{$gradient}) {
+            background-image: #{$value};
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    }
+
+    @each $color, $value in $colors {
+        @include m(#{$color}) {
+            background: #{$value};
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    }
+}
+
+@if (mixin-exists(hook-text-misc)) {
+    @include hook-text-misc();
+}

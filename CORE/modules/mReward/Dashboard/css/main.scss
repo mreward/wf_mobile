@@ -1,0 +1,12 @@
+@import "components/title-row";
+
+.toolbar-btn-close {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    z-index: 9999;
+    height: 40px;
+    width: 40px;
+    min-width: 40px;
+    min-height: 40px;
+}

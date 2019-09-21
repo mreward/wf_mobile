@@ -1,0 +1,103 @@
+html[onsflag-iphonex-portrait] .tabbar {
+    height: auto;
+}
+
+@include b(tabbar) {
+    //@extend .background--none;
+    background: $tabbar-background;
+
+    @if (mixin-exists(hook-tabbar)) {
+        @include hook-tabbar();
+    }
+
+    @include e(item) {
+        & .tabbar__button {
+            @if (mixin-exists(hook-tabbar-item-button)) {
+                @include hook-tabbar-item-button();
+            }
+        }
+
+        &.active .tabbar__button {
+            color: $tabbar-color-active;
+
+            @if (mixin-exists(hook-tabbar-active)) {
+                @include hook-tabbar-active();
+            }
+        }
+    }
+
+    @include m(top) {
+        padding: 0 16px;
+        background-color: transparent;
+
+        @if (mixin-exists(hook-tabbar-top)) {
+            @include hook-tabbar-top();
+        }
+
+        @include e(label) {
+            height: $tabbar-top-height;
+            font-size: $tabbar-top-label-font-size;
+            line-height: $tabbar-top-height;
+
+            @if (mixin-exists(hook-tabbar-label)) {
+                @include hook-tabbar-label();
+            }
+        }
+
+        @include e(badge) {
+            background-color: $primary;
+        }
+
+        @include e(button) {
+            height: $tabbar-top-height;
+            color: $tabbar-color;
+            background-color: $tabbar-top-background-color;
+            border-radius: $tabbar-top-button-border-radius;
+
+            @extend .flex;
+            @extend .flex--justify-center;
+            @extend .flex--align-center;
+
+            @if (mixin-exists(hook-tabbar-button)) {
+                @include hook-tabbar-button();
+            }
+        }
+
+        @include e(item) {
+            &.active {
+                .tabbar__button {
+                    color: $tabbar-top-color-active;
+                    background-color: $tabbar-top-background-color-active;
+
+                    @if (mixin-exists(hook-tabbar-top-button-active)) {
+                        @include hook-tabbar-top-button-active();
+                    }
+                }
+
+                .tabbar__label {
+                    @if (mixin-exists(hook-tabbar-top-label-active)) {
+                        @include hook-tabbar-top-label-active();
+                    }
+                }
+            }
+
+            @if (mixin-exists(hook-tabbar-item)) {
+                @include hook-tabbar-item();
+            }
+        }
+
+        & .tabbar__button {
+            color: $tabbar-top-color;
+        }
+    }
+}
+
+ons-tabbar[position="top"] {
+    top: $tabbar-top-top;
+    padding-top: $tabbar-top-padding-top;
+    background-color: $page-background;
+}
+
+@if (mixin-exists(hook-tabbar-misc)) {
+    @include hook-tabbar-misc();
+}

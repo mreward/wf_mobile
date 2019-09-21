@@ -1,0 +1,141 @@
+@mixin hook-toolbar() {
+    &.toolbar--auth {
+        @extend .position--relative;
+
+        & .toolbar__left,
+        & .toolbar__center,
+        & .toolbar__right {
+            @extend .position--absolute;
+        }
+
+        & .toolbar__left {
+            @extend .position--center-left;
+        }
+
+        & .toolbar__center {
+            @extend .position--center;
+
+            color: $toolbar-auth-color;
+            font-weight: $toolbar-auth-font-weight;
+            font-size: $toolbar-auth-font-size; // (18);
+            line-height: $toolbar-auth-line-height; //rem(24);
+            letter-spacing: $toolbar-auth-letter-spacing; // -0.6px;
+            text-transform: $toolbar-auth-text-transform; // initial;
+        }
+
+        & .toolbar__right {
+            @extend .position--center-right;
+        }
+
+        & .ons-icon {
+            color: $toolbar-auth-color;
+            font-size: rem(20);
+        }
+    }
+
+    &.toolbar--base {
+        & .toolbar__left,
+        & .toolbar__center,
+        & .toolbar__right {
+            @extend .flex;
+        }
+
+        & .toolbar__left {
+            & .back-button {
+                @extend .padding-left--none;
+            }
+
+            & .ons-icon[icon^=arrow] {
+                @extend .padding--none;
+
+                font-size: rem(24);
+            }
+        }
+    }
+}
+
+@mixin hook-toolbar-main() {
+    &.dashboard-tabbar {
+        background-color: $toolbar-main-tabbar-background;
+    }
+
+    & .ons-icon {
+        color: $toolbar-auth-color;
+    }
+}
+
+@mixin hook-toolbar-all-button() {
+    height: 30px;
+
+    @extend .flex;
+    @extend .flex--align-center;
+}
+
+@mixin hook-toolbar-left() {
+    > div {
+        height: 30px;
+    }
+}
+
+@mixin hook-toolbar-center() {
+    & .toolbar-main__title {
+        font-size: rem(18);
+        letter-spacing: 0.2px;
+    }
+
+    img {
+        max-height: 25px;
+
+        @extend .width--full;
+    }
+}
+
+@mixin hook-toolbar-right() {
+    .button {
+        @extend .padding--none;
+
+        &.button--add {
+
+            .ons-icon {
+                @extend .margin-right--base;
+
+                @include size($toolbar-right-button-right-width, 24px);
+            }
+        }
+    }
+
+    & .bage,
+    span.notification {
+        @extend .position--absolute;
+
+        color: $white;
+        background-color: $red-second;
+    }
+
+    span.notification {
+        @extend .text--center;
+        @extend .text--bold;
+
+        top: 18px;
+        left: 7px;
+        min-width: 18px;
+        height: 18px;
+        font-size: 10px;
+        line-height: 19px;
+        box-shadow: $shadow-lite;
+    }
+
+    & .bage {
+        @extend .flex;
+        @extend .flex--justify-center;
+        @extend .flex--align-center;
+        @extend .position--center;
+
+        left: 0;
+        font-size: rem(12);
+        line-height: normal;
+        border-radius: 50%;
+
+        @include size(18px, 18px);
+    }
+}

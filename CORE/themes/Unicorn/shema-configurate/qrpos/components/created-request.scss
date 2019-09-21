@@ -1,0 +1,78 @@
+.created-request {
+    &__code {
+        margin: 0 auto;
+        padding: 15px;
+        border-radius: 5px;
+        background: $white;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &__container .title,
+    &__timer {
+        color: $create-request-main-color;
+    }
+
+    &__container {
+        .button--outline {
+            @extend .text--bold;
+
+            border-color: $create-request-outline-border-color;
+            color: $create-request-outline-color;
+
+            &:active {
+                color: $create-request-outline-color;
+            }
+        }
+    }
+
+    &--container {
+        color: $create-request-main-color;
+        font-size: 16px;
+    }
+
+    &__row {
+        line-height: 24px;
+    }
+}
+
+.create-request {
+    &--container {
+        font-size: rem(16);
+
+        .timer,
+        .button--add {
+            color: $create-request-button-add-color;
+        }
+
+        .button--add {
+            @extend .margin-left--none;
+            @extend .padding-horizontal--none;
+            @extend .width--full;
+
+            max-width: initial;
+        }
+
+        .button--text {
+
+
+            color: $create-request-button-text-color !important;
+            letter-spacing: 0.2px;
+            font-size: rem(14);
+        }
+    }
+
+    &__row {
+        line-height: 24px;
+        color: $create-request-main-color;
+        
+        .input_clear {
+            .ons-icon {
+                line-height: normal !important;
+            }
+        }
+    }
+}

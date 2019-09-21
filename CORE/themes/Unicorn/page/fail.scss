@@ -1,0 +1,31 @@
+.fail-page {
+    &__icon {
+        @include size(50px, 50px);
+
+        img {
+            @extend .width--full;
+        }
+    }
+
+    &__text {
+        @extend .text--center;
+
+        word-break: break-word;
+    }
+
+    &__down {
+        .button {
+             @extend .margin-horizontal--auto;
+        }
+    }
+
+    &__button {
+        &.button--main {
+            max-width: 140px;
+        }
+
+        &.button--text {
+            color: $black;
+        }
+    }
+}
