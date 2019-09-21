@@ -1085,9 +1085,4 @@ module.exports = function (grunt) {
             grunt.task.run('replace')
         }
     })
-
-    // if (grunt.cli.tasks.indexOf(':') > -1) {
-    //     const listTasks = grunt.cli.tasks[0].split(':');
-    //     grunt.task.run(listTasks[0]);
-    // }
 }
