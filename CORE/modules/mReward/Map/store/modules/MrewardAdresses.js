@@ -11,7 +11,8 @@ const {
 } = constants
 
 const state = {
-    adresses: []
+    adresses: [],
+    totalCount: 0
 }
 const mutations = {
     [AdressesMutat.Adresses.name]: (state, data) => {
@@ -20,6 +21,9 @@ const mutations = {
         } else {
             state.adresses = [...data.items]
         }
+    },
+    [AdressesMutat.TotalCount.name]: (state, data) => {
+        state.totalCount = data
     }
 }
 const actions = {
@@ -44,6 +48,7 @@ const actions = {
             }
 
             commit(AdressesMutat.Adresses.name, response)
+            commit(AdressesMutat.TotalCount.name, response._meta.totalCount)
 
             validatePagination(response, constants.MrewardAdresses.Actions.getAdresses)
 
@@ -65,6 +70,9 @@ const getters = {
         return state.adresses.sort((item1, item2) => {
             return item1.distance - item2.distance
         })
+    },
+    totalCount(state) {
+        return state.totalCount
     }
 }
 

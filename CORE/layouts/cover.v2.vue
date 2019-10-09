@@ -16,7 +16,11 @@
         </slot>
         <div class="page__content page__layout page__layout--cover">
             <div class="page__background--cover">
-                <img :src="cover" ref="img">
+                <img
+                    ref="img"
+                    :class="{ 'img-animation--linear': isImgLoaded }"
+                    :src="cover"
+                >
             </div>
             <div class="page-content" :style="`padding-top: ${heightImg}px`">
                 <slot/>
@@ -39,11 +43,25 @@
         },
         data() {
             return {
-                heightImg: 200
+                heightImg: this.$ons.platform.isIPhoneX() ? 88 : 64,
+                isImgLoaded: false
             }
         },
         mounted() {
-            this.heightImg = this.$refs.img.height - 10
+            if (this.$refs.img.height) {
+                this.setImageHeight(this.$refs.img)
+                return
+            }
+
+            this.$refs.img.onload = (item) => {
+                this.setImageHeight(item.srcElement)
+            }
+        },
+        methods: {
+            setImageHeight(item) {
+                this.isImgLoaded = true
+                this.heightImg = item.clientHeight - 10
+            }
         }
 
     }

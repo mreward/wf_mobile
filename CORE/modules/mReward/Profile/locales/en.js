@@ -18,5 +18,6 @@ export default {
     m_profile_save: 'Save',
     m_profile_settings: 'Settings',
     m_profile_take_picture: 'Camera',
-    m_profile_terms_loyalty: 'Loyalty Program Terms'
+    m_profile_terms_loyalty: 'Loyalty Program Terms',
+    m_profile_version: 'Version'
 }

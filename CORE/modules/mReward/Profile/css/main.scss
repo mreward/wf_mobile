@@ -6,3 +6,13 @@
     width: 100%;
     padding: 0 16px;
 }
+
+.profile {
+    &--min-text {
+        @extend .margin-top--base;
+        @extend .text--muted;
+
+        font-size: rem(12);
+        line-height: rem(16);
+    }
+}

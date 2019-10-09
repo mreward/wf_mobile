@@ -18,5 +18,6 @@ export default {
     m_profile_save: 'حفظ',
     m_profile_settings: 'الإعدادات',
     m_profile_take_picture: 'الة تصوير',
-    m_profile_terms_loyalty: 'شروط برنامج الولاء'
+    m_profile_terms_loyalty: 'شروط برنامج الولاء',
+    m_profile_version: 'الإصدار'
 }

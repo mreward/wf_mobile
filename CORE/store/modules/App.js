@@ -2,7 +2,6 @@ import constants from '_vuex_constants'
 import CommonClient from '_commonClient'
 import localforage from 'localforage'
 import moment from 'moment'
-import { v4 as uuidv4 } from 'uuid'
 import Analytics from '_CORE/plugins/common/Analytics'
 import { getMessage } from '_CORE/store/utils/mapErrorLocale.js'
 import _isObject from 'lodash/isObject'
@@ -15,6 +14,7 @@ import { box } from 'tweetnacl'
 import { decodeBase64, decodeUTF8, encodeBase64 } from 'tweetnacl-util'
 import { DbObject } from '../db-objects.js'
 import { __processingBlockedUser } from '_CORE/store/utils/userIsBlocked'
+import getUDID from '_PLUGINS/common/getUDID'
 
 const ImageCache = localforage.createInstance({
     name: 'ImageCache'
@@ -33,24 +33,6 @@ const {
 
 // хранение последней открытой страницы
 let beforeUpdateHookLast = {}
-
-const getUDID = (app) => {
-    if (device.platform.toLowerCase() === 'ios' && app) {
-        Keychain.get((val) => {
-            if (!val) {
-                const hash = uuidv4()
-                Keychain.set(() => {
-                }, () => {
-                }, `IMEI_${app.replace(/\s/g, '_')}`, hash)
-                window.device.serial = hash
-            } else {
-                window.device.serial = val
-            }
-        }, () => {
-        }, `IMEI_${app.replace(/\s/g, '_')}`)
-    }
-    return window.device.serial
-}
 
 export const state = {
     //  счетчик вызовов loader

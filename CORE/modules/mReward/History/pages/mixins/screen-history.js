@@ -2,11 +2,15 @@ import { mapActions, mapGetters } from 'vuex'
 import constants from '_vuex_constants'
 const ScreenHistoryDetails = () => import('_screen_history_details')
 import moment from 'moment'
+import _cloneDeep from 'lodash/cloneDeep'
 
 export default {
     data() {
         return {
-            //
+            selectedDate: {
+                dateFrom: '',
+                dateTo: ''
+            }
         }
     },
     computed: {
@@ -40,7 +44,8 @@ export default {
     },
     methods: {
         ...mapActions({
-            pushPage: constants.App.Actions.pushPage
+            pushPage: constants.App.Actions.pushPage,
+            getHistory: constants.MrewardHistory.Actions.getHistory
         }),
         goToHistoryDetails(history) {
             this.pushPage({
@@ -54,6 +59,24 @@ export default {
                     }
                 }
             })
+        },
+        async updateHistory(loaded) {
+            try {
+                await this.getHistory({
+                    dateFrom: moment(this.selectedDate.dateFrom).format('YYYY-MM-DD'),
+                    dateTo: moment(this.selectedDate.dateTo).format('YYYY-MM-DD'),
+                    networkFirst: true
+                })
+            } catch (e) {
+                this.$Alert.Error(e)
+            } finally {
+                setTimeout(() => {
+                    loaded('done')
+                }, 300)
+            }
+        },
+        onSelectDate(date) {
+            this.selectedDate = _cloneDeep(date)
         }
     }
 }

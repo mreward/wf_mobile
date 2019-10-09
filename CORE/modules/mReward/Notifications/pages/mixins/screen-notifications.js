@@ -1,8 +1,12 @@
 import { mapActions, mapGetters } from 'vuex'
 import constants from '_vuex_constants'
 import moment from 'moment'
+import PullToWrapper from '_pull_to_wrapper'
 
 export default {
+    components: {
+        PullToWrapper
+    },
     data() {
         return {
             layout: 'default'
@@ -51,7 +55,18 @@ export default {
         ...mapActions({
             getNotifications: constants.MrewardNotifications.Actions.getNotifications,
             markNotificationsAsRead: constants.MrewardNotifications.Actions.markNotificationsAsRead
-        })
+        }),
+        async updateNotifications(loaded) {
+            try {
+                await this.getNotifications({ networkFirst: true })
+            } catch (e) {
+                this.$Alert.Error(e)
+            } finally {
+                setTimeout(() => {
+                    loaded('done')
+                }, 300)
+            }
+        }
     }
 }
 

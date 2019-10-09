@@ -2,6 +2,7 @@ module.exports = [
     {
         version: '0.0.3',
         newFeatures: [
+            '[#KLKS-235](https://walletfactory.atlassian.net/browse/KLKS-235) - Контакты: актуализация данных',
             '[#KLKS-184](https://walletfactory.atlassian.net/browse/KLKS-184) - Профиль. Добавить контакты',
             '[#KLKS-135](https://walletfactory.atlassian.net/browse/KLKS-135) - Реализовать вывод в МП баланса в бонусных счетов в разных валютах',
             '[#KLKS-127](https://walletfactory.atlassian.net/browse/KLKS-127) - Регистрация. Изменить порядок полей, обработка sort в ответе от апи',
@@ -9,6 +10,10 @@ module.exports = [
             '[#KLKS-150](https://walletfactory.atlassian.net/browse/KLKS-150) - Адреса. Свайпы'
         ],
         bugFixes: [
+            '[#KLKS-225](https://walletfactory.atlassian.net/browse/KLKS-225) - App work with bad connection',
+            '[#KLKS-257](https://walletfactory.atlassian.net/browse/KLKS-257) - Обновление баланса',
+            '[#KLKS-256](https://walletfactory.atlassian.net/browse/KLKS-256) - Не сохраняется обновленный баланс',
+            '[#KLKS-73](https://walletfactory.atlassian.net/browse/KLKS-73) - Discrepancies in personal data',
             '[#KLKS-73](https://walletfactory.atlassian.net/browse/KLKS-73) - Discrepancies in personal data',
             '[#KLKS-69](https://walletfactory.atlassian.net/browse/KLKS-69) - User greeting on the home screen is not correct',
             '[#KLKS-80](https://walletfactory.atlassian.net/browse/KLKS-80) - Rework logic of mobile number field',

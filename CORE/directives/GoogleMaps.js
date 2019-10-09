@@ -2,6 +2,11 @@ import GoogleMapsLoader from 'google-maps'
 import { cloneDeep, find, get, isFunction } from 'lodash'
 import MarkerClusterer from '@google/markerclusterer'
 import runFunction from '_CORE/utils/runFunction'
+import '_CORE/img/cluster-1.png'
+import '_CORE/img/cluster-2.png'
+import '_CORE/img/cluster-3.png'
+import '_CORE/img/cluster-4.png'
+import '_CORE/img/cluster-5.png'
 /*eslint-disable */
 
 /**

@@ -2,6 +2,8 @@ import Permission from '_CORE/plugins/common/Permission'
 import Vue from 'vue'
 import GoogleMapsLoader from 'google-maps'
 
+import { computeDistanceBetween } from '_CORE/components/common/map/spherical.js'
+
 export default {
     getCurrentPosition (options = {}) {
         return new Promise(async (resolve, reject) => {
@@ -39,7 +41,13 @@ export default {
                 new plugin.google.maps.LatLng(firstPoint.latitude, firstPoint.longitude),
                 new plugin.google.maps.LatLng(secondPoint.latitude, secondPoint.longitude))
         }
-        return 0
+        return computeDistanceBetween({
+            lat: firstPoint.latitude,
+            lng: firstPoint.longitude
+        }, {
+            lat: secondPoint.latitude,
+            lng: secondPoint.longitude
+        }) || 0
     },
     getCity(latLng, apiKey) {
         return new Promise(async (resolve, reject) => {

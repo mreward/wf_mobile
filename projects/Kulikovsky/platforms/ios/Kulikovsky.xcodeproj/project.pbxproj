@@ -130,6 +130,9 @@
 		FC432B878FB34663AB132DE2 /* PluginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E359309822F49DDA828A4AC /* PluginViewController.m */; };
 		FE40A6913EE848F19A7C08D6 /* PluginCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0B692AE2224003AE2D65B3 /* PluginCircle.m */; };
 		FEAF2C50C5EE46A9833C5735 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05629718BF474263B01E53BA /* InfoPlist.strings */; };
+		2F42A89B112448E8BBE043B5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4FAD837222494A8E9BA63764 /* InfoPlist.strings */; };
+		25EC078A55104F68BFD24E6F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 97B6F9D063D4433E8B58DE46 /* InfoPlist.strings */; };
+		907D82F71ED24717831E111D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 700A28F9453D4BDD8CCC6E34 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -365,6 +368,9 @@
 		FABC4C49BB9244C091A89BD4 /* CDVInAppBrowserOptions.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVInAppBrowserOptions.m; path = "cordova-plugin-inappbrowser/CDVInAppBrowserOptions.m"; sourceTree = "<group>"; };
 		FD558C9AA4664D8C8452408A /* PluginStreetViewPanoramaController.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = PluginStreetViewPanoramaController.m; path = "cordova-plugin-googlemaps/PluginStreetViewPanoramaController.m"; sourceTree = "<group>"; };
 		FFFB8F735CB540239C2F9DF2 /* TouchID.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = TouchID.h; path = "cordova-plugin-touch-id/TouchID.h"; sourceTree = "<group>"; };
+		4FAD837222494A8E9BA63764 /* InfoPlist.strings */ = {isa = PBXFileReference; name = "InfoPlist.strings"; path = "en.lproj/InfoPlist.strings"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = text.plist.strings; explicitFileType = undefined; includeInIndex = 0; };
+		97B6F9D063D4433E8B58DE46 /* InfoPlist.strings */ = {isa = PBXFileReference; name = "InfoPlist.strings"; path = "kk.lproj/InfoPlist.strings"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = text.plist.strings; explicitFileType = undefined; includeInIndex = 0; };
+		700A28F9453D4BDD8CCC6E34 /* InfoPlist.strings */ = {isa = PBXFileReference; name = "InfoPlist.strings"; path = "ky.lproj/InfoPlist.strings"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = text.plist.strings; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -816,6 +822,9 @@
 				076BFC6D551F4943A6182CA9 /* pgm_Localizable_pl.json in Resources */,
 				EF5844208993466089AFE393 /* pgm_Localizable_da.json in Resources */,
 				2F45708E8CE741CEAB44E21B /* pgm_Localizable_vi.json in Resources */,
+				2F42A89B112448E8BBE043B5 /* InfoPlist.strings in Resources */,
+				25EC078A55104F68BFD24E6F /* InfoPlist.strings in Resources */,
+				907D82F71ED24717831E111D /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -972,6 +981,9 @@
 			isa = PBXVariantGroup;
 			children = (
 				03CA9DD8605B4033830C0CEA /* InfoPlist.strings */,
+				4FAD837222494A8E9BA63764 /* InfoPlist.strings */,
+				97B6F9D063D4433E8B58DE46 /* InfoPlist.strings */,
+				700A28F9453D4BDD8CCC6E34 /* InfoPlist.strings */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

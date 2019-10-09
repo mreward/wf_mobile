@@ -3,33 +3,37 @@
         :layout="layout"
         :title="$t('m_notifications')"
     >
-        <template
-            v-for="(el, key) in notificationsListFormmated"
+        <pull-to-wrapper
+            :update-action="updateNotifications"
         >
-            <div
-                v-if="Array.isArray(el)"
-                :key="key"
-                class="card card--default notification-card"
+            <template
+                v-for="(el, key) in notificationsListFormmated"
             >
-                <v-ons-list class="notification-list list--indentation">
-                    <notifications-item
-                        v-for="(item, index) in el"
-                        :key="index"
-                        :item="item"
-                    />
-                </v-ons-list>
-            </div>
-            <div
-                v-if="el.type === 'header'"
-                :key="key"
-                class="row--text"
-                v-text="el.date"
+                <div
+                    v-if="Array.isArray(el)"
+                    :key="key"
+                    class="card card--default notification-card"
+                >
+                    <v-ons-list class="notification-list list--indentation">
+                        <notifications-item
+                            v-for="(item, index) in el"
+                            :key="index"
+                            :item="item"
+                        />
+                    </v-ons-list>
+                </div>
+                <div
+                    v-if="el.type === 'header'"
+                    :key="key"
+                    class="row--text"
+                    v-text="el.date"
+                />
+            </template>
+            <not-found-items
+                v-if="!notificationsListFormmated.length"
+                :message="$t('m_notifications_not_found')"
             />
-        </template>
-        <not-found-items
-            v-if="!notificationsListFormmated.length"
-            :message="$t('m_notifications_not_found')"
-        />
+        </pull-to-wrapper>
     </layout>
 </template>
 

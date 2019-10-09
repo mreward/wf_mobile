@@ -1,5 +1,6 @@
 export { default as maskInn } from './maskInn'
 export { default as maskBankAccount } from './maskBankAccount'
+export { default as maskIBAN } from './maskIBAN'
 export { default as maskPaymentCard } from './maskPaymentCard'
 export { default as maskPaymentCardSecurity } from './maskPaymentCardSecurity'
 export { default as maskPhoneCode } from './maskPhoneCode'

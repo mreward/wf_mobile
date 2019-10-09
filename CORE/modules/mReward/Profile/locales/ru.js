@@ -18,5 +18,6 @@ export default {
     m_profile_save: 'Сохранить',
     m_profile_settings: 'Настройки',
     m_profile_take_picture: 'Камера',
-    m_profile_terms_loyalty: 'Условия программы лояльности'
+    m_profile_terms_loyalty: 'Условия программы лояльности',
+    m_profile_version: 'Версия'
 }

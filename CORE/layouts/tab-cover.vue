@@ -16,22 +16,32 @@
             />
         </slot>
         <div
-            class="page__content page__layout page__layout--cover"
+            class="page__background page__background--color"
         >
-            <div class="page__background--cover">
-                <img
-                    ref="img"
-                    :src="cover"
-                    @click="$emit('clickBackgroundEvent')"
-                >
-            </div>
-
             <div
-                class="page-content"
-                :style="`padding-top: ${heightImg}px`"
-            >
-                <slot />
+                ref="pageBackground"
+                class="page__background--cover"
+                :style="{
+                    backgroundImage: `url(${cover})`,
+                    height: `${backgroundImageSize}vw`
+                }"
+                @click="$emit('clickBackgroundEvent')"
+            />
+            <div class="page__background--text">
+                <div class="page__background--text-title">
+                    {{ fullName }}
+                </div>
+                <div class="page__background--text-sub">
+                    {{ mobile }}
+                </div>
             </div>
+        </div>
+        <div
+            ref="pageContent"
+            class="page__content page__layout page__layout--cover"
+            :style="{ marginTop: `calc(${backgroundImageSize}vw - ${toolbarMargin})` }"
+        >
+            <slot />
         </div>
     </v-ons-page>
 </template>
@@ -54,15 +64,92 @@
             fullName: {
                 type: String,
                 default: ''
+            },
+            contentHeight: {
+                type: Number,
+                default: 0
             }
         },
         data() {
             return {
-                heightImg: 200
+                backgroundImageSize: 75,
+                maxBackgroundSize: 75,
+                minBackgroundSize: 55,
+                oldSwipeValue: 0,
+                toolbarMargin: this.$ons.platform.isIPhoneX() ? '24px' : '44px'
             }
         },
-        mounted() {
-            this.heightImg = this.$refs.img.height - 60
+        watch: {
+            contentHeight(newValue, oldValue) {
+                if (newValue !== oldValue) {
+                    this.setScrollEventListeners()
+                }
+            }
+        },
+        methods: {
+            setScrollEventListeners() {
+                this.$refs.pageContent.removeEventListener('touchstart', this.touchStart)
+                this.$refs.pageContent.removeEventListener('touchend', this.touchEnd)
+                this.$refs.pageContent.removeEventListener('touchmove', this.touchMove)
+                /**
+                 * listen scroll events if page content too high
+                 */
+                if (this.$refs.pageContent.offsetHeight < this.$refs.pageContent.scrollHeight) {
+                    this.$refs.pageContent.addEventListener('touchstart', this.touchStart)
+                    this.$refs.pageContent.addEventListener('touchend', this.touchEnd)
+                    this.$refs.pageContent.addEventListener('touchmove', this.touchMove)
+                }
+            },
+
+            setPosition (swipeY) {
+                const { pageBackground, pageContent } = this.$refs
+                const currentSwipeValue = this.backgroundImageSize - this.convertToViewportWidth(swipeY)
+
+                if (currentSwipeValue <= this.maxBackgroundSize && currentSwipeValue >= this.minBackgroundSize) {
+                    pageBackground.style.height = `calc(${this.backgroundImageSize}vw - ${swipeY}px)`
+                    pageContent.style.marginTop = `calc(${this.backgroundImageSize}vw - ${this.toolbarMargin} - ${swipeY}px)`
+                } else if (currentSwipeValue > this.maxBackgroundSize) {
+                    this.backgroundImageSize = this.maxBackgroundSize
+                } else {
+                    this.backgroundImageSize = this.minBackgroundSize
+                }
+
+                this.oldSwipeValue = swipeY
+            },
+
+            touchMove (event) {
+                let newY = 0
+
+                if (this.dragStart === false) {
+                    this.dragStart = event.targetTouches[0].clientY
+                }
+
+                newY = (this.dragStart - event.targetTouches[0].clientY)
+
+                this.setPosition(newY)
+            },
+
+            touchStart (event) {
+                this.dragStart = event.targetTouches[0].clientY
+            },
+
+            touchEnd (event) {
+                const dragEnd = event.changedTouches[0].clientY
+                const swipeLength = this.convertToViewportWidth(this.dragStart - dragEnd)
+                const futureSwipeValue = this.backgroundImageSize - swipeLength
+
+                if (futureSwipeValue <= this.maxBackgroundSize && futureSwipeValue >= this.minBackgroundSize) {
+                    this.backgroundImageSize = futureSwipeValue
+                } else if (futureSwipeValue > this.maxBackgroundSize) {
+                    this.backgroundImageSize = this.maxBackgroundSize
+                } else {
+                    this.backgroundImageSize = this.minBackgroundSize
+                }
+            },
+
+            convertToViewportWidth(value) {
+                return value / window.innerWidth * 100
+            }
         }
     }
 </script>

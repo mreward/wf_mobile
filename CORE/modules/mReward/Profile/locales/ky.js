@@ -18,5 +18,6 @@ export default {
     m_profile_save: 'Save',
     m_profile_settings: 'Баптоолор',
     m_profile_take_picture: 'Камера',
-    m_profile_terms_loyalty: 'Лоялдуулук программасынын шарттары'
+    m_profile_terms_loyalty: 'Лоялдуулук программасынын шарттары',
+    m_profile_version: 'Версия'
 }

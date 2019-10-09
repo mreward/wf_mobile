@@ -85,7 +85,7 @@
                 class="contacts-info"
                 @click="openMessenger('instagram', contacts.country_2.instagram )"
             >
-                <div class="contacts-info-sub padding-bottom">
+                <div class="contacts-info-sub">
                     <span class="contacts-subtitle">{{ $t('m_contacts_instagram') }}</span>
                     <span class="contacts-lined-info contacts-link">@{{ contacts.country_2.instagram }}</span>
                 </div>
@@ -94,6 +94,22 @@
                         :src="imgInstagram"
                         alt=""
                     >
+                </div>
+            </div>
+            <div
+                class="contacts-info"
+                @click="openProtocol(contacts.site)"
+            >
+                <div class="contacts-info-sub padding-bottom">
+                    <span class="contacts-subtitle">{{ $t('m_contacts_site') }}</span>
+                    <span class="contacts-lined-info">{{ contacts.site }}</span>
+                </div>
+                <div class="contacts-icon">
+                    <v-btn
+                        fab
+                    >
+                        <i class="icon-web" />
+                    </v-btn>
                 </div>
             </div>
         </div>

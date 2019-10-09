@@ -48,11 +48,13 @@ export default {
             getPolls: constants.MrewardPoll.Actions.getPolls,
             getNews: constants.MrewardNews.Actions.getNews,
             getPromotions: constants.MrewardPromotions.Actions.getPromotions,
-            pushPage: constants.App.Actions.pushPage
+            pushPage: constants.App.Actions.pushPage,
+            getAccounts: constants.MrewardAccount.Actions.getAccounts
         }),
         async filterPushNotification(push) {
             this.PushNotification(push)
             this.getNotifications({ networkFirst: true })
+
             // TODO: Make requests by push.command_arg(id) to get details for specific news, promo or poll
             // ask @@the_western_sun
             // 1./partner/%guid%/news/%id%
@@ -75,7 +77,11 @@ export default {
                     this.isLoaded = true
                     break
                 }
-                default: break
+                default: {
+                    // We don't have a push.command type for push where balance changed, so update balance for every push without type
+                    this.getAccounts({ networkFirst: true })
+                    break
+                }
             }
         },
         PushNotification(pushData) {

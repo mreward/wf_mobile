@@ -21,7 +21,7 @@
             </template>
 
             <v-text-field
-                :label="$t('m_auth_password', '', {required: ''})"
+                :label="$t('m_auth_new_password', '', {required: ''})"
                 v-model="password"
                 required
                 :type="showPass ? 'text' : 'password'"

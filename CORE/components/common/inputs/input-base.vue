@@ -25,12 +25,12 @@
                 :maxlength="maxLength"
                 @focus.native="onFocus"
                 @blur.native="onBlur"
-            >
-            </textarea-autosize>
+            />
         </template>
         <template v-else>
             <input
                 ref="input"
+                :key="inputKey"
                 v-model="currentValue"
                 v-mask.origin="mask"
                 autocomplete="off"
@@ -49,7 +49,7 @@
             <div
                 v-if="type === 'password'"
                 class="show-password-button"
-                @click="showIcon = !showIcon"
+                @click="toggleIconEye"
             >
                 <i :class="showIcon ? iconHide : iconShow" />
             </div>
@@ -161,7 +161,8 @@
                 active: false,
                 iconHide: 'icon-eye-opened',
                 iconShow: 'icon-eye-closed',
-                showIcon: false
+                showIcon: false,
+                inputKey: 0
             }
         },
         inject: {
@@ -292,6 +293,15 @@
                 this.currentValue = ''
                 this.$emit('focus', this.currentValue)
                 // this.$refs.inputMain.$el.children[0].focus();
+            },
+            toggleIconEye() {
+                this.showIcon = !this.showIcon
+
+                this.updateDom()
+            },
+            // Force re-render to see the password when change icon
+            updateDom() {
+                this.inputKey += 1
             }
             // onKeyPress(event) {
             //     const value = event.target.value;

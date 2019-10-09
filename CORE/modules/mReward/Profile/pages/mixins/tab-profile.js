@@ -10,7 +10,8 @@ export default {
         return {
             ImgDownloadPhoto,
             cityName: '',
-            countryPhoneMask: '+000 000 000 000'
+            countryPhoneMask: '+000 000 000 000',
+            profileDataLength: 0
         }
     },
     computed: {
@@ -58,6 +59,11 @@ export default {
     watch: {
         'profile.id_city'() {
             this.setCityName()
+        },
+        'profileData.length'(newValue) {
+            this.$nextTick(() => {
+                this.profileDataLength = newValue
+            })
         }
     },
     async created() {

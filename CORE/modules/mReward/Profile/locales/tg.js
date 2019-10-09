@@ -18,5 +18,6 @@ export default {
     m_profile_save: 'Сарфа',
     m_profile_settings: 'Танзимот',
     m_profile_take_picture: 'Камера',
-    m_profile_terms_loyalty: 'Шартҳои барномаи вафодорӣ'
+    m_profile_terms_loyalty: 'Шартҳои барномаи вафодорӣ',
+    m_profile_version: 'Версия'
 }

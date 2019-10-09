@@ -10,9 +10,16 @@ const formatBalance = (balance) => {
         hundredths: `.${arrBalance[1] || '00'}`
     }
 }
+const removeBon = (accounts) => {
+    return accounts.filter(item => item.currency !== 'BON').map(item => ({
+        ...item,
+        ...formatBalance(item.balance)
+    }))
+}
 const state = {
     balance: {},
-    accounts: []
+    accounts: [],
+    selectedAccount: {}
 }
 
 const mutations = {
@@ -23,7 +30,7 @@ const mutations = {
         state.accounts = [...data]
     },
     [constants.MrewardAccount.Mutations.SelectedAccount.name]: (state, data) => {
-        state.selectedAccount = data
+        state.selectedAccount = { ...data }
     }
 }
 
@@ -63,8 +70,12 @@ const actions = {
             dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
 
             const { accounts } = await new MrewardAccount().GetAccounts({...payload})
-            commit(constants.MrewardAccount.Mutations.Accounts.name, accounts)
 
+            const formattedAccounts = removeBon(accounts)
+            commit(constants.MrewardAccount.Mutations.Accounts.name, formattedAccounts)
+            if (formattedAccounts.length === 1) {
+                dispatch(constants.MrewardAccount.Actions.saveSelectedAccount, formattedAccounts[0], { root: true })
+            }
             dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })
 
             return accounts
@@ -90,7 +101,7 @@ const actions = {
     async getSelectedAccount({ commit, dispatch }) {
         console.log('STORE: STORE: MrewardAccount Module - getSelectedAccount')
         try {
-            const account = localforage.getItem(DbObject.keys.mReward.selectedAccount.name)
+            const account = await localforage.getItem(DbObject.keys.mReward.selectedAccount.name)
             commit(constants.MrewardAccount.Mutations.SelectedAccount.name, account)
             return account
         } catch (error) {
@@ -107,10 +118,10 @@ const getters = {
         return state.balances
     },
     accounts(state) {
-        return state.accounts.filter(item => item.currency !== 'BON').map(item => ({
-            ...item,
-            ...formatBalance(item.balance)
-        }))
+        return state.accounts
+    },
+    selectedAccount(state) {
+        return state.selectedAccount
     }
 }
 

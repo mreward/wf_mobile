@@ -3,6 +3,7 @@ import constants from '_vuex_constants'
 import Geolocation from '_CORE/plugins/common/Geolocation'
 import MyLocationImg from '_SRC_IMG_WALLET/me.png'
 /* eslint-disable no-undef */
+import locationImg from '_SRC_IMG_WALLET/location.png'
 
 import { TimelineLite, TweenLite, Power4 } from 'gsap'
 
@@ -24,12 +25,15 @@ export default {
 
             dragStart: 0,
             isDrag: false,
-            isAnimation: false
+            isAnimation: false,
+            locationImg,
+            mapLoaded: false
         }
     },
     computed: {
         ...mapGetters({
             markers: constants.MrewardAdresses.Getters.adresses,
+            totalCount: constants.MrewardAdresses.Getters.totalCount,
             loaderVisible: constants.App.Getters.loaderVisible,
             settings: constants.App.Getters.settings
         }),
@@ -38,7 +42,7 @@ export default {
                 native: false,
                 showInfoWindow: false,
                 setActiveAnimation: true,
-                markers: this.markers,
+                markers: [],
                 zoom: 11,
                 iconSize: {
                     width: 29,
@@ -65,6 +69,9 @@ export default {
     watch: {
         search () {
             setTimeout(this.openList, 0)
+        },
+        markers () {
+            this.addMarkers()
         }
     },
     async created() {
@@ -90,6 +97,29 @@ export default {
         ...mapActions({
             getAdresses: constants.MrewardAdresses.Actions.getAdresses
         }),
+        addMarkers() {
+            if ((this.markers.length === this.totalCount) && this.mapLoaded) {
+                const image = new google.maps.MarkerImage(
+                    locationImg,
+                    new google.maps.Size(29, 36),
+                    new google.maps.Point(0, 0),
+                    new google.maps.Point(17, 34),
+                    new google.maps.Size(29, 36))
+
+                this.markers.forEach((item) => {
+                    setTimeout(() => {
+                        const marker = new google.maps.Marker({
+                            position: { lat: item.latitude, lng: item.longitude },
+                            map: this.mapObject,
+                            icon: image
+                        })
+                        google.maps.event.addListener(marker, 'click', () => {
+                            this.selectMarkerItem(item)
+                        })
+                    }, 200)
+                })
+            }
+        },
         resetMarkersClickCancel () {
             if (this.selectedMarker) {
                 this.searchFocusEvent()
@@ -118,6 +148,8 @@ export default {
             const { latitude, longitude } = await this.getMyLocation()
             this.mapObject.goTo({ latitude, longitude })
             this.mapObject.setZoom(12)
+            this.mapLoaded = true
+            this.addMarkers()
         },
         searchFocusEvent() {
             this.showList = true
@@ -161,29 +193,27 @@ export default {
 
         async getMyLocation() {
             try {
-                if (window.cordova) {
-                    const { latitude, longitude } = await Geolocation.getCurrentPosition()
+                const { latitude, longitude } = await Geolocation.getCurrentPosition()
 
-                    const myLatlng = new google.maps.LatLng(latitude, longitude)
+                const myLatlng = new google.maps.LatLng(latitude, longitude)
 
-                    if (this.myLocationMarker) {
-                        this.myLocationMarker.setPosition(myLatlng)
-                    } else {
-                        this.myLocationMarker = new google.maps.Marker({
-                            position: myLatlng,
-                            map: this.mapObject,
-                            animation: google.maps.Animation.DROP,
-                            icon: {
-                                url: MyLocationImg,
-                                size: new google.maps.Size(24, 24),
-                                origin: new google.maps.Point(0, 0),
-                                anchor: new google.maps.Point(0, 0),
-                                scaledSize: new google.maps.Size(24, 24)
-                            }
-                        })
-                    }
-                    return { latitude, longitude }
+                if (this.myLocationMarker) {
+                    this.myLocationMarker.setPosition(myLatlng)
+                } else {
+                    this.myLocationMarker = new google.maps.Marker({
+                        position: myLatlng,
+                        map: this.mapObject,
+                        animation: google.maps.Animation.DROP,
+                        icon: {
+                            url: MyLocationImg,
+                            size: new google.maps.Size(24, 24),
+                            origin: new google.maps.Point(0, 0),
+                            anchor: new google.maps.Point(0, 0),
+                            scaledSize: new google.maps.Size(24, 24)
+                        }
+                    })
                 }
+                return { latitude, longitude }
             } catch (e) {
                 this.$Alert.Error(e)
             }

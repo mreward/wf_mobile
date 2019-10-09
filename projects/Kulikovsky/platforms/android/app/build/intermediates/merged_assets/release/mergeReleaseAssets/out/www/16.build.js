@@ -1,1 +1,0 @@
-(window.webpackJsonpmWallet=window.webpackJsonpmWallet||[]).push([[16],{1229:function(e,n,o){e.exports=o.p+"location.png?42dee0c74583f882da7b1caf7314f39e"}}]);

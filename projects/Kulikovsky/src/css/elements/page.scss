@@ -5,7 +5,16 @@ ons-tabbar {
         }
     }
 }
+
+.page__layout {
+    padding: 0 16px;
+}
+
 [page*=adresses] {
+    .page__layout {
+        padding-top: 16px;
+    }
+
     .page__background {
         background: $white !important;
     }

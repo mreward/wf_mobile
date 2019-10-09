@@ -5,24 +5,11 @@
         :cover="profile.is_avatar_uploaded ? profile.avatar : ImgDownloadPhoto"
         :mobile="formattedMobile"
         :full-name="fullName"
+        :content-height="profileDataLength"
         @clickBackgroundEvent="selectAvatar"
     >
-        <div class="cover__content">
-            <div class="page__background--text">
-                <div class="page__background--text-title">
-                    {{ fullName }}
-                </div>
-                <div class="page__background--text-sub">
-                    {{ formattedMobile }}
-                </div>
-                <v-btn
-                    fab
-                    class="v-btn--edit"
-                    @click="goToEditProfile"
-                >
-                    <i class="icon-edit"></i>
-                </v-btn>
-            </div>
+        <!-- dont remove this div, need for page scroll -->
+        <div>
             <v-list
                 v-if="profileData.length"
                 :two-line="true"
@@ -35,11 +22,19 @@
                         :key="i"
                     >
                         <v-list-item-content>
-                            <v-list-item-title v-html="item.title"></v-list-item-title>
-                            <v-list-item-subtitle v-html="item.subtitle"></v-list-item-subtitle>
+                            <v-list-item-title v-html="item.title" />
+                            <v-list-item-subtitle v-html="item.subtitle" />
                         </v-list-item-content>
                     </v-list-item>
                 </v-list-item-group>
+
+                <v-btn
+                    fab
+                    class="v-btn--edit"
+                    @click="goToEditProfile"
+                >
+                    <i class="icon-edit" />
+                </v-btn>
             </v-list>
 
             <v-btn
@@ -51,7 +46,7 @@
                 @click="goToEditProfile"
             >
                 {{ $t('m_profile_edit_profile') }}
-                <i class="icon-next-page"></i>
+                <i class="icon-next-page" />
             </v-btn>
 
             <v-btn
@@ -61,7 +56,7 @@
                 @click="goToPage('settings')"
             >
                 {{ $t('m_profile_settings') }}
-                <i class="icon-next-page"></i>
+                <i class="icon-next-page" />
             </v-btn>
             <v-btn
                 color="secondary"
@@ -70,7 +65,7 @@
                 @click="goToPage('contacts')"
             >
                 {{ $t('m_profile_contacts') }}
-                <i class="icon-next-page"></i>
+                <i class="icon-next-page" />
             </v-btn>
 
             <v-btn
@@ -81,8 +76,11 @@
             >
                 {{ $t('m_profile_terms_loyalty') }}
             </v-btn>
-        </div>
 
+            <div class="profile--min-text">
+                {{ $t('m_profile_version') }} {{ `${settings.version}.${settings.versionCode}` }}
+            </div>
+        </div>
     </layout>
 </template>
 

@@ -18,5 +18,6 @@ export default {
     m_profile_save: 'Сақтау',
     m_profile_settings: 'Баптаулар',
     m_profile_take_picture: 'Камера',
-    m_profile_terms_loyalty: 'Бейілділік бағдарламасының шарттары'
+    m_profile_terms_loyalty: 'Бейілділік бағдарламасының шарттары',
+    m_profile_version: 'Нұсқа'
 }

@@ -34,6 +34,22 @@
                 dateTo: moment()
             }
         },
+        computed: {
+            selectedDate() {
+                return {
+                    dateFrom: this.dateFrom,
+                    dateTo: this.dateTo
+                }
+            }
+        },
+        watch: {
+            selectedDate(newVal) {
+                this.$emit('select-date', newVal)
+            }
+        },
+        created() {
+            this.$emit('select-date', this.selectedDate)
+        },
         methods: {
             ...mapActions({
                 getHistory: constants.MrewardHistory.Actions.getHistory

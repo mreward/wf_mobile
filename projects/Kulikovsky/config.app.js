@@ -8,7 +8,7 @@ const mainJsModules = require('./src/.config.main')
 const UrlMReward = {
     SIT: 'https://api-dev.m-loyalty.com/', // required
     UAT: 'https://api-dev.kulikov.com/',
-    PROD: '' // required
+    PROD: 'https://api.kulikov.com/' // required
 }
 
 // TODO register logrocket acc
@@ -23,12 +23,12 @@ const PROD = {
         {
             mReward: {
                 API: {
-                    url: UrlMReward.UAT
+                    url: UrlMReward.PROD
                 }
             }
         }
     ],
-    // idChanel: 'CM5JRHF6V', // required
+    idChanel: 'CM5JRHF6V', // required
     logRocketId: LogRocketId.PROD,
     hockeyAppID: '', // required
     googleAnalyticsTrackId: '',
@@ -45,10 +45,10 @@ const PROD = {
     passwordMinimumLength: 6,
     minimumAge: 14, // required
 
-    termsUrl: 'https://my.kulikov.com/', // required
-    nameApp: 'Kulikovsky', // required
+    termsUrl: 'https://kulikov.com/license.pdf', // required
+    nameApp: 'Куликовский', // required
     bundleID: 'pro.mwallet.kulikovsky', // required
-    version: '0.0.3', // required
+    version: '1.0.4', // required
     options: {
         modules: {
             mReward: {
@@ -65,7 +65,7 @@ const PROD = {
     appleTeamId: 'N9UTTLR2F7',
     contacts: {
         country_1: {
-            phone: '+996 312 54 5555',
+            phone: '+996 556 583 858',
             instagram: 'kulikov_kg',
             email: 'service@kulikov.com'
         },
@@ -75,7 +75,8 @@ const PROD = {
         },
         telegram: 'Kulikovskiybot',
         whatsapp: '+996 550 909 209',
-        onlinechat: 'https://kulikovskiy.bitrix24.ru/online/contactcentr'
+        onlinechat: 'https://kulikovskiy.bitrix24.ru/online/contactcentr',
+        site: 'https://kulikov.com/'
     },
     googleApiKey: 'AIzaSyDRsmHsv0HZPGB0GXLL95TxldOf_YejUFU'
 }
@@ -92,7 +93,7 @@ const Environment = {
                 }
             }
         ],
-        nameApp: 'Kulikovsky SIT', // required
+        nameApp: 'Куликовский SIT', // required
         bundleID: 'pro.mwallet.kulikovskysit',
         hockeyAppID: '368d93b7987e45bca63d55f8c153f7e7',
         GoogleServiceInfoIOS: '/certificates/GoogleService-Info-SIT.plist', // required
@@ -108,7 +109,7 @@ const Environment = {
                 }
             }
         ],
-        nameApp: 'Kulikovsky UAT', // required
+        nameApp: 'Куликовский UAT', // required
         bundleID: 'pro.mwallet.kulikovskyuat',
         hockeyAppID: 'dbf74cfbfcf642c481d683b7e3e46a79', // TODO change
         GoogleServiceInfoIOS: '/certificates/GoogleService-Info-SIT.plist', // required
@@ -119,7 +120,7 @@ const Environment = {
 
 module.exports = defaultsDeep({
     name: 'Kulikovsky', // required
-    application: Environment.UAT,
+    application: Environment.PROD,
     notesHockeyapp: buildNotesHockeyapp(CHANGELOG)
 }, configDefault.app_config)
 

@@ -21,6 +21,7 @@ export default {
     },
     Getters: {
         balance: 'MrewardAccount/balance',
-        accounts: 'MrewardAccount/accounts'
+        accounts: 'MrewardAccount/accounts',
+        selectedAccount: 'MrewardAccount/selectedAccount'
     }
 }

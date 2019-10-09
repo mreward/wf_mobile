@@ -316,6 +316,16 @@ const getters = {
                     name: country.name
                 }
             }
+            case 'LB': {
+                return {
+                    ...country,
+                    code: '+961',
+                    mask: 'xxxxxxxx',
+                    dynamicMasks: '7,8',
+                    regex: '^(3|71|76|78|79|81)\\\d{6}$',
+                    name: country.name
+                }
+            }
             case 'NA': {
                 return {
                     ...country,

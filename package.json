@@ -93,6 +93,7 @@
         "vue-masked-input": "^0.5.1",
         "vue-onsenui": "^2.4.3",
         "vue-polyglot": "^0.2.1",
+        "vue-pull-to": "^0.1.8",
         "vue-qrcode-component": "^2.1.1",
         "vue-router": "^3.0.1",
         "vue-swipe-actions": "1.0.6",

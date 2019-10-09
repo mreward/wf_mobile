@@ -18,5 +18,6 @@ export default {
     m_profile_save: 'sauvegarder',
     m_profile_settings: 'Réglages',
     m_profile_take_picture: 'Caméra',
-    m_profile_terms_loyalty: 'Conditions du programme de fidélité'
+    m_profile_terms_loyalty: 'Conditions du programme de fidélité',
+    m_profile_version: 'Version'
 }

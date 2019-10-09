@@ -44,8 +44,8 @@
                                 v-slot:activator="{ on }"
                             >
                                 <span
-                                    class="btn-currency"
                                     ref="btnCurrency"
+                                    class="btn-currency"
                                 >
                                     <v-btn
                                         v-if="accounts.length > 1"
@@ -54,7 +54,7 @@
                                         v-on="on"
                                     >
                                         {{ currentBalance.currency }}
-                                        <i class="icon-next-page right"/>
+                                        <i class="icon-next-page right" />
                                     </v-btn>
                                     <span
                                         v-else-if="currentBalance.currency"
@@ -72,7 +72,7 @@
                                         fab
                                         @click="dialog = false"
                                     >
-                                        <i class="icon icon-close"/>
+                                        <i class="icon icon-close" />
                                     </v-btn>
                                 </div>
                                 <v-list-item-group>
@@ -190,7 +190,8 @@
                 cards: constants.MrewardCard.Getters.cards,
                 userProfile: constants.MrewardProfile.Getters.userProfile,
                 accounts: constants.MrewardAccount.Getters.accounts,
-                balanceData: constants.MrewardAccount.Getters.balance
+                balanceData: constants.MrewardAccount.Getters.balance,
+                selectedAccount: constants.MrewardAccount.Getters.selectedAccount
             }),
             cardNumber () {
                 if (this.userProfile.card_pan) {
@@ -239,7 +240,6 @@
                 return 470
             },
 
-
             userName () {
                 if (this.userProfile.last_name) {
                     return `${this.$t('m_dashboard_hello')}, ${this.userProfile.first_name}!`
@@ -249,8 +249,17 @@
             }
         },
         watch: {
-            position () {
+            position() {
                 this.onChangeBar()
+            },
+            async accounts(newValue) {
+                if (newValue.length && !isEmpty(this.selectedAccount)) {
+                    const newCurrentBalance = newValue.find((item) => {
+                        return item.account === this.selectedAccount.account
+                    })
+                    await this.saveSelectedAccount(newCurrentBalance)
+                    this.currentBalance = this.selectedAccount
+                }
             }
         },
         async created () {

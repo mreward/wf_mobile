@@ -1,8 +1,12 @@
 import { mapActions, mapGetters } from 'vuex'
 import constants from '_vuex_constants'
+import PullToWrapper from '_pull_to_wrapper'
 const ScreenNewsDetails = () => import('_screen_news_details')
 
 export default {
+    components: {
+        PullToWrapper
+    },
     data() {
         return {
             layout: 'tab',
@@ -41,6 +45,17 @@ export default {
                     }
                 }
             })
+        },
+        async updateNews(loaded) {
+            try {
+                await this.getNews({ networkFirst: true })
+            } catch (e) {
+                this.$Alert.Error(e)
+            } finally {
+                setTimeout(() => {
+                    loaded('done')
+                }, 300)
+            }
         }
     }
 }

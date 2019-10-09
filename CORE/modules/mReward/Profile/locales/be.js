@@ -18,5 +18,6 @@ export default {
     m_profile_save: 'Захаваць',
     m_profile_settings: 'Налады',
     m_profile_take_picture: 'Камера',
-    m_profile_terms_loyalty: 'Умовы праграмы лаяльнасці'
+    m_profile_terms_loyalty: 'Умовы праграмы лаяльнасці',
+    m_profile_version: 'Версія'
 }
