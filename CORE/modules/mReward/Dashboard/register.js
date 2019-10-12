@@ -13,6 +13,7 @@ module.exports = (dirname) => {
         _dashboard_action: `${PATH}/components/dashboard-action.vue`,
         _dashboard_profile: `${PATH}/components/dashboard-profile.vue`,
         _dashboard_history: `${PATH}/components/dashboard-history.vue`,
+        _dashboard_raffles: `${PATH}/components/dashboard-raffles.vue`,
         _not_found_items: `${COMMON}/not-found-items.vue`
     }
 }

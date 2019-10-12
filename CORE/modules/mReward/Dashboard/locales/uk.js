@@ -6,5 +6,6 @@ export default {
     m_dashboard_hello: 'Привіт',
     m_dashboard_latest_charges: 'Останні нарахування',
     m_dashboard_no_accrued_bonuses: 'Ще не нараховано бонусів',
+    m_dashboard_raffles: 'Практичні анекдоти',
     m_dashboard_wallets: 'Гаманці'
 }

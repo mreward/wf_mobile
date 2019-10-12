@@ -6,5 +6,6 @@ export default {
     m_dashboard_hello: 'مرحبا',
     m_dashboard_latest_charges: 'أحدث الاتهامات',
     m_dashboard_no_accrued_bonuses: 'لا توجد مكافآت مستحقة بعد',
+    m_dashboard_raffles: 'النكات العملية',
     m_dashboard_wallets: 'محافظ'
 }

@@ -6,5 +6,6 @@ export default {
     m_dashboard_hello: 'Привет',
     m_dashboard_latest_charges: 'Последние начисления',
     m_dashboard_no_accrued_bonuses: 'Начисленных бонусов пока что нет',
+    m_dashboard_raffles: 'Розыгрыши',
     m_dashboard_wallets: 'Кошельки'
 }
