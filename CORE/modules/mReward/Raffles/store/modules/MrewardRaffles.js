@@ -8,7 +8,7 @@ const {
 } = constants
 
 const state = {
-    raffles: []
+    raffles: {}
 }
 
 const mutations = {
@@ -45,10 +45,25 @@ const actions = {
     }
 }
 
+import _map from 'lodash/map'
+
 const getters = {
     // TODO format raffle there
     dashboardRaffles(state) {
-        return state.raffles
+        const dashboardRaffles = _map(state.raffles, (value, key) => {
+            return {
+                name: value.name,
+                description: value.description,
+                generatorId: key,
+                count: value.count,
+                dibsForNext: value.for_next,
+                images: {
+                    mobile: value.image_url_420
+                }
+            }
+        })
+
+        return dashboardRaffles.slice(0, 2)
     },
     allRaffles(state) {
         return state.raffles

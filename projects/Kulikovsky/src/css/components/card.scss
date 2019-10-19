@@ -163,6 +163,94 @@
         }
     }
 
+    &--raffles {
+        height: 98px;
+        overflow: visible;
+
+        .card-container__wrapper {
+            @extend .padding-horizontal--base;
+
+            width: 100vw;
+            height: 98px;
+            margin-left: -16px;
+            padding-bottom: map_get($paddings, base);
+            scroll-snap-type: x mandatory;
+            overflow-x: scroll;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            white-space: nowrap;
+            scroll-padding: 1rem;
+            overscroll-behavior: contain;
+
+            > * {
+                scroll-snap-align: start;
+                display: inline-block;
+                width: 100%;
+                height: 100%;
+            }
+
+            > div + div {
+                margin-left: map-get($margins, small-base) !important;
+            }
+
+            .card--horizontal {
+                @extend .margin-bottom--none;
+
+                overflow: hidden;
+                background-color: $white;
+                border-radius: $border-radius;
+                box-shadow: 0 8px 15px 0 rgba(39, 45, 45, 0.06);
+
+                .card__content {
+                    display: flex;
+                    width: 100%;
+                    height: 100%;
+
+                    .card__image--block {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        width: 90px;
+                        padding: 15px 16px;
+
+                        i {
+                            color: $primary;
+                            font-size: rem(24);
+                        }
+
+                        .card__dibs {
+                            line-height: 26px;
+                            font-size: rem(24);
+                            letter-spacing: -1px;
+                            text-align: center;
+                        }
+                    }
+
+                    .card__text--block {
+                        width: calc(100% - 16px);
+                        padding: 11px 16px 11px 0;
+                        color: $black;
+
+                        .card__title {
+                            overflow: hidden;
+                            height: 40px;
+                            font-weight: $bold;
+                            font-size: rem(15);
+                            line-height: rem(20);
+                            letter-spacing: rem(-0.24);
+                            white-space: normal;
+                            text-overflow: ellipsis;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            word-break: break-word;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     @media screen and (max-width: 320px) {
         height: vw(225);
     }

@@ -10,8 +10,13 @@
             class="card-container--raffles"
             v-if="dashboardRaffles.length && !loading"
         >
-            <div>
-
+            <div class="card-container__wrapper">
+                <raffle-card
+                    v-for="(item, index) in dashboardRaffles"
+                    :key="index"
+                    :item="item"
+                    @click.native="goToRafflesDetails(item)"
+                />
             </div>
         </div>
 
@@ -34,12 +39,14 @@
     import { mapActions, mapGetters } from 'vuex'
     import constants from '_vuex_constants'
     import NotFoundItems from '_not_found_items'
+    import RaffleCard from '_raffle_card'
 
     export default {
         name: 'dashboard-raffles',
         components: {
             TitleRow,
-            NotFoundItems
+            NotFoundItems,
+            RaffleCard
         },
         data: () => ({
             loading: true

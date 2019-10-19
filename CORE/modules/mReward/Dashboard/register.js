@@ -14,6 +14,7 @@ module.exports = (dirname) => {
         _dashboard_profile: `${PATH}/components/dashboard-profile.vue`,
         _dashboard_history: `${PATH}/components/dashboard-history.vue`,
         _dashboard_raffles: `${PATH}/components/dashboard-raffles.vue`,
-        _not_found_items: `${COMMON}/not-found-items.vue`
+        _not_found_items: `${COMMON}/not-found-items.vue`,
+        _raffle_card: `${PATH}/components/raffle-card.vue`
     }
 }
