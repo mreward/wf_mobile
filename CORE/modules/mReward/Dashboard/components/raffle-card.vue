@@ -4,7 +4,7 @@
             <div class="card__image--block">
                 <i class="icon-k-symbol" />
                 <div class="card__dibs">
-                    {{ 250 }}
+                    {{ item.count }}
                 </div>
             </div>
 
@@ -12,8 +12,8 @@
                 <div class="card__title">
                     {{ item.name }}
                 </div>
-                <div class="card_subtext">
-                    {{ item.period }}
+                <div class="card__subtext">
+                    {{ item.datePeriod }}
                 </div>
             </div>
         </div>

@@ -1,5 +1,7 @@
 import constants from '_vuex_constants'
+import _map from 'lodash/map'
 import MrewardRaffles from '../../libs/MrewardRaffles'
+import formatDatePeriod from '_CORE/modules/mReward/libs/formatDatePeriod'
 
 const {
     MrewardRaffles: {
@@ -45,29 +47,31 @@ const actions = {
     }
 }
 
-import _map from 'lodash/map'
-
 const getters = {
-    // TODO format raffle there
     dashboardRaffles(state) {
-        const dashboardRaffles = _map(state.raffles, (value, key) => {
-            return {
-                name: value.name,
-                description: value.description,
-                generatorId: key,
-                count: value.count,
-                dibsForNext: value.for_next,
-                images: {
-                    mobile: value.image_url_420
-                }
-            }
-        })
+        const dashboardRaffles = formatRaffleObject(state.raffles)
 
         return dashboardRaffles.slice(0, 2)
     },
     allRaffles(state) {
-        return state.raffles
+        return formatRaffleObject(state.raffles)
     }
+}
+
+const formatRaffleObject = (rafflesList) => {
+    return _map(rafflesList, (value, key) => {
+        return {
+            name: value.name,
+            description: value.description,
+            datePeriod: formatDatePeriod(value.date_from, value.date_to),
+            generatorId: key,
+            count: value.count,
+            dibsForNext: value.for_next,
+            images: {
+                mobile: value.image_url_420
+            }
+        }
+    })
 }
 
 export default {

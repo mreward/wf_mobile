@@ -46,14 +46,16 @@
             ...mapActions({
                 getHistory: constants.MrewardHistory.Actions.getHistory,
                 getAccounts: constants.MrewardAccount.Actions.getAccounts,
-                getPromotions: constants.MrewardPromotions.Actions.getPromotions
+                getPromotions: constants.MrewardPromotions.Actions.getPromotions,
+                getRaffles: constants.MrewardRaffles.Actions.getRaffles
             }),
             async updateDashboardContent(loaded) {
                 try {
                     await Promise.all([
                         this.getPromotions({ networkFirst: true }),
                         this.getHistory({ networkFirst: true }),
-                        this.getAccounts({ networkFirst: true })
+                        this.getAccounts({ networkFirst: true }),
+                        this.getRaffles({ networkFirst: true })
                     ])
                 } catch (e) {
                     this.$Alert.Error(e)

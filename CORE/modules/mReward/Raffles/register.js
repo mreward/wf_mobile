@@ -3,17 +3,13 @@
  * @returns {{}}
  */
 module.exports = (dirname) => {
-    const PATH = `${dirname}/CORE/modules/mReward/Poll`
+    const PATH = `${dirname}/CORE/modules/mReward/Raffles`
 
     return {
-        // mixins
-        _screen_poll_mixin: `${PATH}/pages/mixins/screen-poll.js`,
-
-        // components
-        _poll_card: `${PATH}/components/poll-card.vue`,
-
         // pages
-        _screen_poll: `${PATH}/pages/screen-poll.vue`,
-        _screen_poll_details: `${PATH}/pages/screen-poll-details.vue`
+        _screen_raffles: `${PATH}/pages/screen-raffles.vue`,
+
+        // mixins
+        _screen_raffles_mixin: `${PATH}/pages/mixins/screen-raffles.js`
     }
 }

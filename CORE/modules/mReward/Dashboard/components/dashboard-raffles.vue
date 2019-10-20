@@ -1,16 +1,16 @@
 <template>
     <div>
         <title-row
-            :action="dashboardRaffles.length ? $t('m_dashboard_all') : ''"
+            :action="dashboardRaffles.length > 1 ? $t('m_dashboard_all') : ''"
             :title="$t('m_dashboard_raffles')"
-            @click="$bus.$emit('home:goToTab', 'screen-interesting-tab')"
+            @click="goToAllRafflesPage"
         />
 
         <div
             class="card-container--raffles"
             v-if="dashboardRaffles.length && !loading"
         >
-            <div class="card-container__wrapper">
+            <div class="card-container__horizontal-wrapper">
                 <raffle-card
                     v-for="(item, index) in dashboardRaffles"
                     :key="index"
@@ -40,6 +40,7 @@
     import constants from '_vuex_constants'
     import NotFoundItems from '_not_found_items'
     import RaffleCard from '_raffle_card'
+    import ScreenRaffles from '_screen_raffles'
 
     export default {
         name: 'dashboard-raffles',
@@ -58,7 +59,7 @@
         },
         async created() {
             try {
-                await this.getRaffles({ networkFirst: true })
+                await this.getRaffles()
             } catch (e) {
                 this.$Alert.Error(e)
             } finally {
@@ -69,9 +70,15 @@
             ...mapActions({
                 getRaffles: constants.MrewardRaffles.Actions.getRaffles,
                 pushPage: constants.App.Actions.pushPage
-            })
-        },
-        goToRafflesDetails(raffles) {
+            }),
+            goToRafflesDetails(raffles) {
+                // TODO move it into <raffle-card> component
+            },
+            goToAllRafflesPage() {
+                this.pushPage({
+                    extends: ScreenRaffles
+                })
+            }
         }
     }
 </script>
