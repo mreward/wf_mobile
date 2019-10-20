@@ -3,7 +3,7 @@ import moment from 'moment'
 /**
  * format date to '00 - 00 Month'
  */
-export default function formatDatePeriod(dateFrom, dateTo) {
+export default (dateFrom, dateTo) => {
     const fromMonth = moment(dateFrom, 'YYYY-MM-DD').month()
     const toMonth = moment(dateTo, 'YYYY-MM-DD').month()
     const from = moment(dateFrom, 'YYYY-MM-DD')
