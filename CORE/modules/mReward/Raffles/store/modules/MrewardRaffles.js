@@ -2,6 +2,9 @@ import constants from '_vuex_constants'
 import _map from 'lodash/map'
 import MrewardRaffles from '../../libs/MrewardRaffles'
 import formatDatePeriod from '_CORE/modules/mReward/libs/formatDatePeriod'
+import moment from 'moment'
+import _keys from 'lodash/keys'
+import _forEach from 'lodash/forEach'
 
 const {
     MrewardRaffles: {
@@ -15,7 +18,22 @@ const state = {
 
 const mutations = {
     [RafflesMutat.Raffles.name]: (state, data) => {
-        state.raffles = { ...data }
+        state.raffles = { ...data.raffles }
+
+        const rafflesIds = _keys(state.raffles)
+        // TODO сказать чтоб это на беке сделали и в нормальном формате сразу отдавали данные
+        // TODO или оптимизировать
+        // записываем фишки к соответствующим розыгрышам
+        _forEach(data.dibs, (itemDib) => {
+            _forEach(rafflesIds, (itemRaffleId) => {
+                if (itemDib.generator_id.toString() === itemRaffleId) {
+                    if (!state.raffles[itemRaffleId].dibs) {
+                        state.raffles[itemRaffleId].dibs = []
+                    }
+                    state.raffles[itemRaffleId].dibs.push(itemDib)
+                }
+            })
+        })
     }
 }
 
@@ -31,9 +49,12 @@ const actions = {
         try {
             dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
 
-            const { generators: raffles } = await new MrewardRaffles().GetRaffles(payload)
+            const { generators: raffles = {}, dibs = [] } = await new MrewardRaffles().GetRaffles(payload)
 
-            commit(RafflesMutat.Raffles.name, raffles)
+            commit(RafflesMutat.Raffles.name, {
+                raffles,
+                dibs
+            })
 
             dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })
 
@@ -64,9 +85,11 @@ const formatRaffleObject = (rafflesList) => {
             name: value.name,
             description: value.description,
             datePeriod: formatDatePeriod(value.date_from, value.date_to),
+            expiredDate: moment(value.expired_date).format('DD MMMM'),
             generatorId: key,
             count: value.count,
             dibsForNext: value.for_next,
+            dibs: value.dibs || [],
             images: {
                 mobile: value.image_url_420
             }

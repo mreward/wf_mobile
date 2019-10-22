@@ -15,7 +15,6 @@
                     v-for="(item, index) in dashboardRaffles"
                     :key="index"
                     :item="item"
-                    @click.native="goToRafflesDetails(item)"
                 />
             </div>
         </div>
@@ -71,9 +70,6 @@
                 getRaffles: constants.MrewardRaffles.Actions.getRaffles,
                 pushPage: constants.App.Actions.pushPage
             }),
-            goToRafflesDetails(raffles) {
-                // TODO move it into <raffle-card> component
-            },
             goToAllRafflesPage() {
                 this.pushPage({
                     extends: ScreenRaffles

@@ -1,6 +1,5 @@
 import constants from '_vuex_constants'
 import MrewardPromotions from '../../libs/MrewardPromotions'
-import moment from 'moment'
 import validatePagination from '_CORE/modules/mReward/libs/ValidatePagination'
 import sortByColumns from '_CORE/modules/mReward/libs/sortByColumns'
 import formatDatePeriod from '_CORE/modules/mReward/libs/formatDatePeriod'
