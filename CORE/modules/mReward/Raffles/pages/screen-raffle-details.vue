@@ -19,7 +19,10 @@
                 </div>
             </div>
 
-            <div class="raffle__dashed-border raffle__text-normal padding-vertical--base">
+            <div
+                v-show="raffleData.dibsForNext"
+                class="raffle__dashed-border-top raffle__text-normal padding-vertical--base"
+            >
                 {{ $t('m_raffles_residue_from_last_purchase') }}
                 <div class="raffle__text-bold margin-top--xsmall">
                     {{ raffleData.dibsForNext }}
@@ -30,12 +33,21 @@
                 <div v-html="raffleData.description" />
             </div>
 
-            <div class="padding-vertical--base">
+            <div
+                class="padding-vertical--base"
+                @click="showAllDibs = true"
+            >
                 {{ $t('m_raffles_my_dibs') }}
-
+                <div
+                    v-for="(item, index) in dibsView"
+                    :key="index"
+                    class="raffle__text-bold"
+                >
+                    {{ item }}
+                </div>
             </div>
 
-            <div class="raffle__text-muted">
+            <div class="raffle__text-muted padding-bottom--base">
                 {{ raffleData.expiredDate }}
             </div>
         </div>
