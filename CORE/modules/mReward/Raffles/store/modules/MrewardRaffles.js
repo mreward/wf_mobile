@@ -5,6 +5,7 @@ import formatDatePeriod from '_CORE/modules/mReward/libs/formatDatePeriod'
 import moment from 'moment'
 import _keys from 'lodash/keys'
 import _forEach from 'lodash/forEach'
+import _orderBy from 'lodash/orderBy'
 
 const {
     MrewardRaffles: {
@@ -80,12 +81,14 @@ const getters = {
 }
 
 const formatRaffleObject = (rafflesList) => {
-    return _map(rafflesList, (value, key) => {
+    const sortedByStartDate = _orderBy(rafflesList, ['date_from_unix'], ['desc'])
+    return _map(sortedByStartDate, (value, key) => {
         return {
             name: value.name,
             description: value.description,
             datePeriod: formatDatePeriod(value.date_from, value.date_to),
             expiredDate: moment(value.expired_date).format('DD MMMM'),
+            isExpired: moment(value.date_to) < moment(),
             generatorId: key,
             count: value.count,
             dibsForNext: value.for_next,

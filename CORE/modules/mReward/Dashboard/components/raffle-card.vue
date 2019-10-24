@@ -1,6 +1,7 @@
 <template>
     <div
         class="card--horizontal"
+        :class="{ 'muted': item.isExpired }"
         @click="goToRaffleDetailsPage"
     >
         <div class="card__content">

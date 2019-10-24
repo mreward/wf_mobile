@@ -210,6 +210,24 @@
             border-radius: $border-radius;
             box-shadow: 0 8px 15px 0 rgba(39, 45, 45, 0.06);
 
+            &.muted {
+                i {
+                    color: $muted !important;
+                }
+
+                .card__text--block {
+                    color: $muted !important;
+                }
+
+                .card__subtext {
+                    color: $muted !important;
+                }
+
+                .card__dibs {
+                    color: $muted !important;
+                }
+            }
+
             .card__content {
                 display: flex;
                 width: 100%;
@@ -230,6 +248,7 @@
                     }
 
                     .card__dibs {
+                        color: $black;
                         font-size: rem(24);
                         line-height: 26px;
                         letter-spacing: -1px;
