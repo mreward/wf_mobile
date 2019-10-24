@@ -89,12 +89,27 @@ const formatRaffleObject = (rafflesList) => {
             generatorId: key,
             count: value.count,
             dibsForNext: value.for_next,
+            amount: value.amount,
+            currency: getCurrency(value.partner_id),
             dibs: value.dibs || [],
             images: {
                 mobile: value.image_url_420
             }
         }
     })
+}
+
+const getCurrency = (partnerId) => {
+    switch (partnerId) {
+        case 1:
+            return 'SOM'
+        case 2:
+            return 'KZT'
+        case 3:
+            return 'RUB'
+        default:
+            return ''
+    }
 }
 
 export default {

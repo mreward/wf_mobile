@@ -25,7 +25,10 @@
             >
                 {{ $t('m_raffles_residue_from_last_purchase') }}
                 <div class="raffle__text-bold margin-top--xsmall">
-                    {{ raffleData.dibsForNext }}
+                    {{ raffleData.amount - raffleData.dibsForNext }} {{ raffleData.currency }}
+                    <span class="raffle__text-muted margin-right--small-base">
+                        ( 1 {{ $t('m_raffles_dib') }} = {{ raffleData.amount }} {{ raffleData.currency }})
+                    </span>
                 </div>
             </div>
 
@@ -55,6 +58,7 @@
 </template>
 
 <script>
+    // TODO raffleData must be a props, not data
     import ScreenRaffleDetailsMixin from '_screen_raffle_details_mixin'
 
     export default {
