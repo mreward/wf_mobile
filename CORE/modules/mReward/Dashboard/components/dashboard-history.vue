@@ -3,7 +3,7 @@
         <title-row
             :action="history.length ? $t('m_dashboard_all') : ''"
             :title="$t('m_dashboard_latest_charges')"
-            class="margin-top--base"
+            class="margin-top--base padding-horizontal--base"
             @click="$bus.$emit('goToPage', { page: 'history' })"
         />
 

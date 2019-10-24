@@ -1,6 +1,7 @@
 <template>
     <div>
         <title-row
+            class="padding-horizontal--base"
             :action="promoItems.length ? $t('m_dashboard_all') : ''"
             :title="$t('m_dashboard_actions')"
             @click="$bus.$emit('home:goToTab', 'screen-interesting-tab')"
