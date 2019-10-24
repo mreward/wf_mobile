@@ -79,9 +79,12 @@
     }
 
     &--default {
-        @extend .margin-left--base;
+        margin: 0;
 
-        width: calc(100% - 32px);
+        &.card--default-restrict {
+            width: calc(100% - 32px);
+            margin-left: map_get($margins, base);
+        }
     }
 
     &--header {

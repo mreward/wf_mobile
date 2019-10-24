@@ -8,7 +8,7 @@
         />
 
         <div
-            class="card card--default"
+            class="card card--default card--default-restrict"
             v-if="history.length && !loading"
         >
             <v-ons-list class="list--vertical list--indentation is-non-underline">
