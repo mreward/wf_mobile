@@ -39,6 +39,7 @@
             </div>
 
             <div
+                v-show="dibsView.length"
                 class="padding-vertical--base"
                 @click="showAllDibs = true"
             >

@@ -36,6 +36,35 @@
         padding-top: 20px;
         background-color: $grey-light-second;
 
+        &.is-horizontal-bar {
+            z-index: 2;
+
+            .toolbar-large__header {
+                flex-direction: row;
+
+                i {
+                    font-size: rem(22);
+                }
+
+                .text--top {
+                    margin-left: 8px;
+                    font-weight: $bold;
+                    font-size: rem(22);
+                    line-height: rem(28);
+                    letter-spacing: rem(0.2);
+                    text-align: center;
+                }
+
+                .text--bottom {
+                    display: none;
+                }
+            }
+
+            .toolbar-large__footer {
+                display: none;
+            }
+        }
+
         .toolbar-large {
             display: flex;
             flex-direction: column;
@@ -43,9 +72,10 @@
             &__header {
                 display: flex;
                 flex-direction: column;
+                justify-content: center;
                 align-items: center;
                 width: 100%;
-                min-height: 46px;
+                min-height: 52px;
                 color: $black;
 
                 i {
