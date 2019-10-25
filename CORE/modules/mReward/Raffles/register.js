@@ -6,7 +6,9 @@ module.exports = (dirname) => {
     const PATH = `${dirname}/CORE/modules/mReward/Raffles`
 
     return {
-        // pages
+        // layout
+        _layout_raffle_details: `${dirname}/CORE/layouts/raffle-details.vue`,
+
         _screen_raffles: `${PATH}/pages/screen-raffles.vue`,
         _screen_raffle_details: `${PATH}/pages/screen-raffle-details.vue`,
 

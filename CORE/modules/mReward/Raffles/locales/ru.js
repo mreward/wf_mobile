@@ -3,5 +3,6 @@ export default {
     m_raffles_dib: 'фишка',
     m_raffles_my_dibs: 'Мои фишки',
     m_raffles_period_dibs_accumulation: 'Период накопления фишек',
-    m_raffles_residue_from_last_purchase: 'Остаток с предидущей покупки'
+    m_raffles_residue_from_last_purchase: 'Остаток с предидущей покупки',
+    m_raffles_for_next_dib: 'Для получения еще одной фишки необходимо совершить покупки не менее, чем на'
 }

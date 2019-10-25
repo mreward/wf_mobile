@@ -105,11 +105,11 @@ const formatRaffleObject = (rafflesList) => {
 const getCurrency = (partnerId) => {
     switch (partnerId) {
         case 1:
-            return 'SOM'
+            return '⊆'
         case 2:
-            return 'KZT'
+            return '₸'
         case 3:
-            return 'RUB'
+            return '₽'
         default:
             return ''
     }

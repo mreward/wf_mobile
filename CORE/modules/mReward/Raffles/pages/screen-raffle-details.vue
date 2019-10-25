@@ -1,9 +1,11 @@
 <template>
     <layout
+        layout="raffle-details"
         :title="$t('m_raffles')"
         page="raffles"
+        :raffleData="raffleData"
     >
-        <div class="raffle">
+        <div class="raffle-content">
             <div class="raffle__title padding-vertical--base">
                 {{ raffleData.name }}
             </div>

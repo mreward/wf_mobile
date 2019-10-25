@@ -11,5 +11,8 @@ module.exports = {
         ru: [
             `${PATH}/locales/en`
         ]
-    }
+    },
+    components: {
+        LayoutRaffleDetails: '_layout_raffle_details',
+    },
 }
