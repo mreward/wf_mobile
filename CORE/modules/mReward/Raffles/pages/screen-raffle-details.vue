@@ -28,7 +28,7 @@
                 {{ $t('m_raffles_residue_from_last_purchase') }}
                 <div class="raffle__text-bold margin-top--xsmall">
                     {{ raffleData.amount - raffleData.dibsForNext }} {{ raffleData.currency }}
-                    <span class="raffle__text-muted margin-right--small-base">
+                    <span class="raffle__text-muted margin-left--small-base">
                         ( 1 {{ $t('m_raffles_dib') }} = {{ raffleData.amount }} {{ raffleData.currency }})
                     </span>
                 </div>
