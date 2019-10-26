@@ -46,8 +46,13 @@
                 ref="pageContent"
                 class="page-content"
                 :class="{ 'is-moor-animation': isMoorFunctionExecute }"
-                :style="`padding-top: ${toolbarHeight}px`"
+                :style="`margin-top: ${toolbarHeight}px`"
             >
+                <div
+                    v-show="scrolledUp"
+                    class="top-blur"
+                    :style="`margin-top: ${topBlurMargin}px`"
+                />
                 <slot />
             </div>
         </div>
@@ -78,7 +83,14 @@
                 dragStart: 0,
                 scrolledUp: false,
                 isMoorFunctionExecute: false,
-                touchEndToolbarHeight: 0
+                touchEndToolbarHeight: 0,
+                lastSettedPosition: 0,
+                pageAdditionalPadding: this.$ons.platform.isIPhoneX() ? 40 : 16
+            }
+        },
+        computed: {
+            topBlurMargin() {
+                return minToolbarHeight - this.toolbarHeight
             }
         },
         mounted() {
@@ -119,7 +131,17 @@
             },
             setPosition (swipeY) {
                 const startTouchToolbarHeight = this.touchEndToolbarHeight || this.initialToolbarHeight
-                this.toolbarHeight = startTouchToolbarHeight - swipeY
+                // TODO убрать если контент страницы помещается и так
+                const contentHeight = this.$refs.pageContent.clientHeight + this.toolbarHeight + this.pageAdditionalPadding
+
+                if (this.lastSettedPosition > swipeY || // change swipe direction from top to bottom
+                    contentHeight > window.innerHeight || // page content > than window height
+                    this.toolbarHeight > minToolbarHeight // no scrolled up page toolbar
+                ) {
+                    console.log(this.$refs.pageContent.clientHeight, this.toolbarHeight)
+                    this.toolbarHeight = startTouchToolbarHeight - swipeY
+                    this.lastSettedPosition = swipeY
+                }
 
                 if (this.toolbarHeight < minToolbarHeight) {
                     this.scrolledUp = true
