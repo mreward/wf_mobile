@@ -13,7 +13,7 @@ export default {
                     return 'poll'
                 }
                 case 'fishka': {
-                    return 'k-symbol'
+                    return 'active'
                 }
                 default:
                     return 'notifications'

@@ -6,7 +6,7 @@
     >
         <div class="card__content">
             <div class="card__image--block">
-                <i class="icon-k-symbol" />
+                <i class="icon-active" />
                 <div class="card__dibs">
                     {{ item.count }}
                 </div>
