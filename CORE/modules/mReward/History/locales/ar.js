@@ -1,5 +1,6 @@
 export default {
     m_history: 'تاريخ الاستحقاق',
+    m_history_accrued_dibs: 'رقائق مستحقة لـ "{generatorName}"',
     m_history_accrued_new_bonuses: 'اتهم المكافآت',
     m_history_debited_onuses: 'اتهم المكافآت',
     m_history_from: 'مع',

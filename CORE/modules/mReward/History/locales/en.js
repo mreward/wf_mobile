@@ -1,5 +1,6 @@
 export default {
     m_history: 'Accrual history',
+    m_history_accrued_dibs: 'Accrued Chips for "{generatorName}"',
     m_history_accrued_new_bonuses: 'Accrued bonuses',
     m_history_debited_onuses: 'Used bonuses',
     m_history_from: 'From Gallery',
