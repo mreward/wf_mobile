@@ -5,5 +5,6 @@ export default {
     m_history_from: 'С',
     m_history_paid_money: 'Оплачено деньгами',
     m_history_sum: 'Сумма',
-    m_history_to: 'По'
+    m_history_to: 'По',
+    m_history_accrued_dibs: 'Начислено фишек для розыгрыша «{generatorName}»'
 }

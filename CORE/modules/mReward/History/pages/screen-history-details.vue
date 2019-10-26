@@ -56,6 +56,18 @@
             <div>{{ history.accruedBonuses }}</div>
         </div>
 
+        <template v-if="history.fishka.length">
+            <div class="history__separator"></div>
+            <div
+                v-for="(item, index) in history.fishka"
+                :key="index"
+                class="history__info-row"
+            >
+                <div>{{ $t('m_history_accrued_dibs', '', { generatorName: item.generator_name }) }}</div>
+                <div>{{ item.count }}</div>
+            </div>
+        </template>
+
         <div class="history__date">
             {{ history.date }}
         </div>
