@@ -130,19 +130,30 @@
                 this.touchEndToolbarHeight = this.toolbarHeight
             },
             setPosition (swipeY) {
-                const startTouchToolbarHeight = this.touchEndToolbarHeight || this.initialToolbarHeight
-                // TODO убрать если контент страницы помещается и так
-                const contentHeight = this.$refs.pageContent.clientHeight + this.toolbarHeight + this.pageAdditionalPadding
+                /**
+                 * return if initial page content height less than window inner height
+                 */
+                const initialContentHeight = this.$refs.pageContent.clientHeight + this.initialToolbarHeight + this.pageAdditionalPadding
+                if (initialContentHeight < window.innerHeight) {
+                    return
+                }
 
+                /**
+                 * page scrolling - changing page-content margin-top
+                 */
+                const startTouchToolbarHeight = this.touchEndToolbarHeight || this.initialToolbarHeight
+                const contentHeight = this.$refs.pageContent.clientHeight + this.toolbarHeight + this.pageAdditionalPadding
                 if (this.lastSettedPosition > swipeY || // change swipe direction from top to bottom
                     contentHeight > window.innerHeight || // page content > than window height
                     this.toolbarHeight > minToolbarHeight // no scrolled up page toolbar
                 ) {
-                    console.log(this.$refs.pageContent.clientHeight, this.toolbarHeight)
                     this.toolbarHeight = startTouchToolbarHeight - swipeY
                     this.lastSettedPosition = swipeY
                 }
 
+                /**
+                 * set toolbar state - scrolledUp
+                 */
                 if (this.toolbarHeight < minToolbarHeight) {
                     this.scrolledUp = true
                 } else {

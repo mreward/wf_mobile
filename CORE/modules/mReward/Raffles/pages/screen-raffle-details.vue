@@ -34,13 +34,13 @@
                 </div>
             </div>
 
-            <div class="raffle__dashed-border raffle__text-normal padding-vertical--base">
+            <div class="raffle__dashed-border raffle__text-normal padding-vertical--base margin-bottom--base">
                 <div v-html="raffleData.description" />
             </div>
 
             <div
                 v-show="dibsView.length"
-                class="padding-vertical--base"
+                class="raffle__list-wrapper padding-bottom--base"
                 @click="showAllDibs = true"
             >
                 {{ $t('m_raffles_my_dibs') }}
@@ -51,6 +51,10 @@
                 >
                     {{ item }}
                 </div>
+                <div
+                    v-show="raffleData.dibs.length > 6 && !showAllDibs"
+                    class="blur-dibs-list"
+                />
             </div>
 
             <div class="raffle__text-muted padding-bottom--base">
