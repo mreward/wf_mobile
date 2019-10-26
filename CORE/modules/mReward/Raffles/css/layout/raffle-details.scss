@@ -32,6 +32,8 @@
     }
 
     .page-content {
+        background: $grey-light-second;
+
         &.is-moor-animation {
             transition: margin-top 0.5s linear;
         }
