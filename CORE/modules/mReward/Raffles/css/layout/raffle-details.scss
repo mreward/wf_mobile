@@ -29,6 +29,21 @@
                 }
             }
         }
+
+        &.muted {
+            .page__background--cover {
+                .toolbar-large {
+                    &__header {
+                        color: $muted !important;
+                        padding-bottom: 16px;
+                    }
+
+                    i {
+                        color: $muted !important;
+                    }
+                }
+            }
+        }
     }
 
     .page-content {

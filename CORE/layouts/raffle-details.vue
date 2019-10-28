@@ -6,7 +6,7 @@
     >
         <div
             class="page__content page__layout"
-            :class="{ 'is-scrolled-up': scrolledUp }"
+            :class="{ 'is-scrolled-up': scrolledUp, 'muted': raffleData.isExpired }"
         >
             <back-button
                 class="back-button"
@@ -32,7 +32,7 @@
                         </div>
                     </div>
                     <div
-                        v-show="!scrolledUp"
+                        v-show="!scrolledUp && !raffleData.isExpired"
                         class="toolbar-large__footer"
                     >
                         {{ $t('m_raffles_for_next_dib') }}

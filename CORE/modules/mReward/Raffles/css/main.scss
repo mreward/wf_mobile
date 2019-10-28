@@ -1,5 +1,25 @@
 @import "layout/raffle-details";
 
+.page__layout {
+    &.muted {
+        .raffle {
+            &__title {
+                color: $muted !important;
+            }
+
+            &__text-primary-bold {
+                color: $muted !important;
+            }
+
+            &__list-wrapper {
+                div {
+                    color: $muted !important;
+                }
+            }
+        }
+    }
+}
+
 .raffle {
     &__title {
         color: $black;

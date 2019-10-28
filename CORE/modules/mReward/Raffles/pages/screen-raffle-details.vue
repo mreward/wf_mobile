@@ -22,7 +22,7 @@
             </div>
 
             <div
-                v-show="raffleData.dibsForNext"
+                v-show="raffleData.dibsForNext && !raffleData.isExpired"
                 class="raffle__dashed-border-top raffle__text-normal padding-vertical--base"
             >
                 {{ $t('m_raffles_residue_from_last_purchase') }}
