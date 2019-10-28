@@ -35,10 +35,11 @@
                         v-show="!scrolledUp && !raffleData.isExpired"
                         class="toolbar-large__footer"
                     >
-                        {{ $t('m_raffles_for_next_dib') }}
+                        {{ $t('m_raffles_for_next_dib_start') }}
                         <span class="text--ellipse">
                             {{ raffleData.dibsForNext }} {{ raffleData.currency }}
                         </span>
+                        {{ $t('m_raffles_for_next_dib_finish') }}
                     </div>
                 </div>
             </div>
