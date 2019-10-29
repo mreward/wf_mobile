@@ -47,12 +47,12 @@
                 ref="pageContent"
                 class="page-content"
                 :class="{ 'is-moor-animation': isMoorFunctionExecute }"
-                :style="`margin-top: ${toolbarHeight}px`"
+                :style="`transform: translate3d(0, ${toolbarHeight}px, 0)`"
             >
                 <div
                     v-show="scrolledUp"
                     class="top-blur"
-                    :style="`margin-top: ${topBlurMargin}px`"
+                    :style="`transform: translate3d(0, ${topBlurMargin}px, 0)`"
                 />
                 <slot />
             </div>
