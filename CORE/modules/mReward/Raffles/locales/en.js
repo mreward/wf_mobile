@@ -1,5 +1,5 @@
 export default {
-    m_raffles: 'Practical jokes',
+    m_raffles: 'Raffles',
     m_raffles_dib: 'chip',
     m_raffles_for_next_dib_finish: 'to get a chip',
     m_raffles_for_next_dib_start: 'Left',

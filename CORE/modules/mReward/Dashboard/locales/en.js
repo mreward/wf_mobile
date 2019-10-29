@@ -6,6 +6,6 @@ export default {
     m_dashboard_hello: 'Hello',
     m_dashboard_latest_charges: 'Recent accruals',
     m_dashboard_no_accrued_bonuses: 'No accrued bonuses yet',
-    m_dashboard_raffles: 'Practical jokes',
+    m_dashboard_raffles: 'Raffles',
     m_dashboard_wallets: 'Wallets'
 }

@@ -198,8 +198,9 @@
 
         .card-container__vertical-wrapper {
             height: 100%;
+            padding-bottom: 16px;
 
-            > div > div + div {
+            > div + div {
                 margin-top: map-get($margins, small-base) !important;
             }
         }
