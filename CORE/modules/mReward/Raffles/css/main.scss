@@ -20,6 +20,10 @@
     }
 }
 
+.raffle-content {
+    word-break: break-all;
+}
+
 .raffle {
     &__title {
         color: $black;
