@@ -50,7 +50,7 @@
         background: $grey-light-second;
 
         &.is-moor-animation {
-            transition: margin-top 0.5s linear;
+            transition: transform 0.5s linear;
         }
 
         .top-blur {
