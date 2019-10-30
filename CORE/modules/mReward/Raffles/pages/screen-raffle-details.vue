@@ -34,8 +34,12 @@
                 </div>
             </div>
 
+            <!-- ref="htmlBlock" needed for handling links -->
             <div class="raffle__dashed-border raffle__text-normal padding-vertical--base margin-bottom--base">
-                <div v-html="raffleData.description" />
+                <div
+                    ref="htmlBlock"
+                    v-html="raffleData.description"
+                />
             </div>
 
             <div

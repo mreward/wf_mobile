@@ -1,6 +1,8 @@
 import _get from 'lodash/get'
+import MixinHandleHtmlLinks from '_mixin_handle_html_links'
 
 export default {
+    mixins: [MixinHandleHtmlLinks],
     data() {
         return {
             showAllDibs: false

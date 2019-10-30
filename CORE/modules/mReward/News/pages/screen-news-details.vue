@@ -7,7 +7,9 @@
             <div class="news__title">
                 {{ news.name }}
             </div>
+            <!-- ref="htmlBlock" needed for handling links -->
             <div
+                ref="htmlBlock"
                 class="news__content"
                 v-html="news.description"
             >
