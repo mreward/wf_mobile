@@ -297,7 +297,8 @@
                 getInfoCard: constants.MrewardCard.Actions.getInfo,
                 getAccounts: constants.MrewardAccount.Actions.getAccounts,
                 saveSelectedAccount: constants.MrewardAccount.Actions.saveSelectedAccount,
-                getSelectedAccount: constants.MrewardAccount.Actions.getSelectedAccount
+                getSelectedAccount: constants.MrewardAccount.Actions.getSelectedAccount,
+                getRaffles: constants.MrewardRaffles.Actions.getRaffles
             }),
             positionLeft() {
                 const {amount} = this.$refs
@@ -332,9 +333,31 @@
                 if (this.open) {
                     this.closeMenu()
                     this.open = false
+
+                    /**
+                     * update bonuses and dibs balances with timeout 10/60 seconds when
+                     * qr-code was closed
+                     * (because push notification comes with delay ~2 minutes)
+                     */
+                    setTimeout(() => {
+                        this.updateBalances()
+                    }, 10 * 1000)
+                    setTimeout(() => {
+                        this.updateBalances()
+                    }, 60 * 1000)
                 } else {
                     this.openMenu()
                     this.open = true
+                }
+            },
+            async updateBalances() {
+                try {
+                    await Promise.all([
+                        this.getAccounts({ networkFirst: true }),
+                        this.getRaffles({ networkFirst: true })
+                    ])
+                } catch (e) {
+                    this.$Alert.Error(e)
                 }
             },
             openMenu () {
