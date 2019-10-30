@@ -32,14 +32,22 @@ const actions = {
         try {
             dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
 
-            const response = await new MrewardAdresses().GetAdressesPoints(payload)
             let currentPosition = {
-                latitude: 0,
-                longitude: 0
+                latitude: 50.4062163,
+                longitude: 30.6244756
             }
             if (Vue.prototype.$ons.isWebView()) {
                 currentPosition = await Geolocation.getCurrentPosition()
             }
+
+            const partnerId = await dispatch(constants.MrewardAdresses.Actions.getPartnerIdByLatLng, currentPosition, { root: true })
+
+            // partnerId
+            const response = await new MrewardAdresses().GetAdressesPoints({
+                ...payload,
+                partnerId
+            })
+
             if (currentPosition.latitude !== 0 && currentPosition.longitude !== 0) {
                 response.items.map((item) => {
                     item.distance = Geolocation.calculetDistance(item, currentPosition)
@@ -61,6 +69,30 @@ const actions = {
                 log: 'STORE: MrewardAdressesd Module - getAdresses'
             }, { root: true })
         }
+    },
+
+    async getPartnerIdByLatLng({ commit, dispatch, rootState }, payload) {
+        try {
+            const googleApiKey = rootState.App.settings.googleApiKey
+            const { data: geoInfo } = await new MrewardAdresses().GetGoogleGeoInfo({
+                ...payload,
+                googleApiKey
+            })
+
+            const countryShortName = geoInfo.results.find((item) => {
+                return item.types[0] === 'street_address'
+            }).address_components.find((item) => {
+                return item.types[0] === 'country'
+            }).short_name
+            debugger
+
+            return getPartnerId(countryShortName)
+        } catch (error) {
+            await dispatch(constants.App.Actions.validateError, {
+                error,
+                log: 'STORE: MrewardAdressesd Module - getAdresses'
+            }, {root: true})
+        }
     }
 }
 
@@ -73,6 +105,19 @@ const getters = {
     },
     totalCount(state) {
         return state.totalCount
+    }
+}
+
+const getPartnerId = (countryShortName) => {
+    switch (countryShortName) {
+        case 'KG':
+            return 1
+        case 'KZ':
+            return 2
+        case 'RU':
+            return 3
+        default:
+            return 1
     }
 }
 

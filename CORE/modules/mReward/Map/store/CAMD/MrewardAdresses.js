@@ -10,7 +10,8 @@ export default {
         }
     },
     Actions: {
-        getAdresses: 'MrewardAdresses/getAdresses'
+        getAdresses: 'MrewardAdresses/getAdresses',
+        getPartnerIdByLatLng: 'MrewardAdresses/getPartnerIdByLatLng'
     },
     Getters: {
         adresses: 'MrewardAdresses/adresses',

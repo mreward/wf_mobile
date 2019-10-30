@@ -135,6 +135,9 @@ export default class ApiClient {
             case this.APIEndPoints.Geo.GetCityById.url: {
                 return `/geo/${json.id}/get-city`
             }
+            case this.APIEndPoints.Adresses.GetAdresses.url: {
+                return `/partner/${json.partnerId}/branches`
+            }
             default: {
                 return apiUrl
             }
