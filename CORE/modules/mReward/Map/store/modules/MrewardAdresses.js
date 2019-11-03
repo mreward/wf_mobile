@@ -13,10 +13,7 @@ const {
 const state = {
     adresses: [],
     totalCount: 0,
-    currentPosition: {
-        latitude: 51.1801,
-        longitude: 71.44598
-    },
+    currentPosition: {},
     partnerId: 1
 }
 const mutations = {
@@ -49,8 +46,10 @@ const actions = {
                     commit(AdressesMutat.CurrentPosition.name, currentPosition)
                 }
 
-                const partnerId = await dispatch(constants.MrewardAdresses.Actions.getPartnerIdByLatLng, state.currentPosition, {root: true})
-                commit(AdressesMutat.PartnerId.name, partnerId)
+                if (Object.keys(state.currentPosition).length > 0) {
+                    const partnerId = await dispatch(constants.MrewardAdresses.Actions.getPartnerIdByLatLng, state.currentPosition, {root: true})
+                    commit(AdressesMutat.PartnerId.name, partnerId)
+                }
             }
 
             // partnerId
