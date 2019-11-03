@@ -7,6 +7,14 @@ export default {
         TotalCount: {
             name: 'TOTALCOUNT',
             nameGlobal: 'MrewardAdresses/TOTALCOUNT'
+        },
+        CurrentPosition: {
+            name: 'CURRENT_POSITION',
+            nameGlobal: 'MrewardAdresses/CURRENT_POSITION'
+        },
+        PartnerId: {
+            name: 'PARTNER_ID',
+            nameGlobal: 'MrewardAdresses/PARTNER_ID'
         }
     },
     Actions: {

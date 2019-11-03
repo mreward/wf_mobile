@@ -119,7 +119,8 @@ export default class ApiClient {
 
     formatGetRequestUrl(apiEndpoint, json) {
         let apiUrl = apiEndpoint.url
-        switch (apiEndpoint.url) {
+        const pureApiEndpointUrl = apiEndpoint.url.replace(/\?page=\d?/ig, '')
+        switch (pureApiEndpointUrl) {
             case this.APIEndPoints.Poll.SetAnswer.url: {
                 return `${apiEndpoint.url}/${json.type}/${json.pollId}/${json.answer}`
             }
@@ -136,6 +137,9 @@ export default class ApiClient {
                 return `/geo/${json.id}/get-city`
             }
             case this.APIEndPoints.Adresses.GetAdresses.url: {
+                if (json.page) {
+                    return `/partner/${json.partnerId}/branches?page=${json.page}`
+                }
                 return `/partner/${json.partnerId}/branches`
             }
             default: {

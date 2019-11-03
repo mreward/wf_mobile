@@ -12,7 +12,12 @@ const {
 
 const state = {
     adresses: [],
-    totalCount: 0
+    totalCount: 0,
+    currentPosition: {
+        latitude: 51.1801,
+        longitude: 71.44598
+    },
+    partnerId: 1
 }
 const mutations = {
     [AdressesMutat.Adresses.name]: (state, data) => {
@@ -24,33 +29,39 @@ const mutations = {
     },
     [AdressesMutat.TotalCount.name]: (state, data) => {
         state.totalCount = data
+    },
+    [AdressesMutat.CurrentPosition.name]: (state, data) => {
+        state.currentPosition = data
+    },
+    [AdressesMutat.PartnerId.name]: (state, data) => {
+        state.partnerId = data
     }
 }
 const actions = {
-    async getAdresses({ commit, dispatch }, payload) {
+    async getAdresses({ commit, dispatch, state }, payload) {
         console.log('STORE: MrewardAdresses Module - getAdresses')
         try {
             dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
 
-            let currentPosition = {
-                latitude: 50.4062163,
-                longitude: 30.6244756
-            }
-            if (Vue.prototype.$ons.isWebView()) {
-                currentPosition = await Geolocation.getCurrentPosition()
-            }
+            if (Object.keys(state.currentPosition).length === 0 || payload.networkFirst) {
+                if (Vue.prototype.$ons.isWebView()) {
+                    const currentPosition = await Geolocation.getCurrentPosition()
+                    commit(AdressesMutat.CurrentPosition.name, currentPosition)
+                }
 
-            const partnerId = await dispatch(constants.MrewardAdresses.Actions.getPartnerIdByLatLng, currentPosition, { root: true })
+                const partnerId = await dispatch(constants.MrewardAdresses.Actions.getPartnerIdByLatLng, state.currentPosition, {root: true})
+                commit(AdressesMutat.PartnerId.name, partnerId)
+            }
 
             // partnerId
             const response = await new MrewardAdresses().GetAdressesPoints({
                 ...payload,
-                partnerId
+                partnerId: state.partnerId
             })
 
-            if (currentPosition.latitude !== 0 && currentPosition.longitude !== 0) {
+            if (state.currentPosition.latitude !== 0 && state.currentPosition.longitude !== 0) {
                 response.items.map((item) => {
-                    item.distance = Geolocation.calculetDistance(item, currentPosition)
+                    item.distance = Geolocation.calculetDistance(item, state.currentPosition)
                     return item
                 })
             }
@@ -79,19 +90,27 @@ const actions = {
                 googleApiKey
             })
 
+            if (geoInfo.returnDefault) {
+                return getPartnerId()
+            }
+
+            /**
+             * get count short name from google maps api response
+             */
             const countryShortName = geoInfo.results.find((item) => {
-                return item.types[0] === 'street_address'
+                return item.types.find((item) => {
+                    return item === 'country'
+                })
             }).address_components.find((item) => {
-                return item.types[0] === 'country'
+                return item.types.find((item) => {
+                    return item === 'country'
+                })
             }).short_name
-            debugger
 
             return getPartnerId(countryShortName)
         } catch (error) {
-            await dispatch(constants.App.Actions.validateError, {
-                error,
-                log: 'STORE: MrewardAdressesd Module - getAdresses'
-            }, {root: true})
+            console.error('STORE: MrewardAdressesd Module - getAdresses', error)
+            return getPartnerId()
         }
     }
 }
@@ -108,7 +127,7 @@ const getters = {
     }
 }
 
-const getPartnerId = (countryShortName) => {
+const getPartnerId = (countryShortName = 'default') => {
     switch (countryShortName) {
         case 'KG':
             return 1

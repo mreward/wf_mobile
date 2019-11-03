@@ -22,7 +22,11 @@ export default class MrewardAdresses extends ApiClient {
         try {
             return await Axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${json.latitude},${json.longitude}&key=${json.googleApiKey}`)
         } catch (error) {
-            return error
+            return {
+                data: {
+                    returnDefault: true
+                }
+            }
         }
     }
 }
