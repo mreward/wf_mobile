@@ -12,7 +12,9 @@ const {
 
 const state = {
     adresses: [],
-    totalCount: 0
+    totalCount: 0,
+    currentPosition: {},
+    partnerId: 1
 }
 const mutations = {
     [AdressesMutat.Adresses.name]: (state, data) => {
@@ -24,25 +26,41 @@ const mutations = {
     },
     [AdressesMutat.TotalCount.name]: (state, data) => {
         state.totalCount = data
+    },
+    [AdressesMutat.CurrentPosition.name]: (state, data) => {
+        state.currentPosition = data
+    },
+    [AdressesMutat.PartnerId.name]: (state, data) => {
+        state.partnerId = data
     }
 }
 const actions = {
-    async getAdresses({ commit, dispatch }, payload) {
+    async getAdresses({ commit, dispatch, state }, payload) {
         console.log('STORE: MrewardAdresses Module - getAdresses')
         try {
             dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
 
-            const response = await new MrewardAdresses().GetAdressesPoints(payload)
-            let currentPosition = {
-                latitude: 0,
-                longitude: 0
+            if (Object.keys(state.currentPosition).length === 0 || payload.networkFirst) {
+                if (Vue.prototype.$ons.isWebView()) {
+                    const currentPosition = await Geolocation.getCurrentPosition()
+                    commit(AdressesMutat.CurrentPosition.name, currentPosition)
+                }
+
+                if (Object.keys(state.currentPosition).length > 0) {
+                    const partnerId = await dispatch(constants.MrewardAdresses.Actions.getPartnerIdByLatLng, state.currentPosition, {root: true})
+                    commit(AdressesMutat.PartnerId.name, partnerId)
+                }
             }
-            if (Vue.prototype.$ons.isWebView()) {
-                currentPosition = await Geolocation.getCurrentPosition()
-            }
-            if (currentPosition.latitude !== 0 && currentPosition.longitude !== 0) {
+
+            // partnerId
+            const response = await new MrewardAdresses().GetAdressesPoints({
+                ...payload,
+                partnerId: state.partnerId
+            })
+
+            if (state.currentPosition.latitude !== 0 && state.currentPosition.longitude !== 0) {
                 response.items.map((item) => {
-                    item.distance = Geolocation.calculetDistance(item, currentPosition)
+                    item.distance = Geolocation.calculetDistance(item, state.currentPosition)
                     return item
                 })
             }
@@ -61,6 +79,38 @@ const actions = {
                 log: 'STORE: MrewardAdressesd Module - getAdresses'
             }, { root: true })
         }
+    },
+
+    async getPartnerIdByLatLng({ commit, dispatch, rootState }, payload) {
+        try {
+            const googleApiKey = rootState.App.settings.googleApiKey
+            const { data: geoInfo } = await new MrewardAdresses().GetGoogleGeoInfo({
+                ...payload,
+                googleApiKey
+            })
+
+            if (geoInfo.returnDefault) {
+                return getPartnerId()
+            }
+
+            /**
+             * get count short name from google maps api response
+             */
+            const countryShortName = geoInfo.results.find((item) => {
+                return item.types.find((item) => {
+                    return item === 'country'
+                })
+            }).address_components.find((item) => {
+                return item.types.find((item) => {
+                    return item === 'country'
+                })
+            }).short_name
+
+            return getPartnerId(countryShortName)
+        } catch (error) {
+            console.error('STORE: MrewardAdressesd Module - getAdresses', error)
+            return getPartnerId()
+        }
     }
 }
 
@@ -73,6 +123,19 @@ const getters = {
     },
     totalCount(state) {
         return state.totalCount
+    }
+}
+
+const getPartnerId = (countryShortName = 'default') => {
+    switch (countryShortName) {
+        case 'KG':
+            return 1
+        case 'KZ':
+            return 2
+        case 'RU':
+            return 3
+        default:
+            return 1
     }
 }
 

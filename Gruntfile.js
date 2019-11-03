@@ -103,7 +103,7 @@ module.exports = function (grunt) {
 
                     'cordovacli:compile_release_android',
                     'copy:android_release',
-                    'hockeyapp:android'
+                    //'hockeyapp:android'
                 ]
 
                 const wallet = require('./wallets.config.js').wallet

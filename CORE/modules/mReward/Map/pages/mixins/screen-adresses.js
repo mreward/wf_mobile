@@ -77,7 +77,7 @@ export default {
     async created() {
         try {
             this.isLoading = true
-            await this.getAdresses()
+            await this.getAdresses({networkFirst: true})
         } catch (e) {
             this.$Alert.Error(e)
         } finally {
