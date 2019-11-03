@@ -1,5 +1,6 @@
 export default {
     m_history: 'чегерүү тарыхы',
+    m_history_accrued_dibs: '"{GeneratorName}" үчүн чегерилген Chips',
     m_history_accrued_new_bonuses: 'Бонустар кошуп эсептелди',
     m_history_debited_onuses: 'Бонустар алынып салынды',
     m_history_from: 'С',

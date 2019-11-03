@@ -1,20 +1,23 @@
 <template>
-    <pull-to
-        :top-load-method="updateAction"
-        :top-config="hookToConfig"
-    >
+    <div>
+        <v-ons-pull-hook
+            :action="updateAction"
+            @changestate="state = $event.state"
+            class="pull-hook--wrapper"
+        >
+            <span v-show="state === 'initial'"> {{$t(pullText)}} </span>
+            <span v-show="state === 'preaction'"> {{$t(triggerText)}} </span>
+            <span v-show="state === 'action'"> {{$t(loadingText)}} </span>
+        </v-ons-pull-hook>
+
         <slot></slot>
-    </pull-to>
+    </div>
 </template>
 
 <script>
-    import PullTo from 'vue-pull-to'
 
     export default {
         name: 'pull-to-wrapper',
-        components: {
-            PullTo
-        },
         props: {
             updateAction: {
                 type: Function,
@@ -31,25 +34,11 @@
             loadingText: {
                 type: String,
                 default: 'm_helpers_pull_to_loading'
-            },
-            doneText: {
-                type: String,
-                default: ''
-            },
-            loadedStayTime: {
-                type: Number,
-                default: 0
             }
         },
-        data() {
+        data () {
             return {
-                hookToConfig: {
-                    pullText: this.$t(this.pullText),
-                    triggerText: this.$t(this.triggerText),
-                    loadingText: this.$t(this.loadingText),
-                    doneText: this.doneText,
-                    loadedStayTime: this.loadedStayTime
-                }
+                state: 'initial'
             }
         }
     }

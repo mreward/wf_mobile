@@ -6,5 +6,6 @@ export default {
     m_dashboard_hello: 'Добры дзень',
     m_dashboard_latest_charges: 'Апошнія абвінавачванні',
     m_dashboard_no_accrued_bonuses: 'Пакуль яшчэ няма налічаных бонусаў',
+    m_dashboard_raffles: 'Практычныя жарты',
     m_dashboard_wallets: 'Кашалькі'
 }

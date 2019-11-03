@@ -3,12 +3,12 @@
         <title-row
             :action="history.length ? $t('m_dashboard_all') : ''"
             :title="$t('m_dashboard_latest_charges')"
-            class="margin-top--base"
+            class="margin-top--base padding-horizontal--base"
             @click="$bus.$emit('goToPage', { page: 'history' })"
         />
 
         <div
-            class="card card--default"
+            class="card card--default card--default-restrict"
             v-if="history.length && !loading"
         >
             <v-ons-list class="list--vertical list--indentation is-non-underline">

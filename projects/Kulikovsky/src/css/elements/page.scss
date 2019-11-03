@@ -33,7 +33,7 @@ ons-tabbar {
     }
 
     .page__content {
-        padding-top: map_get($paddings, base) !important;
+        padding: 0 0 16px 0 !important;
     }
 
     .toolbar-upper {

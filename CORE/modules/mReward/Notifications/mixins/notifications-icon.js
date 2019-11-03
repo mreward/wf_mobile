@@ -12,6 +12,9 @@ export default {
                 case 'nps': {
                     return 'poll'
                 }
+                case 'fishka': {
+                    return 'active'
+                }
                 default:
                     return 'notifications'
             }

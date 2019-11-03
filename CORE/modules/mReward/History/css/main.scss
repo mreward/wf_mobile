@@ -71,7 +71,7 @@
     }
 
     &__date {
-        margin-top: 35px;
+        margin-top: 16px;
         font-size: 12px;
         line-height: 16px;
         color: $grey-dark;
@@ -92,6 +92,7 @@
         + * {
             height: calc(100% - 70px);
             margin-top: 70px;
+            padding-bottom: 16px;
             overflow: scroll;
         }
     }

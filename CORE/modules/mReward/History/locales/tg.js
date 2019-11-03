@@ -1,5 +1,6 @@
 export default {
     m_history: 'Таърихи аккредитатсия',
+    m_history_accrued_dibs: 'Чипҳои аккредитатсияшуда барои "{generatorName}"',
     m_history_accrued_new_bonuses: 'Бонусҳо ситонида мешаванд',
     m_history_debited_onuses: 'Бонусҳо ситонида мешаванд',
     m_history_from: 'БО',

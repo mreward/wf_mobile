@@ -1,11 +1,5 @@
-.vue-pull-to-wrapper > .action-block > .default-text {
-    color: $primary;
-    font-weight: $bold;
-    font-size: rem(13);
-    font-family: "SF UI Text", sans-serif !important;
-    letter-spacing: rem(-0.21);
-}
+@import "components/pull-to-wrapper";
 
-.vue-pull-to-wrapper > .scroll-container {
-    padding-bottom: 16px !important;
+::-webkit-scrollbar {
+    display: none;
 }

@@ -79,7 +79,12 @@
     }
 
     &--default {
-        @extend .margin-horizontal--none;
+        margin: 0;
+
+        &.card--default-restrict {
+            width: calc(100% - 32px);
+            margin-left: map_get($margins, base);
+        }
     }
 
     &--header {
@@ -113,7 +118,6 @@
             height: vw(232);
             padding-bottom: map_get($paddings, base);
             width: 100vw;
-            margin-left: -16px;
             scroll-snap-type: x mandatory;
             white-space: nowrap;
             overflow-x: scroll;
@@ -159,6 +163,136 @@
 
             &::-webkit-scrollbar {
                 display: none;
+            }
+        }
+    }
+
+    &--raffles {
+        overflow: visible;
+
+        .card-container__horizontal-wrapper {
+            @extend .padding-horizontal--base;
+
+            width: 100vw;
+            height: 98px;
+            padding-bottom: map_get($paddings, base);
+            scroll-snap-type: x mandatory;
+            overflow-x: scroll;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            white-space: nowrap;
+            scroll-padding: 1rem;
+            overscroll-behavior: contain;
+
+            > * {
+                scroll-snap-align: start;
+                display: inline-block;
+                width: 100%;
+                height: 100%;
+            }
+
+            > div + div {
+                margin-left: map-get($margins, small-base) !important;
+            }
+        }
+
+        .card-container__vertical-wrapper {
+            height: 100%;
+            padding-bottom: 16px;
+
+            > div + div {
+                margin-top: map-get($margins, small-base) !important;
+            }
+        }
+
+        .card--horizontal {
+            @extend .margin-bottom--none;
+
+            height: 82px;
+            overflow: hidden;
+            background-color: $white;
+            border-radius: $border-radius;
+            box-shadow: 0 8px 15px 0 rgba(39, 45, 45, 0.06);
+
+            &.muted {
+                i {
+                    color: $muted !important;
+                }
+
+                .card__text--block {
+                    color: $muted !important;
+                }
+
+                .card__subtext {
+                    color: $muted !important;
+                }
+
+                .card__dibs {
+                    color: $muted !important;
+                }
+            }
+
+            .card__content {
+                display: flex;
+                width: 100%;
+                height: 100%;
+
+                .card__image--block {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    width: 88px;
+                    min-width: 88px;
+                    padding: 15px 14px 15px 16px;
+
+                    i {
+                        color: $primary;
+                        font-size: rem(24);
+                    }
+
+                    .card__dibs {
+                        color: $black;
+                        font-size: rem(24);
+                        line-height: 26px;
+                        letter-spacing: -1px;
+                        text-align: center;
+                    }
+                }
+
+                .card__text--block {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    width: calc(100% - 16px);
+                    padding: 11px 16px 11px 0;
+                    color: $black;
+
+                    .card__title {
+                        display: -webkit-box;
+                        margin: 0;
+                        overflow: hidden;
+                        font-weight: $bold;
+                        font-size: rem(15);
+                        line-height: rem(20);
+                        letter-spacing: rem(-0.24);
+                        white-space: normal;
+                        text-overflow: ellipsis;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+                        word-break: break-word;
+                    }
+
+                    .card__subtext {
+                        margin-top: 4px;
+                        color: $grey-dark;
+                        font-weight: normal;
+                        font-size: rem(12);
+                        line-height: rem(16);
+                        letter-spacing: normal;
+                        text-transform: capitalize;
+                    }
+                }
             }
         }
     }

@@ -120,7 +120,7 @@ const Environment = {
 
 module.exports = defaultsDeep({
     name: 'Kulikovsky', // required
-    application: Environment.PROD,
+    application: Environment.UAT,
     notesHockeyapp: buildNotesHockeyapp(CHANGELOG)
 }, configDefault.app_config)
 

@@ -19,6 +19,7 @@ module.exports = {
             Helpers: true,
             Notifications: true,
             Contacts: true,
+            Raffles: true
         },
         Dashboard: {
             Base: true

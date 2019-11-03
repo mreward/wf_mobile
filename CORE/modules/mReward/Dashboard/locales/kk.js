@@ -6,5 +6,6 @@ export default {
     m_dashboard_hello: 'Сәлеметсіз бе',
     m_dashboard_latest_charges: 'Соңғы үстелген бонустар',
     m_dashboard_no_accrued_bonuses: 'Әзірше үстелген бонустар жоқ',
+    m_dashboard_raffles: 'Практикалық әзілдер',
     m_dashboard_wallets: 'Әмияндар'
 }

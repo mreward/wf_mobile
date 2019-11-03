@@ -15,7 +15,9 @@
             </div>
             <div class="promotions__separator">
             </div>
+            <!-- ref="htmlBlock" needed for handling links -->
             <div
+                ref="htmlBlock"
                 class="promotions__content"
                 v-html="promotions.item.content"
             >

@@ -1,8 +1,8 @@
 import constants from '_vuex_constants'
 import MrewardPromotions from '../../libs/MrewardPromotions'
-import moment from 'moment'
 import validatePagination from '_CORE/modules/mReward/libs/ValidatePagination'
 import sortByColumns from '_CORE/modules/mReward/libs/sortByColumns'
+import formatDatePeriod from '_CORE/modules/mReward/libs/formatDatePeriod'
 
 const {
     MrewardPromotions: {
@@ -54,21 +54,6 @@ const actions = {
     }
 }
 
-const formatPromotionPeriod = (dateFrom, dateTo) => {
-    const fromMonth = moment(dateFrom, 'YYYY-MM-DD').month()
-    const toMonth = moment(dateTo, 'YYYY-MM-DD').month()
-    const from = moment(dateFrom, 'YYYY-MM-DD')
-    const to = moment(dateTo, 'YYYY-MM-DD')
-
-    if (dateFrom === dateTo) {
-        return from.format('DD MMMM')
-    }
-    if (fromMonth === toMonth) {
-        return `${from.format('DD')} - ${to.format('DD MMMM')}`
-    }
-    return `${from.format('DD MMM')} - ${to.format('DD MMM')}`
-}
-
 const getters = {
     partnerPromotionsSortedByColumns(state) {
         const sortedPartnerPromotions = sortByColumns(state.partnerPromotions)
@@ -77,7 +62,7 @@ const getters = {
             return {
                 img: item.img_path,
                 title: item.title,
-                data: formatPromotionPeriod(item.act_from, item.act_to),
+                data: formatDatePeriod(item.act_from, item.act_to),
                 item
             }
         })
@@ -88,7 +73,7 @@ const getters = {
             return {
                 img: item.img_path,
                 title: item.title,
-                data: formatPromotionPeriod(item.act_from, item.act_to),
+                data: formatDatePeriod(item.act_from, item.act_to),
                 item
             }
         })

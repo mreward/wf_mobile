@@ -11,6 +11,7 @@
         <pull-to-wrapper
             :update-action="updateDashboardContent"
         >
+            <dashboard-raffles />
             <dashboard-action />
             <dashboard-history />
         </pull-to-wrapper>
@@ -24,6 +25,7 @@
     import { mapActions } from 'vuex'
     import DashboardAction from '_dashboard_action'
     import DashboardHistory from '_dashboard_history'
+    import DashboardRaffles from '_dashboard_raffles'
     import StatusPopover from '_status_popover'
     import MixinPushNotificationHandler from '_mixin_push_notification_handler_extend'
     import PullToWrapper from '_pull_to_wrapper'
@@ -34,6 +36,7 @@
             PullToWrapper,
             DashboardHistory,
             DashboardAction,
+            DashboardRaffles,
             StatusPopover
         },
         mixins: [
@@ -43,14 +46,16 @@
             ...mapActions({
                 getHistory: constants.MrewardHistory.Actions.getHistory,
                 getAccounts: constants.MrewardAccount.Actions.getAccounts,
-                getPromotions: constants.MrewardPromotions.Actions.getPromotions
+                getPromotions: constants.MrewardPromotions.Actions.getPromotions,
+                getRaffles: constants.MrewardRaffles.Actions.getRaffles
             }),
             async updateDashboardContent(loaded) {
                 try {
                     await Promise.all([
                         this.getPromotions({ networkFirst: true }),
                         this.getHistory({ networkFirst: true }),
-                        this.getAccounts({ networkFirst: true })
+                        this.getAccounts({ networkFirst: true }),
+                        this.getRaffles({ networkFirst: true })
                     ])
                 } catch (e) {
                     this.$Alert.Error(e)

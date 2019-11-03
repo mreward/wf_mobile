@@ -8,7 +8,7 @@ import _cloneDeep from 'lodash/cloneDeep'
  * 4        7
  * @param list
  */
-export default function sortByColumns (list) {
+export default (list) => {
     const listCopy = _cloneDeep(list)
     const halfLength = Math.ceil(listCopy.length / 2) - 1
 

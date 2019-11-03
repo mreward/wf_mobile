@@ -1,5 +1,6 @@
 export default {
     m_history: 'Histoire de régularisation',
+    m_history_accrued_dibs: 'Jetons accumulés pour "{generatorName}"',
     m_history_accrued_new_bonuses: 'Bonus facturés',
     m_history_debited_onuses: 'Bonus facturés',
     m_history_from: 'AVEC',

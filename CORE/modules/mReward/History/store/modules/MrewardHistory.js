@@ -13,7 +13,8 @@ const formatHistoryList = (list) => {
             sumMoney: '', // paid by money
             debitedBonuses: '', // paid by bonuses
             accruedBonuses: '', // accrued new bonuses
-            products: []
+            products: [],
+            fishka: purchase.fishka || []
         }
         purchase.transactions.forEach((transaction, index) => {
             const {

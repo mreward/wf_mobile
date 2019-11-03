@@ -6,6 +6,7 @@ import constants from '_vuex_constants'
 const ScreenNewsDetails = () => import('_screen_news_details')
 const ScreenPromotionsDetails = () => import('_screen_promotions_details')
 const ScreenPollDetails = () => import('_screen_poll_details')
+const ScreenRaffleDetails = () => import('_screen_raffle_details')
 import toNumber from '_CORE/utils/toNumber'
 
 export default {
@@ -39,7 +40,8 @@ export default {
         ...mapGetters({
             partnerPromotions: constants.MrewardPromotions.Getters.partnerPromotions,
             partnerNews: constants.MrewardNews.Getters.partnerNews,
-            polls: constants.MrewardPoll.Getters.polls
+            polls: constants.MrewardPoll.Getters.polls,
+            allRaffles: constants.MrewardRaffles.Getters.allRaffles
         })
     },
     methods: {
@@ -49,7 +51,8 @@ export default {
             getNews: constants.MrewardNews.Actions.getNews,
             getPromotions: constants.MrewardPromotions.Actions.getPromotions,
             pushPage: constants.App.Actions.pushPage,
-            getAccounts: constants.MrewardAccount.Actions.getAccounts
+            getAccounts: constants.MrewardAccount.Actions.getAccounts,
+            getRaffles: constants.MrewardRaffles.Actions.getRaffles
         }),
         async filterPushNotification(push) {
             this.PushNotification(push)
@@ -74,6 +77,11 @@ export default {
                 }
                 case 'offer': {
                     await this.getPromotions({ networkFirst: true })
+                    this.isLoaded = true
+                    break
+                }
+                case 'fishka': {
+                    await this.getRaffles({ networkFirst: true })
                     this.isLoaded = true
                     break
                 }
@@ -158,6 +166,20 @@ export default {
                                         default: () => {
                                             return promotion[0]
                                         }
+                                    }
+                                }
+                            })
+                        }
+                        break
+                    }
+                    case 'fishka': {
+                        const raffle = this.allRaffles.filter(item => toNumber(data.id) === item.generatorId)
+                        if (raffle.length) {
+                            this.pushPage({
+                                extends: ScreenRaffleDetails,
+                                data: () => {
+                                    return {
+                                        raffleData: raffle[0]
                                     }
                                 }
                             })

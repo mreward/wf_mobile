@@ -1,5 +1,6 @@
 export default {
     m_history: 'Історія нарахування',
+    m_history_accrued_dibs: 'Нараховані фішки для "{generatorName}"',
     m_history_accrued_new_bonuses: 'Нараховано бонусів',
     m_history_debited_onuses: 'Списано бонусів',
     m_history_from: 'З',

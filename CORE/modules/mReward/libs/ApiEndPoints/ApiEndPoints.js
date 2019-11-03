@@ -169,5 +169,13 @@ export default {
             apiVersion: 'v2',
             apiTag: '/client'
         }
+    },
+    Raffles: {
+        GetRaffles: {
+            url: '/dibs/dibs',
+            method: 'GET',
+            apiVersion: 'v2',
+            apiTag: '/client'
+        }
     }
 }
