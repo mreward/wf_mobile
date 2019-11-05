@@ -6,8 +6,7 @@ import {DbObject} from '_CORE/store/db-objects'
 const formatBalance = (balance) => {
     const arrBalance = balance.replace('.', ',').split(',')
     return {
-        amount: arrBalance[0],
-        hundredths: `.${arrBalance[1] || '00'}`
+        amount: arrBalance[0]
     }
 }
 const removeBon = (accounts) => {

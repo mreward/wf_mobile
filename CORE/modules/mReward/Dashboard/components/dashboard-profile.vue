@@ -34,7 +34,6 @@
                             :amount="currentBalance.amount"
                             :mask="maskAmount"
                         />
-                        <span class="amount--hundredths">{{ currentBalance.hundredths }}</span>
 
                         <v-dialog
                             v-model="dialog"
@@ -84,7 +83,6 @@
                                             <v-list-item-title>
                                                 <div class="amount-item-balance">
                                                     <span>{{ item.amount }}</span>
-                                                    <span class="hundredths">{{ item.hundredths }}</span>
                                                 </div>
                                             </v-list-item-title>
                                         </v-list-item-content>
@@ -179,7 +177,6 @@
                 startHeight: 112,
                 currentBalance: {
                     amount: '0',
-                    hundredths: '.00',
                     currency: ''
                 },
                 dialog: false
@@ -430,7 +427,7 @@
         display: flex;
         align-items: baseline;
     }
-    .amount--hundredths, .amount--currency{
+    .amount--currency{
         color: #fff;
         font-weight: 600;
         font-size: 15px;
@@ -492,12 +489,6 @@
         color: #000000;
         display: flex;
         align-items: baseline;
-        .hundredths {
-            font-size: 15px;
-            font-weight: 600;
-            letter-spacing: -0.24px;
-            line-height: 17px;
-        }
     }
     .dialog-header {
         display: flex;

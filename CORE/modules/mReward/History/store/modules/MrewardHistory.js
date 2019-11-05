@@ -35,19 +35,19 @@ const formatHistoryList = (list) => {
             }
 
             if (type === 1) {
-                formatData.sumMoney = sumMoney.toFixed(2)
-                formatData.accruedBonuses = bonus.toFixed(2)
+                formatData.sumMoney = sumMoney.toFixed(0)
+                formatData.accruedBonuses = bonus.toFixed(0)
 
                 if (!formatData.products.length) {
                     formatData.products = products.map(formatProducts)
                 }
 
                 if (!formatData.sumTotal) {
-                    formatData.sumTotal = sumMoney.toFixed(2)
+                    formatData.sumTotal = sumMoney.toFixed(0)
                 }
             } else if (type === 2) {
-                formatData.sumTotal = sumMoney.toFixed(2)
-                formatData.debitedBonuses = bonus.toFixed(2)
+                formatData.sumTotal = sumMoney.toFixed(0)
+                formatData.debitedBonuses = bonus.toFixed(0)
 
                 formatData.products = products.map(formatProducts)
             }
@@ -67,8 +67,8 @@ const formatProducts = (product) => {
     return {
         amount,
         name,
-        price: price.toFixed(2),
-        sum: sum.toFixed(2)
+        price: price.toFixed(0),
+        sum: sum.toFixed(0)
     }
 }
 
