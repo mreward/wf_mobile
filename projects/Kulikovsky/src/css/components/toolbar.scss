@@ -139,16 +139,19 @@
 
             @extend .margin-horizontal--auto;
 
-            @include size(vw(171), vw(171));
+            width: vw(171) !important;
+            height: vw(171) !important;
 
             img {
                 @extend .margin-horizontal--auto;
 
-                @include size(vw(128), vw(128));
+                width: vw(128) !important;
+                height: vw(128) !important;
             }
 
             canvas {
-                @include size(vw(128), vw(128));
+                width: vw(128) !important;
+                height: vw(128) !important;
             }
         }
     }
