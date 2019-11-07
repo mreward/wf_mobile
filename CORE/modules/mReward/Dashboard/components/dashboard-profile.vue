@@ -116,8 +116,8 @@
                     <qr-code
                         ref="qrBlock"
                         class="qr-block"
-                        :text="cardNumber || ''"
-                        error-level="H"
+                        :value="cardNumber || ''"
+                        level="H"
                         :size="200"
                     />
                 </div>
@@ -154,7 +154,7 @@
     import Amount from '_CORE/components/common/amount.vue'
     import { mapGetters, mapActions } from 'vuex'
     import { maskAmount } from '_masks'
-    import VueQRCodeComponent from 'vue-qrcode-component'
+    import QrcodeVue from 'qrcode.vue'
     import { TimelineLite, TweenLite, Power4 } from 'gsap'
     import NotificationsToolbarIcon from '_notifications_toolbar_icon'
     import constants from '_vuex_constants'
@@ -167,7 +167,7 @@
         name: 'dashboard-profile',
         components: {
             Amount,
-            'qr-code': VueQRCodeComponent,
+            'qr-code': QrcodeVue,
             NotificationsToolbarIcon
         },
         data () {
