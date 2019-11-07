@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div v-show="dashboardRaffles.length">
         <title-row
-            class="padding-horizontal--base padding-top--base"
+            class="padding-horizontal--base"
             :action="dashboardRaffles.length > 1 ? $t('m_dashboard_all') : ''"
             :title="$t('m_dashboard_raffles')"
             @click="goToAllRafflesPage"
