@@ -15,6 +15,6 @@ export default {
                 event.preventDefault()
                 this.openProtocol(target.href)
             }
-        },
+        }
     }
 }

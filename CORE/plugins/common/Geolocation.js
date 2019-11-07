@@ -14,10 +14,7 @@ export default {
                 }
             }
             if (window.plugin && plugin.google.maps) {
-                const latLng = await plugin.google.maps.LocationService.getMyLocation()
-
-                console.log(latLng)
-                debugger
+                const { latLng } = await plugin.google.maps.LocationService.getMyLocation()
 
                 const currentPosition = {
                     latitude: latLng.lat,

@@ -145,7 +145,10 @@ export default {
         async callbackMapReady(map) {
             this.mapObject = map
 
-            const { latitude, longitude } = await this.getMyLocation()
+            const { latitude, longitude } = await this.getMyLocation() || {
+                latitude: 42.882004, // TODO move to config app settings - defaultGeolocation
+                longitude: 74.582748
+            }
             this.mapObject.goTo({ latitude, longitude })
             this.mapObject.setZoom(12)
             this.mapLoaded = true

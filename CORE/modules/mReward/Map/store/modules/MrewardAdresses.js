@@ -1,8 +1,8 @@
 import constants from '_vuex_constants'
 import MrewardAdresses from '../../libs/MrewardAdresses'
 import validatePagination from '../../../libs/ValidatePagination'
-import Vue from 'vue'
 import Geolocation from '_CORE/plugins/common/Geolocation'
+import Vue from 'vue'
 
 const {
     MrewardAdresses: {
@@ -42,8 +42,12 @@ const actions = {
 
             if (Object.keys(state.currentPosition).length === 0 || payload.networkFirst) {
                 if (Vue.prototype.$ons.isWebView()) {
-                    const currentPosition = await Geolocation.getCurrentPosition()
-                    commit(AdressesMutat.CurrentPosition.name, currentPosition)
+                    try {
+                        const currentPosition = await Geolocation.getCurrentPosition()
+                        commit(AdressesMutat.CurrentPosition.name, currentPosition)
+                    } catch (error) {
+                        Vue.prototype.$Alert.Error(error)
+                    }
                 }
 
                 if (Object.keys(state.currentPosition).length > 0) {
