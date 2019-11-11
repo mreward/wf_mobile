@@ -48,7 +48,7 @@ const PROD = {
     termsUrl: 'https://kulikov.com/license.pdf', // required
     nameApp: 'Куликовский', // required
     bundleID: 'pro.mwallet.kulikovsky', // required
-    version: '1.0.4', // required
+    version: '1.0.5', // required
     options: {
         modules: {
             mReward: {
