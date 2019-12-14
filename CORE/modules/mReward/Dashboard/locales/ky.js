@@ -1,5 +1,5 @@
 export default {
-    m_dashboard_actions: 'Stocks',
+    m_dashboard_actions: 'Promotions',
     m_dashboard_all: 'Баары',
     m_dashboard_all_actions: 'Актуалдуу акция жок',
     m_dashboard_dresent_qr_code_the_employee: 'Бонустук баллдарды кошуп жсептөө же алып салуу үчүн кассадагы дүкөндүн кызматкерине  QR кодду көргөзгүлө.',
