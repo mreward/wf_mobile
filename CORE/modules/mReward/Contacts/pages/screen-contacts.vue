@@ -112,6 +112,43 @@
                     </v-btn>
                 </div>
             </div>
+            <div class="contacts-title">
+                {{ $t('m_contacts_russia') }}
+            </div>
+            <div
+                class="contacts-info"
+                @click="openProtocol(contacts.country_3.phone, 'tel')"
+            >
+                <div class="contacts-info-sub">
+                    <span class="contacts-subtitle">{{ $t('m_contacts_phone') }}</span>
+                    <div>
+                        <span class="contacts-lined-info">{{ contacts.country_3.phone }}</span>
+                        <span class="contacts-work-ours"> {{ $t('m_contacts_work_hours') }}</span>
+                    </div>
+                </div>
+                <div class="contacts-icon">
+                    <v-btn
+                        fab
+                    >
+                        <i class="icon-phone" />
+                    </v-btn>
+                </div>
+            </div>
+            <div
+                class="contacts-info"
+                @click="openMessenger('instagram', contacts.country_3.instagram )"
+            >
+                <div class="contacts-info-sub padding-bottom">
+                    <span class="contacts-subtitle">{{ $t('m_contacts_instagram') }}</span>
+                    <span class="contacts-lined-info contacts-link">@{{ contacts.country_3.instagram }}</span>
+                </div>
+                <div class="contacts-icon">
+                    <img
+                        :src="imgInstagram"
+                        alt=""
+                    >
+                </div>
+            </div>
         </div>
         <div class="contacts-bottom">
             <div class="list list--card">

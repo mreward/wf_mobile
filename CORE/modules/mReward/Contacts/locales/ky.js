@@ -5,6 +5,7 @@ export default {
     m_contacts_kurguzstan: 'Кыргызстан',
     m_contacts_online_chat: 'Онлайн чат',
     m_contacts_phone: 'Phone',
+    m_contacts_russia: 'Россия',
     m_contacts_site: 'сайт',
     m_contacts_telegram: 'телеграмма',
     m_contacts_whatsapp: 'Whatsapp',
