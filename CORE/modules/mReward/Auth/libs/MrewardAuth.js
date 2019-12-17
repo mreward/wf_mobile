@@ -90,7 +90,7 @@ export default class MrewardAuth extends ApiClient {
         }
         let endodedData = ''
         _forIn(model, (value, key) => {
-            if (value) {
+            if (value || value === 0) {
                 endodedData += `${key}=${value}&`
             }
         })
