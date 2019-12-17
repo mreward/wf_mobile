@@ -73,6 +73,10 @@ const PROD = {
             phone: '+7 727 364 77 77',
             instagram: 'kulikov_kz'
         },
+        country_3: {
+            phone: '+7 383 202 10 29',
+            instagram: 'kulikov_novosibirsk'
+        },
         telegram: 'Kulikovskiybot',
         whatsapp: '+996 550 909 209',
         onlinechat: 'https://kulikovskiy.bitrix24.ru/online/contactcentr',
