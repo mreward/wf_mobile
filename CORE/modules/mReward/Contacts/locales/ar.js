@@ -9,5 +9,6 @@ export default {
     m_contacts_site: 'موقع الكتروني',
     m_contacts_telegram: 'برقية',
     m_contacts_whatsapp: 'ال WhatsApp',
-    m_contacts_work_hours: '(من الاثنين إلى الأحد من التاسعة صباحًا حتى السادسة مساءً)'
+    m_contacts_work_hours: '(من الاثنين إلى الأحد من التاسعة صباحًا حتى السادسة مساءً)',
+    m_contacts_work_hours_9_22: '(من الاثنين إلى الأحد من التاسعة صباحًا وحتى العاشرة مساءً)'
 }

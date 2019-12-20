@@ -9,5 +9,6 @@ export default {
     m_contacts_site: 'Сайт',
     m_contacts_telegram: 'Telegram',
     m_contacts_whatsapp: 'WhatsApp',
-    m_contacts_work_hours: '(Пн.-Вс. 08:00 - 22:00)'
+    m_contacts_work_hours: '(Пн.-Вс. 08:00 - 22:00)',
+    m_contacts_work_hours_9_22: '(Пн.-Вс. 09:00 - 22:00)'
 }

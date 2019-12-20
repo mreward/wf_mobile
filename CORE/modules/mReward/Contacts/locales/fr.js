@@ -9,5 +9,6 @@ export default {
     m_contacts_site: 'Site Internet',
     m_contacts_telegram: 'Télégramme',
     m_contacts_whatsapp: 'Whatsapp',
-    m_contacts_work_hours: '(Du lundi au dimanche de 08h00 à 22h00)'
+    m_contacts_work_hours: '(Du lundi au dimanche de 08h00 à 22h00)',
+    m_contacts_work_hours_9_22: '(Du lundi au dimanche de 9h00 à 22h00)'
 }

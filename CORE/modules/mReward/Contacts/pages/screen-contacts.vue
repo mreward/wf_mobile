@@ -123,7 +123,7 @@
                     <span class="contacts-subtitle">{{ $t('m_contacts_phone') }}</span>
                     <div>
                         <span class="contacts-lined-info">{{ contacts.country_3.phone }}</span>
-                        <span class="contacts-work-ours"> {{ $t('m_contacts_work_hours') }}</span>
+                        <span class="contacts-work-ours"> {{ $t('m_contacts_work_hours_9_22') }}</span>
                     </div>
                 </div>
                 <div class="contacts-icon">
