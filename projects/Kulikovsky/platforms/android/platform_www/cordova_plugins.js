@@ -65,91 +65,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
-      "id": "cordova-plugin-contacts.contacts",
-      "file": "plugins/cordova-plugin-contacts/www/contacts.js",
-      "pluginId": "cordova-plugin-contacts",
-      "clobbers": [
-        "navigator.contacts"
-      ]
-    },
-    {
-      "id": "cordova-plugin-contacts.Contact",
-      "file": "plugins/cordova-plugin-contacts/www/Contact.js",
-      "pluginId": "cordova-plugin-contacts",
-      "clobbers": [
-        "Contact"
-      ]
-    },
-    {
-      "id": "cordova-plugin-contacts.convertUtils",
-      "file": "plugins/cordova-plugin-contacts/www/convertUtils.js",
-      "pluginId": "cordova-plugin-contacts"
-    },
-    {
-      "id": "cordova-plugin-contacts.ContactAddress",
-      "file": "plugins/cordova-plugin-contacts/www/ContactAddress.js",
-      "pluginId": "cordova-plugin-contacts",
-      "clobbers": [
-        "ContactAddress"
-      ]
-    },
-    {
-      "id": "cordova-plugin-contacts.ContactError",
-      "file": "plugins/cordova-plugin-contacts/www/ContactError.js",
-      "pluginId": "cordova-plugin-contacts",
-      "clobbers": [
-        "ContactError"
-      ]
-    },
-    {
-      "id": "cordova-plugin-contacts.ContactField",
-      "file": "plugins/cordova-plugin-contacts/www/ContactField.js",
-      "pluginId": "cordova-plugin-contacts",
-      "clobbers": [
-        "ContactField"
-      ]
-    },
-    {
-      "id": "cordova-plugin-contacts.ContactFindOptions",
-      "file": "plugins/cordova-plugin-contacts/www/ContactFindOptions.js",
-      "pluginId": "cordova-plugin-contacts",
-      "clobbers": [
-        "ContactFindOptions"
-      ]
-    },
-    {
-      "id": "cordova-plugin-contacts.ContactName",
-      "file": "plugins/cordova-plugin-contacts/www/ContactName.js",
-      "pluginId": "cordova-plugin-contacts",
-      "clobbers": [
-        "ContactName"
-      ]
-    },
-    {
-      "id": "cordova-plugin-contacts.ContactOrganization",
-      "file": "plugins/cordova-plugin-contacts/www/ContactOrganization.js",
-      "pluginId": "cordova-plugin-contacts",
-      "clobbers": [
-        "ContactOrganization"
-      ]
-    },
-    {
-      "id": "cordova-plugin-contacts.ContactFieldType",
-      "file": "plugins/cordova-plugin-contacts/www/ContactFieldType.js",
-      "pluginId": "cordova-plugin-contacts",
-      "merges": [
-        ""
-      ]
-    },
-    {
-      "id": "cordova-plugin-datepicker.DatePicker",
-      "file": "plugins/cordova-plugin-datepicker/www/android/DatePicker.js",
-      "pluginId": "cordova-plugin-datepicker",
-      "clobbers": [
-        "datePicker"
-      ]
-    },
-    {
       "id": "cordova-plugin-decimal-keyboard-wkwebview.decimalKeyboard",
       "file": "plugins/cordova-plugin-decimal-keyboard-wkwebview/www/decimal-keyboard.js",
       "pluginId": "cordova-plugin-decimal-keyboard-wkwebview",
@@ -718,6 +633,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "file": "plugins/cordova-plugin-googlemaps/www/js_CordovaGoogleMaps-for-android_ios.js",
       "pluginId": "cordova-plugin-googlemaps",
       "runs": true
+    },
+    {
+      "id": "cordova-plugin-datepicker.DatePicker",
+      "file": "plugins/cordova-plugin-datepicker/www/android/DatePicker.js",
+      "pluginId": "cordova-plugin-datepicker",
+      "clobbers": [
+        "datePicker"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -730,8 +653,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-androidx-adapter": "1.0.2",
     "cordova-plugin-appavailability": "0.4.2",
     "cordova-plugin-camera": "4.1.0",
-    "cordova-plugin-contacts": "3.0.1",
-    "cordova-plugin-datepicker": "0.9.3",
     "cordova-plugin-decimal-keyboard-wkwebview": "1.0.3",
     "cordova-plugin-device": "2.0.3",
     "cordova-plugin-device-motion": "2.0.1",
@@ -753,6 +674,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-wkwebview-inputfocusfix": "1.0.4",
     "es6-promise-plugin": "4.2.2",
     "cordova-plugin-x-socialsharing": "5.4.7",
-    "cordova-plugin-googlemaps": "2.6.2"
+    "cordova-plugin-googlemaps": "2.6.2",
+    "cordova-plugin-datepicker": "0.9.3"
   };
 });

@@ -36,12 +36,6 @@
       "ANDROID_SUPPORT_V4_VERSION": "27.+",
       "PACKAGE_NAME": "pro.mwallet.kulikovsky"
     },
-    "cordova-plugin-contacts": {
-      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
-    },
-    "cordova-plugin-datepicker": {
-      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
-    },
     "cordova-plugin-decimal-keyboard-wkwebview": {
       "PACKAGE_NAME": "pro.mwallet.kulikovsky"
     },
@@ -111,6 +105,9 @@
       "PLAY_SERVICES_VERSION": "15.0.1",
       "ANDROID_SUPPORT_V4_VERSION": "27.+",
       "PACKAGE_NAME": "pro.mwallet.kulikovsky"
+    },
+    "cordova-plugin-datepicker": {
+      "PACKAGE_NAME": "pro.mwallet.kulikovskyuat"
     }
   },
   "dependent_plugins": {}

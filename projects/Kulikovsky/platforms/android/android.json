@@ -29,14 +29,6 @@
               "count": 1
             },
             {
-              "xml": "<feature name=\"Contacts\"><param name=\"android-package\" value=\"org.apache.cordova.contacts.ContactManager\" /></feature>",
-              "count": 1
-            },
-            {
-              "xml": "<feature name=\"DatePickerPlugin\"><param name=\"android-package\" value=\"com.plugin.datepicker.DatePickerPlugin\" /></feature>",
-              "count": 1
-            },
-            {
               "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"org.apache.cordova.device.Device\" /></feature>",
               "count": 1
             },
@@ -147,6 +139,10 @@
             {
               "xml": "<feature name=\"PluginStreetViewPanorama\"><param name=\"android-package\" value=\"plugin.google.maps.PluginStreetViewPanorama\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"DatePickerPlugin\"><param name=\"android-package\" value=\"com.plugin.datepicker.DatePickerPlugin\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -161,18 +157,6 @@
             {
               "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
               "count": 4
-            },
-            {
-              "xml": "<uses-permission android:name=\"android.permission.READ_CONTACTS\" />",
-              "count": 1
-            },
-            {
-              "xml": "<uses-permission android:name=\"android.permission.WRITE_CONTACTS\" />",
-              "count": 1
-            },
-            {
-              "xml": "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\" />",
-              "count": 1
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
@@ -196,6 +180,18 @@
             },
             {
               "xml": "<uses-feature android:name=\"android.hardware.camera.front\" android:required=\"false\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.READ_CONTACTS\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.WRITE_CONTACTS\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\" />",
               "count": 1
             }
           ],
@@ -347,12 +343,6 @@
       "ANDROID_SUPPORT_V4_VERSION": "27.+",
       "PACKAGE_NAME": "pro.mwallet.kulikovsky"
     },
-    "cordova-plugin-contacts": {
-      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
-    },
-    "cordova-plugin-datepicker": {
-      "PACKAGE_NAME": "pro.mwallet.kulikovsky"
-    },
     "cordova-plugin-decimal-keyboard-wkwebview": {
       "PACKAGE_NAME": "pro.mwallet.kulikovsky"
     },
@@ -422,6 +412,9 @@
       "PLAY_SERVICES_VERSION": "15.0.1",
       "ANDROID_SUPPORT_V4_VERSION": "27.+",
       "PACKAGE_NAME": "pro.mwallet.kulikovsky"
+    },
+    "cordova-plugin-datepicker": {
+      "PACKAGE_NAME": "pro.mwallet.kulikovskyuat"
     }
   },
   "dependent_plugins": {},
@@ -488,91 +481,6 @@
       "pluginId": "cordova-plugin-camera",
       "clobbers": [
         "CameraPopoverHandle"
-      ]
-    },
-    {
-      "id": "cordova-plugin-contacts.contacts",
-      "file": "plugins/cordova-plugin-contacts/www/contacts.js",
-      "pluginId": "cordova-plugin-contacts",
-      "clobbers": [
-        "navigator.contacts"
-      ]
-    },
-    {
-      "id": "cordova-plugin-contacts.Contact",
-      "file": "plugins/cordova-plugin-contacts/www/Contact.js",
-      "pluginId": "cordova-plugin-contacts",
-      "clobbers": [
-        "Contact"
-      ]
-    },
-    {
-      "id": "cordova-plugin-contacts.convertUtils",
-      "file": "plugins/cordova-plugin-contacts/www/convertUtils.js",
-      "pluginId": "cordova-plugin-contacts"
-    },
-    {
-      "id": "cordova-plugin-contacts.ContactAddress",
-      "file": "plugins/cordova-plugin-contacts/www/ContactAddress.js",
-      "pluginId": "cordova-plugin-contacts",
-      "clobbers": [
-        "ContactAddress"
-      ]
-    },
-    {
-      "id": "cordova-plugin-contacts.ContactError",
-      "file": "plugins/cordova-plugin-contacts/www/ContactError.js",
-      "pluginId": "cordova-plugin-contacts",
-      "clobbers": [
-        "ContactError"
-      ]
-    },
-    {
-      "id": "cordova-plugin-contacts.ContactField",
-      "file": "plugins/cordova-plugin-contacts/www/ContactField.js",
-      "pluginId": "cordova-plugin-contacts",
-      "clobbers": [
-        "ContactField"
-      ]
-    },
-    {
-      "id": "cordova-plugin-contacts.ContactFindOptions",
-      "file": "plugins/cordova-plugin-contacts/www/ContactFindOptions.js",
-      "pluginId": "cordova-plugin-contacts",
-      "clobbers": [
-        "ContactFindOptions"
-      ]
-    },
-    {
-      "id": "cordova-plugin-contacts.ContactName",
-      "file": "plugins/cordova-plugin-contacts/www/ContactName.js",
-      "pluginId": "cordova-plugin-contacts",
-      "clobbers": [
-        "ContactName"
-      ]
-    },
-    {
-      "id": "cordova-plugin-contacts.ContactOrganization",
-      "file": "plugins/cordova-plugin-contacts/www/ContactOrganization.js",
-      "pluginId": "cordova-plugin-contacts",
-      "clobbers": [
-        "ContactOrganization"
-      ]
-    },
-    {
-      "id": "cordova-plugin-contacts.ContactFieldType",
-      "file": "plugins/cordova-plugin-contacts/www/ContactFieldType.js",
-      "pluginId": "cordova-plugin-contacts",
-      "merges": [
-        ""
-      ]
-    },
-    {
-      "id": "cordova-plugin-datepicker.DatePicker",
-      "file": "plugins/cordova-plugin-datepicker/www/android/DatePicker.js",
-      "pluginId": "cordova-plugin-datepicker",
-      "clobbers": [
-        "datePicker"
       ]
     },
     {
@@ -1144,6 +1052,14 @@
       "file": "plugins/cordova-plugin-googlemaps/www/js_CordovaGoogleMaps-for-android_ios.js",
       "pluginId": "cordova-plugin-googlemaps",
       "runs": true
+    },
+    {
+      "id": "cordova-plugin-datepicker.DatePicker",
+      "file": "plugins/cordova-plugin-datepicker/www/android/DatePicker.js",
+      "pluginId": "cordova-plugin-datepicker",
+      "clobbers": [
+        "datePicker"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -1156,8 +1072,6 @@
     "cordova-plugin-androidx-adapter": "1.0.2",
     "cordova-plugin-appavailability": "0.4.2",
     "cordova-plugin-camera": "4.1.0",
-    "cordova-plugin-contacts": "3.0.1",
-    "cordova-plugin-datepicker": "0.9.3",
     "cordova-plugin-decimal-keyboard-wkwebview": "1.0.3",
     "cordova-plugin-device": "2.0.3",
     "cordova-plugin-device-motion": "2.0.1",
@@ -1179,6 +1093,7 @@
     "cordova-plugin-wkwebview-inputfocusfix": "1.0.4",
     "es6-promise-plugin": "4.2.2",
     "cordova-plugin-x-socialsharing": "5.4.7",
-    "cordova-plugin-googlemaps": "2.6.2"
+    "cordova-plugin-googlemaps": "2.6.2",
+    "cordova-plugin-datepicker": "0.9.3"
   }
 }

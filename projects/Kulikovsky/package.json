@@ -7,8 +7,6 @@
     "cordova-plugin-androidx-adapter": "^1.0.2",
     "cordova-plugin-appavailability": "^0.4.2",
     "cordova-plugin-camera": "^4.1.0",
-    "cordova-plugin-contacts": "^3.0.1",
-    "cordova-plugin-datepicker": "^0.9.3",
     "cordova-plugin-decimal-keyboard-wkwebview": "git+https://github.com/oarsheo/cordova-plugin-decimal-keyboard-wkwebview.git",
     "cordova-plugin-device": "^2.0.3",
     "cordova-plugin-device-motion": "^2.0.1",
@@ -35,9 +33,6 @@
     "plugins": {
       "es6-promise-plugin": {},
       "cordova-plugin-add-swift-support": {},
-      "cordova-plugin-contacts": {
-        "CONTACTS_USAGE_DESCRIPTION": "We only send the phone number to the server to check if the number in the application is registered."
-      },
       "cordova-plugin-android-permissions": {},
       "cordova-plugin-device": {},
       "cordova-plugin-device-motion": {},
@@ -62,7 +57,6 @@
         "CAMERA_USAGE_DESCRIPTION": "The camera is used to scan QR codes.",
         "PHOTOLIBRARY_USAGE_DESCRIPTION": "This app requires photo library access to function properly."
       },
-      "cordova-plugin-datepicker": {},
       "cordova-plugin-listpicker": {},
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-android-fingerprint-auth": {},
@@ -83,7 +77,8 @@
         "ANDROID_SUPPORT_V4_VERSION": "27.+",
         "LOCATION_WHEN_IN_USE_DESCRIPTION": "This app wants to get your location while this app runs only.",
         "LOCATION_ALWAYS_USAGE_DESCRIPTION": "This app wants to get your location always, even this app runs in background."
-      }
+      },
+      "cordova-plugin-datepicker": {}
     },
     "platforms": [
       "android",

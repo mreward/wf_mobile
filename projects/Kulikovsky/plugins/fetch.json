@@ -15,16 +15,6 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-plugin-contacts": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-contacts@^3.0.1"
-    },
-    "is_top_level": true,
-    "variables": {
-      "CONTACTS_USAGE_DESCRIPTION": "We only send the phone number to the server to check if the number in the application is registered."
-    }
-  },
   "cordova-plugin-android-permissions": {
     "source": {
       "type": "registry",
@@ -157,7 +147,7 @@
   "cordova-plugin-datepicker": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-datepicker@^0.9.3"
+      "id": "cordova-plugin-datepicker"
     },
     "is_top_level": true,
     "variables": {}
