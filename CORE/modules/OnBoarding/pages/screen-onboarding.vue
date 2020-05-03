@@ -14,9 +14,10 @@
                     class="close"
                     @click="goToNext"
                 >
-                    <v-ons-icon icon="close" v-if="!moduleOptions('OnBoarding').closeTitle"></v-ons-icon>
+                    <v-ons-icon icon="close"
+                                v-if="!moduleOptions('OnBoarding').closeTitle"></v-ons-icon>
                     <template v-else>
-                        {{ $t('m_onboarding_close') }}
+                        {{ $t('m_onboarding_skip') }}
                     </template>
                 </button-base>
             </transition>
@@ -28,6 +29,7 @@
                 centered
                 auto-scroll-ratio="0.1"
                 :index.sync="carouselIndex"
+                ref="intro"
             >
                 <v-ons-carousel-item
                     v-for="(item, key) in items"
@@ -56,31 +58,28 @@
                     </div>
                 </v-ons-carousel-item>
             </v-ons-carousel>
+
+            <v-ons-bottom-toolbar class="info-button dots-row" :style="{'top': heightDot}">
+                <v-ons-row v-show="!lastScreen">
+                    <div class="dots">
+                      <span
+                          v-for="dotIndex in Object.keys(items).length"
+                          :key="dotIndex"
+                          :index="dotIndex - 1"
+                          :class="{'active': carouselIndex === dotIndex - 1}"
+                          @click="carouselIndex = dotIndex - 1"
+                      />
+                    </div>
+                </v-ons-row>
+            </v-ons-bottom-toolbar>
         </div>
 
+
+
         <v-ons-bottom-toolbar class="info-button">
-            <v-ons-row v-show="!lastScreen">
-                <div class="dots">
-                    <span
-                        v-for="dotIndex in Object.keys(items).length"
-                        :key="dotIndex"
-                        :index="dotIndex - 1"
-                        :class="{'active': carouselIndex === dotIndex - 1}"
-                        @click="carouselIndex = dotIndex - 1"
-                    />
-                </div>
-
-                <!-- <ons-toolbar-button
-                        v-show="!lastScreen"
-                        class="toolbar-button__next"
-                        @click="carouselIndex = carouselIndex + 1">
-                        {{$t('m_project_next')}}
-                    </ons-toolbar-button>-->
-            </v-ons-row>
-
             <button-base
                 v-if="moduleOptions('OnBoarding').skipAction && !lastScreen"
-                type="text"
+                type="auth"
                 class="skip"
                 @click="goToNext"
             >
@@ -89,7 +88,7 @@
 
             <button-base
                 v-if="moduleOptions('OnBoarding').nextAction && !lastScreen"
-                type="text"
+                type="auth"
                 class="next"
                 @click="carouselIndex++"
             >
@@ -117,7 +116,7 @@
         name: 'screen-onboarding',
         mixins: [
             MixinScreenOnboarding,
-            MixinOnboarding
-        ]
+            MixinOnboarding,
+        ],
     }
 </script>

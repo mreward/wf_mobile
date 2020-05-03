@@ -11,6 +11,7 @@
         </div>
         <div class="right text--muted">
             {{ item.date }}
+            <i class="icon-next-page" />
         </div>
     </v-ons-list-item>
 </template>
@@ -29,5 +30,8 @@
 </script>
 
 <style scoped>
-
+    .icon-next-page {
+        color: #CECED2;
+        font-size: 10px;
+    }
 </style>

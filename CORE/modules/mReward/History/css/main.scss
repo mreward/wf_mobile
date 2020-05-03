@@ -4,6 +4,27 @@
     }
 }
 
+[page*=search-shop] {
+    .page__background {
+        background: #ffffff;
+    }
+
+    .toolbar-main {
+        background-color: #fff;
+
+        .right {
+            display: none;
+        }
+
+        .center {
+            width: 100%;
+        }
+        .toolbar--search {
+            width: 100%;
+        }
+    }
+}
+
 .history {
     &__logo,
     &__name,
@@ -91,7 +112,7 @@
 
         + * {
             height: calc(100% - 70px);
-            margin-top: 70px;
+            margin-top: 136px;
             padding-bottom: 16px;
             overflow: scroll;
         }
@@ -103,7 +124,7 @@ html[onsflag-iphonex-portrait] {
         top: 23px;
 
         + * {
-            margin-top: 94px;
+            margin-top: 150px;
         }
     }
 }
@@ -116,4 +137,19 @@ html[onsflag-iphonex-portrait] {
 
     @extend .text--bold;
     @extend .margin-bottom--small-base;
+}
+
+.adress-conteiner__content {
+    max-height: 100% !important;
+}
+.adress-conteiner {
+    max-height: 100% !important;
+
+    .v-list-item__icon {
+        min-width: 16px;
+
+        i.icon-checkmark {
+            color: #6D0978;
+        }
+    }
 }

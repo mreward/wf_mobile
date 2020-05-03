@@ -128,7 +128,7 @@ export default class ApiClient {
                 if (!json.dateFrom && !json.dateTo) {
                     return apiUrl
                 }
-                return `${apiEndpoint.url}?dateFrom=${json.dateTo}&dateTo=${json.dateFrom}`
+                return `${apiEndpoint.url}?dateFrom=${json.dateTo}&dateTo=${json.dateFrom}&branch=${json.branch || ''}`
             }
             case this.APIEndPoints.Geo.GetCities.url: {
                 return `/geo/${json.country}/${json.city}/search-city`

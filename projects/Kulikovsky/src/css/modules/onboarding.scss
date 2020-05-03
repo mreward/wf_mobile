@@ -30,6 +30,7 @@
         //@extend .padding-bottom--none;
         bottom: 80px;
         z-index: 2;
+        margin-top: 50px;
 
         &__title {
             @extend .text--bold;
@@ -56,6 +57,11 @@
                 @extend .background-color--primary;
             }
         }
+
+        &.dots-row {
+            padding-bottom: unset;
+            top: calc(50% + 50px)
+        }
     }
 
     .info-button {
@@ -75,6 +81,14 @@
 
         .ons-icon {
             @extend .text--primary;
+        }
+    }
+}
+
+html[onsflag-iphonex-portrait] {
+    ons-bottom-toolbar.info-button {
+        &.dots-row {
+            top: calc(50% + 77px);
         }
     }
 }

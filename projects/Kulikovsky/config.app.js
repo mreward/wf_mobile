@@ -57,7 +57,8 @@ const PROD = {
                 }
             },
             OnBoarding: {
-                closeTitle: true
+                closeTitle: true,
+                nextAction: true,
             }
         }
     },

@@ -1,22 +1,46 @@
 <template>
-    <div class="history__filter-date grid grid--small child-width--1-2 margin-bottom--small-base">
-        <div
-            class="card card--header"
-            @click="chooseDateFrom"
-        >
-            <span>{{ $t('m_history_from') }}</span>
+        <div class="history__filter-date grid grid--small child-width--1-2 margin-bottom--small-base">
+            <div
+                    class="card card--header"
+                    @click="chooseDateFrom"
+            >
+                <div class="card--content-filter">
+                    <span>{{ $t('m_history_from') }}</span>
 
-            {{ formatTime(dateFrom) }}
-        </div>
+                    {{ formatTime(dateFrom) }}
+                </div>
+                <div>
+                    <i class="icon-arrow-drop-down"></i>
+                </div>
+            </div>
 
-        <div
-            class="card card--header"
-            @click="chooseDateTo"
-        >
-            <span>{{ $t('m_history_to') }}</span>
+            <div
+                    class="card card--header"
+                    @click="chooseDateTo"
+            >
+                <div class="card--content-filter">
+                    <span>{{ $t('m_history_to') }}</span>
 
-            {{ formatTime(dateTo) }}
-        </div>
+                    {{ formatTime(dateTo) }}
+                </div>
+                <div>
+                    <i class="icon-arrow-drop-down"></i>
+                </div>
+            </div>
+
+            <div
+                    class="card card--header card--selected"
+                    @click="chooseShop"
+            >
+                <div class="card--content-filter">
+                    <span>{{ $t('m_history_filter_shop') }}</span>
+
+                    {{ shop.name }}
+                </div>
+                <div>
+                    <i class="icon-arrow-drop-down"></i>
+                </div>
+            </div>
     </div>
 </template>
 
@@ -25,13 +49,19 @@
     import moment from 'moment'
     import { mapActions } from 'vuex'
     import constants from '_vuex_constants'
+    const ScreenHistorySearchShop = () => import('_screen_history_search_shop')
 
     export default {
         name: 'history-header',
         data() {
             return {
                 dateFrom: moment().subtract(1, 'month'),
-                dateTo: moment()
+                dateTo: moment(),
+                shop: {
+                    name: this.$t('m_history_all_shop'),
+                    address: '',
+                    branch: 'all',
+                },
             }
         },
         computed: {
@@ -52,7 +82,8 @@
         },
         methods: {
             ...mapActions({
-                getHistory: constants.MrewardHistory.Actions.getHistory
+                getHistory: constants.MrewardHistory.Actions.getHistory,
+                pushPage: constants.App.Actions.pushPage
             }),
             async chooseDateFrom() {
                 this.dateFrom = await this.pickDate({
@@ -83,7 +114,47 @@
             },
             formatTime(date) {
                 return moment(date).format('DD MMMM')
+            },
+            chooseShop() {
+                this.pushPage({
+                    extends: ScreenHistorySearchShop,
+                    data: () => {
+                        return {
+                            select: this.shop,
+                        }
+                    },
+                    methods: {
+                        onSelected: (value) => {
+                            this.shop = value;
+                            this.$emit('select-shop', value)
+                        }
+                    }
+                })
             }
         }
     }
 </script>
+
+<style scoped lang="scss">
+    .card.card--header.card--selected {
+        width: 100% !important;
+    }
+
+    .card.card--header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .card--content-filter {
+        display: flex;
+        flex-direction: column;
+    }
+
+    i {
+        font-size: 20px;
+        width: 16px;
+        display: block;
+    }
+</style>

@@ -10,12 +10,14 @@ export default {
             selectedDate: {
                 dateFrom: '',
                 dateTo: ''
-            }
+            },
+            branch: '',
         }
     },
     computed: {
         ...mapGetters({
-            history: constants.MrewardHistory.Getters.history
+            history: constants.MrewardHistory.Getters.history,
+            adresses: constants.MrewardAdresses.Getters.adresses
         }),
         historyList() {
             const newList = []
@@ -42,10 +44,16 @@ export default {
             return newList
         }
     },
+    created() {
+        if(!this.adresses.length) {
+            this.getAdresses();
+        }
+    },
     methods: {
         ...mapActions({
             pushPage: constants.App.Actions.pushPage,
-            getHistory: constants.MrewardHistory.Actions.getHistory
+            getHistory: constants.MrewardHistory.Actions.getHistory,
+            getAdresses: constants.MrewardAdresses.Actions.getAdresses
         }),
         goToHistoryDetails(history) {
             this.pushPage({
@@ -65,18 +73,30 @@ export default {
                 await this.getHistory({
                     dateFrom: moment(this.selectedDate.dateFrom).format('YYYY-MM-DD'),
                     dateTo: moment(this.selectedDate.dateTo).format('YYYY-MM-DD'),
-                    networkFirst: true
+                    networkFirst: true,
+                    branch: this.branch,
                 })
             } catch (e) {
                 this.$Alert.Error(e)
             } finally {
-                setTimeout(() => {
-                    loaded('done')
-                }, 300)
+                if(loaded) {
+                    setTimeout(() => {
+                        loaded('done')
+                    }, 300)
+                }
             }
         },
         onSelectDate(date) {
             this.selectedDate = _cloneDeep(date)
+        },
+        onSelectShop(data) {
+            if(data.branch !== 'all') {
+                this.branch = data.branch;
+            } else {
+                this.branch = '';
+            }
+
+            this.updateHistory();
         }
     }
 }

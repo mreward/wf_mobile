@@ -1,7 +1,5 @@
 import constants from '_vuex_constants'
 import { mapActions, mapGetters } from 'vuex'
-import MaskPhone from '_PLUGINS/common/MaskPhone'
-const ScreenRecoveryPassword = () => import('_screen_recovery_password')
 
 export default {
     data() {
@@ -27,31 +25,8 @@ export default {
         ...mapActions({
             pushPage: constants.App.Actions.pushPage,
             popToPage: constants.App.Actions.popToPage,
-            logoutUserAction: constants.MrewardUser.Actions.logoutUser,
             setLang: constants.App.Actions.setLang
         }),
-        goToRecoveryPassword() {
-            const fullMobileNumber = `+${this.profile.mobile}`
-            const clearPhoneNumber = MaskPhone.GetClearPhoneNumber(fullMobileNumber)
-            const clearPhoneMask = fullMobileNumber.replace(clearPhoneNumber, '')
-
-            this.pushPage({
-                extends: ScreenRecoveryPassword,
-                data: () => {
-                    return {
-                        mobile: clearPhoneNumber,
-                        code: clearPhoneMask,
-                        showMobileNumberInput: false,
-                        titleTranslationKey: 'm_auth_change_password_title'
-                    }
-                },
-                methods: {
-                    callbackPageOpen: () => {
-                        this.popToPage('screen-home')
-                    }
-                }
-            })
-        },
         async selectLanguage(lang) {
             try {
                 await this.setLang({ lang })

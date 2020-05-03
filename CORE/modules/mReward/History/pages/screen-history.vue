@@ -4,7 +4,7 @@
         page="history"
     >
 
-        <history-header @select-date="onSelectDate" />
+        <history-header @select-date="onSelectDate" @select-shop="onSelectShop" />
 
         <div>
             <pull-to-wrapper
@@ -34,6 +34,13 @@
                         class="row--text"
                     />
                 </template>
+
+
+                <not-found-items
+                        v-if="!historyList.length"
+                        :message="$t('m_dashboard_no_accrued_bonuses')"
+                />
+
             </pull-to-wrapper>
         </div>
     </layout>

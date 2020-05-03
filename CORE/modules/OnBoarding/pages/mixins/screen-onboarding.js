@@ -15,7 +15,8 @@ export default {
             bottom: '40px',
             left: 0,
             right: 0
-        }
+        },
+        heightDot: -1000,
     }),
     computed: {
         ...mapGetters({
@@ -24,7 +25,7 @@ export default {
 
         lastScreen() {
             return this.items.length - 1 === this.carouselIndex
-        }
+        },
     },
     watch: {
         carouselIndex(index) {
@@ -40,7 +41,13 @@ export default {
 
         TweenLite.set(background, {
             background: this.items[0].background
-        })
+        });
+
+        debugger
+        if(this.$refs['intro0']) {
+            debugger
+            const a  = this.$refs['intro0']
+        }
     },
     methods: {
         ...mapActions({

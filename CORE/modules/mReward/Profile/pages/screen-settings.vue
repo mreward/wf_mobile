@@ -27,30 +27,6 @@
                 </v-list-item>
             </v-list-item-group>
         </v-list>
-
-        <div class="v-container--bottom">
-            <v-btn
-                depressed
-                block
-                color="secondary"
-                class="margin-bottom--small-base v-btn--secondary"
-                :disabled="loaderVisible"
-                @click="goToRecoveryPassword"
-            >
-                {{ $t('m_profile_change_password') }}
-            </v-btn>
-
-            <v-btn
-                depressed
-                block
-                color="secondary"
-                :disabled="loaderVisible"
-                @click="logoutUserAction"
-                class="v-btn--secondary"
-            >
-                {{ $t('m_profile_logout') }}
-            </v-btn>
-        </div>
     </layout>
 </template>
 

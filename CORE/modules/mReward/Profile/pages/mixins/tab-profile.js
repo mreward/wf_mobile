@@ -3,12 +3,14 @@ import { mapActions, mapGetters } from 'vuex'
 import StringMask from 'string-mask'
 import ImgDownloadPhoto from '_SRC_IMG_WALLET/download-photo.png'
 import Camera from '_CORE/plugins/common/Camera'
-import MaskPhone from '_CORE/plugins/common/MaskPhone'
+import MaskPhone from '_PLUGINS/common/MaskPhone'
+const ScreenRecoveryPassword = () => import('_screen_recovery_password')
 
 export default {
     data() {
         return {
             ImgDownloadPhoto,
+            layout: 'default',
             cityName: '',
             countryPhoneMask: '+000 000 000 000',
             profileDataLength: 0
@@ -85,7 +87,9 @@ export default {
         ...mapActions({
             uploadAvatarAction: constants.MrewardProfile.Actions.uploadAvatar,
             getCityById: constants.MrewardGeo.Actions.getCityById,
-            getCountries: constants.MrewardGeo.Actions.getCountries
+            getCountries: constants.MrewardGeo.Actions.getCountries,
+            logoutUserAction: constants.MrewardUser.Actions.logoutUser,
+            popPage: constants.App.Actions.popPage,
         }),
         async setCityName() {
             try {
@@ -153,6 +157,28 @@ export default {
         },
         goToEditProfile() {
             this.$bus.$emit('goToPage', { page: 'edit-profile' })
-        }
+        },
+        goToRecoveryPassword() {
+            const fullMobileNumber = `+${this.profile.mobile}`
+            const clearPhoneNumber = MaskPhone.GetClearPhoneNumber(fullMobileNumber)
+            const clearPhoneMask = fullMobileNumber.replace(clearPhoneNumber, '')
+
+            this.pushPage({
+                extends: ScreenRecoveryPassword,
+                data: () => {
+                    return {
+                        mobile: clearPhoneNumber,
+                        code: clearPhoneMask,
+                        showMobileNumberInput: false,
+                        titleTranslationKey: 'm_auth_change_password_title'
+                    }
+                },
+                methods: {
+                    callbackPageOpen: () => {
+                        this.popToPage('screen-home')
+                    }
+                }
+            })
+        },
     }
 }

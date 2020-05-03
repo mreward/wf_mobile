@@ -3,12 +3,11 @@
         page="profile"
         layout="tab-cover"
         :cover="profile.is_avatar_uploaded ? profile.avatar : ImgDownloadPhoto"
-        :mobile="formattedMobile"
-        :full-name="fullName"
         :content-height="profileDataLength"
         @clickBackgroundEvent="selectAvatar"
     >
         <!-- dont remove this div, need for page scroll -->
+
         <div>
             <v-list
                 v-if="profileData.length"
@@ -16,7 +15,15 @@
                 :disabled="true"
                 class="profile-list"
             >
+
                 <v-list-item-group v-model="profileData.length">
+                    <v-list-item class="profile-name">
+                        <v-list-item-content>
+                            <v-list-item-title v-html="fullName" />
+                            <v-list-item-subtitle v-html="formattedMobile" />
+                        </v-list-item-content>
+                    </v-list-item>
+
                     <v-list-item
                         v-for="(item, i) in profileData"
                         :key="i"
@@ -50,14 +57,15 @@
             </v-btn>
 
             <v-btn
-                color="secondary"
-                block
-                class="margin-top--small-base v-btn--third v-btn--secondary"
-                @click="goToPage('settings')"
+                    color="secondary"
+                    block
+                    class="margin-top--small-base v-btn--third v-btn--secondary"
+                    @click="goToPage('history')"
             >
-                {{ $t('m_profile_settings') }}
+                {{ $t('m_dashboard_latest_charges') }}
                 <i class="icon-next-page" />
             </v-btn>
+
             <v-btn
                 color="secondary"
                 block
@@ -69,12 +77,40 @@
             </v-btn>
 
             <v-btn
+                    color="secondary"
+                    block
+                    class="margin-top--small-base v-btn--third v-btn--secondary"
+                    @click="goToPage('settings')"
+            >
+                {{ $t('m_profile_settings') }}
+                <i class="icon-next-page" />
+            </v-btn>
+
+            <v-btn
+                    color="secondary"
+                    block
+                    class="margin-top--small-base v-btn--third v-btn--secondary"
+                    @click="goToRecoveryPassword"
+            >
+                {{ $t('m_profile_change_password') }}
+            </v-btn>
+
+            <v-btn
                 color="secondary"
                 block
                 class="margin-top--small-base v-btn--third v-btn--secondary"
                 @click="openProtocol(settings.termsUrl)"
             >
                 {{ $t('m_profile_terms_loyalty') }}
+            </v-btn>
+
+            <v-btn
+                color="secondary"
+                block
+                class="margin-top--small-base v-btn--third v-btn--secondary"
+                @click="logoutUserAction"
+            >
+                {{ $t('m_profile_logout') }}
             </v-btn>
 
             <div class="profile--min-text">

@@ -139,6 +139,9 @@ html [type=button] {
         top: -23px;
         right: 16px;
         pointer-events: visible;
+
+        background-color: #F5F7FA;
+        box-shadow: unset !important;
     }
 
     &--fab.v-btn--nearby {
