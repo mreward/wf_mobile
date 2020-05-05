@@ -1,16 +1,17 @@
 import ScreenHomeTab from '_screen_home_tab'
-import ScreenInterestingTab from '_screen_interesting_tab'
+import ScreenShop from '_screen_shop'
 import ScreenAdresses from '_screen_adresses'
-import ScreenProfileTab from '_tab_profile'
+import ScreenNotifications from '_screen_notifications'
+
 import Vue from 'vue'
 import DashboardProfile from '_dashboard_profile'
 
 export default {
     components: {
         ScreenHomeTab,
-        ScreenInterestingTab,
+        ScreenShop,
         ScreenAdresses,
-        ScreenProfileTab
+        ScreenNotifications
     },
     data: () => ({
         childTabs: [
@@ -20,9 +21,9 @@ export default {
                 icon: 'home'
             },
             {
-                label: 'm_interesting',
-                key: 'screen-interesting-tab',
-                icon: 'news'
+                label: 'm_shop_title',
+                key: 'screen-shop',
+                icon: 'shop'
             },
             {
                 label: 'm_scan',
@@ -32,9 +33,9 @@ export default {
                 button: true
             },
             {
-                label: 'm_profile',
-                key: 'screen-profile-tab',
-                icon: 'profile'
+                label: 'm_notifications',
+                key: 'screen-notification',
+                icon: 'notifications'
             },
             {
                 label: 'm_adresses',

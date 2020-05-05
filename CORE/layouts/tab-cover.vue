@@ -41,6 +41,14 @@
             class="page__content page__layout page__layout--cover"
             :style="{ marginTop: `calc(${backgroundImageSize}vw - ${toolbarMargin})` }"
         >
+            <v-btn
+                    fab
+                    class="v-btn--edit toolbar__back-button"
+                    @click="popPage"
+            >
+                <i class="icon-back" />
+            </v-btn>
+
             <slot />
         </div>
     </v-ons-page>
@@ -48,6 +56,8 @@
 
 <script>
     import Default from '_layout_default'
+    import { mapActions } from 'vuex'
+    import constants from '_CORE/__configs.generate__/store/constants'
 
     export default {
         name: 'layout-tab-cover',
@@ -72,8 +82,8 @@
         },
         data() {
             return {
-                backgroundImageSize: 75,
-                maxBackgroundSize: 75,
+                backgroundImageSize: 65,
+                maxBackgroundSize: 65,
                 minBackgroundSize: 55,
                 oldSwipeValue: 0,
                 toolbarMargin: this.$ons.platform.isIPhoneX() ? '24px' : '44px'
@@ -87,6 +97,9 @@
             }
         },
         methods: {
+            ...mapActions({
+                popPage: constants.App.Actions.popPage,
+            }),
             setScrollEventListeners() {
                 this.$refs.pageContent.removeEventListener('touchstart', this.touchStart)
                 this.$refs.pageContent.removeEventListener('touchend', this.touchEnd)

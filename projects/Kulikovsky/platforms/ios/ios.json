@@ -10,14 +10,14 @@
           "FirebaseAppDelegateProxyEnabled": [
             {
               "xml": "<true />",
-              "count": 8,
+              "count": 10,
               "id": "config.xml"
             }
           ],
           "UIBackgroundModes": [
             {
               "xml": "<array><string>remote-notification</string></array>",
-              "count": 8,
+              "count": 10,
               "id": "config.xml"
             }
           ],

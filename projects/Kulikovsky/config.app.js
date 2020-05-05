@@ -41,7 +41,7 @@ const PROD = {
     defaultPhoneCode: '+996',
     defaultCountryId: 99,
     lang: 'ru', // Default Language
-    languages: ['ru', 'en', 'kk', 'ky'],
+    languages: ['en', 'ru', 'kk', 'ky'],
     passwordMinimumLength: 6,
     minimumAge: 14, // required
 

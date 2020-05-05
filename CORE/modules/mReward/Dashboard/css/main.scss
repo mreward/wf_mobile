@@ -10,3 +10,14 @@
     min-width: 40px;
     min-height: 40px;
 }
+
+.toolbar__back-button {
+    position: fixed !important;
+    left: 16px !important;
+    top: 30px !important;
+    background-color: $primary !important;
+
+    .v-btn__content {
+        color: #fff  !important;
+    }
+}

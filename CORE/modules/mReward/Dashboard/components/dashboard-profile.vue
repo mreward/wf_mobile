@@ -1,83 +1,87 @@
 <template>
     <div>
         <div
-            ref="toolbar"
-            class="toolbar-upper"
+                ref="toolbar"
+                class="toolbar-upper"
         >
             <div class="toolbar-upper__header">
                 <div class="left">
                     <div
-                        ref="avatar"
-                        class="toolbar-upper__img"
-                        :style="{ backgroundImage: `url(${ userProfile.is_avatar_uploaded ? userProfile.avatar : '' })` }"
-                        @click="goToProfile"
+                            ref="avatar"
+                            class="toolbar-upper__img"
+                            :style="{ backgroundImage: `url(${ userProfile.is_avatar_uploaded ? userProfile.avatar : '' })` }"
+                            @click="goToProfile"
                     >
                         <v-ons-icon
-                            v-if="!userProfile.is_avatar_uploaded"
-                            icon="no-avatar"
+                                v-if="!userProfile.is_avatar_uploaded"
+                                icon="no-avatar"
                         />
                     </div>
                 </div>
                 <div class="center">
-                    <span
-                        ref="userName"
-                        class="toolbar-upper__text"
-                    >
-                        {{ userName }}
+                      <span
+                              ref="userName"
+                              class="toolbar-upper__text"
+                              v-html="userName"
+                      >
                     </span>
+                </div>
+                <div class="right">
+                    <!--                    <notifications-toolbar-icon />-->
+
                     <div
-                        ref="amount"
-                        class="row-amount"
+                            ref="amount"
+                            class="row-amount"
                     >
                         <amount
-                            :show-currency="false"
-                            :amount="currentBalance.amount"
-                            :mask="maskAmount"
+                                :show-currency="false"
+                                :amount="currentBalance.amount"
+                                :mask="maskAmount"
                         />
 
                         <v-dialog
-                            v-model="dialog"
-                            content-class="accounts--dialog"
+                                v-model="dialog"
+                                content-class="accounts--dialog"
                         >
                             <template
-                                v-slot:activator="{ on }"
+                                    v-slot:activator="{ on }"
                             >
                                 <span
-                                    ref="btnCurrency"
-                                    class="btn-currency"
+                                        ref="btnCurrency"
+                                        class="btn-currency"
                                 >
                                     <v-btn
-                                        v-if="accounts.length > 1"
-                                        small
-                                        class="v-btn-rounded--small margin-left--small-base"
-                                        v-on="on"
+                                            v-if="accounts.length > 1"
+                                            small
+                                            class="v-btn-rounded--small margin-left--small-base"
+                                            v-on="on"
                                     >
                                         {{ currentBalance.currency }}
-                                        <i class="icon-next-page right" />
+                                        <i class="icon-next-page right"/>
                                     </v-btn>
                                     <span
-                                        v-else-if="currentBalance.currency"
-                                        class="amount--currency"
+                                            v-else-if="currentBalance.currency"
+                                            class="amount--currency"
                                     >{{ currentBalance.currency }}</span>
                                 </span>
                             </template>
                             <v-list
-                                flat
+                                    flat
                             >
                                 <div class="dialog-header">
                                     <v-subheader>{{ $t('m_dashboard_wallets') }}</v-subheader>
                                     <v-btn
-                                        icon
-                                        fab
-                                        @click="dialog = false"
+                                            icon
+                                            fab
+                                            @click="dialog = false"
                                     >
-                                        <i class="icon icon-close" />
+                                        <i class="icon icon-close"/>
                                     </v-btn>
                                 </div>
                                 <v-list-item-group>
                                     <v-list-item
-                                        v-for="(item, i) in accounts"
-                                        :key="i"
+                                            v-for="(item, i) in accounts"
+                                            :key="i"
                                     >
                                         <v-list-item-content>
                                             <v-list-item-title>
@@ -88,10 +92,10 @@
                                         </v-list-item-content>
                                         <v-list-item-action>
                                             <v-btn
-                                                small
-                                                class="v-btn-rounded--white--small margin-left--small-base"
-                                                :class="currentBalance.currency === item.currency ? 'selected': ''"
-                                                @click="setCurrentBalance(item)"
+                                                    small
+                                                    class="v-btn-rounded--white--small margin-left--small-base"
+                                                    :class="currentBalance.currency === item.currency ? 'selected': ''"
+                                                    @click="setCurrentBalance(item)"
                                             >
                                                 {{ item.currency }}
                                             </v-btn>
@@ -102,23 +106,20 @@
                         </v-dialog>
                     </div>
                 </div>
-                <div class="right">
-                    <notifications-toolbar-icon />
-                </div>
             </div>
 
             <div
-                ref="toolbarContent"
-                class="toolbar-upper__content"
+                    ref="toolbarContent"
+                    class="toolbar-upper__content"
             >
                 <div class="toolbar-upper__qr">
-                    <v-ons-icon icon="bird" />
+                    <v-ons-icon icon="bird"/>
                     <qr-code
-                        ref="qrBlock"
-                        class="qr-block"
-                        :value="cardNumber || ''"
-                        level="H"
-                        :size="200"
+                            ref="qrBlock"
+                            class="qr-block"
+                            :value="cardNumber || ''"
+                            level="H"
+                            :size="200"
                     />
                 </div>
                 <div class="toolbar-upper__hint">
@@ -128,23 +129,23 @@
         </div>
 
         <div
-            ref="mask"
-            class="toolbar-upper--mask"
-            @click="toggleMenu"
+                ref="mask"
+                class="toolbar-upper--mask"
+                @click="toggleMenu"
         />
 
         <div
-            ref="btnClose"
-            class="row-btn-lose"
+                ref="btnClose"
+                class="row-btn-lose"
         >
             <v-btn
-                type="fab"
+                    type="fab"
 
-                class="mt-12 toolbar-btn--close"
-                color="primary"
-                @click="toggleMenu"
+                    class="mt-12 toolbar-btn--close"
+                    color="primary"
+                    @click="toggleMenu"
             >
-                <i class="icon icon-close" />
+                <i class="icon icon-close"/>
             </v-btn>
         </div>
     </div>
@@ -159,6 +160,7 @@
     import NotificationsToolbarIcon from '_notifications_toolbar_icon'
     import constants from '_vuex_constants'
     import { isEmpty } from 'lodash'
+    const ScreenProfile = () => import('_tab_profile')
 
     const typeAnim = Power4.easeOut
     const timeAnim = 0.5
@@ -168,7 +170,7 @@
         components: {
             Amount,
             'qr-code': QrcodeVue,
-            NotificationsToolbarIcon
+            NotificationsToolbarIcon,
         },
         data () {
             return {
@@ -177,9 +179,9 @@
                 startHeight: 112,
                 currentBalance: {
                     amount: '0',
-                    currency: ''
+                    currency: '',
                 },
-                dialog: false
+                dialog: false,
             }
         },
         computed: {
@@ -188,7 +190,7 @@
                 userProfile: constants.MrewardProfile.Getters.userProfile,
                 accounts: constants.MrewardAccount.Getters.accounts,
                 balanceData: constants.MrewardAccount.Getters.balance,
-                selectedAccount: constants.MrewardAccount.Getters.selectedAccount
+                selectedAccount: constants.MrewardAccount.Getters.selectedAccount,
             }),
             cardNumber () {
                 if (this.userProfile.card_pan) {
@@ -201,18 +203,18 @@
 
                 return this.userProfile.first_name || ''
             },
-            balance() {
+            balance () {
                 if (this.balanceData.balance) {
                     const arrBalance = this.balanceData.balance.replace('.', ',').split(',')
                     return [
                         arrBalance[0],
-                        `.${arrBalance[1] || '00'}`
+                        `.${arrBalance[1] || '00'}`,
                     ]
                 }
 
                 return [
                     '00',
-                    '.00'
+                    '.00',
                 ]
             },
             position () {
@@ -239,17 +241,17 @@
 
             userName () {
                 if (this.userProfile.last_name) {
-                    return `${this.$t('m_dashboard_hello')}, ${this.userProfile.first_name}!`
+                    return `${this.userProfile.first_name}<br/>${this.userProfile.last_name}`
                 }
 
                 return this.$t('m_dashboard_hello')
-            }
+            },
         },
         watch: {
-            position() {
+            position () {
                 this.onChangeBar()
             },
-            async accounts(newValue) {
+            async accounts (newValue) {
                 if (newValue.length && !isEmpty(this.selectedAccount)) {
                     const newCurrentBalance = newValue.find((item) => {
                         return item.account === this.selectedAccount.account
@@ -257,14 +259,14 @@
                     await this.saveSelectedAccount(newCurrentBalance)
                     this.currentBalance = this.selectedAccount
                 }
-            }
+            },
         },
         async created () {
             try {
                 await Promise.all([
-                    this.getProfile({ networkFirst: true }).catch((e) => console.log(e)),
-                    this.getInfoCard({ networkFirst: true }).catch((e) => console.log(e)),
-                    this.getAccounts({ networkFirst: true }).catch((e) => console.log(e))
+                    this.getProfile({networkFirst: true}).catch((e) => console.log(e)),
+                    this.getInfoCard({networkFirst: true}).catch((e) => console.log(e)),
+                    this.getAccounts({networkFirst: true}).catch((e) => console.log(e)),
                 ])
             } catch (e) {
                 console.error(e)
@@ -295,9 +297,10 @@
                 getAccounts: constants.MrewardAccount.Actions.getAccounts,
                 saveSelectedAccount: constants.MrewardAccount.Actions.saveSelectedAccount,
                 getSelectedAccount: constants.MrewardAccount.Actions.getSelectedAccount,
-                getRaffles: constants.MrewardRaffles.Actions.getRaffles
+                getRaffles: constants.MrewardRaffles.Actions.getRaffles,
+                pushPage: constants.App.Actions.pushPage,
             }),
-            positionLeft() {
+            positionLeft () {
                 const {amount} = this.$refs
 
                 const center = window.innerWidth / 2
@@ -305,25 +308,33 @@
 
                 return center - amount.offsetLeft - centerAmount - 16 + 30
             },
-            setCurrentBalance(item) {
+            setCurrentBalance (item) {
                 if (this.dialog) {
                     this.dialog = false
                 }
                 this.currentBalance = item
                 this.saveSelectedAccount(this.currentBalance)
             },
-            onChangeBar() {
+            onChangeBar () {
                 if (this.position === 'top') {
                     this.startHeight = 0
                     this._setHeight(this.startHeight)
                 } else {
-                    this.startHeight = this.defaultHeight
+                    this.startHeight = this.defaultHeightge
                     this._setHeight(this.startHeight)
                 }
             },
-            goToProfile() {
+            goToProfile () {
                 if (!this.open) {
-                    this.$bus.$emit('home:goToTab', 'screen-profile-tab')
+                    this.pushPage({
+                        extends: ScreenProfile,
+                        // options: {
+                        //     animation: 'fade'
+                        // },
+                        props: {}
+                    });
+
+                    // this.$bus.$emit('home:goToTab', 'screen-profile-tab')
                 }
             },
             toggleMenu () {
@@ -347,11 +358,11 @@
                     this.open = true
                 }
             },
-            async updateBalances() {
+            async updateBalances () {
                 try {
                     await Promise.all([
-                        this.getAccounts({ networkFirst: true }),
-                        this.getRaffles({ networkFirst: true })
+                        this.getAccounts({networkFirst: true}),
+                        this.getRaffles({networkFirst: true}),
                     ])
                 } catch (e) {
                     this.$Alert.Error(e)
@@ -414,8 +425,8 @@
                 } else {
                     TweenLite.set([userName, avatar], {opacity: `1`})
                 }
-            }
-        }
+            },
+        },
     }
 </script>
 
@@ -425,18 +436,23 @@
         line-height: 30px;
         position: absolute;
         display: flex;
-        align-items: baseline;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
-    .amount--currency{
+
+    .amount--currency {
         color: #fff;
         font-weight: 600;
         font-size: 15px;
         line-height: 15px;
         letter-spacing: -0.24px;
     }
+
     .amount--currency {
         padding-left: 5px;
     }
+
     .row-btn-lose {
         position: fixed !important;
         right: 0;
@@ -481,6 +497,7 @@
             bottom: 42px !important;
         }
     }
+
     .amount-item-balance {
         font-size: 22px;
         font-weight: 600;
@@ -490,9 +507,11 @@
         display: flex;
         align-items: baseline;
     }
+
     .dialog-header {
         display: flex;
         justify-content: space-between;
+
         .v-subheader {
             font-size: 22px;
             font-weight: 600;
@@ -500,6 +519,7 @@
             line-height: 28px;
             color: #000000;
         }
+
         .v-btn {
             height: 36px;
             width: 36px;
@@ -507,10 +527,12 @@
             margin-right: 16px;
             margin-top: 5px;
         }
+
         .v-btn__content {
             font-size: 1rem;
         }
     }
+
     span.btn-currency {
         align-self: center;
     }
