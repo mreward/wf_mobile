@@ -306,7 +306,7 @@
                 const center = window.innerWidth / 2
                 const centerAmount = amount.offsetWidth / 2
 
-                return center - amount.offsetLeft - centerAmount - 16 + 30
+                return center - amount.offsetLeft - centerAmount - 16
             },
             setCurrentBalance (item) {
                 if (this.dialog) {
@@ -381,10 +381,10 @@
 
                 timeline.to(toolbar, timeAnim, {height: `${this.defaultMaxHeight}px`, ease: typeAnim}, 0)
                 timeline.to(toolbarContent, timeAnim, {opacity: `1`, ease: typeAnim}, 0)
-                timeline.to(amount, timeAnim, {x: this.positionLeft(), y: 10, scale: 2, ease: typeAnim}, 0)
+                timeline.to(amount, timeAnim, {x: this.positionLeft(), y: 20, scale: 2, ease: typeAnim}, 0)
                 timeline.to(btnClose, timeAnim, {y: 0}, 0)
                 timeline.to(mask, timeAnim, {opacity: `1`}, 0)
-                timeline.to(btnCurrency, timeAnim, {y: 0, x: -14, scale: 0.50, ease: typeAnim}, 0)
+                timeline.to(btnCurrency, timeAnim, {y: -3, x: 0, scale: 0.50, ease: typeAnim}, 0)
 
                 if (this.startHeight) {
                     TweenLite.set([userName, avatar, toolbarContent], {opacity: `1`})

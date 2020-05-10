@@ -1,17 +1,20 @@
 <template>
-    <v-ons-list class="list--transparent list--vertical margin-top--middle">
-        <v-ons-list-item>
+    <v-ons-list class="list--transparent list--vertical margin-top--middle list-address-map">
+        <v-ons-list-item  @click.native="$emit('click', item)">
             <div class="left">
                 {{ item.name }}
             </div>
             <div class="center">
-                {{ item.address }}
+                <span class="address">{{ item.address }}</span>
+                <i class="icon-next-page" :class="{'icon--open': selected}" />
             </div>
             <div class="right text--primary">
-                {{ convertToKm(item.distance) }}
-                <div class="status">
+                <span class="distance" v-if="convertToKm(item.distance)">
+                    {{ convertToKm(item.distance) }}
+                </span>
+                <span class="status">
                     {{ getOpenStatus(item.time_from, item.time_to) }}
-                </div>
+                </span>
             </div>
         </v-ons-list-item>
 
@@ -19,7 +22,7 @@
             v-if="selected"
             class="list-item--adress"
         >
-            <div class="left">
+            <div class="left time-work">
                 <v-ons-icon icon="time" />
 
                 {{ $t('m_adresses_from') }} {{ item.time_from }} {{ $t('m_adresses_to') }} {{ item.time_to }}

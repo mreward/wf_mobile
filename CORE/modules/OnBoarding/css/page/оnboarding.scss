@@ -22,6 +22,10 @@
         }
 
 
+        &.dots-row {
+            bottom: calc((100vh - 100vw - 150px) / 2 + 124px);
+            top: unset;
+        }
     }
     .dots {
         span {
@@ -130,6 +134,7 @@
         padding-bottom: $onboarding-intro-text-padding-button;
 
         @extend .text--center;
+        height: 100px;
 
         &__title {
             color: $onboarding-button-intro-title-color;
@@ -161,5 +166,13 @@ html[onsflag-iphonex-portrait] {
 
     ons-bottom-toolbar.info-button {
         padding-bottom: 34px;
+    }
+}
+
+html[onsflag-iphonex-portrait] {
+    ons-bottom-toolbar.info-button {
+        &.dots-row {
+            bottom: calc((100vh - 100vw - 150px) / 2 + 100px);
+        }
     }
 }

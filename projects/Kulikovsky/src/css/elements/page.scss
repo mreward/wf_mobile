@@ -11,6 +11,10 @@ ons-tabbar {
 }
 
 [page*=adresses] {
+    .toolbar--search {
+        flex-direction: column;
+        height: 116px !important;
+    }
     .page__layout {
         padding-top: 16px;
     }
@@ -20,7 +24,7 @@ ons-tabbar {
     }
 
     .list--fullpage {
-        top: 28px;
+        top: 84px;
         border-radius: 0 0 $border-radius $border-radius;
         box-shadow: $shadow-block;
     }
@@ -94,7 +98,7 @@ html[onsflag-iphonex-portrait] {
         }
 
         .list--fullpage {
-            top: 44px;
+            top: 99px;
         }
     }
 

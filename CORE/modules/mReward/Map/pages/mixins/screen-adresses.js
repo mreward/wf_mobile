@@ -27,7 +27,9 @@ export default {
             isDrag: false,
             isAnimation: false,
             locationImg,
-            mapLoaded: false
+            mapLoaded: false,
+
+            tab: 'list',
         }
     },
     computed: {
@@ -63,8 +65,25 @@ export default {
             return this.search.length > 0
         },
         extendedClass() {
-            return { 'border-shadow': (this.isDrag || this.showList) && !this.selectedMarker && this.filteredMarkers.length }
-        }
+            return {
+                'border-shadow': (this.isDrag || this.showList) && !this.selectedMarker && this.filteredMarkers.length,
+            }
+        },
+        offScroll () {
+            if (this.tab === 'list') {
+                return false
+            }
+
+            return !this.showList
+        },
+
+        showAddress () {
+            if (this.tab === 'list') {
+                return true
+            }
+
+            return !this.selectedMarker && !this.isLoading
+        },
     },
     watch: {
         search () {
@@ -97,6 +116,18 @@ export default {
         ...mapActions({
             getAdresses: constants.MrewardAdresses.Actions.getAdresses
         }),
+        setActiveTab(name) {
+            this.tab = name;
+
+            if(name === 'map') {
+                this.search = ''
+                this.hideSelectedMarker();
+                setTimeout(() => {
+                    this.showList = false
+                    this.closeList()
+                })
+            }
+        },
         addMarkers() {
             if ((this.markers.length === this.totalCount) && this.mapLoaded) {
                 const image = new google.maps.MarkerImage(
@@ -132,15 +163,23 @@ export default {
             this.search = ''
         },
         selectMarkerItem(item) {
-            this.showList = true
-            this.selectedMarker = item
-            this.mapObject.goTo({
-                latitude: item.latitude,
-                longitude: item.longitude
-            })
-            setTimeout(() => {
-                this.updateHeight()
-            })
+            if(this.tab === 'map') {
+                this.showList = true
+                this.selectedMarker = item
+                this.mapObject.goTo({
+                    latitude: item.latitude,
+                    longitude: item.longitude
+                })
+                setTimeout(() => {
+                    this.updateHeight()
+                })
+            } else {
+                if(this.selectedMarker && this.selectedMarker.branch === item.branch) {
+                    this.selectedMarker = null;
+                } else {
+                    this.selectedMarker = item
+                }
+            }
         },
         async callbackMapReady(map) {
             this.mapObject = map
@@ -238,8 +277,6 @@ export default {
                 if (!swipeLength) {
                     return
                 }
-
-                console.log(`swipeLength: ${swipeLength}`)
 
                 if (this.showList) {
                     if (swipeLength > 0 && swipeLength < 50) {
