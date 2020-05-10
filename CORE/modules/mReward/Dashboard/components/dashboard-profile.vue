@@ -320,7 +320,7 @@
                     this.startHeight = 0
                     this._setHeight(this.startHeight)
                 } else {
-                    this.startHeight = this.defaultHeightge
+                    this.startHeight = this.defaultHeight;
                     this._setHeight(this.startHeight)
                 }
             },
