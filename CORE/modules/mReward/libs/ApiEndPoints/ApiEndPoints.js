@@ -90,6 +90,12 @@ export default {
             method: 'GET',
             apiVersion: 'v2',
             apiTag: '/client/partner'
+        },
+        GetContacts: {
+            url: '/partner-contacts',
+            method: 'GET',
+            apiVersion: 'v2',
+            apiTag: '/client'
         }
     },
     Adresses: {

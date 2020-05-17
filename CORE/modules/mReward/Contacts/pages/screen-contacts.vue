@@ -5,151 +5,58 @@
         page="contacts"
     >
         <div class="contacts-wrapper">
-            <div class="contacts-title">
-                {{ $t('m_contacts_kurguzstan') }}
-            </div>
-            <div
-                class="contacts-info"
-                @click="openProtocol(contacts.country_1.email, 'email')"
-            >
-                <div class="contacts-info-sub">
-                    <span class="contacts-subtitle">{{ $t('m_contacts_email') }}</span>
-                    <span class="contacts-lined-info">{{ contacts.country_1.email }}</span>
-                </div>
-                <div class="contacts-icon">
-                    <v-btn
-                        fab
-                    >
-                        <i class="icon-email" />
-                    </v-btn>
-                </div>
-            </div>
-            <div
-                class="contacts-info"
-                @click="openProtocol(contacts.country_1.phone, 'tel')"
-            >
-                <div class="contacts-info-sub">
-                    <span class="contacts-subtitle">{{ $t('m_contacts_phone') }}</span>
-                    <div>
-                        <span class="contacts-lined-info">{{ contacts.country_1.phone }}</span>
-                        <span class="contacts-work-ours"> {{ $t('m_contacts_work_hours') }}</span>
-                    </div>
-                </div>
-                <div class="contacts-icon">
-                    <v-btn
-                        fab
-                    >
-                        <i class="icon-phone" />
-                    </v-btn>
-                </div>
-            </div>
-            <div
-                class="contacts-info"
-                @click="openMessenger('instagram', contacts.country_1.instagram )"
-            >
-                <div class="contacts-info-sub padding-bottom">
-                    <span class="contacts-subtitle">{{ $t('m_contacts_instagram') }}</span>
-                    <span class="contacts-lined-info contacts-link">@{{ contacts.country_1.instagram }}</span>
-                </div>
-                <div class="contacts-icon">
-                    <img
-                        :src="imgInstagram"
-                        alt=""
-                    >
-                </div>
-            </div>
 
-            <div class="contacts-title">
-                {{ $t('m_contacts_kazahstan') }}
-            </div>
-            <div
-                class="contacts-info"
-                @click="openProtocol(contacts.country_2.phone, 'tel')"
+            <v-ons-list
+                    v-for="(item, index) in contacts"
+                    :key="index"
+                    class="dropdown-list"
             >
-                <div class="contacts-info-sub">
-                    <span class="contacts-subtitle">{{ $t('m_contacts_phone') }}</span>
-                    <div>
-                        <span class="contacts-lined-info">{{ contacts.country_2.phone }}</span>
-                        <span class="contacts-work-ours"> {{ $t('m_contacts_work_hours') }}</span>
+                <v-ons-list-item
+                        ref="dropdownList"
+                        class="dropdown-list__item"
+                        expandable
+                >
+                    <div class="center">
+                        <img class="flag" v-show="item.flag" :src="item.flag" alt="">
+                        {{ item.name }}
                     </div>
-                </div>
-                <div class="contacts-icon">
-                    <v-btn
-                        fab
-                    >
-                        <i class="icon-phone" />
-                    </v-btn>
-                </div>
-            </div>
-            <div
-                class="contacts-info"
-                @click="openMessenger('instagram', contacts.country_2.instagram )"
-            >
-                <div class="contacts-info-sub">
-                    <span class="contacts-subtitle">{{ $t('m_contacts_instagram') }}</span>
-                    <span class="contacts-lined-info contacts-link">@{{ contacts.country_2.instagram }}</span>
-                </div>
-                <div class="contacts-icon">
-                    <img
-                        :src="imgInstagram"
-                        alt=""
-                    >
-                </div>
-            </div>
-            <div
-                class="contacts-info"
-                @click="openProtocol(contacts.site)"
-            >
-                <div class="contacts-info-sub padding-bottom">
-                    <span class="contacts-subtitle">{{ $t('m_contacts_site') }}</span>
-                    <span class="contacts-lined-info">{{ contacts.site }}</span>
-                </div>
-                <div class="contacts-icon">
-                    <v-btn
-                        fab
-                    >
-                        <i class="icon-web" />
-                    </v-btn>
-                </div>
-            </div>
-            <div class="contacts-title">
-                {{ $t('m_contacts_russia') }}
-            </div>
-            <div
-                class="contacts-info"
-                @click="openProtocol(contacts.country_3.phone, 'tel')"
-            >
-                <div class="contacts-info-sub">
-                    <span class="contacts-subtitle">{{ $t('m_contacts_phone') }}</span>
-                    <div>
-                        <span class="contacts-lined-info">{{ contacts.country_3.phone }}</span>
-                        <span class="contacts-work-ours"> {{ $t('m_contacts_work_hours_9_22') }}</span>
+                    <div class="dropdown-list__content expandable-content">
+                        <div
+                                v-for="(listItem, indexItem) in item.list"
+                                :key="indexItem"
+                                class="contacts-info"
+                                @click="listItem.click"
+                        >
+                            <div class="contacts-info-sub">
+                                <span class="contacts-subtitle">{{ listItem.name }}</span>
+                                <div>
+                                    <span class="contacts-lined-info">{{ listItem.value }}</span>
+                                    <span v-if="listItem.subtitle"
+                                          class="contacts-work-ours"> {{ listItem.subtitle }}</span>
+                                </div>
+                            </div>
+                            <div class="contacts-icon">
+                                <v-btn
+                                        fab
+                                >
+                                    <i v-if="listItem.icon" :class="listItem.icon" />
+                                    <img
+                                            v-if="listItem.img"
+                                            :src="listItem.img"
+                                            alt=""
+                                    >
+                                </v-btn>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="contacts-icon">
-                    <v-btn
-                        fab
-                    >
-                        <i class="icon-phone" />
-                    </v-btn>
-                </div>
-            </div>
-            <div
-                class="contacts-info"
-                @click="openMessenger('instagram', contacts.country_3.instagram )"
-            >
-                <div class="contacts-info-sub padding-bottom">
-                    <span class="contacts-subtitle">{{ $t('m_contacts_instagram') }}</span>
-                    <span class="contacts-lined-info contacts-link">@{{ contacts.country_3.instagram }}</span>
-                </div>
-                <div class="contacts-icon">
-                    <img
-                        :src="imgInstagram"
-                        alt=""
-                    >
-                </div>
-            </div>
+                </v-ons-list-item>
+            </v-ons-list>
         </div>
+
+
+
+
+
         <div class="contacts-bottom">
             <div class="list list--card">
                 <div
@@ -180,6 +87,8 @@
                         {{ $t('m_contacts_whatsapp') }}
                     </div>
                 </div>
+            </div>
+            <div class="list list--card">
                 <div
                     class="list-item"
                     @click="openProtocol(contacts.onlinechat)"
@@ -194,13 +103,20 @@
                         {{ $t('m_contacts_online_chat') }}
                     </div>
                 </div>
+
+                <div
+                        style="visibility: hidden"
+                        class="list-item"
+                >
+
+                </div>
             </div>
         </div>
     </layout>
 </template>
 
 <script>
-    import { mapGetters } from 'vuex'
+    import { mapActions, mapGetters } from 'vuex'
     import constants from '_vuex_constants'
     import imgInstagram from '_CORE/img/mreward/instagram.svg'
     import imgTelegram from '_CORE/img/mreward/telegram.svg'
@@ -218,18 +134,118 @@
                 imgInstagram,
                 imgTelegram,
                 imgWhatsapp,
-                imgOnlineChat
+                imgOnlineChat,
             }
         },
         computed: {
             ...mapGetters({
-                settings: constants.App.Getters.settings
+                settings: constants.App.Getters.settings,
+                countries: constants.MrewardGeo.Getters.countries
             }),
             contacts() {
-                return this.settings.contacts
+                const contacts = this.settings.contacts;
+                const $this = this;
+
+                const flagKG = this.countries.find(i => i.code === 'KG');
+                const flagKZ = this.countries.find(i => i.code === 'KZ');
+                const flagRU = this.countries.find(i => i.code === 'RU');
+
+                return [
+                    {
+                        name: this.$t('m_contacts_kurguzstan'),
+                        flag: flagKG ? flagKG.flag : '',
+                        list: [
+                            {
+                                name: this.$t('m_contacts_email'),
+                                value: contacts.country_1.email,
+                                icon: 'icon-email',
+                                click: () => {
+                                    $this.openProtocol(contacts.country_1.email, 'email')
+                                },
+                            }, {
+                                name: this.$t('m_contacts_phone'),
+                                subtitle: this.$t('m_contacts_work_hours'),
+                                value: contacts.country_1.phone,
+                                icon: 'icon-phone',
+                                click: () => {
+                                    $this.openProtocol(contacts.country_1.phone, 'tel')
+                                },
+                            }, {
+                                name: this.$t('m_contacts_instagram'),
+                                value: contacts.country_1.instagram,
+                                img: $this.imgInstagram,
+                                click: () => {
+                                    $this.openMessenger('instagram', contacts.country_1.instagram)
+                                },
+                            }],
+                    },
+                    {
+                        name: this.$t('m_contacts_kazahstan'),
+                        flag: flagKZ ? flagKZ.flag : '',
+                        list: [
+                           {
+                                name: this.$t('m_contacts_phone'),
+                                subtitle: this.$t('m_contacts_work_hours'),
+                                value: contacts.country_2.phone,
+                                icon: 'icon-phone',
+                                click: () => {
+                                    $this.openProtocol(contacts.country_2.phone, 'tel')
+                                },
+                            }, {
+                                name: this.$t('m_contacts_instagram'),
+                                value: contacts.country_2.instagram,
+                                img: $this.imgInstagram,
+                                click: () => {
+                                    $this.openMessenger('instagram', contacts.country_2.instagram)
+                                },
+                            },  {
+                                name: this.$t('m_contacts_site'),
+                                value: contacts.site,
+                                icon: 'icon-web',
+                                click: () => {
+                                    $this.openProtocol(contacts.site)
+                                },
+                            },
+                        ],
+                    },{
+                        name: this.$t('m_contacts_russia'),
+                        flag: flagRU ? flagRU.flag : '',
+                        list: [
+                            {
+                                name: this.$t('m_contacts_phone'),
+                                subtitle: this.$t('m_contacts_work_hours_9_22'),
+                                value: contacts.country_3.phone,
+                                icon: 'icon-phone',
+                                click: () => {
+                                    $this.openProtocol(contacts.country_3.phone, 'tel')
+                                },
+                            }, {
+                                name: this.$t('m_contacts_instagram'),
+                                value: contacts.country_3.instagram,
+                                img: $this.imgInstagram,
+                                click: () => {
+                                    $this.openMessenger('instagram', contacts.country_3.instagram)
+                                },
+                            },
+                        ],
+                    },
+                ]
+            },
+
+        },
+        async created() {
+            try {
+                if (!this.countries.length) {
+                    await this.getCountries()
+                }
+            } catch (e) {
+                this.$Alert.Error(e)
             }
         },
         methods: {
+            ...mapActions({
+                getCountries: constants.MrewardGeo.Actions.getCountries
+            }),
             openMessenger(messenger, account) {
                 switch (messenger) {
                     case 'telegram':

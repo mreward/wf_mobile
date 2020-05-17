@@ -163,10 +163,6 @@ $list-item-icon-font-size: rem(24) !default;
 
         & .list-item__expandable-content {
             background-color: $list-item-default-expandable-content-background-color;
-
-            & .list {
-                @extend .margin-bottom--none;
-            }
         }
 
         @if (mixin-exists(hook-list-default)) {

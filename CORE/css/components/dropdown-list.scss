@@ -1,17 +1,3 @@
-.dropdown-list {
-    max-width: 200px;
-
-    &__item {
-        .top {
-            width: auto;
-        }
-    }
-
-    &__content {
-        width: auto;
-    }
-}
-
 .dropdown-list-base {
     position: relative;
     min-height: $dropdown-list-height;
