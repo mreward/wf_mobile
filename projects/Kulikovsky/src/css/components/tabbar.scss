@@ -35,8 +35,6 @@
                 @extend .flex--align-center;
 
                 .tabbar__icon {
-                    @include size(26px, 24px);
-
                     z-index: 5;
                 }
 

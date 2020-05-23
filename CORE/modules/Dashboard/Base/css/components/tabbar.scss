@@ -14,10 +14,13 @@
             }
 
             &__icon {
-                height: 21px;
                 color: $tabbar-button-circle-icon-color;
-                line-height: 20px;
                 opacity: 1;
+                width: 16px;
+                height: 16px;
+                z-index: 5;
+                line-height: 10px;
+                font-size: 16px;
             }
         }
     }

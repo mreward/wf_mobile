@@ -11,9 +11,7 @@
         <pull-to-wrapper
             :update-action="updateDashboardContent"
         >
-            <dashboard-raffles />
-            <dashboard-action />
-            <dashboard-history />
+            <dashboard-news-board />
         </pull-to-wrapper>
 
         <status-popover />
@@ -23,9 +21,7 @@
 <script>
     import constants from '_vuex_constants'
     import { mapActions } from 'vuex'
-    import DashboardAction from '_dashboard_action'
-    import DashboardHistory from '_dashboard_history'
-    import DashboardRaffles from '_dashboard_raffles'
+    import DashboardNewsBoard from '_dashboard_news_board'
     import StatusPopover from '_status_popover'
     import MixinPushNotificationHandler from '_mixin_push_notification_handler_extend'
     import PullToWrapper from '_pull_to_wrapper'
@@ -34,9 +30,7 @@
         name: 'screen-home-tab',
         components: {
             PullToWrapper,
-            DashboardHistory,
-            DashboardAction,
-            DashboardRaffles,
+            DashboardNewsBoard,
             StatusPopover
         },
         mixins: [
@@ -44,18 +38,21 @@
         ],
         methods: {
             ...mapActions({
-                getHistory: constants.MrewardHistory.Actions.getHistory,
                 getAccounts: constants.MrewardAccount.Actions.getAccounts,
                 getPromotions: constants.MrewardPromotions.Actions.getPromotions,
-                getRaffles: constants.MrewardRaffles.Actions.getRaffles
+                getRaffles: constants.MrewardRaffles.Actions.getRaffles,
+                getPolls: constants.MrewardPoll.Actions.getPolls,
+                getNews: constants.MrewardNews.Actions.getNews,
+
             }),
             async updateDashboardContent(loaded) {
                 try {
                     await Promise.all([
                         this.getPromotions({ networkFirst: true }),
-                        this.getHistory({ networkFirst: true }),
                         this.getAccounts({ networkFirst: true }),
-                        this.getRaffles({ networkFirst: true })
+                        this.getRaffles({ networkFirst: true }),
+                        this.getPolls({ networkFirst: true }),
+                        this.getNews({ networkFirst: true }),
                     ])
                 } catch (e) {
                     this.$Alert.Error(e)
