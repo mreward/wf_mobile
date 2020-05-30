@@ -75,7 +75,7 @@
     <feature name="IonicWebView">
         <param name="ios-package" value="CDVWKWebViewEngine" />
     </feature>
-    <feature name="Keyboard">
+    <feature name="CDVIonicKeyboard">
         <param name="ios-package" onload="true" value="CDVIonicKeyboard" />
     </feature>
     <feature name="Clipboard">
@@ -93,10 +93,6 @@
     </feature>
     <feature name="WKWebViewInputFocusFix">
         <param name="ios-package" value="WKWebViewInputFocusFix" />
-        <param name="onload" value="true" />
-    </feature>
-    <feature name="FirebasePlugin">
-        <param name="ios-package" value="FirebasePlugin" />
         <param name="onload" value="true" />
     </feature>
     <feature name="CordovaGoogleMaps">
@@ -145,6 +141,10 @@
     </feature>
     <feature name="DatePicker">
         <param name="ios-package" value="DatePicker" />
+    </feature>
+    <feature name="FirebasePlugin">
+        <param name="ios-package" value="FirebasePlugin" />
+        <param name="onload" value="true" />
     </feature>
     <feature name="Keychain">
         <param name="ios-package" value="CDVKeychain" />
@@ -212,4 +212,5 @@
     <preference name="GOOGLE_MAPS_IOS_API_KEY" value="AIzaSyAxCXah1ycNBb7keqjBW1ZQ92FqNSgEdC8" />
     <preference name="StatusBarStyle" value="lightcontent" />
     <preference name="KeyboardResize" value="false" />
+    <preference name="WKWebViewOnly" value="true" />
 </widget>

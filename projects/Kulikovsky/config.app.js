@@ -7,7 +7,8 @@ const mainJsModules = require('./src/.config.main')
 // TODO rename (TEST/PROD)?
 const UrlMReward = {
     SIT: 'https://api-dev.m-loyalty.com/', // required
-    UAT: 'https://api-dev.kulikov.com/',
+    UAT: 'https://api-devkdk.kulikov.com/',
+    // UAT: 'https://api-dev.kulikov.com/',
     PROD: 'https://api.kulikov.com/' // required
 }
 

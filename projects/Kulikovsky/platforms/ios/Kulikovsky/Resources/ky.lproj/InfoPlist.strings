@@ -1,6 +1,0 @@
-"NSCameraUsageDescription" = "Камера QR коддору арытып үчүн колдонулат";
-"NSContactsUsageDescription" = "Байланыш китепте номерлерине издөө";
-"NSFaceIDUsageDescription" = "Анткени тез уруксаты";
-"NSLocationAlwaysUsageDescription" = "Колдонмонун ар дайым, атүгүл баркка режиминде жайгашкан мүмкүнчүлүк алышы керек";
-"NSLocationWhenInUseUsageDescription" = "Бул лоялдуу программасы, жакын болгон дукондорго багыт корсотуш максатында учурда жайгашкан жеринизди талап кылат";
-"NSPhotoLibraryAddUsageDescription" = "Колдонмо туура иштөөсү үчүн Сүрөт кампасы жеткиликтүүлүктү талап кылат";

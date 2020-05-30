@@ -34,7 +34,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-    <string>50345</string>
+    <string>50544</string>
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<true/>
 	<key>LSApplicationQueriesSchemes</key>
@@ -60,12 +60,8 @@
 	<string>The camera is used to scan QR codes.</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>For quick authentication.</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>To locate you</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>This app wants to get your location always, even this app runs in background.</string>
-	<key>NSLocationUsageDescription</key>
-	<string>To locate you</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This app wants to get your location while this app runs only.</string>
 	<key>NSMainNibFile</key>
@@ -88,8 +84,8 @@
 	<string>CDVLaunchScreen</string>
 	<key>UIRequiresFullScreen</key>
 	<true/>
-	<key>UIUserInterfaceStyle</key>
-	<string>Light</string>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleDefault</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

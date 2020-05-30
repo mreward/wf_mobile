@@ -1,19 +1,19 @@
 {
-  "_from": "com.verso.cordova.clipboard",
+  "_from": "com.verso.cordova.clipboard@^0.1.0",
   "_id": "com.verso.cordova.clipboard@0.1.0",
   "_inBundle": false,
   "_integrity": "sha1-ETFNz9hppDhYAkQ97v5F6xuSHA0=",
   "_location": "/com.verso.cordova.clipboard",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "range",
     "registry": true,
-    "raw": "com.verso.cordova.clipboard",
+    "raw": "com.verso.cordova.clipboard@^0.1.0",
     "name": "com.verso.cordova.clipboard",
     "escapedName": "com.verso.cordova.clipboard",
-    "rawSpec": "",
+    "rawSpec": "^0.1.0",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "^0.1.0"
   },
   "_requiredBy": [
     "#USER",
@@ -21,8 +21,8 @@
   ],
   "_resolved": "https://registry.npmjs.org/com.verso.cordova.clipboard/-/com.verso.cordova.clipboard-0.1.0.tgz",
   "_shasum": "11314dcfd869a4385802443deefe45eb1b921c0d",
-  "_spec": "com.verso.cordova.clipboard",
-  "_where": "/Users/dashaperfilieva/Desktop/work/mWallet_v4/projects/Kulikovsky",
+  "_spec": "com.verso.cordova.clipboard@^0.1.0",
+  "_where": "/Users/aleksandrarshinsky/Documents/Cordova/Kulikovsky-mobile/projects/Kulikovsky",
   "author": {
     "name": "RTeran"
   },

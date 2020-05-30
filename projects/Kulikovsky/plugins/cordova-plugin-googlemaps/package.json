@@ -1,28 +1,28 @@
 {
-  "_from": "cordova-plugin-googlemaps@latest",
-  "_id": "cordova-plugin-googlemaps@2.6.2",
+  "_from": "cordova-plugin-googlemaps@^2.7.1",
+  "_id": "cordova-plugin-googlemaps@2.7.1",
   "_inBundle": false,
-  "_integrity": "sha512-Zb5y+3PoEPnH7oorp6mvATnxESqedYHFhZodJdcGmUFC1vaRS5h46HOKTOT2fE8XQJ1FnVub03nJiTqxrGsqYw==",
+  "_integrity": "sha512-CPqLTc+Pmf/8sL4+lJazQR0ESNTSLaHIp+37yLe49dRg+qF3KNvtGX/l01SoJilgAwDkZjFNtOORhHlzlbmEdA==",
   "_location": "/cordova-plugin-googlemaps",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "range",
     "registry": true,
-    "raw": "cordova-plugin-googlemaps@latest",
+    "raw": "cordova-plugin-googlemaps@^2.7.1",
     "name": "cordova-plugin-googlemaps",
     "escapedName": "cordova-plugin-googlemaps",
-    "rawSpec": "latest",
+    "rawSpec": "^2.7.1",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "^2.7.1"
   },
   "_requiredBy": [
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/cordova-plugin-googlemaps/-/cordova-plugin-googlemaps-2.6.2.tgz",
-  "_shasum": "8c73f1d3ab2f815b36e2239149c3731541e0ffe2",
-  "_spec": "cordova-plugin-googlemaps@latest",
-  "_where": "/Users/dashaperfilieva/Desktop/work/mWallet_v4/projects/Kulikovsky",
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-googlemaps/-/cordova-plugin-googlemaps-2.7.1.tgz",
+  "_shasum": "8af5f721852144ff95c301f90a8bfb1e5e1218d2",
+  "_spec": "cordova-plugin-googlemaps@^2.7.1",
+  "_where": "/Users/aleksandrarshinsky/Documents/Cordova/Kulikovsky-mobile/projects/Kulikovsky",
   "author": {
     "name": "Masashi Katsumata, Hirbod Mirjavadi"
   },
@@ -55,11 +55,11 @@
     },
     {
       "name": "cordova-ios",
-      "version": ">=4.5.0"
+      "version": ">=5.1.1"
     },
     {
       "name": "apple-xcode",
-      "version": ">=9.0.0"
+      "version": ">=10.0.0"
     },
     {
       "name": "apple-ios",
@@ -89,5 +89,5 @@
     "test": "jest && npm run eslint",
     "test:watch": "jest --watch"
   },
-  "version": "2.6.2"
+  "version": "2.7.1"
 }

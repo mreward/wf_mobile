@@ -406,14 +406,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
-      "id": "cordova-plugin-firebase-lib.FirebasePlugin",
-      "file": "plugins/cordova-plugin-firebase-lib/www/firebase.js",
-      "pluginId": "cordova-plugin-firebase-lib",
-      "clobbers": [
-        "FirebasePlugin"
-      ]
-    },
-    {
       "id": "cordova-plugin-googlemaps.Promise",
       "file": "plugins/cordova-plugin-googlemaps/www/Promise.js",
       "pluginId": "cordova-plugin-googlemaps"
@@ -649,40 +641,49 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "datePicker"
       ]
+    },
+    {
+      "id": "cordova-plugin-firebasex.FirebasePlugin",
+      "file": "plugins/cordova-plugin-firebasex/www/firebase.js",
+      "pluginId": "cordova-plugin-firebasex",
+      "clobbers": [
+        "FirebasePlugin"
+      ]
     }
   ];
   module.exports.metadata = {
     "es6-promise-plugin": "4.2.2",
     "cordova-plugin-add-swift-support": "2.0.2",
-    "cordova-plugin-android-permissions": "1.0.0",
+    "cordova-plugin-android-permissions": "1.0.2",
     "cordova-plugin-device": "2.0.3",
     "cordova-plugin-device-motion": "2.0.1",
     "cordova-plugin-file": "6.0.2",
     "cordova-plugin-file-transfer": "1.7.1",
-    "cordova-plugin-inappbrowser": "3.1.0",
+    "cordova-plugin-inappbrowser": "3.2.0",
     "cordova-plugin-network-information": "2.0.2",
     "cordova-plugin-shake": "0.6.0",
     "cordova-plugin-splashscreen": "5.0.3",
     "cordova-plugin-touch-id": "3.3.1",
     "cordova-plugin-whitelist": "1.3.4",
-    "cordova-plugin-x-socialsharing": "5.4.7",
+    "cordova-plugin-x-socialsharing": "5.6.8",
     "cordova-plugin-appavailability": "0.4.2",
     "cordova-plugin-ios-keychain": "3.0.1",
     "cordova-plugin-camera": "4.1.0",
     "cordova-plugin-listpicker": "2.2.2",
-    "cordova-plugin-ionic-webview": "4.1.1",
+    "cordova-plugin-ionic-webview": "4.2.1",
     "cordova-plugin-android-fingerprint-auth": "1.5.0",
-    "cordova-plugin-ionic-keyboard": "2.1.3",
+    "cordova-plugin-ionic-keyboard": "2.2.0",
     "com.verso.cordova.clipboard": "0.1.0",
     "cordova-plugin-statusbar": "2.4.3-dev",
     "cordova-android-support-gradle-release": "3.0.1",
     "cordova-plugin-decimal-keyboard-wkwebview": "1.0.3",
     "cordova-plugin-qrscanner": "3.0.1",
     "cordova-plugin-wkwebview-inputfocusfix": "1.0.4",
-    "cordova-plugin-firebase-lib": "4.0.1",
     "cordova-plugin-androidx": "1.0.2",
-    "cordova-plugin-androidx-adapter": "1.0.2",
-    "cordova-plugin-googlemaps": "2.6.2",
-    "cordova-plugin-datepicker": "0.9.3"
+    "cordova-plugin-androidx-adapter": "1.1.1",
+    "com.googlemaps.ios": "3.8.0",
+    "cordova-plugin-googlemaps": "2.7.1",
+    "cordova-plugin-datepicker": "0.9.3",
+    "cordova-plugin-firebasex": "9.1.1"
   };
 });

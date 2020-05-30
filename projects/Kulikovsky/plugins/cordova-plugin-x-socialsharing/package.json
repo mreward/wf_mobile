@@ -1,28 +1,28 @@
 {
-  "_from": "cordova-plugin-x-socialsharing@^5.4.6",
-  "_id": "cordova-plugin-x-socialsharing@5.4.7",
+  "_from": "cordova-plugin-x-socialsharing@^5.6.8",
+  "_id": "cordova-plugin-x-socialsharing@5.6.8",
   "_inBundle": false,
-  "_integrity": "sha512-owN2DN02AHdt6WAzn1E35AxVDrmIo8ebZwtPQjzCvxCelkdiie/FMsgkUUT4Z1fUXunh0Oxovx9ce0w3zRXdlw==",
+  "_integrity": "sha512-R31ZQq00YNzLBwUM4VTE/uKhh/T0GEMuz/MZOw/Pu5AYIAAQkd7EMqFVhMtKs7wfHl1koiRz8+6nLDb19r2tBQ==",
   "_location": "/cordova-plugin-x-socialsharing",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "cordova-plugin-x-socialsharing@^5.4.6",
+    "raw": "cordova-plugin-x-socialsharing@^5.6.8",
     "name": "cordova-plugin-x-socialsharing",
     "escapedName": "cordova-plugin-x-socialsharing",
-    "rawSpec": "^5.4.6",
+    "rawSpec": "^5.6.8",
     "saveSpec": null,
-    "fetchSpec": "^5.4.6"
+    "fetchSpec": "^5.6.8"
   },
   "_requiredBy": [
     "#DEV:/",
     "#USER"
   ],
-  "_resolved": "https://registry.npmjs.org/cordova-plugin-x-socialsharing/-/cordova-plugin-x-socialsharing-5.4.7.tgz",
-  "_shasum": "4ebe23f650b11df3437589093587a5dfeb870ab7",
-  "_spec": "cordova-plugin-x-socialsharing@^5.4.6",
-  "_where": "/Users/dashaperfilieva/Desktop/work/mWallet_v4/projects/Kulikovsky",
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-x-socialsharing/-/cordova-plugin-x-socialsharing-5.6.8.tgz",
+  "_shasum": "81993336fa4260eb76a23ed1680cd63e1c72b040",
+  "_spec": "cordova-plugin-x-socialsharing@^5.6.8",
+  "_where": "/Users/aleksandrarshinsky/Documents/Cordova/Kulikovsky-mobile/projects/Kulikovsky",
   "author": {
     "name": "Eddy Verbruggen - @EddyVerbruggen"
   },
@@ -74,5 +74,5 @@
     "url": "git+https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git"
   },
   "types": "./types/index.d.ts",
-  "version": "5.4.7"
+  "version": "5.6.8"
 }

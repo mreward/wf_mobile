@@ -19,7 +19,7 @@
   ],
   "_resolved": "git+https://github.com/ionic-team/cordova-plugin-ios-keychain.git#036aa60df6ba1090510c7cada6f3323dccd69919",
   "_spec": "git+https://github.com/ionic-team/cordova-plugin-ios-keychain.git",
-  "_where": "/Users/dashaperfilieva/Desktop/work/mWallet_v4/projects/Kulikovsky",
+  "_where": "/Users/aleksandrarshinsky/Documents/Cordova/Kulikovsky-mobile/projects/Kulikovsky",
   "author": "",
   "bugs": {
     "url": "https://github.com/driftyco/cordova-plugin-ios-keychain/issues"

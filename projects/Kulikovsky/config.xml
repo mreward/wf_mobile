@@ -49,6 +49,7 @@
         <preference name="KeyboardDisplayRequiresUserAction" value="false" />
         <preference name="StatusBarStyle" value="lightcontent" />
         <preference name="KeyboardResize" value="false" />
+        <preference name="WKWebViewOnly" value="true" />
         <config-file parent="FirebaseAppDelegateProxyEnabled" platform="ios" target="*-Info.plist">
             <true />
         </config-file>
