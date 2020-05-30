@@ -51,6 +51,26 @@ const actions = {
                 log: 'STORE: MrewardPromotions Module - getPromotions'
             }, { root: true })
         }
+    },
+
+    async getPromotionItem({ commit, dispatch }, payload) {
+        console.log('STORE: MrewardPromotions Module - getPromotionItem')
+        try {
+            dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
+
+            const response = await new MrewardPromotions().GetPromotionItem({
+                id: payload.id,
+            })
+
+            dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })
+
+            return response
+        } catch (error) {
+            await dispatch(constants.App.Actions.validateError, {
+                error,
+                log: 'STORE: MrewardPromotions Module - getPromotionItem'
+            }, { root: true })
+        }
     }
 }
 

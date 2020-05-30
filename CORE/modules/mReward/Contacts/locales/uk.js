@@ -1,4 +1,5 @@
 export default {
+    m_contact_us: 'Пишіть нам',
     m_contacts_email: 'Електронна пошта',
     m_contacts_instagram: 'Instagram',
     m_contacts_kazahstan: 'Казахстан',

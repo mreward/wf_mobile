@@ -1,7 +1,9 @@
 <template>
     <layout
         :layout="layout"
+        buttonLeft="none"
         :title="$t('m_notifications')"
+        page="notifications"
     >
         <pull-to-wrapper
             :update-action="updateNotifications"
@@ -12,13 +14,13 @@
                 <div
                     v-if="Array.isArray(el)"
                     :key="key"
-                    class="card card--default notification-card"
                 >
-                    <v-ons-list class="notification-list list--indentation">
+                    <v-ons-list>
                         <notifications-item
                             v-for="(item, index) in el"
                             :key="index"
                             :item="item"
+                            class="notification-list list--indentation"
                         />
                     </v-ons-list>
                 </div>
@@ -54,6 +56,19 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss">
+    .page[page="notifications"] {
+        .page__content {
+            padding: 0 16px 34px 16px;
+            /*padding-bottom: 34px;*/
 
+            .not-found-items {
+                height: 60px;
+            }
+        }
+
+        .toolbar-main__left {
+            width: 0px;
+        }
+    }
 </style>

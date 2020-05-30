@@ -188,6 +188,7 @@
             ...mapGetters({
                 cards: constants.MrewardCard.Getters.cards,
                 userProfile: constants.MrewardProfile.Getters.userProfile,
+                userName: constants.MrewardProfile.Getters.userName,
                 accounts: constants.MrewardAccount.Getters.accounts,
                 balanceData: constants.MrewardAccount.Getters.balance,
                 selectedAccount: constants.MrewardAccount.Getters.selectedAccount,
@@ -219,9 +220,16 @@
             },
             position () {
                 if (this.currentPageTab === 'screen-home-tab') {
-                    return 'vissible'
+                    return 'vissible';
+
+                    if (window.StatusBar) {
+                        window.StatusBar.styleLightContent();
+                    }
                 }
 
+                if (window.StatusBar) {
+                    window.StatusBar.styleDefault();
+                }
                 return 'top'
             },
             defaultHeight () {
@@ -237,14 +245,6 @@
                 }
 
                 return 470
-            },
-
-            userName () {
-                if (this.userProfile.last_name) {
-                    return `${this.userProfile.first_name}<br/>${this.userProfile.last_name}`
-                }
-
-                return this.$t('m_dashboard_hello')
             },
         },
         watch: {
@@ -390,6 +390,10 @@
                     TweenLite.set([userName, avatar, toolbarContent], {opacity: `1`})
                     timeline.to([userName, avatar], 0.3, {opacity: `0`, ease: typeAnim}, 0)
                 }
+
+                if (window.StatusBar) {
+                    window.StatusBar.styleLightContent();
+                }
             },
             closeMenu () {
                 const {toolbar, avatar, userName, toolbarContent, amount, btnClose, mask, btnCurrency} = this.$refs
@@ -413,6 +417,12 @@
                     TweenLite.set([userName, avatar], {opacity: `0`})
                     timeline.to([userName, avatar], timeAnim, {opacity: `1`, ease: typeAnim}, 0)
                 }
+
+                if (window.StatusBar) {
+                    if (this.currentPageTab !== 'screen-home-tab') {
+                        window.StatusBar.styleDefault();
+                    }
+                }
             },
             _setHeight (h) {
                 const {toolbar, userName, avatar, btnClose, mask} = this.$refs
@@ -434,7 +444,7 @@
        scoped>
     .row-amount {
         line-height: 30px;
-        position: absolute;
+        /*position: absolute;*/
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -475,6 +485,7 @@
     }
 
     .toolbar-upper {
+        width: 100vw;
         &__header {
             position: relative;
         }

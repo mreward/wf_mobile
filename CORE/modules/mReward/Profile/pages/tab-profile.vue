@@ -19,7 +19,7 @@
                 <v-list-item-group v-model="profileData.length">
                     <v-list-item class="profile-name">
                         <v-list-item-content>
-                            <v-list-item-title v-html="fullName" />
+                            <v-list-item-title v-html="userName" />
                             <v-list-item-subtitle v-html="formattedMobile" />
                         </v-list-item-content>
                     </v-list-item>

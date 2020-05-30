@@ -20,4 +20,17 @@ export default class MrewardNews extends ApiClient {
             json
         )
     }
+
+    GetNewsItem(json) {
+        this.logger('MrewardNews:GetNewsItem')
+        const requestData = {
+            ...this.APIEndPoints.Partner.GetNewsItem,
+            url: `${this.APIEndPoints.Partner.GetNewsItem.url}/${json.id}`
+        }
+
+        return this.sendRequest(
+          requestData,
+          json
+        )
+    }
 }

@@ -245,10 +245,15 @@ ons-list.list--transparent.list--vertical.margin-top--middle.list-address-map.li
 
 .list--wrapper.list--fullpage.list-address--type-list {
   position: absolute;
-  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   height: 100% !important;
-  top: 144px !important;
+  top: 100px !important;
+}
+
+html[onsflag-iphonex-portrait] {
+  .list--wrapper.list--fullpage.list-address--type-list {
+    top: 144px !important;
+  }
 }

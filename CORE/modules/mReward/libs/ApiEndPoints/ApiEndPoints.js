@@ -85,8 +85,20 @@ export default {
             apiVersion: 'v2',
             apiTag: '/client/partner'
         },
+        GetActionItem: {
+            url: '/actions',
+            method: 'GET',
+            apiVersion: 'v2',
+            apiTag: '/client/partner'
+        },
         GetNews: {
             url: '/news-all?sort=-date',
+            method: 'GET',
+            apiVersion: 'v2',
+            apiTag: '/client/partner'
+        },
+        GetNewsItem: {
+            url: '/news-all',
             method: 'GET',
             apiVersion: 'v2',
             apiTag: '/client/partner'

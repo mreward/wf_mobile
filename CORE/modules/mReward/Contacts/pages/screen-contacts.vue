@@ -58,6 +58,9 @@
 
 
         <div class="contacts-bottom">
+            <div class="header-contacts">
+                <span>{{$t('m_contact_us')}}</span>
+            </div>
             <div class="list list--card">
                 <div
                     class="list-item"
@@ -111,6 +114,10 @@
 
                 </div>
             </div>
+        </div>
+
+        <div class="main-website" @click="goToSite">
+            <span>www.kulikov.com</span>
         </div>
     </layout>
 </template>
@@ -260,6 +267,9 @@
                     default:
                         break
                 }
+            },
+            goToSite() {
+                window.open('https://kulikov.com', '_system')
             }
         }
     }

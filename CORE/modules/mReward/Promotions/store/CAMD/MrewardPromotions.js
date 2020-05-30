@@ -6,7 +6,8 @@ export default {
         }
     },
     Actions: {
-        getPromotions: 'MrewardPromotions/getPromotions'
+        getPromotions: 'MrewardPromotions/getPromotions',
+        getPromotionItem: 'MrewardPromotions/getPromotionItem'
     },
     Getters: {
         partnerPromotions: 'MrewardPromotions/partnerPromotions',

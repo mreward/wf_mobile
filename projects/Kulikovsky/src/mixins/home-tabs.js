@@ -34,7 +34,7 @@ export default {
             },
             {
                 label: 'm_notifications',
-                key: 'screen-notification',
+                key: 'screen-notifications',
                 icon: 'notifications'
             },
             {

@@ -22,15 +22,16 @@ export default {
             profile: constants.MrewardProfile.Getters.userProfile,
             loaderVisible: constants.App.Getters.loaderVisible,
             maskFromIso: constants.PhoneMasks.Getters.maskFromIso,
-            countries: constants.MrewardGeo.Getters.countries
+            countries: constants.MrewardGeo.Getters.countries,
+            userName: constants.MrewardProfile.Getters.userName,
         }),
         formattedMobile() {
             return new StringMask(this.countryPhoneMask, { reverse: true }).apply(this.profile.mobile)
         },
-        fullName() {
-            const isNameDataFilledUp = this.profile.first_name && this.profile.last_name
-            return isNameDataFilledUp ? `${this.profile.first_name} ${this.profile.last_name}` : ''
-        },
+        // fullName() {
+        //     const isNameDataFilledUp = this.profile.first_name && this.profile.last_name
+        //     return isNameDataFilledUp ? `${this.profile.first_name} ${this.profile.last_name}` : ''
+        // },
         profileData() {
             const profileData = []
 

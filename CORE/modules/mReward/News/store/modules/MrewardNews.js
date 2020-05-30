@@ -51,6 +51,31 @@ const actions = {
                 log: 'STORE: MrewardNews Module - getNews'
             }, { root: true })
         }
+    },
+
+    /**
+     * Get partner new from id
+     * @param commit
+     * @param payload
+     * @param dispatch
+     */
+    async getNewsItem({ commit, dispatch }, payload) {
+        console.log('STORE: MrewardNews Module - getNewsItem')
+        try {
+            dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
+            const response = await new MrewardNews().GetNewsItem({
+                id: payload.id,
+            })
+
+            dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })
+
+            return response
+        } catch (error) {
+            await dispatch(constants.App.Actions.validateError, {
+                error,
+                log: 'STORE: MrewardNews Module - getNewsItem'
+            }, { root: true })
+        }
     }
 }
 

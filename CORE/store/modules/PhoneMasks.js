@@ -364,18 +364,29 @@ const getters = {
                     mask: 'xxxx'
                 }
             }
+            case 'KG': {
+                return {
+                    ...country,
+                    code: '+996',
+                    mask: 'xxx xxx xxx',
+                    name: country.name
+                }
+            }
             default: {
                 const maskCountry = new libphonenumber.AsYouType(country.iso.toUpperCase())
                 const code = `+${maskCountry.countryCallingCode}`
 
                 maskCountry.input(`${code}${examples[country.iso.toUpperCase()]}`)
-                const mask = maskCountry.partially_populated_template.replace(/\d/g, 'x')
-                return {
-                    code,
-                    mask,
-                    name: country.name,
-                    iso: country.iso
+                if(maskCountry) {
+                    const mask = maskCountry.partially_populated_template.replace(/\d/g, 'x')
+                    return {
+                        code,
+                        mask,
+                        name: country.name,
+                        iso: country.iso
+                    }
                 }
+
             }
         }
     }

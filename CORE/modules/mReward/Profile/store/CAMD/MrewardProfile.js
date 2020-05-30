@@ -25,6 +25,7 @@ export default {
         uploadAvatar: 'MrewardProfile/uploadAvatar'
     },
     Getters: {
+        userName: 'MrewardProfile/userName',
         userProfile: 'MrewardProfile/userProfile',
         profileFields: 'MrewardProfile/profileFields',
         profileRequiredFields: 'MrewardProfile/profileRequiredFields'

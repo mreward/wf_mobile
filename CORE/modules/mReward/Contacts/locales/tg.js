@@ -1,4 +1,5 @@
 export default {
+    m_contact_us: 'Ба мо нависед',
     m_contacts_email: 'Почтаи электронӣ',
     m_contacts_instagram: 'Инстаграм',
     m_contacts_kazahstan: 'Қазоқистон',

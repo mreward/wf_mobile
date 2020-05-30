@@ -1,4 +1,5 @@
 export default {
+    m_contact_us: 'اكتب لنا',
     m_contacts_email: 'البريد الإلكتروني',
     m_contacts_instagram: 'إينستاجرام',
     m_contacts_kazahstan: 'كازاخستان',

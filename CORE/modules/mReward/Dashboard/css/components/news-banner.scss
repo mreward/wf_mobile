@@ -21,4 +21,55 @@
     color: #FFFFFF;
     padding: 5px 8px;
   }
+
+  .fishka-count {
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    padding: 8px;
+    background: #6D0978;
+    border-radius: 8px;
+    height: 40px;
+    display: flex;
+
+    font-size: 18px;
+    line-height: 20px;
+    letter-spacing: 0.4px;
+    color: #FFFFFF;
+    justify-content: center;
+    align-items: center;
+
+    i {
+      background-color: #fff;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 22px;
+      color: #6d0a78;
+    }
+
+    span {
+      padding-left: 8px;
+    }
+  }
+}
+
+.button-phone {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  height: 46px;
+  width: 46px;
+  background: #B55CBF;
+  border-radius: 50%;
+  font-size: 16px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+  box-shadow: 0px 4px 8px rgba(77, 50, 80, 0.3);
 }

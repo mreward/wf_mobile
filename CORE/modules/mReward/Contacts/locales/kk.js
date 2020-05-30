@@ -1,4 +1,5 @@
 export default {
+    m_contact_us: 'Бізге жазыңыз',
     m_contacts_email: 'Электрондық пошта',
     m_contacts_instagram: 'Инстаграм',
     m_contacts_kazahstan: 'Қазақстан',

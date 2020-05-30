@@ -19,4 +19,17 @@ export default class MrewardPromotions extends ApiClient {
             json
         )
     }
+
+    GetPromotionItem(json) {
+        this.logger('MrewardPromotions:GetPromotionItem')
+        const requestData = {
+            ...this.APIEndPoints.Partner.GetActionItem,
+            url: `${this.APIEndPoints.Partner.GetActionItem.url}/${json.id}`
+        }
+
+        return this.sendRequest(
+          requestData,
+          json
+        )
+    }
 }

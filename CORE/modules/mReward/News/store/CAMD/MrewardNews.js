@@ -6,7 +6,8 @@ export default {
         }
     },
     Actions: {
-        getNews: 'MrewardNews/getNews'
+        getNews: 'MrewardNews/getNews',
+        getNewsItem: 'MrewardNews/getNewsItem'
     },
     Getters: {
         partnerNews: 'MrewardNews/partnerNews',

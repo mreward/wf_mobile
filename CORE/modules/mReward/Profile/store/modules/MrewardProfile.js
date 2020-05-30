@@ -189,7 +189,25 @@ const getters = {
     },
     profileRequiredFields(state) {
         return _get(state.profileParams, 'params.required', {})
-    }
+    },
+    userName (state) {
+        //  ]{"id":"0","value":"По имени"},
+        //     {"id":"1","value":"По имени и отчеству"},
+        //     {"id":"2","value":"По имени и фамилии"}]
+
+        if (state.userProfile && state.userProfile.first_name) {
+            switch (state.userProfile.address_you) {
+                case '0':
+                    return state.userProfile.first_name
+                case '1':
+                    return `${state.userProfile.first_name}<br/>${state.userProfile.middle_name || ''}`
+                case '2':
+                default:
+                    return `${state.userProfile.first_name}<br/>${state.userProfile.last_name || ''}`
+            }
+        }
+        return '';
+    },
 }
 
 export default {

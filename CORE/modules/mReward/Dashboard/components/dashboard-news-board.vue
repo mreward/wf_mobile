@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="height: 100%">
         <div
             v-if="partnerPromotions.length && !loading"
             class="news-banner-wrapper"
@@ -29,15 +29,27 @@
                     <div v-show="item.isNew" class="new">{{$t('m_dashboard_new')}}</div>
                 </div>
 
+                <div
+                        v-else-if="item.type === 'raffles'"
+                        :key="index"
+                        class="news-banner"
+                        :style="`background-image: url('${item.img}')`"
+                        @click="goToRaffleDetailsPage(item.data)"
+                >
+                    <div class="fishka-count">
+                        <i class="icon-k-symbol" />
+                        <span>{{item.count}}</span>
+                    </div>
+
+                    <div v-show="item.isNew" class="new">{{$t('m_dashboard_new')}}</div>
+                </div>
+
                 <poll-card
                         v-else-if="item.type === 'polls'"
                         :key="index"
                         :poll="item.data"
                 />
             </template>
-
-
-
         </div>
 
         <v-progress-circular
@@ -51,6 +63,11 @@
             v-else
             :message="$t('m_dashboard_no_accrued_bonuses')"
         />
+
+
+        <div class="button-phone" @click="goToPage('contacts')" >
+            <i class="icon-phone" />
+        </div>
     </div>
 </template>
 
@@ -62,6 +79,9 @@
     const ScreenPromotionsDetails = () => import('_screen_promotions_details')
     const ScreenNewsDetails = () => import('_screen_news_details')
     import PollCard from '_poll_card'
+    import ScreenRaffleDetails from '_screen_raffle_details'
+    import sortBy from 'lodash/sortBy'
+
 
     export default {
         name: 'dashboard-news-board',
@@ -79,7 +99,8 @@
             ...mapGetters({
                 partnerPromotions: constants.MrewardPromotions.Getters.partnerPromotions,
                 partnerNews: constants.MrewardNews.Getters.partnerNewsSortedByColumns,
-                polls: constants.MrewardPoll.Getters.polls
+                polls: constants.MrewardPoll.Getters.polls,
+                raffles: constants.MrewardRaffles.Getters.dashboardRaffles
             }),
 
             listNews() {
@@ -107,6 +128,18 @@
                     }));
                 }
 
+                let listRaffles = [];
+                if(this.raffles && this.raffles.length) {
+                    listRaffles = this.raffles.map((item) => ({
+                        img: item.images.mobile,
+                        type: 'raffles',
+                        count: item.count,
+                        // fixed: item.fixed,
+                        // priority: item.priority,
+                        data: item,
+                    }));
+                }
+
                 let listPolls = [];
                 if(this.polls && this.polls.length) {
                     listPolls = this.polls.map((item) => ({
@@ -117,11 +150,17 @@
                     }));
                 }
 
-                return [
+                const sortList = sortBy([
                     ...listPromotion,
                     ...listNews,
-                  ...listPolls,
-                  ]
+                    ...listPolls,
+                ], ['fixed', 'priority']);
+
+
+                return [
+                    ...listRaffles,
+                    ...sortList,
+                ]
             }
         },
         async created() {
@@ -131,6 +170,7 @@
                     this.getPromotions({ networkFirst: true }),
                     this.getRaffles({ networkFirst: true }),
                     this.getNews({ networkFirst: true }),
+                    this.getRaffles({ networkFirst: true }),
                 ])
             } catch (e) {
                 console.error(e)
@@ -140,13 +180,19 @@
         },
         methods: {
             ...mapActions({
-                getPromotions: constants.MrewardPromotions.Actions.getPromotions,
                 pushPage: constants.App.Actions.pushPage,
+                getPromotions: constants.MrewardPromotions.Actions.getPromotions,
+                getPromotionItem: constants.MrewardPromotions.Actions.getPromotionItem,
                 getPolls: constants.MrewardPoll.Actions.getPolls,
                 getNews: constants.MrewardNews.Actions.getNews,
+                getNewsItem: constants.MrewardNews.Actions.getNewsItem,
+                getRaffles: constants.MrewardRaffles.Actions.getRaffles,
             }),
 
-            goToPromotionsDetails(promotions) {
+            goToPromotionsDetails (promotions) {
+                promotions.item.viewed += 1
+                this.getPromotionItem({id: promotions.item.id})
+
                 this.pushPage({
                     extends: ScreenPromotionsDetails,
                     // options: {
@@ -157,12 +203,15 @@
                             type: Object,
                             default: () => {
                                 return promotions
-                            }
-                        }
-                    }
+                            },
+                        },
+                    },
                 })
             },
-            goToNewsDetails(news) {
+            goToNewsDetails (news) {
+                news.viewed += 1
+                this.getNewsItem({id: news.id})
+
                 this.pushPage({
                     extends: ScreenNewsDetails,
                     // options: {
@@ -178,6 +227,17 @@
                     }
                 })
             },
+
+            goToRaffleDetailsPage(raffleData) {
+                this.pushPage({
+                    extends: ScreenRaffleDetails,
+                    data: () => {
+                        return {
+                            raffleData,
+                        }
+                    }
+                })
+            }
         }
     }
 </script>
