@@ -29,6 +29,9 @@ export default {
                 ...this.dynamicInput
             }
             return _isEqual(allProfileData, this.allStartProfileData)
+        },
+        fields() {
+            return this.profileFields.filter((item) => item.key !== 'birth_day');
         }
     },
     async created() {

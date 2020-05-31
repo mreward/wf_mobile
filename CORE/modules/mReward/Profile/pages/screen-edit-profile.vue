@@ -12,9 +12,9 @@
                 @focus="goToSelectCity"
             />
 
-            <template v-if="profileFields.length">
+            <template v-if="fields.length">
                 <dynamic-input
-                    v-for="(field, key) in profileFields"
+                    v-for="(field, key) in fields"
                     v-model="dynamicInput[field.key]"
                     :key="key"
                     :field="field"

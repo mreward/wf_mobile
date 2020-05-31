@@ -15,6 +15,11 @@
         </pull-to-wrapper>
 
         <status-popover />
+
+
+        <div class="button-phone" @click="goToPage('contacts')" >
+            <i class="icon-phone" />
+        </div>
     </layout>
 </template>
 

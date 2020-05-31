@@ -63,11 +63,6 @@
             v-else
             :message="$t('m_dashboard_no_accrued_bonuses')"
         />
-
-
-        <div class="button-phone" @click="goToPage('contacts')" >
-            <i class="icon-phone" />
-        </div>
     </div>
 </template>
 
@@ -80,7 +75,7 @@
     const ScreenNewsDetails = () => import('_screen_news_details')
     import PollCard from '_poll_card'
     import ScreenRaffleDetails from '_screen_raffle_details'
-    import sortBy from 'lodash/sortBy'
+    import orderBy from 'lodash/orderBy'
 
 
     export default {
@@ -150,12 +145,11 @@
                     }));
                 }
 
-                const sortList = sortBy([
+                const sortList = orderBy([
                     ...listPromotion,
                     ...listNews,
                     ...listPolls,
-                ], ['fixed', 'priority']);
-
+                ], ['fixed', 'priority'], ['desc', 'asc']);
 
                 return [
                     ...listRaffles,

@@ -21,6 +21,7 @@
                             :key="index"
                             :item="item"
                             class="notification-list list--indentation"
+                            @click.native="onClickNotification(item)"
                         />
                     </v-ons-list>
                 </div>

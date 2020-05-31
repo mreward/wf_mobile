@@ -6,7 +6,7 @@
                     name="fade"
                     mode="out-in"
                 >
-                    <keep-alive>
+                    <keep-alive exclude="screen-adresses">
                         <component :is="currentPageTab" />
                     </keep-alive>
                 </transition>

@@ -9,6 +9,9 @@ module.exports = {
             `${PATH}/locales/ru`
         ]
     },
+    store: {
+        MrewardContacts: `${PATH}/store/modules/MrewardContacts`,
+    },
     css: [
         `${PATH}/css/main.scss`
     ],

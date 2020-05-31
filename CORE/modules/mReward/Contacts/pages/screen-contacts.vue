@@ -147,7 +147,8 @@
         computed: {
             ...mapGetters({
                 settings: constants.App.Getters.settings,
-                countries: constants.MrewardGeo.Getters.countries
+                countries: constants.MrewardGeo.Getters.countries,
+                contactsList: constants.MrewardContacts.Getters.contacts
             }),
             contacts() {
                 const contacts = this.settings.contacts;
@@ -245,13 +246,17 @@
                 if (!this.countries.length) {
                     await this.getCountries()
                 }
+
+                await this.getContacts()
+
             } catch (e) {
                 this.$Alert.Error(e)
             }
         },
         methods: {
             ...mapActions({
-                getCountries: constants.MrewardGeo.Actions.getCountries
+                getCountries: constants.MrewardGeo.Actions.getCountries,
+                getContacts: constants.MrewardContacts.Actions.getContacts
             }),
             openMessenger(messenger, account) {
                 switch (messenger) {

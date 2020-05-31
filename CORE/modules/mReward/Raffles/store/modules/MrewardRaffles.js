@@ -95,6 +95,7 @@ const formatRaffleObject = (rafflesList) => {
             amount: value.amount,
             currency: getCurrency(value.partner_id),
             dibs: value.dibs || [],
+            id: value.id,
             images: {
                 mobile: value.image_url_420
             }

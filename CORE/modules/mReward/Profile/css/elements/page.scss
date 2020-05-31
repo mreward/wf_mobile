@@ -11,3 +11,38 @@ ons-page[page="settings"] {
         background-color: $white;
     }
 }
+
+ons-page[page="profile"] {
+    .page__layout {
+        padding: 0;
+    }
+
+    .content-profile {
+        position: relative;
+
+        margin-top: 200px;
+        padding: 0 16px 34px;
+    }
+
+    & > .page__content {
+        top: 0 !important;
+    }
+
+    .page__background--cover {
+       height: 100%;
+        width: 100%;
+        background-size: cover;
+        will-change: transform;
+    }
+
+.page-background{
+    position: absolute;
+    top: 0;
+    height: 220px;
+    width: 100%;
+}
+
+    .v-btn--fab.v-btn--edit {
+        right: 32px;
+    }
+}

@@ -224,13 +224,15 @@ export default {
             })
         },
         async goToMyLocation() {
-            const { latitude, longitude } = await this.getMyLocation()
+            if(window.google) {
+                const {latitude, longitude} = await this.getMyLocation()
 
-            this.showList = false
-            this.closeList()
-            this.hideSelectedMarker()
+                this.showList = false
+                this.closeList()
+                this.hideSelectedMarker()
 
-            this.mapObject.goTo({ latitude, longitude })
+                this.mapObject.goTo({latitude, longitude})
+            }
         },
 
         async getMyLocation() {

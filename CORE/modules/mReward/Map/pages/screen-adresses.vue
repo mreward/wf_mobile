@@ -11,14 +11,14 @@
                             :class="{'tabbar-button__item--active': tab === 'list'}"
                             @click="setActiveTab('list')">
                            <div class="tabbar-button__title">
-                               Spisok
+                               {{$t('m_adresses_list')}}
                            </div>
                        </div>
                        <div class="tabbar-button__item"
                            :class="{'tabbar-button__item--active': tab === 'map'}"
                             @click="setActiveTab('map')">
                            <div class="tabbar-button__title">
-                               Karta
+                               {{$t('m_adresses_map')}}
                            </div>
                        </div>
                    </div>

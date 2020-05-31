@@ -13,7 +13,7 @@ export default {
             layout: 'default',
             cityName: '',
             countryPhoneMask: '+000 000 000 000',
-            profileDataLength: 0
+            profileDataLength: 800,
         }
     },
     computed: {
@@ -52,11 +52,21 @@ export default {
             if (this.cityName) {
                 profileData.push({
                     title: this.$t('m_profile_city'),
-                    subtitle: this.cityName
+                    subtitle: this.cityName,
+                    type: 'city'
                 })
             }
 
             return profileData
+        },
+
+        flag() {
+            const country = this.countries.find(i => i.country_id === this.profile.country);
+            if (country) {
+                return country.flag
+            }
+
+            return null;
         }
     },
     watch: {
@@ -84,14 +94,30 @@ export default {
             this.$Alert.Error(e)
         }
     },
+    mounted() {
+        this.$refs.content.parentElement.addEventListener('scroll', this.onScroll);
+    },
+    beforeDestroy() {
+        this.$refs.content.parentElement.removeEventListener('scroll', this.onScroll);
+    },
     methods: {
         ...mapActions({
             uploadAvatarAction: constants.MrewardProfile.Actions.uploadAvatar,
             getCityById: constants.MrewardGeo.Actions.getCityById,
-            getCountries: constants.MrewardGeo.Actions.getCountries,
             logoutUserAction: constants.MrewardUser.Actions.logoutUser,
             popPage: constants.App.Actions.popPage,
+            getCountries: constants.MrewardGeo.Actions.getCountries
         }),
+        onScroll (e) {
+            const l = e.target.scrollTop * 0.3
+            let scale = l * 0.3 / 100 + 1
+
+            if (scale < 1) {
+                scale = -l / 100 + 1
+
+                this.$refs.pageBackground.style.transform = `scale(${scale})`
+            }
+        },
         async setCityName() {
             try {
                 const {target: {city_name: name}} = await this.getCityById({

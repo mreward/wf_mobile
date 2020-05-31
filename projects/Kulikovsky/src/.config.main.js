@@ -48,7 +48,7 @@ module.exports = {
         History: false,
         Banners: false,
         AppState: false,
-        Faq: false
+        Faq: false,
     },
     plugins: {
         Toast: false,
