@@ -76,6 +76,7 @@
     .list--card {
         padding-bottom: 0px;
         display: flex;
+        flex-direction: row;
         flex-wrap: wrap;
         overflow: visible;
 
@@ -83,9 +84,13 @@
             padding: 9px 16px!important;
             min-height: 48px!important;
             box-shadow: none;
-            flex: 1 1;
+            flex: 1 1 45%;
 
 
+            img {
+                width: 30px;
+                height: 30px;
+            }
 
             &:nth-child(1) {
                 margin-right: 4px;
@@ -154,8 +159,8 @@
 
 .main-website {
     /* www.kulikov.com */
-    position: absolute;
-    bottom: 30px;
+    position: fixed;
+    bottom: 0px;
     font-size: 13px;
     line-height: 20px;
     letter-spacing: -0.208px;
@@ -164,7 +169,7 @@
     text-align: center;
     text-align: center;
     width: calc(100% - 32px);
-    background: linear-gradient(0deg, rgb(246, 247, 250) 70%, rgba(255, 255, 255, 0));
-    height: 60px;
-    padding-top: 15px;
+    background: linear-gradient(0deg, #f6f7fa 70%, rgba(255, 255, 255, 0));
+    height: 70px;
+    padding-top: 25px;
 }

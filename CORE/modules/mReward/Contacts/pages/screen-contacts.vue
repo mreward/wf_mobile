@@ -54,64 +54,26 @@
         </div>
 
 
-
-
-
         <div class="contacts-bottom">
             <div class="header-contacts">
                 <span>{{$t('m_contact_us')}}</span>
             </div>
             <div class="list list--card">
                 <div
-                    class="list-item"
-                    @click="openMessenger('telegram', contacts.telegram )"
-                >
-                    <div class="left list-item__left list-item__icon">
-                        <img
-                            :src="imgTelegram"
-                            alt=""
-                        >
-                    </div>
-                    <div class="center list-item__center">
-                        {{ $t('m_contacts_telegram') }}
-                    </div>
-                </div>
-                <div
-                    class="list-item"
-                    @click="openMessenger('whatsapp', contacts.whatsapp )"
-                >
-                    <div class="left list-item__left list-item__icon">
-                        <img
-                            :src="imgWhatsapp"
-                            alt=""
-                        >
-                    </div>
-                    <div class="center list-item__center">
-                        {{ $t('m_contacts_whatsapp') }}
-                    </div>
-                </div>
-            </div>
-            <div class="list list--card">
-                <div
-                    class="list-item"
-                    @click="openProtocol(contacts.onlinechat)"
-                >
-                    <div class="left list-item__left list-item__icon">
-                        <img
-                            :src="imgOnlineChat"
-                            alt=""
-                        >
-                    </div>
-                    <div class="center list-item__center">
-                        {{ $t('m_contacts_online_chat') }}
-                    </div>
-                </div>
-
-                <div
-                        style="visibility: hidden"
+                        v-for="(item, index) in general"
+                        :key="index"
                         class="list-item"
+                        @click="item.click()"
                 >
-
+                    <div class="left list-item__left list-item__icon">
+                        <img
+                                :src="item.img"
+                                alt=""
+                        >
+                    </div>
+                    <div class="center list-item__center">
+                        {{ item.name }}
+                    </div>
                 </div>
             </div>
         </div>
@@ -142,6 +104,109 @@
                 imgTelegram,
                 imgWhatsapp,
                 imgOnlineChat,
+                testData: [
+                    {
+                        'partner_id': 0,
+                        'partner_name': 'General',
+                        'general': 1,
+                        code: '',
+                        'contacts': [
+                            {
+                                'type_contact': 'website',
+                                'name_contact': 'Online chat',
+                                'text_contact': 'https://bitrix.kulikov.com/online/contact-centr',
+                                'image_url_origin': 'https://storage-devkdk.kulikov.com/storage/partner_contact/0/1/1/1_origin_1.png',
+                                'image_url_800_600': 'https://storage-devkdk.kulikov.com/storage/partner_contact/0/1/1/1_main_1.png',
+                                'image_url_300_300': 'https://storage-devkdk.kulikov.com/storage/partner_contact/0/1/1/1_mobile_1.png',
+                                'image_url_100_80': 'https://storage-devkdk.kulikov.com/storage/partner_contact/0/1/1/1_thumbnail_1.png',
+                                'image_url_40_40': 'https://storage-devkdk.kulikov.com/storage/partner_contact/0/1/1/1_icon_1.png',
+                            }, {
+                                'type_contact': 'instagram',
+                                'name_contact': 'Insta',
+                                'text_contact': 'kulikov_kg',
+                                'image_url_origin': 'https://storage-devkdk.kulikov.com/storage/partner_contact/0/1/1/1_origin_1.png',
+                                'image_url_800_600': 'https://storage-devkdk.kulikov.com/storage/partner_contact/0/1/1/1_main_1.png',
+                                'image_url_300_300': 'https://storage-devkdk.kulikov.com/storage/partner_contact/0/1/1/1_mobile_1.png',
+                                'image_url_100_80': 'https://storage-devkdk.kulikov.com/storage/partner_contact/0/1/1/1_thumbnail_1.png',
+                                'image_url_40_40': 'https://storage-devkdk.kulikov.com/storage/partner_contact/0/1/1/1_icon_1.png',
+                            },{
+                                'type_contact': 'email',
+                                'name_contact': 'Insta',
+                                'text_contact': 'service@kulikov.com',
+                                'image_url_origin': 'https://storage-devkdk.kulikov.com/storage/partner_contact/0/1/1/1_origin_1.png',
+                                'image_url_800_600': 'https://storage-devkdk.kulikov.com/storage/partner_contact/0/1/1/1_main_1.png',
+                                'image_url_300_300': 'https://storage-devkdk.kulikov.com/storage/partner_contact/0/1/1/1_mobile_1.png',
+                                'image_url_100_80': 'https://storage-devkdk.kulikov.com/storage/partner_contact/0/1/1/1_thumbnail_1.png',
+                                'image_url_40_40': 'https://storage-devkdk.kulikov.com/storage/partner_contact/0/1/1/1_icon_1.png',
+                            }],
+                    },
+                    {
+                        'partner_id': 1,
+                        'partner_name': 'Куликовский Кыргызстан',
+                        'general': 0,
+                        code: 'KG',
+                        'contacts': [
+                            {
+                                'type_contact': 'website',
+                                'name_contact': 'Online chat',
+                                'text_contact': 'https://bitrix.kulikov.com/online/contact-centr',
+                                'image_url_origin': 'https://storage-devkdk.kulikov.com/storage/partner_contact/0/1/1/1_origin_1.png',
+                                'image_url_800_600': 'https://storage-devkdk.kulikov.com/storage/partner_contact/0/1/1/1_main_1.png',
+                                'image_url_300_300': 'https://storage-devkdk.kulikov.com/storage/partner_contact/0/1/1/1_mobile_1.png',
+                                'image_url_100_80': 'https://storage-devkdk.kulikov.com/storage/partner_contact/0/1/1/1_thumbnail_1.png',
+                                'image_url_40_40': 'https://storage-devkdk.kulikov.com/storage/partner_contact/0/1/1/1_icon_1.png',
+                            }, {
+                                'type_contact': 'instagram',
+                                'name_contact': 'Insta',
+                                'text_contact': 'kulikov_kg',
+                                'image_url_origin': 'https://storage-devkdk.kulikov.com/storage/partner_contact/0/1/1/1_origin_1.png',
+                                'image_url_800_600': 'https://storage-devkdk.kulikov.com/storage/partner_contact/0/1/1/1_main_1.png',
+                                'image_url_300_300': 'https://storage-devkdk.kulikov.com/storage/partner_contact/0/1/1/1_mobile_1.png',
+                                'image_url_100_80': 'https://storage-devkdk.kulikov.com/storage/partner_contact/0/1/1/1_thumbnail_1.png',
+                                'image_url_40_40': 'https://storage-devkdk.kulikov.com/storage/partner_contact/0/1/1/1_icon_1.png',
+                            },{
+                                'type_contact': 'email',
+                                'name_contact': 'Insta',
+                                'text_contact': 'service@kulikov.com',
+                                'image_url_origin': 'https://storage-devkdk.kulikov.com/storage/partner_contact/0/1/1/1_origin_1.png',
+                                'image_url_800_600': 'https://storage-devkdk.kulikov.com/storage/partner_contact/0/1/1/1_main_1.png',
+                                'image_url_300_300': 'https://storage-devkdk.kulikov.com/storage/partner_contact/0/1/1/1_mobile_1.png',
+                                'image_url_100_80': 'https://storage-devkdk.kulikov.com/storage/partner_contact/0/1/1/1_thumbnail_1.png',
+                                'image_url_40_40': 'https://storage-devkdk.kulikov.com/storage/partner_contact/0/1/1/1_icon_1.png',
+                            }],
+                    },
+                    {
+                        'partner_id': 3,
+                        'partner_name': 'Куликовский Россия',
+                        'general': 0,
+                        code: 'RU',
+                        'contacts': [
+                            {
+                                'name_contact': 'Tel',
+                                'text_contact': '+78382021029',
+                                'image_url_origin': 'https://storage-devkdk.kulikov.com/storage/placeholder.jpg',
+                                'image_url_800_600': 'https://storage-devkdk.kulikov.com/storage/placeholder.jpg',
+                                'image_url_300_300': 'https://storage-devkdk.kulikov.com/storage/placeholder.jpg',
+                                'image_url_100_80': 'https://storage-devkdk.kulikov.com/storage/placeholder.jpg',
+                                'image_url_40_40': 'https://storage-devkdk.kulikov.com/storage/placeholder.jpg',
+                            }],
+                    },
+                    {
+                        'partner_id': 2,
+                        'partner_name': 'Куликовский Казахстан',
+                        'general': 0,
+                        code: 'KZ',
+                        'contacts': [
+                            {
+                                'name_contact': 'Tel',
+                                'text_contact': '+77273647777',
+                                'image_url_origin': 'https://storage-devkdk.kulikov.com/storage/placeholder.jpg',
+                                'image_url_800_600': 'https://storage-devkdk.kulikov.com/storage/placeholder.jpg',
+                                'image_url_300_300': 'https://storage-devkdk.kulikov.com/storage/placeholder.jpg',
+                                'image_url_100_80': 'https://storage-devkdk.kulikov.com/storage/placeholder.jpg',
+                                'image_url_40_40': 'https://storage-devkdk.kulikov.com/storage/placeholder.jpg',
+                            }],
+                    }],
             }
         },
         computed: {
@@ -151,95 +216,85 @@
                 contactsList: constants.MrewardContacts.Getters.contacts
             }),
             contacts() {
-                const contacts = this.settings.contacts;
-                const $this = this;
+                // const contacts = this.settings.contacts
+                const $this = this
 
-                const flagKG = this.countries.find(i => i.code === 'KG');
-                const flagKZ = this.countries.find(i => i.code === 'KZ');
-                const flagRU = this.countries.find(i => i.code === 'RU');
+                const list = []
 
-                return [
-                    {
-                        name: this.$t('m_contacts_kurguzstan'),
-                        flag: flagKG ? flagKG.flag : '',
-                        list: [
-                            {
-                                name: this.$t('m_contacts_email'),
-                                value: contacts.country_1.email,
-                                icon: 'icon-email',
-                                click: () => {
-                                    $this.openProtocol(contacts.country_1.email, 'email')
-                                },
-                            }, {
-                                name: this.$t('m_contacts_phone'),
-                                subtitle: this.$t('m_contacts_work_hours'),
-                                value: contacts.country_1.phone,
-                                icon: 'icon-phone',
-                                click: () => {
-                                    $this.openProtocol(contacts.country_1.phone, 'tel')
-                                },
-                            }, {
-                                name: this.$t('m_contacts_instagram'),
-                                value: contacts.country_1.instagram,
-                                img: $this.imgInstagram,
-                                click: () => {
-                                    $this.openMessenger('instagram', contacts.country_1.instagram)
-                                },
-                            }],
-                    },
-                    {
-                        name: this.$t('m_contacts_kazahstan'),
-                        flag: flagKZ ? flagKZ.flag : '',
-                        list: [
-                           {
-                                name: this.$t('m_contacts_phone'),
-                                subtitle: this.$t('m_contacts_work_hours'),
-                                value: contacts.country_2.phone,
-                                icon: 'icon-phone',
-                                click: () => {
-                                    $this.openProtocol(contacts.country_2.phone, 'tel')
-                                },
-                            }, {
-                                name: this.$t('m_contacts_instagram'),
-                                value: contacts.country_2.instagram,
-                                img: $this.imgInstagram,
-                                click: () => {
-                                    $this.openMessenger('instagram', contacts.country_2.instagram)
-                                },
-                            },  {
-                                name: this.$t('m_contacts_site'),
-                                value: contacts.site,
-                                icon: 'icon-web',
-                                click: () => {
-                                    $this.openProtocol(contacts.site)
-                                },
-                            },
-                        ],
-                    },{
-                        name: this.$t('m_contacts_russia'),
-                        flag: flagRU ? flagRU.flag : '',
-                        list: [
-                            {
-                                name: this.$t('m_contacts_phone'),
-                                subtitle: this.$t('m_contacts_work_hours_9_22'),
-                                value: contacts.country_3.phone,
-                                icon: 'icon-phone',
-                                click: () => {
-                                    $this.openProtocol(contacts.country_3.phone, 'tel')
-                                },
-                            }, {
-                                name: this.$t('m_contacts_instagram'),
-                                value: contacts.country_3.instagram,
-                                img: $this.imgInstagram,
-                                click: () => {
-                                    $this.openMessenger('instagram', contacts.country_3.instagram)
-                                },
-                            },
-                        ],
-                    },
-                ]
+                this.contactsList.forEach((item) => {
+                    if (item.partner_id !== 0) {
+                        const country = this.countries.find(i => i.code === item.code)
+
+                        if (country) {
+                            list.push({
+                                name: item.partner_name,
+                                flag: country.flag,
+                                list: item.contacts.map(contact => {
+                                    return {
+                                        name: contact.name_contact,
+                                        value: contact.text_contact,
+                                        img: contact.image_url_100_80,
+                                        click: () => {
+                                            switch (contact.type) {
+                                                case 'phone':
+                                                    $this.openProtocol(contact.text_contact, 'tel')
+                                                    break
+                                                case 'email':
+                                                    $this.openProtocol(contact.text_contact, 'email')
+                                                    break
+                                                case 'telegram':
+                                                case 'whatsapp':
+                                                case 'instagram':
+                                                    $this.openMessenger(contact.type, contact.text_contact)
+                                                    break
+                                                default:
+                                                    $this.openProtocol(contact.text_contact)
+                                                    break
+                                            }
+                                        }
+                                    }
+                                })
+                            })
+                        }
+                    }
+                })
+
+                return list
             },
 
+            general() {
+                const data = this.contactsList.find((item) => item.partner_id === 0);
+                const $this = this
+
+                if(data) {
+                    return data.contacts.map(contact => {
+                        return {
+                            name: contact.name_contact,
+                            value: contact.text_contact,
+                            img: contact.image_url_100_80,
+                            click: () => {
+                                switch (contact.type) {
+                                    case 'phone':
+                                        $this.openProtocol(contact.text_contact, 'tel')
+                                        break
+                                    case 'email':
+                                        $this.openProtocol(contact.text_contact, 'email')
+                                        break
+                                    case 'telegram':
+                                    case 'whatsapp':
+                                    case 'instagram':
+                                        $this.openMessenger(contact.type, contact.text_contact)
+                                        break
+                                    default:
+                                        $this.openProtocol(contact.text_contact)
+                                        break
+                                }
+                            }
+                        }
+                    })
+                }
+                return [];
+            }
         },
         async created() {
             try {
