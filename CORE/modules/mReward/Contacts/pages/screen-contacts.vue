@@ -235,7 +235,7 @@
                                         value: contact.text_contact,
                                         img: contact.image_url_100_80,
                                         click: () => {
-                                            switch (contact.type) {
+                                            switch (contact.type_contact) {
                                                 case 'phone':
                                                     $this.openProtocol(contact.text_contact, 'tel')
                                                     break
@@ -245,7 +245,7 @@
                                                 case 'telegram':
                                                 case 'whatsapp':
                                                 case 'instagram':
-                                                    $this.openMessenger(contact.type, contact.text_contact)
+                                                    $this.openMessenger(contact.type_contact, contact.text_contact)
                                                     break
                                                 default:
                                                     $this.openProtocol(contact.text_contact)
@@ -273,7 +273,7 @@
                             value: contact.text_contact,
                             img: contact.image_url_100_80,
                             click: () => {
-                                switch (contact.type) {
+                                switch (contact.type_contact) {
                                     case 'phone':
                                         $this.openProtocol(contact.text_contact, 'tel')
                                         break
@@ -283,7 +283,7 @@
                                     case 'telegram':
                                     case 'whatsapp':
                                     case 'instagram':
-                                        $this.openMessenger(contact.type, contact.text_contact)
+                                        $this.openMessenger(contact.type_contact, contact.text_contact)
                                         break
                                     default:
                                         $this.openProtocol(contact.text_contact)
@@ -307,6 +307,12 @@
             } catch (e) {
                 this.$Alert.Error(e)
             }
+        },
+        mounted() {
+            window.StatusBar && window.StatusBar.styleDefault();
+        },
+        beforeDestroy() {
+            window.StatusBar && window.StatusBar.styleLightContent();
         },
         methods: {
             ...mapActions({

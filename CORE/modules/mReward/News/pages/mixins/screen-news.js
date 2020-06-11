@@ -25,6 +25,12 @@ export default {
             this.$Alert.Error(e)
         }
     },
+    mounted() {
+        window.StatusBar && window.StatusBar.styleDefault();
+    },
+    beforeDestroy() {
+        window.StatusBar && window.StatusBar.styleLightContent();
+    },
     methods: {
         ...mapActions({
             getNews: constants.MrewardNews.Actions.getNews,

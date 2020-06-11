@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import get from 'lodash/get'
+import isObject from 'lodash/isObject'
 import moment from 'moment'
 
 export default {
@@ -23,13 +24,15 @@ export default {
             }
             if (device.platform.toLowerCase() === 'ios' && FirebasePlugin.grantPermission && FirebasePlugin.hasPermission) {
                 window.FirebasePlugin.hasPermission((hasPermission) => {
-                    if (!hasPermission || !hasPermission.isEnabled) {
+                    if (!hasPermission || (isObject(hasPermission) && !hasPermission.isEnabled)) {
                         FirebasePlugin.grantPermission(() => {
                             console.log('FirebasePlugin: Permission granted true')
                             _getToken()
                         }, (error) => {
                             console.error('FirebasePlugin: unable to grant permission', error)
                         })
+                    } else if(hasPermission){
+                        _getToken();
                     }
                 })
             } else {

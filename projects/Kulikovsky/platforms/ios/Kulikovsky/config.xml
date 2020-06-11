@@ -180,6 +180,9 @@
             <string>remote-notification</string>
         </array>
     </config-file>
+    <config-file parent="UIUserInterfaceStyle" platform="ios" target="**-Info.plist">
+        <string>Light</string>
+    </config-file>
     <preference name="AllowInlineMediaPlayback" value="false" />
     <preference name="BackupWebStorage" value="cloud" />
     <preference name="DisallowOverscroll" value="true" />

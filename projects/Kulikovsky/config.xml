@@ -58,6 +58,9 @@
                 <string>remote-notification</string>
             </array>
         </config-file>
+        <config-file parent="UIUserInterfaceStyle" platform="ios" target="**-Info.plist">
+            <string>Light</string>
+        </config-file>
     </platform>
     <preference name="GOOGLE_MAPS_ANDROID_API_KEY" value="AIzaSyAxCXah1ycNBb7keqjBW1ZQ92FqNSgEdC8" />
     <preference name="GOOGLE_MAPS_IOS_API_KEY" value="AIzaSyAxCXah1ycNBb7keqjBW1ZQ92FqNSgEdC8" />

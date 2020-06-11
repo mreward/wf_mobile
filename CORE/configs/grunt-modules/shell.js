@@ -23,6 +23,11 @@ module.exports = function({ grunt, wallet }) {
 
     return {
         shell: {
+            options: {
+                execOptions: {
+                    maxBuffer: 1000 * 1000 * 100,
+                },
+            },
             xcodebuild_xcarchive: {
                 command: [
                     `cd ./projects/${wallet.name}/platforms/ios/`,

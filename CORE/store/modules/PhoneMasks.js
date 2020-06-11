@@ -372,6 +372,15 @@ const getters = {
                     name: country.name
                 }
             }
+            case 'KZ':
+            case 'RU': {
+                return {
+                    ...country,
+                    code: '+7',
+                    mask: 'xxx xxx xx xx',
+                    name: country.name
+                }
+            }
             default: {
                 const maskCountry = new libphonenumber.AsYouType(country.iso.toUpperCase())
                 const code = `+${maskCountry.countryCallingCode}`

@@ -275,7 +275,7 @@ const actions = {
         } catch (error) {
             throw new Error(error.message)
         }
-    }
+    },
 }
 
 const getters = {

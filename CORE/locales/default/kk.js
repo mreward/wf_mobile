@@ -1,4 +1,7 @@
 export default {
+    country_kg: 'Қырғызстан',
+    country_kz: 'Қазақстан',
+    country_ru: 'Ресей',
     m_additionally: 'Қосымша',
     m_amount: 'Сомасы',
     m_apply: 'Қолдану',

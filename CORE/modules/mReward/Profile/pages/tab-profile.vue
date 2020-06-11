@@ -54,11 +54,11 @@
                                 <v-list-item-title v-html="item.title"/>
                                 <v-list-item-subtitle>
                                 <span>
-                                    {{item.subtitle}}
+                                    {{$t(`country_${(country.code || '').toLowerCase()}`)}}, {{item.subtitle}}
                                 </span>
                                     <img v-if="item.type === 'city'"
                                          class="flag"
-                                         :src="flag"
+                                         :src="country.flag"
                                          alt="">
                                 </v-list-item-subtitle>
                             </v-list-item-content>
@@ -68,7 +68,7 @@
                     <v-btn
                             fab
                             class="v-btn--edit"
-                            @click="goToEditProfile"
+                            @click="goToEditProfile()"
                     >
                         <i class="icon-edit"/>
                     </v-btn>
@@ -80,7 +80,7 @@
                         block
                         class="v-btn--third v-btn--secondary"
                         :disabled="!profile.mobile"
-                        @click="goToEditProfile"
+                        @click="goToEditProfile()"
                 >
                     {{ $t('m_profile_edit_profile') }}
                     <i class="icon-next-page"/>
@@ -120,7 +120,7 @@
                         color="secondary"
                         block
                         class="margin-top--small-base v-btn--third v-btn--secondary"
-                        @click="goToRecoveryPassword"
+                        @click="goToRecoveryPassword()"
                 >
                     {{ $t('m_profile_change_password') }}
                 </v-btn>

@@ -10,9 +10,9 @@
         />
 
         <div class="card__wrapper card__wrapper--modifier">
-            <div class="card__title">
-                {{ poll.question | capitalize }}
-            </div>
+<!--            <div class="card__title">-->
+<!--                {{ poll.question | capitalize }}-->
+<!--            </div>-->
             <div class="card__range">
                 <div class="range__ruler">
                     <div

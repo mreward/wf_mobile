@@ -60,13 +60,13 @@ export default {
             return profileData
         },
 
-        flag() {
+        country() {
             const country = this.countries.find(i => i.country_id === this.profile.country);
             if (country) {
-                return country.flag
+                return country
             }
 
-            return null;
+            return {};
         }
     },
     watch: {
@@ -95,9 +95,11 @@ export default {
         }
     },
     mounted() {
+        window.StatusBar && window.StatusBar.styleDefault();
         this.$refs.content.parentElement.addEventListener('scroll', this.onScroll);
     },
     beforeDestroy() {
+        window.StatusBar && window.StatusBar.styleLightContent();
         this.$refs.content.parentElement.removeEventListener('scroll', this.onScroll);
     },
     methods: {
@@ -106,6 +108,7 @@ export default {
             getCityById: constants.MrewardGeo.Actions.getCityById,
             logoutUserAction: constants.MrewardUser.Actions.logoutUser,
             popPage: constants.App.Actions.popPage,
+            pushPage: constants.App.Actions.pushPage,
             getCountries: constants.MrewardGeo.Actions.getCountries
         }),
         onScroll (e) {

@@ -1,4 +1,7 @@
 export default {
+    country_kg: 'Kirghizistan',
+    country_kz: 'Kazakhstan',
+    country_ru: 'Russie',
     m_additionally: 'aditionellement',
     m_amount: 'Montant',
     m_apply: 'Appliquer',

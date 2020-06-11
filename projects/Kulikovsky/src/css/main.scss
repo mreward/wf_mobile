@@ -138,3 +138,12 @@ html[onsflag-iphonex-portrait] {
 .page__background {
     opacity: 1 !important;
 }
+
+.toolbar__center {
+    color: #000;
+    text-transform: none;
+    font-weight: 600;
+    font-size: rem(22);
+    line-height: rem(24);
+    letter-spacing: 0.4px;
+}

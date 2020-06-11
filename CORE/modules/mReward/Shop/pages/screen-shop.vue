@@ -46,16 +46,19 @@
             padding-bottom: 34px;
 
             .not-found-items {
-                height: 60px;
+                height: 30px;
+                min-height: 30px;
+                margin: -62px;
             }
         }
 
         .toolbar-main__left {
             width: 0px;
         }
+
     }
 .shop-content {
-    height: 100%;
+    height: calc(100vw * 1.24);
     justify-content: center;
     align-items: flex-end;
     overflow: visible;

@@ -1,4 +1,7 @@
 export default {
+    country_kg: 'Кыргызстан',
+    country_kz: 'Казахстан',
+    country_ru: 'Россия',
     m_additionally: 'Дополнительно',
     m_amount: 'Сумма',
     m_apply: 'Применить',

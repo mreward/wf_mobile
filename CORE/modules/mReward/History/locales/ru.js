@@ -1,5 +1,5 @@
 export default {
-    m_history: 'История начислений',
+    m_history: 'История покупок',
     m_history_accrued_dibs: 'Начислено фишек для розыгрыша «{generatorName}»',
     m_history_accrued_new_bonuses: 'Начислено бонусов',
     m_history_all_shop: 'Все магазины',

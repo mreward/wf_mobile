@@ -2,7 +2,7 @@
     <v-ons-popover
         cancelable
         :visible.sync="visible"
-        target=".toolbar-main"
+        target=".toolbar-upper__img"
         direction="'up'"
         class="popover--status"
     >
@@ -33,20 +33,20 @@
             }
         },
         created() {
-            this.$bus.$on('showStatusPopover', this.showPopover)
+            this.$bus.$on('showStatusPopover', this.showPopover.bind(this))
         },
         beforeDestroy() {
-            this.$bus.$off('showStatusPopover', this.showPopover)
+            this.$bus.$off('showStatusPopover', this.showPopover.bind(this))
         },
         methods: {
-            showPopover({ status, title, nextEvent }) {
+            showPopover({ status, title, nextEvent = null }) {
                 this.status = status
                 this.title = title
                 this.visible = true
-                setTimeout(async () => {
+                setTimeout(() => {
                     this.visible = false
 
-                    if (isFunction(nextEvent)) {
+                    if (nextEvent && isFunction(nextEvent)) {
                         nextEvent()
                     }
                 }, 3000)

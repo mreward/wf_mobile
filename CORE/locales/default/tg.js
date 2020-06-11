@@ -1,4 +1,7 @@
 export default {
+    country_kg: 'Қирғизистон',
+    country_kz: 'Қазоқистон',
+    country_ru: 'Россия',
     m_additionally: 'Илова бар ин',
     m_amount: 'Маблағ',
     m_apply: 'Муроҷиат кунед',

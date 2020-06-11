@@ -29,5 +29,11 @@ export default {
 
             return dibsView
         }
-    }
+    },
+    mounted() {
+        window.StatusBar && window.StatusBar.styleDefault();
+    },
+    beforeDestroy() {
+        window.StatusBar && window.StatusBar.styleLightContent();
+    },
 }

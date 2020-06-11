@@ -220,11 +220,11 @@
             },
             position () {
                 if (this.currentPageTab === 'screen-home-tab') {
-                    return 'vissible';
-
                     if (window.StatusBar) {
                         window.StatusBar.styleLightContent();
                     }
+
+                    return 'vissible';
                 }
 
                 if (window.StatusBar) {
@@ -500,6 +500,13 @@
             background-color: rgba(32, 30, 38, 0.48);
             transform: translateY(-1000);
             opacity: 0;
+        }
+
+        &__text {
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 28px;
+            letter-spacing: 0.2px;
         }
     }
 
