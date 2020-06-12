@@ -34,6 +34,9 @@ export default {
             this.$Alert.Error(e)
         }
     },
+    mounted() {
+        window.StatusBar && window.StatusBar.styleDefault();
+    },
     methods: {
         ...mapActions({
             getProfileParams: constants.MrewardProfile.Actions.getProfileParams,

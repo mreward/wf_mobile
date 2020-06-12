@@ -183,6 +183,7 @@
     .right {
         @extend .flex;
         @extend .flex--justify-right;
+        height: 58px;
 
         .amount {
             color: $white;

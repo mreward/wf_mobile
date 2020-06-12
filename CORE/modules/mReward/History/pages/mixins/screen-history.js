@@ -49,6 +49,12 @@ export default {
             this.getAdresses();
         }
     },
+    mounted() {
+        window.StatusBar && window.StatusBar.styleDefault();
+    },
+    beforeDestroy() {
+        // window.StatusBar && window.StatusBar.styleLightContent();
+    },
     methods: {
         ...mapActions({
             pushPage: constants.App.Actions.pushPage,

@@ -233,7 +233,7 @@
                                     return {
                                         name: contact.name_contact,
                                         value: contact.text_contact,
-                                        img: contact.image_url_100_80,
+                                        img: contact.image_url_300_300,
                                         click: () => {
                                             switch (contact.type_contact) {
                                                 case 'phone':
@@ -271,7 +271,7 @@
                         return {
                             name: contact.name_contact,
                             value: contact.text_contact,
-                            img: contact.image_url_100_80,
+                            img: contact.image_url_300_300,
                             click: () => {
                                 switch (contact.type_contact) {
                                     case 'phone':
@@ -312,7 +312,7 @@
             window.StatusBar && window.StatusBar.styleDefault();
         },
         beforeDestroy() {
-            window.StatusBar && window.StatusBar.styleLightContent();
+            // window.StatusBar && window.StatusBar.styleLightContent();
         },
         methods: {
             ...mapActions({

@@ -165,6 +165,7 @@
                     this.getRaffles({ networkFirst: true }),
                     this.getNews({ networkFirst: true }),
                     this.getRaffles({ networkFirst: true }),
+                    this.getPolls({ networkFirst: true }),
                 ])
             } catch (e) {
                 console.error(e)

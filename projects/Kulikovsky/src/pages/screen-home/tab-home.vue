@@ -10,7 +10,9 @@ import localforage from "localforage"
         </div>
 
         <pull-to-wrapper
-            :update-action="updateDashboardContent"
+                class="pull-to-wrapper"
+                ref="pullToWrapper"
+                :update-action="updateDashboardContent"
         >
             <dashboard-news-board ref="newsBoard"/>
         </pull-to-wrapper>
@@ -118,6 +120,8 @@ import localforage from "localforage"
                     this.dragStartY = event.targetTouches[0].clientY
                     this.dragStartX = event.targetTouches[0].clientX
                     this.isDrag = true
+                    this.$refs.newsBoard.$el.parentElement.parentElement.style.overflow = 'hidden'
+                    this.$refs.newsBoard.$el.classList.add('pull-to-wrapper--swipe');
                 }
             },
             touchEnd(event) {
@@ -125,6 +129,9 @@ import localforage from "localforage"
                     this.isDrag = false
                     let newY = this.positionY + event.changedTouches[0].clientY - this.dragStartY
                     let newX = this.positionX + event.changedTouches[0].clientX - this.dragStartX
+                    this.$refs.newsBoard.$el.parentElement.parentElement.style.overflow = 'scroll';
+                    this.$refs.newsBoard.$el.classList.remove("pull-to-wrapper--swipe");
+
                     const maxHeight = this.$refs.newsBoard.$el.parentElement.parentElement.clientHeight - 60
 
                     if (newY > 16) {

@@ -24,6 +24,9 @@ export default {
             return `${this.selectedCountry.code} ${this.mobile}`
         }
     },
+    mounted() {
+        window.StatusBar && window.StatusBar.styleDefault();
+    },
     methods: {
         ...mapActions({
             pushPage: constants.App.Actions.pushPage,

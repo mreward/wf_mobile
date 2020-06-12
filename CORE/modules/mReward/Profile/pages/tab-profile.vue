@@ -54,7 +54,10 @@
                                 <v-list-item-title v-html="item.title"/>
                                 <v-list-item-subtitle>
                                 <span>
-                                    {{$t(`country_${(country.code || '').toLowerCase()}`)}}, {{item.subtitle}}
+                                    <span v-if="item.type === 'city'">
+                                        {{$t(`country_${(country.code || '').toLowerCase()}`)}},
+                                    </span>
+                                    {{item.subtitle}}
                                 </span>
                                     <img v-if="item.type === 'city'"
                                          class="flag"

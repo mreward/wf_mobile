@@ -84,6 +84,7 @@
     margin-top: 16px;
     font-size: 13px;
     color: $grey-dark;
+    padding-bottom: 40px;
 
     span {
         font-weight: 600;
@@ -147,3 +148,18 @@ html[onsflag-iphonex-portrait] {
     line-height: rem(24);
     letter-spacing: 0.4px;
 }
+
+.pull-to-wrapper {
+    z-index: 2;
+
+    &--swipe:after {
+        content: '';
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-color: transparent;
+    }
+}
+

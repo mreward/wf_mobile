@@ -45,6 +45,7 @@
                         >
                             <template
                                     v-slot:activator="{ on }"
+                                    v-if="currentBalance.currency"
                             >
                                 <span
                                         ref="btnCurrency"
