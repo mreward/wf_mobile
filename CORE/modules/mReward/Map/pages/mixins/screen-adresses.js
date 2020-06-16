@@ -204,14 +204,14 @@ export default {
         updateHeight () {
             const { adress } = this.$refs
             const timeline = new TimelineLite()
-            const height = this.$refs.adressListWrapper.offsetHeight
+            const height = this.$refs.adressListWrapper.scrollHeight
             timeline.to(adress, timeAnim, {height: `${height + 30}px`, ease: typeAnim}, 0)
         },
 
         openList () {
             const { adress } = this.$refs
             const timeline = new TimelineLite()
-            const height = this.$refs.adressListWrapper.offsetHeight
+            const height = this.$refs.adressListWrapper.scrollHeight
 
             timeline.to(adress, timeAnim, {height: `${height + 30}px`, ease: typeAnim}, 0)
         },
@@ -311,7 +311,7 @@ export default {
                 if (this.showList) {
                     newY = (this.dragStart - event.targetTouches[0].clientY) * -1
                 } else {
-                    const h = this.$refs.adressListWrapper.offsetHeight
+                    const h = this.$refs.adressListWrapper.scrollHeight
                     newY = -h + event.targetTouches[0].clientY - this.dragStart
                 }
 
@@ -320,7 +320,7 @@ export default {
         },
         setPosition (y) {
             const {adress} = this.$refs
-            const height = this.$refs.adressListWrapper.offsetHeight + 30
+            const height = this.$refs.adressListWrapper.scrollHeight + 30
             const heightAdress = height + y
 
             if (heightAdress > height) {

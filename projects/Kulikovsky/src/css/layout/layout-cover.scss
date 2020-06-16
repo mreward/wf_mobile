@@ -68,3 +68,17 @@
         }
     }
 }
+
+//html[unsafe-area] {
+//    .layout-cover {
+//        > .toolbar {
+//            background: transparent;
+//
+//            &:not(.toolbar--cover-content) + .page__background + .page__content {
+//                top: 0px !important;
+//                padding;
+//                background-color: #fff !important;
+//            }
+//        }
+//    }
+//}

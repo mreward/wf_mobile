@@ -45,7 +45,7 @@
                         >
                             <template
                                     v-slot:activator="{ on }"
-                                    v-if="currentBalance.currency"
+                                    v-show="currentBalance.currency"
                             >
                                 <span
                                         ref="btnCurrency"
@@ -58,10 +58,10 @@
                                             v-on="on"
                                     >
                                         {{ currentBalance.currency }}
-                                        <i class="icon-next-page right"/>
+                                        <i class="icon-next-page right currency-right "/>
                                     </v-btn>
                                     <span
-                                            v-else-if="currentBalance.currency"
+                                            v-else
                                             class="amount--currency"
                                     >{{ currentBalance.currency }}</span>
                                 </span>
@@ -378,14 +378,20 @@
                 TweenLite.set(mask, {opacity: `0`, y: 0})
                 TweenLite.set(amount, {x: 0, y: 0, scale: 1})
                 TweenLite.set(btnClose, {y: 200})
-                TweenLite.set(btnCurrency, {x: 0, y: 0, scale: 1})
+
+                if(this.currentBalance.currency) {
+                    TweenLite.set(btnCurrency, {x: 0, y: 0, scale: 1})
+                }
 
                 timeline.to(toolbar, timeAnim, {height: `${this.defaultMaxHeight}px`, ease: typeAnim}, 0)
                 timeline.to(toolbarContent, timeAnim, {opacity: `1`, ease: typeAnim}, 0)
                 timeline.to(amount, timeAnim, {x: this.positionLeft(), y: 20, scale: 2, ease: typeAnim}, 0)
                 timeline.to(btnClose, timeAnim, {y: 0}, 0)
                 timeline.to(mask, timeAnim, {opacity: `1`}, 0)
-                timeline.to(btnCurrency, timeAnim, {y: -3, x: 0, scale: 0.50, ease: typeAnim}, 0)
+
+                if(this.currentBalance.currency) {
+                    timeline.to(btnCurrency, timeAnim, {y: -3, x: 0, scale: 0.50, ease: typeAnim}, 0)
+                }
 
                 if (this.startHeight) {
                     TweenLite.set([userName, avatar, toolbarContent], {opacity: `1`})
@@ -412,7 +418,10 @@
                 timeline.to(amount, timeAnim, {x: 0, y: 0, scale: 1, ease: typeAnim}, 0)
                 timeline.to(btnClose, timeAnim, {y: 200}, 0)
                 timeline.to(mask, timeAnim, {opacity: `0`}, 0).to(mask, timeAnim, {y: -1000}, 0.5)
-                timeline.to(btnCurrency, timeAnim, {x: 0, y: 0, scale: 1, ease: typeAnim}, 0)
+
+                if(this.currentBalance.currency) {
+                    timeline.to(btnCurrency, timeAnim, {x: 0, y: 0, scale: 1, ease: typeAnim}, 0)
+                }
 
                 if (this.startHeight) {
                     TweenLite.set([userName, avatar], {opacity: `0`})
@@ -554,5 +563,6 @@
 
     span.btn-currency {
         align-self: center;
+        display: flex;
     }
 </style>

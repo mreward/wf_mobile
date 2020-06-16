@@ -78,9 +78,9 @@
             </div>
         </div>
 
-        <div class="main-website" @click="goToSite">
-            <span>www.kulikov.com</span>
-        </div>
+<!--        <div class="main-website" @click="goToSite">-->
+<!--            <span>www.kulikov.com</span>-->
+<!--        </div>-->
     </layout>
 </template>
 

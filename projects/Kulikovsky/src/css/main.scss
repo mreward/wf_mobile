@@ -163,3 +163,40 @@ html[onsflag-iphonex-portrait] {
     }
 }
 
+.notifications-counter::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    right: calc(50% - 12px);
+    width: 6px;
+    height: 6px;
+    background-color: #ff0000;
+    border-radius: 50%;
+}
+
+html[unsafe-area]{
+    .page[status-bar-fill] > .page__content {
+        top: 35px;
+    }
+
+    .page[status-bar-fill] > .toolbar {
+        padding-top: 44px !important;
+    }
+
+    .page[status-bar-fill] > .toolbar:not(.toolbar--transparent) + .page__background, .page[status-bar-fill] > .toolbar:not(.toolbar--cover-content) + .page__background + .page__content {
+        top: 88px;
+    }
+
+    .page[page="adresses"] > .page__content {
+        top: 44px;
+    }
+
+    [page*=adresses] .list--fullpage {
+        top: 83px
+    }
+
+    ons-page[page="recovery-pass"] .page__content {
+        top: 0px;
+    }
+
+}

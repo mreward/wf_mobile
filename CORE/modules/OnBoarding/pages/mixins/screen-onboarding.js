@@ -43,9 +43,7 @@ export default {
             background: this.items[0].background
         });
 
-        debugger
         if(this.$refs['intro0']) {
-            debugger
             const a  = this.$refs['intro0']
         }
     },

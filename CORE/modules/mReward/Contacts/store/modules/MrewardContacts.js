@@ -19,7 +19,6 @@ const actions = {
 
             const {result} = await new MrewardContacts().GetContacts(payload)
 
-            debugger;
             commit(constants.MrewardContacts.Mutations.Contacts.name, result)
 
             dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })

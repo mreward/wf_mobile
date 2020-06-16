@@ -5,6 +5,8 @@ import ScreenNotifications from '_screen_notifications'
 
 import Vue from 'vue'
 import DashboardProfile from '_dashboard_profile'
+import { mapActions, mapGetters } from 'vuex'
+import constants from '_vuex_constants'
 
 export default {
     components: {
@@ -35,7 +37,8 @@ export default {
             {
                 label: 'm_notifications',
                 key: 'screen-notifications',
-                icon: 'notifications'
+                icon: 'notifications',
+                class: [],
             },
             {
                 label: 'm_adresses',
@@ -44,7 +47,25 @@ export default {
             }
         ]
     }),
-    mounted() {
+    computed: {
+        ...mapGetters({
+            notificationsUnread: constants.MrewardNotifications.Getters.notificationsUnread
+        }),
+        showDot() {
+            return [
+                { 'notifications-counter': this.notificationsUnread.length }
+            ]
+        }
+    },
+    watch: {
+        showDot(value) {
+            Vue.set(this.childTabs, 3, {
+                ...this.childTabs[3],
+                class: value
+            })
+        }
+    },
+    async mounted() {
         const $this = this
         const ComponentClass = Vue.extend(DashboardProfile)
         const instance = new ComponentClass({
@@ -58,5 +79,16 @@ export default {
         instance.$mount() // pass nothing
 
         this.$el.appendChild(instance.$el)
+
+        try {
+            await this.getNotifications({ networkFirst: true })
+        } catch (e) {
+            this.$Alert.Error(e)
+        }
+    },
+    methods: {
+        ...mapActions({
+            getNotifications: constants.MrewardNotifications.Actions.getNotifications
+        })
     }
 }

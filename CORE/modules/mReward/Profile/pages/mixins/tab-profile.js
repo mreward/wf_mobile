@@ -109,6 +109,7 @@ export default {
             logoutUserAction: constants.MrewardUser.Actions.logoutUser,
             popPage: constants.App.Actions.popPage,
             pushPage: constants.App.Actions.pushPage,
+            popToPage: constants.App.Actions.popToPage,
             getCountries: constants.MrewardGeo.Actions.getCountries
         }),
         onScroll (e) {

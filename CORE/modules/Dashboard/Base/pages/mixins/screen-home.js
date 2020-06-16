@@ -16,7 +16,11 @@ export default {
             }
         },
         classTab(classStyle) {
-            return classStyle ? `tabbar__item--${classStyle}` : ''
+            if(typeof classStyle === 'string') {
+                return classStyle ? `tabbar__item--${classStyle}` : ''
+            } else {
+                return classStyle || ''
+            }
         },
         tabIcon(tab) {
             return this.currentPageTab === tab.key ? tab.iconActive || tab.icon : tab.icon

@@ -4,6 +4,7 @@
         :title="$t(titleTranslationKey)"
         button-left="back"
         icon-left="arrow"
+        page="recovery-pass"
     >
         <div class="layout-auth__form">
             <template v-if="showMobileNumberInput">
