@@ -1,6 +1,8 @@
 import { mapActions, mapGetters } from 'vuex'
 import constants from '_vuex_constants'
 import MobileNumber from '_mobile_number'
+import StringMask from 'string-mask'
+import MaskPhone from '_PLUGINS/common/MaskPhone'
 const ScreenConfirmOtp = () => import('_screen_confirm_otp')
 
 export default {
@@ -12,20 +14,32 @@ export default {
         password: '',
         showPass: false,
         showMobileNumberInput: true,
-        errorMessages: {}
+        errorMessages: {},
+        countryPhoneMask: '+000 000 000 000',
     }),
     computed: {
         ...mapGetters({
             loaderVisible: constants.App.Getters.loaderVisible,
             moduleOptions: constants.App.Getters.moduleOptions,
-            settings: constants.App.Getters.settings
+            settings: constants.App.Getters.settings,
+            profile: constants.MrewardProfile.Getters.userProfile,
+            countries: constants.MrewardGeo.Getters.countries,
+            maskFromIso: constants.PhoneMasks.Getters.maskFromIso
         }),
-        mobileNumber() {
+        mobileNumber () {
+            if (this.profile && this.profile.mobile) {
+                return new StringMask(this.countryPhoneMask, {reverse: true}).apply(this.profile.mobile)
+            }
+
             return `${this.selectedCountry.code} ${this.mobile}`
         }
     },
     mounted() {
         window.StatusBar && window.StatusBar.styleDefault();
+
+        if (this.profile && this.profile.mobile) {
+            this.setCountryPhoneMask()
+        }
     },
     methods: {
         ...mapActions({
@@ -80,6 +94,26 @@ export default {
         hidePhoneInputError() {
             this.errorMessages['phone'] = ''
             this.errorMessages['mobile'] = ''
-        }
+        },
+
+        setCountryPhoneMask() {
+            const fullMobileNumber = `+${this.profile.mobile}`
+            const countryCode = MaskPhone.GetCountryByPhoneNumber(fullMobileNumber)
+
+            const country = this.countries.find(({ code }) => {
+                return code === countryCode
+            })
+
+            const { phone_code: code, country_id: id, country_name: name, code: iso } = country
+            const selectedCountry = {
+                code,
+                id,
+                name,
+                iso
+            }
+
+            const { mask } = this.maskFromIso(selectedCountry)
+            this.countryPhoneMask = `${code} ${mask}`.replace(/[0-9x]/g, '0')
+        },
     }
 }

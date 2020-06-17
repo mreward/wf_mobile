@@ -78,6 +78,9 @@
             }
         },
         data() {
+            const html = document.documentElement;
+            const isNotch = html.hasAttribute('unsafe-area')
+
             return {
                 initialToolbarHeight: minToolbarHeight,
                 toolbarHeight: minToolbarHeight,
@@ -86,7 +89,7 @@
                 isMoorFunctionExecute: false,
                 touchEndToolbarHeight: 0,
                 lastSettedPosition: 0,
-                pageAdditionalPadding: this.$ons.platform.isIPhoneX() ? 40 : 16
+                pageAdditionalPadding: (this.$ons.platform.isIPhoneX() || isNotch) ? 40 : 16
             }
         },
         computed: {

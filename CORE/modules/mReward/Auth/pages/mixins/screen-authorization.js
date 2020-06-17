@@ -65,6 +65,8 @@ export default {
         },
 
         async goToRecoveryPassword() {
+            const $this = this
+
             this.pushPage({
                 extends: ScreenRecoveryPassword,
                 data: () => {
@@ -76,16 +78,25 @@ export default {
                 },
                 methods: {
                     callbackPageOpen: (data = {}) => {
-                        this.replacePage({
-                            extends: ScreenAuthorization,
-                            data: () => {
-                                return {
-                                    ...data
-                                }
-                            }
-                        })
-                    }
-                }
+                        $this.$bus.$emit(
+                          'showStatusPopover',
+                          {
+                              status: 1,
+                              title: $this.$t('m_auth_password_changed_done'),
+                              nextEvent: () => {
+                                  $this.replacePage({
+                                      extends: ScreenAuthorization,
+                                      data: () => {
+                                          return {
+                                              ...data,
+                                          }
+                                      },
+                                  })
+                              },
+                          },
+                        )
+                    },
+                },
             })
         },
 

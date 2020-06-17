@@ -29,6 +29,7 @@
 
         <alert-confirm-helper />
         <user-guide />
+        <status-popover />
     </v-app>
 </template>
 
@@ -39,6 +40,7 @@
     import AlertConfirmHelper from '_alert_confirm_helper'
     import MixinNavigator from '_mixins_navigator'
     import ActionSheetFeedback from '_action_sheet_feedback'
+    import StatusPopover from '_status_popover'
 
     import _isFunction from 'lodash/isFunction'
     import SplashPng from '_splashPng'
@@ -48,7 +50,8 @@
         name: 'navigator',
         components: {
             AlertConfirmHelper,
-            ActionSheetFeedback
+            ActionSheetFeedback,
+            StatusPopover
         },
         mixins: MixinNavigator,
         data: () => ({

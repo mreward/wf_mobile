@@ -206,7 +206,16 @@ export default {
                 },
                 methods: {
                     callbackPageOpen: () => {
-                        this.popToPage('screen-home')
+                        this.$bus.$emit(
+                          'showStatusPopover',
+                          {
+                              status: 1,
+                              title: this.$t('m_auth_password_changed_done'),
+                              nextEvent: () => {
+                                  this.popToPage('screen-home')
+                              }
+                          }
+                        )
                     }
                 }
             })

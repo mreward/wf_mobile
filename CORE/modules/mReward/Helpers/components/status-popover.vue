@@ -2,7 +2,7 @@
     <v-ons-popover
         cancelable
         :visible.sync="visible"
-        target=".toolbar-upper__img"
+        target=".page__content"
         direction="'up'"
         class="popover--status"
     >

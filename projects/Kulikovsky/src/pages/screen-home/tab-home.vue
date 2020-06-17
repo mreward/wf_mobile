@@ -17,7 +17,7 @@ import localforage from "localforage"
             <dashboard-news-board ref="newsBoard"/>
         </pull-to-wrapper>
 
-        <status-popover />
+<!--        <status-popover />-->
 
 
         <div class="button-phone" ref="btnCall" @click="goToPage('contacts')" >
@@ -30,7 +30,6 @@ import localforage from "localforage"
     import constants from '_vuex_constants'
     import { mapActions } from 'vuex'
     import DashboardNewsBoard from '_dashboard_news_board'
-    import StatusPopover from '_status_popover'
     import MixinPushNotificationHandler from '_mixin_push_notification_handler_extend'
     import PullToWrapper from '_pull_to_wrapper'
     import localforage from 'localforage'
@@ -40,7 +39,6 @@ import localforage from "localforage"
         components: {
             PullToWrapper,
             DashboardNewsBoard,
-            StatusPopover
         },
         mixins: [
             MixinPushNotificationHandler
@@ -95,7 +93,7 @@ import localforage from "localforage"
                 getRaffles: constants.MrewardRaffles.Actions.getRaffles,
                 getPolls: constants.MrewardPoll.Actions.getPolls,
                 getNews: constants.MrewardNews.Actions.getNews,
-
+                getNotifications: constants.MrewardNotifications.Actions.getNotifications,
             }),
             async updateDashboardContent(loaded) {
                 try {
@@ -105,6 +103,7 @@ import localforage from "localforage"
                         this.getRaffles({ networkFirst: true }),
                         this.getPolls({ networkFirst: true }),
                         this.getNews({ networkFirst: true }),
+                        this.getNotifications({ networkFirst: true})
                     ])
                 } catch (e) {
                     this.$Alert.Error(e)

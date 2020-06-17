@@ -48,13 +48,16 @@ export default {
     },
     async created() {
         try {
-            await this.getNotifications()
+            await this.getNotifications({ networkFirst: true})
+            this.markNotificationsAsRead(this.notificationsList)
         } catch (e) {
             this.$Alert.Error(e)
         }
+
+        this.$bus.$on('currentTab', this.onSelectTab)
     },
     beforeDestroy() {
-        this.markNotificationsAsRead(this.notificationsList)
+        this.$bus.$off('currentTab', this.onSelectTab)
     },
     methods: {
         ...mapActions({
@@ -64,9 +67,17 @@ export default {
             getPromotionItem: constants.MrewardPromotions.Actions.getPromotionItem,
             getNewsItem: constants.MrewardNews.Actions.getNewsItem,
         }),
+
+        async onSelectTab (tab) {
+            if (tab === 'screen-notifications') {
+                this.markNotificationsAsRead(this.notificationsList)
+                await this.getNotifications({ networkFirst: true})
+            }
+        },
+
         async updateNotifications(loaded) {
             try {
-                await this.getNotifications({ networkFirst: true })
+                await this.getNotifications({ networkFirst: true})
             } catch (e) {
                 this.$Alert.Error(e)
             } finally {
