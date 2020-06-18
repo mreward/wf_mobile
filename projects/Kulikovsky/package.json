@@ -95,7 +95,8 @@
         "ANDROID_CRASHLYTICS_VERSION": "2.10.1",
         "ANDROID_CRASHLYTICS_NDK_VERSION": "2.1.1",
         "ANDROID_GSON_VERSION": "2.8.6"
-      }
+      },
+      "cordova-plugin-android-notch": {}
     },
     "platforms": [
       "android",
@@ -108,6 +109,7 @@
     "cordova-android": "^8.1.0",
     "cordova-android-support-gradle-release": "^3.0.1",
     "cordova-ios": "^5.1.1",
+    "cordova-plugin-android-notch": "^1.0.3",
     "cordova-plugin-compat": "^1.2.0",
     "cordova-plugin-datepicker": "^0.9.3",
     "cordova-plugin-googlemaps": "^2.7.1",

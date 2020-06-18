@@ -51,6 +51,24 @@ export default {
             } else {
                 this.replacePage(ScreenAuthorization)
             }
+        },
+
+        onOnline() {
+            this.$bus.$emit('showStatusPopover', {
+                  status: 1,
+                  title: this.$t('m_online_toast'),
+                  nextEvent: () => {
+                  }
+              })
+        },
+
+        onOffline() {
+            this.$bus.$emit('showStatusPopover', {
+                status: 0,
+                title: this.$t('m_offline_toast'),
+                nextEvent: () => {
+                }
+            })
         }
     }
 }

@@ -122,6 +122,9 @@
     },
     "es6-promise-plugin": {
       "PACKAGE_NAME": "pro.mwallet.kulikovskyuat"
+    },
+    "cordova-plugin-android-notch": {
+      "PACKAGE_NAME": "pro.mwallet.kulikovskyuat"
     }
   },
   "dependent_plugins": {

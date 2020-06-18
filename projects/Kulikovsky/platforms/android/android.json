@@ -143,6 +143,10 @@
             {
               "xml": "<feature name=\"SocialSharing\"><param name=\"android-package\" value=\"nl.xservices.plugins.SocialSharing\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"AndroidNotch\"><param name=\"android-package\" value=\"com.tobspr.androidnotch.AndroidNotch\" /><param name=\"onload\" value=\"true\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -435,6 +439,9 @@
     },
     "cordova-plugin-x-socialsharing": {
       "ANDROID_SUPPORT_V4_VERSION": "24.1.1+",
+      "PACKAGE_NAME": "pro.mwallet.kulikovskyuat"
+    },
+    "cordova-plugin-android-notch": {
       "PACKAGE_NAME": "pro.mwallet.kulikovskyuat"
     }
   },
@@ -1081,6 +1088,14 @@
       "clobbers": [
         "window.plugins.socialsharing"
       ]
+    },
+    {
+      "id": "cordova-plugin-android-notch.notch",
+      "file": "plugins/cordova-plugin-android-notch/www/notch.js",
+      "pluginId": "cordova-plugin-android-notch",
+      "clobbers": [
+        "window.AndroidNotch"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -1116,6 +1131,7 @@
     "cordova-plugin-whitelist": "1.3.4",
     "cordova-plugin-wkwebview-inputfocusfix": "1.0.4",
     "es6-promise-plugin": "4.2.2",
-    "cordova-plugin-x-socialsharing": "5.6.8"
+    "cordova-plugin-x-socialsharing": "5.6.8",
+    "cordova-plugin-android-notch": "1.0.0"
   }
 }

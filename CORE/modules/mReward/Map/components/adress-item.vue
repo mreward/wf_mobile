@@ -106,7 +106,7 @@
                         this.openProtocol(`https://www.google.com/maps?saddr=${addresStart}&daddr=${addresEnd}&dirflg=d`)
                     }
                 } catch (e) {
-                    this.$Alert.Error(e)
+                    // this.$Alert.Error(e)
                 }
             }
         }

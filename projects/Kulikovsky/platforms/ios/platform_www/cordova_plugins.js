@@ -649,6 +649,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "FirebasePlugin"
       ]
+    },
+    {
+      "id": "cordova-plugin-android-notch.notch",
+      "file": "plugins/cordova-plugin-android-notch/www/notch.js",
+      "pluginId": "cordova-plugin-android-notch",
+      "clobbers": [
+        "window.AndroidNotch"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -684,6 +692,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "com.googlemaps.ios": "3.8.0",
     "cordova-plugin-googlemaps": "2.7.1",
     "cordova-plugin-datepicker": "0.9.3",
-    "cordova-plugin-firebasex": "9.1.1"
+    "cordova-plugin-firebasex": "9.1.1",
+    "cordova-plugin-android-notch": "1.0.0"
   };
 });

@@ -641,6 +641,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "window.plugins.socialsharing"
       ]
+    },
+    {
+      "id": "cordova-plugin-android-notch.notch",
+      "file": "plugins/cordova-plugin-android-notch/www/notch.js",
+      "pluginId": "cordova-plugin-android-notch",
+      "clobbers": [
+        "window.AndroidNotch"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -676,6 +684,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-whitelist": "1.3.4",
     "cordova-plugin-wkwebview-inputfocusfix": "1.0.4",
     "es6-promise-plugin": "4.2.2",
-    "cordova-plugin-x-socialsharing": "5.6.8"
+    "cordova-plugin-x-socialsharing": "5.6.8",
+    "cordova-plugin-android-notch": "1.0.0"
   };
 });

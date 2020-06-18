@@ -107,6 +107,10 @@
     <feature name="SocialSharing">
         <param name="android-package" value="nl.xservices.plugins.SocialSharing" />
     </feature>
+    <feature name="AndroidNotch">
+        <param name="android-package" value="com.tobspr.androidnotch.AndroidNotch" />
+        <param name="onload" value="true" />
+    </feature>
     <feature name="CDVIonicKeyboard">
         <param name="android-package" onload="true" value="io.ionic.keyboard.CDVIonicKeyboard" />
     </feature>

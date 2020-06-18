@@ -110,6 +110,9 @@
       "FIREBASE_PERFORMANCE_COLLECTION_ENABLED": "true",
       "FIREBASE_CRASHLYTICS_COLLECTION_ENABLED": "true",
       "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
+    },
+    "cordova-plugin-android-notch": {
+      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
     }
   },
   "dependent_plugins": {

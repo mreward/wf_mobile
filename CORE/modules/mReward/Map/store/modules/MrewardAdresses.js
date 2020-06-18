@@ -46,7 +46,7 @@ const actions = {
                         const currentPosition = await Geolocation.getCurrentPosition()
                         commit(AdressesMutat.CurrentPosition.name, currentPosition)
                     } catch (error) {
-                        Vue.prototype.$Alert.Error(error)
+                        // Vue.prototype.$Alert.Error(error)
                     }
                 }
 

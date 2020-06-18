@@ -396,6 +396,9 @@
       "FIREBASE_PERFORMANCE_COLLECTION_ENABLED": "true",
       "FIREBASE_CRASHLYTICS_COLLECTION_ENABLED": "true",
       "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
+    },
+    "cordova-plugin-android-notch": {
+      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
     }
   },
   "dependent_plugins": {},
@@ -1049,6 +1052,14 @@
       "clobbers": [
         "FirebasePlugin"
       ]
+    },
+    {
+      "id": "cordova-plugin-android-notch.notch",
+      "file": "plugins/cordova-plugin-android-notch/www/notch.js",
+      "pluginId": "cordova-plugin-android-notch",
+      "clobbers": [
+        "window.AndroidNotch"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -1084,6 +1095,7 @@
     "com.googlemaps.ios": "3.8.0",
     "cordova-plugin-googlemaps": "2.7.1",
     "cordova-plugin-datepicker": "0.9.3",
-    "cordova-plugin-firebasex": "9.1.1"
+    "cordova-plugin-firebasex": "9.1.1",
+    "cordova-plugin-android-notch": "1.0.0"
   }
 }

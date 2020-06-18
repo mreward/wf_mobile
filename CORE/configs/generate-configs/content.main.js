@@ -52,8 +52,8 @@ async function ready() {
                 }
                 
                 if (this.$ons.platform.isAndroidPhone() && window.AndroidNotch) {
-                    window.AndroidNotch.hasCutout(success => (cutout) => {
-                        if (cutout) {
+                    window.AndroidNotch.hasCutout((success) => {
+                        if (success) {
                             html.setAttribute('unsafe-area', '');
                         }
                     });

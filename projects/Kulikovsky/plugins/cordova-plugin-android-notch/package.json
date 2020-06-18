@@ -1,0 +1,68 @@
+{
+  "_from": "cordova-plugin-android-notch@1.0.3",
+  "_id": "cordova-plugin-android-notch@1.0.3",
+  "_inBundle": false,
+  "_integrity": "sha512-4Nsqzrl26wzUAH4zSFY/RxLemxSqmi2Uppw1/Gyt0d2JMtJOW6aj9ZNLVUpFF8tqGmBsUJQi33/Z8JIpah9NDg==",
+  "_location": "/cordova-plugin-android-notch",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "cordova-plugin-android-notch@1.0.3",
+    "name": "cordova-plugin-android-notch",
+    "escapedName": "cordova-plugin-android-notch",
+    "rawSpec": "1.0.3",
+    "saveSpec": null,
+    "fetchSpec": "1.0.3"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-android-notch/-/cordova-plugin-android-notch-1.0.3.tgz",
+  "_shasum": "a65cdee618f82a2ad1dd9ef0a7c33e4971715248",
+  "_spec": "cordova-plugin-android-notch@1.0.3",
+  "_where": "/Users/aleksandrarshinsky/Documents/Cordova/Kulikovsky-mobile/projects/Kulikovsky",
+  "author": {
+    "name": "tobspr"
+  },
+  "bugs": {
+    "url": "https://github.com/tobspr/cordova-plugin-android-notch/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-android-notch",
+    "platforms": [
+      "android"
+    ]
+  },
+  "deprecated": false,
+  "description": "Cordova Android Notch Plugin",
+  "devDependencies": {},
+  "engines": {
+    "cordovaDependencies": {
+      "0.1.0": {
+        "cordova": ">=3.0.0"
+      },
+      "3.0.0": {
+        "cordova": ">100"
+      }
+    }
+  },
+  "homepage": "https://github.com/tobspr/cordova-plugin-android-notch#readme",
+  "keywords": [
+    "cordova",
+    "android",
+    "notch",
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "license": "MIT",
+  "name": "cordova-plugin-android-notch",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tobspr/cordova-plugin-android-notch.git"
+  },
+  "scripts": {},
+  "version": "1.0.3"
+}

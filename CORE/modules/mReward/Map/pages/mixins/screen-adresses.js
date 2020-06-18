@@ -225,7 +225,10 @@ export default {
         },
         async goToMyLocation() {
             if(window.google) {
-                const {latitude, longitude} = await this.getMyLocation()
+                const {latitude, longitude} = await this.getMyLocation() || {
+                    latitude: 42.882004, // TODO move to config app settings - defaultGeolocation
+                    longitude: 74.582748
+                }
 
                 this.showList = false
                 this.closeList()
@@ -259,7 +262,7 @@ export default {
                 }
                 return { latitude, longitude }
             } catch (e) {
-                this.$Alert.Error(e)
+                // this.$Alert.Error(e)
             }
         },
 
