@@ -48,6 +48,8 @@ export default {
         if(!this.adresses.length) {
             this.getAdresses();
         }
+
+        this.getHistory({ networkFirst: true });
     },
     mounted() {
         window.StatusBar && window.StatusBar.styleDefault();

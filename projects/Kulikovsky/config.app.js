@@ -49,7 +49,7 @@ const PROD = {
     termsUrl: 'https://kulikov.com/license.pdf', // required
     nameApp: 'Куликовский', // required
     bundleID: 'pro.mwallet.kulikovsky', // required
-    version: '1.0.6', // required
+    version: '1.1.1', // required
     options: {
         modules: {
             mReward: {
@@ -84,7 +84,10 @@ const PROD = {
         onlinechat: 'https://kulikovskiy.bitrix24.ru/online/contactcentr',
         site: 'https://kulikov.com/'
     },
-    googleApiKey: 'AIzaSyDRsmHsv0HZPGB0GXLL95TxldOf_YejUFU'
+    googleApiKey: 'AIzaSyDRsmHsv0HZPGB0GXLL95TxldOf_YejUFU',
+    supportMail: 'kdkulikovskiy@gmail.com',
+    appCenterIos: 'sokolenkoigor32-gmail.com/Kulikovsky-3',
+    appCenterAndroid: 'sokolenkoigor32-gmail.com/Kulikovsky-2'
 }
 
 const Environment = {
@@ -120,13 +123,15 @@ const Environment = {
         hockeyAppID: 'dbf74cfbfcf642c481d683b7e3e46a79', // TODO change
         GoogleServiceInfoIOS: '/certificates/GoogleService-Info-SIT.plist', // required
         logRocketId: LogRocketId.UAT,
-        defaultPhoneCode: '+996'
+        defaultPhoneCode: '+996',
+        appCenterIos: 'sokolenkoigor32-gmail.com/Kulikovsky',
+        appCenterAndroid: 'sokolenkoigor32-gmail.com/Kulikovsky-1'
     }, PROD)
 }
 
 module.exports = defaultsDeep({
     name: 'Kulikovsky', // required
-    application: Environment.UAT,
+    application: Environment.PROD,
     notesHockeyapp: buildNotesHockeyapp(CHANGELOG)
 }, configDefault.app_config)
 

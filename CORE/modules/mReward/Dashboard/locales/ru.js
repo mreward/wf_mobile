@@ -7,6 +7,7 @@ export default {
     m_dashboard_latest_charges: 'История покупок',
     m_dashboard_new: 'Новое',
     m_dashboard_no_accrued_bonuses: 'Начисленных бонусов пока что нет',
+    m_dashboard_not_found: 'Скоро здесь появится много интересных новостей, акций и еще кое-что.',
     m_dashboard_raffles: 'Розыгрыши',
     m_dashboard_wallets: 'Кошельки'
 }

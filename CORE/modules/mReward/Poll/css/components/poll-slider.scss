@@ -41,3 +41,13 @@
         }
     }
 }
+
+.is-muted {
+    .card__range .range__slider {
+        margin-bottom: 0 !important;
+    }
+}
+
+.card--vertical.is-muted .card__wrapper {
+    min-height: unset !important;
+}

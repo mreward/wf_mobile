@@ -1,13 +1,16 @@
 .news-banner-wrapper {
   padding: 0px 16px;
 }
+
 .news-banner {
-  height: 140px;
+  height: calc((100vw - 32px) / 2.4406);
   border-radius: 8px;
   margin: 8px 0;
   width: 100%;
   position: relative;
   background-size: cover;
+  background-position: center;
+
   .new {
     position: absolute;
     right: 0;

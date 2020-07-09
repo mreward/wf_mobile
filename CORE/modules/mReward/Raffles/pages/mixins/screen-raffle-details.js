@@ -32,7 +32,7 @@ export default {
     },
     mounted() {
         window.StatusBar && window.StatusBar.styleDefault();
-    },
+        },
     beforeDestroy() {
         window.StatusBar && window.StatusBar.styleLightContent();
     },

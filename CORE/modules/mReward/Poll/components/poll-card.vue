@@ -137,3 +137,9 @@
         }
     }
 </script>
+
+<style scoped lang="scss">
+    .card__image {
+        height: calc((100vw - 32px) / 2.4406) !important;
+    }
+</style>

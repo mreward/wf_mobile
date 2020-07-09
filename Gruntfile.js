@@ -35,6 +35,9 @@ module.exports = function (grunt) {
             const hockeyapp = require('./CORE/configs/grunt-modules/hockeyapp')({grunt, wallet, onDone})
             grunt.config.merge(hockeyapp)
 
+            const appCenter = require('./CORE/configs/grunt-modules/appcenter')({grunt, wallet})
+            grunt.config.merge(appCenter)
+
             // cordova cli
             const cordovacli = require('./CORE/configs/grunt-modules/cordovacli')({grunt, wallet})
             grunt.config.merge(cordovacli)
@@ -103,7 +106,7 @@ module.exports = function (grunt) {
 
                     'cordovacli:compile_release_android',
                     'copy:android_release',
-                    //'hockeyapp:android'
+                    'shell:appcenterAndroid'
                 ]
 
                 const wallet = require('./wallets.config.js').wallet
@@ -139,7 +142,8 @@ module.exports = function (grunt) {
 
                 'shell:xcodebuild_xcarchive',
                 'shell:xcodebuild_exportArchive',
-                'hockeyapp:ios'
+                'hockeyapp:ios',
+                'shell:appcenterIos',
             ])
 
             grunt.registerTask('build all store', '', () => {
@@ -165,7 +169,7 @@ module.exports = function (grunt) {
                     'cordovacli:compile_release_android',
 
                     'copy:android_release',
-                    'hockeyapp:android'
+                    'shell:appcenterAndroid'
                 ]
 
                 const wallet = require('./wallets.config.js').wallet
@@ -214,14 +218,14 @@ module.exports = function (grunt) {
                     'replace:CFBundleVersionIOS',
                     'shell:xcodebuild_xcarchive',
                     'shell:xcodebuild_exportArchive',
-                    'hockeyapp:ios',
+                    'shell:appcenterIos',
 
                     'cordovacli:prepare_android',
                     'replace:VersionCodeAndroid',
                     'replace:ResXmlConfigAndroid',
                     'cordovacli:compile_release_android',
                     'copy:android_release',
-                    'hockeyapp:android'
+                    'shell:appcenterAndroid'
                 ])
             })
 

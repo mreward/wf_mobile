@@ -7,6 +7,7 @@ export default {
     m_dashboard_latest_charges: 'Сатып алу тарихы',
     m_dashboard_new: 'Жаңа',
     m_dashboard_no_accrued_bonuses: 'Әзірше үстелген бонустар жоқ',
+    m_dashboard_not_found: 'Жақында көптеген қызықты жаңалықтар, акциялар және тағы басқалар болады.',
     m_dashboard_raffles: 'Практикалық әзілдер',
     m_dashboard_wallets: 'Әмияндар'
 }

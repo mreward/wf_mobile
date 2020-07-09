@@ -7,6 +7,7 @@ export default {
     m_dashboard_latest_charges: 'Гісторыя пакупак',
     m_dashboard_new: 'Новы',
     m_dashboard_no_accrued_bonuses: 'Пакуль яшчэ няма налічаных бонусаў',
+    m_dashboard_not_found: 'У хуткім часе будзе шмат цікавых навін, акцый і чагосьці іншага.',
     m_dashboard_raffles: 'Практычныя жарты',
     m_dashboard_wallets: 'Кашалькі'
 }

@@ -98,12 +98,12 @@ import localforage from "localforage"
             async updateDashboardContent(loaded) {
                 try {
                     await Promise.all([
-                        this.getPromotions({ networkFirst: true }),
-                        this.getAccounts({ networkFirst: true }),
-                        this.getRaffles({ networkFirst: true }),
-                        this.getPolls({ networkFirst: true }),
-                        this.getNews({ networkFirst: true }),
-                        this.getNotifications({ networkFirst: true})
+                        this.getPromotions({networkFirst: true}).catch(() => {}),
+                        this.getAccounts({networkFirst: true}).catch(() => {}),
+                        this.getRaffles({networkFirst: true}).catch(() => {}),
+                        this.getPolls({networkFirst: true}).catch(() => {}),
+                        this.getNews({networkFirst: true}).catch(() => {}),
+                        this.getNotifications({networkFirst: true}).catch(() => {})
                     ])
                 } catch (e) {
                     this.$Alert.Error(e)

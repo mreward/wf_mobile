@@ -9,6 +9,12 @@ export default {
             default: () => ({})
         }
     },
+    mounted() {
+        window.StatusBar && window.StatusBar.styleLightContent();
+    },
+    beforeDestroy() {
+
+    },
     methods: {
         createdDate() {
             return moment(this.news.date, 'X').format('DD MMMM, YYYY')

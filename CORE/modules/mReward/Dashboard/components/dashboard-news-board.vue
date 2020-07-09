@@ -1,7 +1,7 @@
 <template>
     <div style="height: 100%">
         <div
-            v-if="partnerPromotions.length && !loading"
+            v-if="listNews.length && !loading"
             class="news-banner-wrapper"
         >
 
@@ -61,7 +61,7 @@
 
         <not-found-items
             v-else
-            :message="$t('m_dashboard_no_accrued_bonuses')"
+            :message="$t('m_dashboard_not_found')"
         />
     </div>
 </template>
@@ -161,11 +161,11 @@
             try {
                 this.loading = true
                 await Promise.all([
-                    this.getPromotions({ networkFirst: true }),
-                    this.getRaffles({ networkFirst: true }),
-                    this.getNews({ networkFirst: true }),
-                    this.getRaffles({ networkFirst: true }),
-                    this.getPolls({ networkFirst: true }),
+                    this.getPromotions({networkFirst: true}).catch(() => {}),
+                    this.getRaffles({networkFirst: true}).catch(() => {}),
+                    this.getNews({networkFirst: true}).catch(() => {}),
+                    this.getRaffles({networkFirst: true}).catch(() => {}),
+                    this.getPolls({networkFirst: true}).catch(() => {}),
                 ])
             } catch (e) {
                 console.error(e)

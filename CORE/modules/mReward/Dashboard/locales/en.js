@@ -7,6 +7,7 @@ export default {
     m_dashboard_latest_charges: 'Purchase history',
     m_dashboard_new: 'New',
     m_dashboard_no_accrued_bonuses: 'No accrued bonuses yet',
+    m_dashboard_not_found: 'Soon there will be a lot of interesting news, promotions and something else.',
     m_dashboard_raffles: 'Raffles',
     m_dashboard_wallets: 'Wallets'
 }

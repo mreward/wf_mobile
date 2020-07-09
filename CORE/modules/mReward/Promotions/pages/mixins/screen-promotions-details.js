@@ -10,10 +10,10 @@ export default {
         }
     },
     mounted() {
-        window.StatusBar && window.StatusBar.styleDefault();
+        window.StatusBar && window.StatusBar.styleLightContent();
     },
     beforeDestroy() {
-        window.StatusBar && window.StatusBar.styleLightContent();
+
     },
     methods: {
         createdDate() {
