@@ -20,6 +20,7 @@ module.exports = (dirname) => {
 
         // Components
         _mobile_number: `${PATH}/components/mobile-number.vue`,
+        _use_touch_id: `${PATH}/components/use-touch-id.vue`,
 
         // pages
         _screen_registration: `${PATH}/pages/screen-registration.vue`,
@@ -28,6 +29,8 @@ module.exports = (dirname) => {
         _screen_confirm_otp: `${PATH}/pages/screen-confirm-otp.vue`,
         _screen_select_city: `${PATH}/pages/screen-select-city.vue`,
         _screen_select_country: `${PATH}/pages/screen-select-country.vue`,
+        _screen_confirm_pin: `${PATH}/pages/screen-confirm-pin.vue`,
+        _screen_auth_confirm_pin: `${PATH}/pages/screen-auth-confirm-pin.vue`,
 
         // mixins pages
         _mixin_screen_registration: `${PATH}/pages/mixins/screen-registration.js`,
@@ -36,9 +39,14 @@ module.exports = (dirname) => {
         _mixin_screen_confirm_otp: `${PATH}/pages/mixins/screen-confirm-otp.js`,
         _mixin_screen_select_country: `${PATH}/pages/mixins/screen-select-country.js`,
         _mixin_screen_select_city: `${PATH}/pages/mixins/screen-select-city.js`,
+        _mixin_screen_confirm_pin: `${PATH}/pages/mixins/screen-confirm-pin.js`,
+        _mixin_screen_auth_confirm_pin: `${PATH}/pages/mixins/screen-confirm-pin.js`,
 
         // mixins
         _mixin_choose_country: `${PATH}/mixins/choose-country.js`,
-        _mixin_choose_city: `${PATH}/mixins/choose-city.js`
+        _mixin_choose_city: `${PATH}/mixins/choose-city.js`,
+
+        _img_touch_id: `${PATH}/img/touch-id.svg`,
+        _img_face_id: `${PATH}/img/face-id.svg`,
     }
 }

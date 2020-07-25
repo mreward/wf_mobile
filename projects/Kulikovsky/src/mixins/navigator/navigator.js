@@ -1,6 +1,7 @@
 const ScreenDashboard = () => import('_screen_dashboard')
 const ScreenAuthorization = () => import('_screen_authorization')
 const ScreenOnBoarding = () => import('_screen_onboarding')
+const ScreenAuthConfirmPin = () => import('_screen_auth_confirm_pin')
 
 import ApiClient from '_CORE/modules/mReward/libs/ApiClient'
 import { mapActions, mapGetters } from 'vuex'
@@ -13,7 +14,8 @@ export default {
     computed: {
         ...mapGetters({
             settings: constants.App.Getters.settings,
-            showOnBoarding: constants.OnBoarding.Getters.showOnBoarding
+            showOnBoarding: constants.OnBoarding.Getters.showOnBoarding,
+            pin: constants.MrewardUser.Getters.pin
         }),
 
         supportMail() {
@@ -33,6 +35,7 @@ export default {
         ...mapActions({
             getOnBoarding: constants.OnBoarding.Actions.getOnBoarding,
             getAuthToken: constants.MrewardUser.Actions.getAuthToken,
+            getUserData: constants.MrewardUser.Actions.getUserData,
             replacePage: constants.App.Actions.replacePage
         }),
 
@@ -43,9 +46,12 @@ export default {
         async onStartPage() {
             const authToken = await this.getAuthToken()
             await this.getOnBoarding()
+            await this.getUserData()
 
             if (!this.showOnBoarding) {
                 this.replacePage(ScreenOnBoarding)
+            } else if (this.pin) {
+                this.replacePage(ScreenAuthConfirmPin)
             } else if (authToken) {
                 this.replacePage(ScreenDashboard)
             } else {
