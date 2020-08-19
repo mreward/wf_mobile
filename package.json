@@ -5,7 +5,7 @@
     "author": "mWallet <support@mobipay.ua>",
     "private": true,
     "scripts": {
-        "start": "grunt set-wallet && grunt generate-config && grunt build",
+        "start": "grunt set-wallet && grunt generate-config --verbose && grunt build",
         "dev": "yarn start && cross-env NODE_ENV=development DEVMOD=\"true\" LOG=\"false\" webpack-dev-server --hot",
         "dev-p": "yarn start && cross-env NODE_ENV=development DEVMOD=\"true\" LOG=\"false\" webpack-dev-server --hot --progress --debug ",
         "build": "grunt set-wallet && cross-env NODE_ENV=production DEVMOD=\"false\" LOG=\"true\" grunt \"build:webpack:prod\"",

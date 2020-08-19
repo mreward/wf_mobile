@@ -59,7 +59,6 @@ export default {
     },
     watch: {
         showDot(value) {
-            debugger
             Vue.set(this.childTabs, 3, {
                 ...this.childTabs[3],
                 class: value

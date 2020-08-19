@@ -195,5 +195,19 @@ export default {
             apiVersion: 'v2',
             apiTag: '/client'
         }
+    },
+    Shop: {
+        GetProducts: {
+            url: '/product',
+            method: 'GET',
+            apiVersion: 'v2',
+            apiTag: '/client'
+        },
+        GetProductsTop: {
+            url: '/product/list-top',
+            method: 'GET',
+            apiVersion: 'v2',
+            apiTag: '/client'
+        }
     }
 }
