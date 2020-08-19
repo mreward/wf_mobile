@@ -4,7 +4,7 @@ import MobileNumber from '_mobile_number'
 import DynamicInput from '_dynamic_input'
 const ScreenConfirmOtp = () => import('_screen_confirm_otp')
 const ScreenAuthorization = () => import('_screen_authorization')
-const ScreenDashboard = () => import('_screen_dashboard')
+const ScreenConfirmPin = () => import('_screen_confirm_pin')
 
 export default {
     components: {
@@ -91,7 +91,7 @@ export default {
                                     smsId: smsId
                                 })
                                 this.replacePage({
-                                    extends: ScreenDashboard,
+                                    extends: ScreenConfirmPin,
                                     data: () => {
                                         return {
                                             mobile: this.mobile,

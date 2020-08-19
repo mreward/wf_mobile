@@ -18,7 +18,8 @@ export default {
         changePasswordConfirm: 'MrewardUser/changePasswordConfirm',
         registrationUser: 'MrewardUser/registrationUser',
         registrationUserConfirm: 'MrewardUser/registrationUserConfirm',
-        logoutUser: 'MrewardUser/logoutUser'
+        logoutUser: 'MrewardUser/logoutUser',
+        setUserData: 'MrewardUser/setUserData'
     },
     Getters: {
         userData: 'MrewardUser/userData'

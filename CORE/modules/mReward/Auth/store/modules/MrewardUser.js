@@ -4,6 +4,8 @@ import localforage from 'localforage'
 import { DbObject } from '_CORE/store/db-objects'
 import MaskPhone from '_CORE/plugins/common/MaskPhone'
 import { clearCache } from '_CORE/utils/axios-cache-instance'
+import sha256 from 'crypto-js/sha256'
+import md5 from 'crypto-js/md5'
 
 const {
     MrewardUser: {
@@ -27,28 +29,28 @@ const mutations = {
 }
 
 const actions = {
-    // /**
-    //  * get profile data from DB
-    //  * @param rootState
-    //  * @param commit
-    //  * @param dispatch
-    //  * @returns {Promise}
-    //  */
-    // async getUserData({ rootState, commit, dispatch }) {
-    //     console.log('STORE: User Module - getUserData')
-    //     try {
-    //         const user = await localforage.getItem(DbObject.keys.mReward.user.name)
-    //         if (user) {
-    //             commit(UserMutat.UserData.name, user.data)
-    //         }
-    //     } catch (error) {
-    //         await dispatch(constants.App.Actions.validateError, {
-    //             error,
-    //             log: 'STORE: User Module - getUserData'
-    //         }, { root: true })
-    //     }
-    // },
-    //
+    /**
+     * get profile data from DB
+     * @param rootState
+     * @param commit
+     * @param dispatch
+     * @returns {Promise}
+     */
+    async getUserData({ rootState, commit, dispatch }) {
+        console.log('STORE: User Module - getUserData')
+        try {
+            const user = await localforage.getItem(DbObject.keys.mReward.user.name)
+            if (user) {
+                commit(UserMutat.UserData.name, user.data)
+            }
+        } catch (error) {
+            await dispatch(constants.App.Actions.validateError, {
+                error,
+                log: 'STORE: User Module - getUserData'
+            }, { root: true })
+        }
+    },
+
     /**
      * Save auth token to DB and set to state/ApiClient config
      * @param commit
@@ -276,11 +278,25 @@ const actions = {
             throw new Error(error.message)
         }
     },
+
+    async setUserData({ commit, dispatch, rootState, state, rootGetters }, data = {}) {
+        try {
+            data.pin = data.pin ? sha256(md5(data.pin).toString()).toString() : null
+            await localforage.setItem(DbObject.keys.user.name, {
+                pin: data.pin
+            })
+        } catch (error) {
+            throw new Error(error.message)
+        }
+    }
 }
 
 const getters = {
     userData(state) {
         return state.userData
+    },
+    pin(state) {
+        return state.user.pin
     }
 }
 
