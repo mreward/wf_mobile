@@ -680,9 +680,9 @@ export const actions = {
                 break
         }
 
-        if (_get(errorData, 'error.error', errorData.error) === 401) {
-            return dispatch(constants.MrewardUser.Actions.logoutUser, {}, { root: true })
-        }
+        // if (_get(errorData, 'error.error', errorData.error) === 401) {
+        //     return dispatch(constants.MrewardUser.Actions.logoutUser, {}, { root: true })
+        // }
 
         throw data
     },

@@ -14,6 +14,8 @@ module.exports = (dirname) => {
 
         // pages
         _screen_shop: `${PATH}/pages/screen-shop.vue`,
+        _screen_products: `${PATH}/pages/screen-products.vue`,
+
         _screen_shop_img: `${PATH}/img`,
     }
 }

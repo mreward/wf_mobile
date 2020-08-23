@@ -36,6 +36,7 @@ export default class ApiClient {
         this.headers = {}
         this.isLogger = true
         this.phone = options.phone
+        this.partnerKeys = options.partnerKeys
 
         this.url = options.mReward.API.url
 
@@ -71,8 +72,13 @@ export default class ApiClient {
         }
 
         if (this.authToken) {
-            const encodedAuthorizationToken = btoa(`${this.authToken}:`)
-            headers.Authorization = `Basic ${encodedAuthorizationToken}`
+            if(config.partnerKey) {
+                const encodedAuthorizationToken = btoa(`${config.partnerKey}:`)
+                headers.Authorization = `Basic ${encodedAuthorizationToken}`
+            } else {
+                const encodedAuthorizationToken = btoa(`${this.authToken}:`)
+                headers.Authorization = `Basic ${encodedAuthorizationToken}`
+            }
         }
 
         let { url, method, apiVersion, apiTag } = apiEndpoint

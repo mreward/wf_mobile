@@ -208,6 +208,12 @@ export default {
             method: 'GET',
             apiVersion: 'v2',
             apiTag: '/client'
-        }
+        },
+        GetProductsGroups: {
+            url: '/products/groups',
+            method: 'GET',
+            apiVersion: 'v2',
+            apiTag: '/partner'
+        },
     }
 }

@@ -140,9 +140,20 @@
 
 <style lang="scss">
     .page[page="shop"] {
-        .page__content {
+        display: flex;
+        flex: 1;
+        flex-direction: column-reverse;
+        justify-content: space-between;
+
+        .toolbar {
+            background: #fff;
+        }
+
+        >.page__content {
             padding: 0;
             padding-bottom: 34px;
+            position: static;
+            flex: 1;
 
             .not-found-items {
                 height: 30px;
@@ -165,10 +176,20 @@
     }
 
     .shop-content {
-        margin-top: 274px;
+        margin-top: 0;
         padding: 16px;
         background-color: #F5F7FA;
         height: 100%;
+        position: relative;
+
+        .tabbar__content {
+            bottom: 0 !important;
+        }
+
+        .page__content {
+            background-color: #F5F7FA !important;
+            padding: 16px!important;
+        }
     }
 
     .toolbar.toolbar--shop {

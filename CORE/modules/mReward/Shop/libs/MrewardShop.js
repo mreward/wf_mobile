@@ -22,4 +22,17 @@ export default class MrewardShop extends ApiClient {
         )
     }
 
+    GetProductsGroups(json) {
+        this.logger('MrewardShop:GetProductsGroups')
+        const requestData = { ...this.APIEndPoints.Shop.GetProductsGroups }
+
+        return this.sendRequest(
+          requestData,
+          json,
+          {
+              partnerKey: '1e417e47-2bb6-440d-8168-c6a56abcb5a0'
+          }
+        )
+    }
+
 }

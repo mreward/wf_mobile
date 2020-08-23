@@ -18,6 +18,7 @@ const {
 const state = {
     products: [],
     productsTop: [],
+    productsGroups: [],
 }
 
 const mutations = {
@@ -26,6 +27,9 @@ const mutations = {
     },
     [ShopMutat.ProductsTop.name]: (state, data) => {
         state.productsTop = data
+    },
+    [ShopMutat.ProductsGroups.name]: (state, data) => {
+        state.productsGroups = data
     },
 }
 
@@ -68,7 +72,27 @@ const actions = {
                 log: 'STORE: MrewardNews Module - getProductsTop'
             }, { root: true })
         }
-    }
+    },
+
+    async getProductsGroups({ commit, dispatch, rootState }, payload) {
+        console.log('STORE: MrewardNews Module - getProductsGroups')
+        try {
+            dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
+
+            const response = await new MrewardShop().GetProductsGroups(payload)
+
+            commit(ShopMutat.ProductsGroups.name, response)
+
+            dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })
+
+            return response
+        } catch (error) {
+            await dispatch(constants.App.Actions.validateError, {
+                error,
+                log: 'STORE: MrewardNews Module - getProductsGroups'
+            }, { root: true })
+        }
+    },
 }
 
 const getters = {
@@ -77,6 +101,9 @@ const getters = {
     },
     productsTop(state) {
         return state.productsTop;
+    },
+    productsGroups(state) {
+        return state.productsGroups;
     },
 }
 
