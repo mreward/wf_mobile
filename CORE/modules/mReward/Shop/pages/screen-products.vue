@@ -4,44 +4,62 @@
             page="products"
     >
         <div class="toolbar--search">
-        <div class="toolbar__wrapper">
-            <v-text-field
-                    ref="inputSearch"
-                    slot="title"
-                    v-model="search"
-                    solo
-                    :label="$t('m_adresses_search')"
-                    class="input--search"
-                    prepend-inner-icon="icon-search"
-                    hide-details
-            />
+            <div class="toolbar__wrapper">
+                <v-text-field
+                        ref="inputSearch"
+                        slot="title"
+                        v-model="search"
+                        solo
+                        :label="$t('m_adresses_search')"
+                        class="input--search"
+                        prepend-inner-icon="icon-search"
+                        hide-details
+                />
 
-            <transition name="slide-fade">
+                <transition name="slide-fade">
+                    <v-btn
+                            v-show="showCancelButton"
+                            text
+                            depressed
+                            @click="cleareSearchField"
+                    >
+                        {{ $t('m_adresses_cancel') }}
+                    </v-btn>
+                </transition>
+
                 <v-btn
-                        v-show="showCancelButton"
-                        text
-                        depressed
-                        @click="cleareSearchField"
+                        small
+                        class="btn-filters"
                 >
-                    {{ $t('m_adresses_cancel') }}
+                    <i class="icon-filters"/>
                 </v-btn>
-            </transition>
-
-            <v-btn
-                    small
-                    class="btn-filters"
-            >
-                <i class="icon-filters"/>
-            </v-btn>
-        </div>
+            </div>
         </div>
 
         <div class="content-wrap">
-            <product-item v-for="(item, index) in listData"
-                          :key="index"
-                          :item="item"/>
-        </div>
+            <template v-if="!loading && listData.length">
+                <product-item v-for="(item, index) in listData"
+                              :key="index"
+                              :item="item"/>
+            </template>
+            <v-progress-circular
+                    v-else-if="loading"
+                    :width="7"
+                    :size="70"
+                    indeterminate
+            />
 
+            <div class="button-cart"
+                 ref="btnCall"
+                 @click="$bus.$emit('showCart')"
+            >
+                <i class="icon-cart"/>
+                <div v-if="cart.length"
+                     class="button-cart__badge">
+                    {{totalCartProduct}}
+                </div>
+            </div>
+        </div>
     </layout>
 
 </template>
@@ -54,74 +72,66 @@
     export default {
         name: 'screen-shop-top',
         components: {
-            ProductItem
+            ProductItem,
         },
         data () {
             return {
                 search: '',
-                listData: [
-                    {
-                        name: 'Aссорти макаронс из девяти видов',
-                        price: 180,
-                        weight: '110 г',
-                        top: true,
-                        img: 'https://www.alizy.club/wp-content/uploads/2018/03/Retsept-pechenya-makarons.jpeg',
-                    },
-                    {
-                        name: 'Aссорти макаронс из девяти видов',
-                        price: 180,
-                        weight: '110 г',
-                        top: true,
-                        img: 'https://smachno.ua/wp-content/uploads/2013/09/23/eaters-collective-219711.jpg',
-
-                    },
-                    {
-                        name: 'Aссорти макаронс из девяти видов',
-                        price: 180,
-                        weight: '110 г',
-                        top: true,
-                        img: 'https://smachno.ua/wp-content/uploads/2013/09/23/eaters-collective-219711.jpg',
-                    },
-                    {
-                        name: 'Aссорти макаронс из девяти видов',
-                        price: 180,
-                        weight: '110 г',
-                        top: true,
-                        img: 'https://www.alizy.club/wp-content/uploads/2018/03/Retsept-pechenya-makarons.jpeg',
-                    },
-                    {
-                        name: 'Aссорти макаронс из девяти видов',
-                        price: 180,
-                        weight: '110 г',
-                        top: true,
-                        img: 'https://smachno.ua/wp-content/uploads/2013/09/23/eaters-collective-219711.jpg',
-
-                    },
-                    {
-                        name: 'Aссорти макаронс из девяти видов',
-                        price: 180,
-                        weight: '110 г',
-                        top: true,
-                        img: 'https://smachno.ua/wp-content/uploads/2013/09/23/eaters-collective-219711.jpg',
-                    }
-                ]
+                loading: true,
+                products: []
             }
         },
         computed: {
             ...mapGetters({
+                cart: constants.MrewardShop.Getters.cart,
+                totalCartProduct: constants.MrewardShop.Getters.totalCartProduct,
             }),
 
-            showCancelButton() {
+            showCancelButton () {
                 return this.search.length > 0
             },
+
+            listData() {
+                if (!this.products.length) {
+                    return []
+                }
+
+                let list = this.products
+                if (this.search) {
+                    list = list.filter(item => item.product_name.toLowerCase().includes(this.search.toLowerCase()))
+
+                    if (!list.length) {
+                        return []
+                    }
+                }
+
+                return list.map((item) => {
+                    const productCart = this.cart.find(c => c.data.art_id === item.art_id)
+
+                    return {
+                        id: item.id,
+                        name: item.product_name,
+                        price: item.product_price,
+                        wight: '',
+                        img: item.images[0] ? item.images[0].mobile_420_420 : '',
+                        top: item.top,
+                        count: productCart ? productCart.count : 0,
+                        data: item,
+                    }
+                });
+            }
         },
 
         async created () {
             try {
-                await this.getProductsTop()
+                this.products = await this.getProductsCategory({
+                    group_id: this.category.group_id,
+                })
             } catch (e) {
                 this.$Alert.Error(e)
             }
+
+            this.loading = false
         },
         methods: {
             ...mapActions({
@@ -129,13 +139,13 @@
                 pushPage: constants.App.Actions.pushPage,
                 popToPage: constants.App.Actions.popToPage,
                 getCountries: constants.MrewardGeo.Actions.getCountries,
-                getProductsTop: constants.MrewardShop.Actions.getProductsTop
+                getProductsCategory: constants.MrewardShop.Actions.getProductsCategory,
             }),
 
-            cleareSearchField() {
+            cleareSearchField () {
                 this.search = ''
             },
-        }
+        },
     }
 </script>
 
@@ -146,7 +156,7 @@
         }
 
         .page__content {
-           padding: 0 !important;
+            padding: 0 !important;
             flex: 1;
             display: flex;
             flex-direction: column;
@@ -162,6 +172,7 @@
             padding-right: 0 !important;
             padding-bottom: 12px;
         }
+
         .toolbar--search {
 
         }

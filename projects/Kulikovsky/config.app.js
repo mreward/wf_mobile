@@ -135,13 +135,24 @@ const Environment = {
         logRocketId: LogRocketId.UAT,
         defaultPhoneCode: '+996',
         appCenterIos: 'sokolenkoigor32-gmail.com/Kulikovsky',
-        appCenterAndroid: 'sokolenkoigor32-gmail.com/Kulikovsky-1'
+        appCenterAndroid: 'sokolenkoigor32-gmail.com/Kulikovsky-1',
+        partnerKeys: [{
+            id: 1,
+            key: '1e417e47-2bb6-440d-8168-c6a56abcb5a0',
+            code: 'И-М',
+        },{
+            id: 2,
+            key: 'c37fdc5d-f41b-412f-b256-fb71e9d8eb0c',
+        },{
+            id: 3,
+            key: 'b1d36558-3f12-41d8-ba21-4e7ecebdce10',
+        }]
     }, PROD)
 }
 
 module.exports = defaultsDeep({
     name: 'Kulikovsky', // required
-    application: Environment.PROD,
+    application: Environment.UAT,
     notesHockeyapp: buildNotesHockeyapp(CHANGELOG)
 }, configDefault.app_config)
 

@@ -215,5 +215,59 @@ export default {
             apiVersion: 'v2',
             apiTag: '/partner'
         },
+        SetFavorite: {
+            url: '/product/set-favorite',
+            method: 'POST',
+            apiVersion: 'v2',
+            apiTag: '/client'
+        },
+        RemoveFavorite: {
+            url: '/product/remove-favorite',
+            method: 'POST',
+            apiVersion: 'v2',
+            apiTag: '/client'
+        },
+        ListFavorite: {
+            url: '/product/list-favorite',
+            method: 'GET',
+            apiVersion: 'v2',
+            apiTag: '/client'
+        },
+        DeliveryList: {
+            url: '/construct/construct-delivery-list',
+            method: 'GET',
+            apiVersion: 'v2',
+            apiTag: '/client'
+        },
+        PreCheck: {
+            url: '/operation/pre-check',
+            method: 'POST',
+            apiVersion: 'v2',
+            apiTag: '/partner'
+        },
+        PaymentUrl: {
+            url: '/payment-url',
+            method: 'POST',
+            apiVersion: 'v2',
+            apiTag: '/client'
+        },
+        GetProduct: {
+            url: '/products/product-view',
+            method: 'POST',
+            apiVersion: 'v2',
+            apiTag: '/partner'
+        },
+        ProductSearch: {
+            url: '/products/product-search',
+            method: 'GET',
+            apiVersion: 'v2',
+            apiTag: '/partner'
+        },
+        GetProductsCategory: {
+            url: '/products',
+            method: 'GET',
+            apiVersion: 'v2',
+            apiTag: '/partner'
+        }
     }
 }

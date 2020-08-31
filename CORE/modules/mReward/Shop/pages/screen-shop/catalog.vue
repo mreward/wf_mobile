@@ -1,44 +1,46 @@
 <template>
     <v-ons-page>
-        <v-ons-list
-                v-for="(item, index) in listData"
-                :key="index"
-                class="dropdown-list catalog-list"
-        >
-            <v-ons-list-item
-                    ref="dropdownList"
-                    class="dropdown-list__item catalog-item"
-                    expandable
+        <div class="page__content">
+            <v-ons-list
+                    v-for="(item, index) in productsGroups"
+                    :key="index"
+                    class="dropdown-list catalog-list"
             >
-                <div class="center catalog-item__name">
-                    <div class="catalog-item__image"
-                         :style="`background-image: url('${item.icon}')`">
+                <v-ons-list-item
+                        ref="dropdownList"
+                        class="dropdown-list__item catalog-item"
+                        :expandable="!!item.child.length"
+                        @click="() => !!item.child.length ? () => {} :  goToProducts(item)"
+                >
+                    <div class="center catalog-item__name">
+                        <div class="catalog-item__image"
+                             :style="`background-image: url('${item.icon}')`">
+                        </div>
+                        <div style="flex: 1;">{{ item.name }}</div>
                     </div>
-                    {{ item.name }}
-                </div>
-                <div class="dropdown-list__content expandable-content">
-                    <div
-                            v-for="(listItem, indexItem) in item.list"
-                            :key="indexItem"
-                            class="catalog-item__info-wrap"
-                            @click="goToProducts"
-                    >
-                        <div class="catalog-item__info-sub__name">
-                            <span class="contacts-subtitle">{{ listItem.name }}</span>
+                    <div class="dropdown-list__content expandable-content">
+                        <div
+                                v-for="(listItem, indexItem) in item.child"
+                                :key="indexItem"
+                                class="catalog-item__info-wrap"
+                                @click="goToProducts(listItem)"
+                        >
+                            <div class="catalog-item__info-sub__name">
+                                <span class="contacts-subtitle">{{ listItem.name }}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </v-ons-list-item>
-        </v-ons-list>
-
+                </v-ons-list-item>
+            </v-ons-list>
+        </div>
     </v-ons-page>
 </template>
 
 <script>
-    import ProductItem from '../components/product-item'
-    import { mapActions } from 'vuex'
+    import ProductItem from '../../components/product-item'
+    import { mapActions, mapGetters } from 'vuex'
     import constants from '_vuex_constants'
-    import ImgDesert from '../img/dessert.svg'
+    import ImgDesert from '../../img/dessert.svg'
     import ScreenProducts from '_screen_products'
 
     export default {
@@ -73,9 +75,15 @@
                 ],
             }
         },
+        computed: {
+            ...mapGetters({
+                productsGroups: constants.MrewardShop.Getters.productsGroups,
+            }),
+
+        },
         async created () {
             try {
-                // await this.getProductsGroups()
+                await this.getProductsGroups()
             } catch (e) {
                 this.$Alert.Error(e)
             }
@@ -88,8 +96,15 @@
                 getCountries: constants.MrewardGeo.Actions.getCountries,
                 getProductsGroups: constants.MrewardShop.Actions.getProductsGroups
             }),
-            goToProducts() {
-                this.pushPage(ScreenProducts)
+            goToProducts(item) {
+                this.pushPage({
+                    extends: ScreenProducts,
+                    data: () => {
+                        return {
+                            category: item,
+                        }
+                    },
+                })
             }
         }
     }
@@ -136,11 +151,10 @@
             line-height: 20px;
             letter-spacing: -0.24px;
             color: #000000;
-            flex: none;
+            flex: 1;
             order: 1;
             align-self: center;
             margin: 16px 0px;
-
         }
 
         &__info-wrap {

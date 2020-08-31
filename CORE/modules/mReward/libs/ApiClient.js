@@ -148,6 +148,13 @@ export default class ApiClient {
                 }
                 return `/partner/${json.partnerId}/branches`
             }
+            case this.APIEndPoints.Shop.ProductSearch.url: {
+                return `${apiEndpoint.url}?product=${json.product}`
+            }
+            case this.APIEndPoints.Shop.GetProductsCategory.url: {
+                return `${apiEndpoint.url}?group_id=${json.group_id}`
+            }
+
             default: {
                 return apiUrl
             }

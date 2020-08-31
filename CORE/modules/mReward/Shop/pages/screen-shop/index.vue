@@ -13,14 +13,15 @@
                         <span class="country-row__title">
                              Страна доставки
                         </span>
+<!--                        // v-on="onSelectCountry"-->
                         <v-btn
                                 small
                                 class="v-btn-rounded--small margin-left--small-base btn-country"
-                                v-on="onSelectCountry"
+                                @click="countryDialog = true"
                         >
-                            <img v-if="country"
+                            <img v-if="country.flag"
                                  class="flag"
-                                 :src="country"
+                                 :src="country.flag"
                                  alt="">
                             <i class="icon-next-page right currency-right "/>
                         </v-btn>
@@ -31,21 +32,21 @@
                              :class="{'tabbar-button__item--active': tab === 'top'}"
                              @click="setActiveTab('top', 0)">
                             <div class="tabbar-button__title">
-                                {{$t('m_adresses_list')}}
+                                {{$t('m_shop_top')}}
                             </div>
                         </div>
                         <div class="tabbar-button__item"
                              :class="{'tabbar-button__item--active': tab === 'catalog'}"
                              @click="setActiveTab('catalog', 1)">
                             <div class="tabbar-button__title">
-                                {{$t('m_adresses_map')}}
+                                {{$t('m_shop_catalog')}}
                             </div>
                         </div>
                         <div class="tabbar-button__item"
                              :class="{'tabbar-button__item--active': tab === 'favorite'}"
                              @click="setActiveTab('favorite', 2)">
                             <div class="tabbar-button__title">
-                                {{$t('m_adresses_map')}}
+                                {{$t('m_shop_favorite')}}
                             </div>
                         </div>
                     </div>
@@ -100,11 +101,78 @@
                         </keep-alive>
                     </transition>
                 </template>
-
             </v-ons-tabbar>
-
         </div>
 
+
+        <cart :isVisible.sync="isVisibleCart"/>
+
+        <div class="button-cart"
+             ref="btnCall"
+             @click="isVisibleCart = true">
+            <i class="icon-cart"/>
+            <div v-if="cart.length"
+                 class="button-cart__badge">
+                {{totalCartProduct}}
+            </div>
+        </div>
+
+        <v-ons-popover
+                cancelable
+                :visible.sync="popoverFavorite"
+                target=".page__content"
+                direction="'up'"
+                class="popover--status popover--favorite"
+        >
+            <slot>
+                <div class="popover__icon">
+                    <ons-icon icon="favorites" />
+                </div>
+                <div class="popover__text">
+                    {{ $t('m_shop_add_to_favorite_success') }}
+                </div>
+            </slot>
+        </v-ons-popover>
+
+        <v-dialog
+                v-model="countryDialog"
+                content-class="accounts--dialog country--dialog"
+        >
+            <v-list
+                    flat
+            >
+                <div class="dialog-header">
+                    <v-subheader>{{ $t('m_dashboard_wallets') }}</v-subheader>
+                    <v-btn
+                            icon
+                            fab
+                            @click="countryDialog = false"
+                    >
+                        <i class="icon icon-close"/>
+                    </v-btn>
+                </div>
+
+                <v-list-item-group>
+                    <v-list-item
+                            v-for="(item, i) in countries"
+                            :key="i"
+                            @click="onSelectCountry(item)"
+                    >
+                        <v-list-item-content>
+                            <img class="flag" :src="item.flag" alt="">
+                            <v-list-item-title>
+
+                                {{ item.country_name }}
+                                <v-ons-icon
+                                        v-if="item.country_id === country.country_id"
+                                        icon="checkmark"
+                                />
+                            </v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+                </v-list-item-group>
+            </v-list>
+        </v-dialog>
 
     </layout>
 </template>
@@ -113,10 +181,12 @@
     import ScreenShopMixin from '_screen_shop_mixin'
     import ShopIllustration from '_screen_shop_img/shop-illustration.svg'
     import ImgConstructor from '_screen_shop_img/constructor.svg'
-    import ProductItem from '../components/product-item'
+    import ProductItem from '../../components/product-item'
+    import Cart from '../../components/cart'
     import Catalog from './catalog'
     import Favorite from './favorite'
     import Top from './top'
+    import Search from './search'
 
     export default {
         name: 'screen-shop',
@@ -124,15 +194,19 @@
             ProductItem,
             Catalog,
             Favorite,
-            Top
+            Top,
+            Cart,
+            Search,
         },
         mixins: [
-            ScreenShopMixin
+            ScreenShopMixin,
         ],
         data () {
             return {
+                isVisibleCart: false,
                 img: ShopIllustration,
-                ImgConstructor
+                ImgConstructor,
+                countryDialog: false,
             }
         },
     }
@@ -149,17 +223,11 @@
             background: #fff;
         }
 
-        >.page__content {
+        > .page__content {
             padding: 0;
-            padding-bottom: 34px;
+            /*padding-bottom: 34px;*/
             position: static;
             flex: 1;
-
-            .not-found-items {
-                height: 30px;
-                min-height: 30px;
-                margin: -62px;
-            }
         }
 
         .toolbar-main__left {
@@ -188,7 +256,11 @@
 
         .page__content {
             background-color: #F5F7FA !important;
-            padding: 16px!important;
+            padding: 16px !important;
+        }
+
+        .ons-tabbar__footer {
+            display: none;
         }
     }
 
@@ -253,6 +325,7 @@
         box-shadow: unset !important;
         padding: 0 16px;
         justify-content: start;
+
         img {
             height: 20px;
             margin-right: 12px;
@@ -268,13 +341,12 @@
         }
     }
 
-
-
     .btn-filters {
         background-color: unset !important;
         border-radius: 50%;
         box-shadow: unset !important;
         padding: 0 16px !important;
+
         &:before {
             background-color: unset !important;
         }
@@ -282,5 +354,122 @@
         i {
             font-size: 20px;
         }
+    }
+
+    .button-cart {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        background: #6D0978;
+        box-shadow: 0px 4px 8px rgba(77, 50, 80, 0.3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        position: fixed;
+        right: 16px;
+        bottom: 16px;
+        z-index: 99;
+        transform: translate3d(0, 0, 0);
+        will-change: transform;
+
+        i {
+            color: #fff;
+        }
+        &__badge {
+            position: absolute;
+            left: -3px;
+            top: -3px;
+            width: 20px;
+            height: 20px;
+            background: #FF0000;
+
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 16px;
+        }
+    }
+
+    .popover--favorite {
+        .popover__icon {
+            color: #FFC700 !important;
+        }
+    }
+
+    .country--dialog {
+        border-radius: 8px;
+        box-shadow: 0px 8px 15px rgba(39, 45, 45, 0.06);
+
+        .dialog-header {
+            display: flex;
+            justify-content: space-between;
+
+            .v-subheader {
+                font-style: normal;
+                font-weight: 600;
+                font-size: 22px;
+                line-height: 24px;
+                letter-spacing: 0.4px;
+                color: #000000;
+                padding: 0;
+                height: unset !important;
+            }
+
+            button {
+                width: 36px;
+                height: 36px;
+                min-width: 36px;
+                min-height: 36px;
+                border-radius: 50%;
+                background: #F5F7FA !important;
+
+                box-shadow: unset !important;
+
+                i {
+                    color: #000;
+                    font-size: 14px;
+                }
+            }
+        }
+
+        .v-list {
+            padding: 16px;
+            border-radius: 8px;
+        }
+
+        .v-list-item {
+            display: flex;
+            justify-content: space-between;
+
+            padding: 2px 0;
+            img {
+                width: 30px;
+                height: 20px;
+                max-width: 30px;
+            }
+
+            &__title {
+                flex: 1;
+                padding-left: 12px;
+                display: flex;
+                justify-content: space-between;
+
+                ons-icon {
+                    color: #6D0978;
+                }
+            }
+        }
+
+        .v-item-group {
+            padding-top: 4px;
+        }
+
+
+
     }
 </style>

@@ -1,35 +1,39 @@
 <template>
     <div class="product-item__wrap">
         <div class="product-item__image"
-             :style="`background-image: url('${item.img}')`">
+             :style="`background-image: url('${item.img}')`"
+             @click="goToDetails"
+        />
+
+        <div v-if="item.top" class="marker__top">
+                {{$t('m_shop_top')}}
         </div>
 
-        <div class="marker__top">
+        <div class="marker__favorite"
+             @click="() => {isFavorite ? removeFavorite(item) : addToFavorite(item)}"
+             :style="`background-image: url('${isFavorite ? ImgFavoritesActive : ImgFavoritesDefault}')`" />
 
-        </div>
-
-        <div class="marker__favorite">
-
-        </div>
 
         <div class="product-item__content">
-            <div class="product-item__info">
+            <div class="product-item__info" @click="goToDetails">
                 <span class="product-item__name">{{item.name}}</span>
-                <span class="product-item__price">{{item.price}}</span>
+                <span class="product-item__price">{{item.price}} c.</span>
             </div>
             <div class="product-item__bottom">
-                <span class="product-item__wight">{{item.price}}</span>
+                <span class="product-item__wight"> </span>
                 <div class="product-item__btn-block">
                     <v-btn
                             small
                             class="btn-count"
+                            @click="removeFromCart(item)"
                     >
                         <i class="icon-minus"/>
                     </v-btn>
-                    <span class="product-item__btn-block__count">2</span>
+                    <span class="product-item__btn-block__count">{{item.count}}</span>
                     <v-btn
                             small
                             class="btn-count"
+                            @click="addToCart(item)"
                     >
                         <i class="icon-plus"/>
                     </v-btn>
@@ -40,14 +44,76 @@
 </template>
 
 <script>
+    import { mapActions, mapGetters } from 'vuex'
+    import constants from '_vuex_constants'
+    import ImgFavoritesActive from '../img/favorites-active.svg'
+    import ImgFavoritesDefault from '../img/favorites-default.svg'
+    import ScreenProductDetails from '_screen_product_details'
+
+
     export default {
         name: 'product-item',
         props: {
             item: {
                 type: Object,
-                default: {}
+                default: {
+                    count: 0,
+                }
             },
-        }
+        },
+        data () {
+            return {
+                ImgFavoritesActive,
+                ImgFavoritesDefault
+            }
+        },
+        computed: {
+            ...mapGetters({
+                productsFavorite: constants.MrewardShop.Getters.productsFavorite,
+            }),
+
+            isFavorite() {
+                if(this.productsFavorite) {
+                    return !!this.productsFavorite.find(item => item.art_id === this.item.data.art_id)
+                }
+
+                return false;
+            },
+        },
+        methods: {
+            ...mapActions({
+                pushPage: constants.App.Actions.pushPage,
+                addToCart: constants.MrewardShop.Actions.addToCart,
+                removeFromCart: constants.MrewardShop.Actions.removeFromCart,
+                setFavorite: constants.MrewardShop.Actions.setFavorite,
+                removeFavorite: constants.MrewardShop.Actions.removeFavorite,
+            }),
+            async addToFavorite(item) {
+                await this.setFavorite(item)
+                this.$bus.$emit('showPopoverFavorite')
+            },
+
+            goToDetails() {
+                const $this = this
+
+                this.pushPage({
+                    extends: ScreenProductDetails,
+                    // data: () => {
+                    //     return {
+                    //         // item: this.item,
+                    //     }
+                    // },
+                    props: {
+                        item: {
+                            type: Object,
+                            default: () => {
+                                return $this.item
+                            },
+                        },
+                    },
+                })
+            }
+        },
     }
 </script>
 
@@ -59,6 +125,7 @@
         min-height: 30px !important;
         min-width: 30px !important;
         background: #F5F7FA;
+        box-shadow: unset !important;
         i {
             font-size: 8px;
         }
@@ -101,9 +168,11 @@
             letter-spacing: -0.24px;
             color: #000000;
             margin-bottom: 2px;
+            max-height: 42px;
+            overflow: hidden;
         }
 
-        &__price{
+        &__price {
             font-family: SF Pro Display;
             font-style: normal;
             font-weight: 600;
@@ -167,15 +236,26 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            height: 26px;
-            width: 40px;
+            /*height: 26px;*/
+            /*width: 40px;*/
+            padding: 5px;
             background: #6D0978;
             border-top-right-radius: 8px;
             border-bottom-left-radius: 8px;
+
+            font-style: normal;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 16px;
+            color: #FFFFFF;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         &__favorite {
-            background: #FFFFFF;
+            background-color: #FFFFFF;
             opacity: 0.5;
             box-shadow: 0px 8px 15px rgba(39, 45, 45, 0.06);
             position: absolute;
@@ -185,6 +265,9 @@
             width: 30px;
             border-radius: 50%;
 
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 16px;
         }
     }
 </style>
