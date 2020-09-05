@@ -15,6 +15,7 @@ export default {
             search: '',
             tabbarIndex: 0,
             popoverFavorite: false,
+            mode: '',
         }
     },
     computed: {
@@ -32,17 +33,24 @@ export default {
     },
     watch: {
         async search(value) {
+            this.tab = 'catalog'
+
             if (value.length > 2) {
-                this.tab = 'search'
+                this.goToSearch()
                 this.getProductSearch({name: value})
             } else {
-                this.tab = 'top'
+                this.tab = 'catalog'
+                this.mode = ''
+                this.clearProductSearch()
             }
         }
     },
     async created() {
         this.$bus.$on('showPopoverFavorite', this.showPopoverFavorite.bind(this))
         this.$bus.$on('showCart', this.showCart.bind(this))
+        this.$bus.$on('showFilter', this.showFilter.bind(this))
+        this.$bus.$on('goToSearch', this.goToSearch.bind(this))
+        this.$bus.$on('clearSearch', this.clearSearchField.bind(this))
 
         try {
             if (!this.countries.length) {
@@ -63,6 +71,9 @@ export default {
     beforeDestroy() {
         this.$bus.$off('showPopoverFavorite', this.showPopoverFavorite.bind(this))
         this.$bus.$off('showCart', this.showCart.bind(this))
+        this.$bus.$off('showFilter', this.showFilter.bind(this))
+        this.$bus.$off('clearSearch', this.clearSearchField.bind(this))
+        this.$bus.$off('goToSearch', this.goToSearch.bind(this))
     },
     methods: {
         ...mapActions({
@@ -73,14 +84,17 @@ export default {
             getProductsFavorite: constants.MrewardShop.Actions.getProductsFavorite,
             selectCountry: constants.MrewardShop.Actions.selectCountry,
             getProductSearch: constants.MrewardShop.Actions.getProductSearch,
+            clearProductSearch: constants.MrewardShop.Actions.clearProductSearch,
         }),
         setActiveTab(name, index) {
             this.tab = name;
             this.tabbarIndex = index;
 
         },
-        cleareSearchField() {
+        clearSearchField() {
             this.search = ''
+            this.mode = ''
+            this.clearProductSearch()
         },
         showPopoverFavorite() {
             this.popoverFavorite = true
@@ -94,6 +108,13 @@ export default {
         },
         showCart() {
             this.isVisibleCart = true
+        },
+        showFilter() {
+            this.isVisibleFilters = true
+        },
+        goToSearch() {
+            this.tab = 'catalog'
+            this.mode = 'search'
         }
     }
 }

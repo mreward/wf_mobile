@@ -1,6 +1,6 @@
 <template>
     <layout
-            :title="$t('m_profile_settings')"
+            :title="category.name"
             page="products"
     >
         <div class="toolbar--search">
@@ -27,12 +27,14 @@
                     </v-btn>
                 </transition>
 
-                <v-btn
-                        small
-                        class="btn-filters"
-                >
-                    <i class="icon-filters"/>
-                </v-btn>
+<!--                <v-btn-->
+<!--                        small-->
+<!--                        class="btn-filters"-->
+<!--                        @click="$bus.$emit('showFilter')"-->
+
+<!--                >-->
+<!--                    <i class="icon-filters"/>-->
+<!--                </v-btn>-->
             </div>
         </div>
 
@@ -169,7 +171,7 @@
         }
 
         .toolbar__wrapper {
-            padding-right: 0 !important;
+            /*padding-right: 0 !important;*/
             padding-bottom: 12px;
         }
 

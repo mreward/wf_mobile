@@ -68,7 +68,7 @@
                                 v-show="showCancelButton"
                                 text
                                 depressed
-                                @click="cleareSearchField"
+                                @click="clearSearchField"
                         >
                             {{ $t('m_adresses_cancel') }}
                         </v-btn>
@@ -77,6 +77,7 @@
                     <v-btn
                             small
                             class="btn-filters"
+                            @click="isVisibleFilters = true"
                     >
                         <i class="icon-filters"/>
                     </v-btn>
@@ -97,7 +98,7 @@
                 <template slot="pages">
                     <transition>
                         <keep-alive>
-                            <component :is="tab"></component>
+                            <component :is="tab" :mode="mode"></component>
                         </keep-alive>
                     </transition>
                 </template>
@@ -106,6 +107,7 @@
 
 
         <cart :isVisible.sync="isVisibleCart"/>
+        <filters :isVisible.sync="isVisibleFilters"/>
 
         <div class="button-cart"
              ref="btnCall"
@@ -183,6 +185,7 @@
     import ImgConstructor from '_screen_shop_img/constructor.svg'
     import ProductItem from '../../components/product-item'
     import Cart from '../../components/cart'
+    import Filters from '../../components/filters'
     import Catalog from './catalog'
     import Favorite from './favorite'
     import Top from './top'
@@ -197,6 +200,7 @@
             Top,
             Cart,
             Search,
+            Filters,
         },
         mixins: [
             ScreenShopMixin,
@@ -204,6 +208,7 @@
         data () {
             return {
                 isVisibleCart: false,
+                isVisibleFilters: false,
                 img: ShopIllustration,
                 ImgConstructor,
                 countryDialog: false,

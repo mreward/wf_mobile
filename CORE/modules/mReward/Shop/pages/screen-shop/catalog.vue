@@ -1,37 +1,58 @@
 <template>
     <v-ons-page>
         <div class="page__content">
-            <v-ons-list
-                    v-for="(item, index) in productsGroups"
-                    :key="index"
-                    class="dropdown-list catalog-list"
-            >
-                <v-ons-list-item
-                        ref="dropdownList"
-                        class="dropdown-list__item catalog-item"
-                        :expandable="!!item.child.length"
-                        @click="() => !!item.child.length ? () => {} :  goToProducts(item)"
+            <template v-if="!mode">
+                <v-ons-list
+                        v-for="(item, index) in productsGroups"
+                        :key="index"
+                        class="dropdown-list catalog-list"
                 >
-                    <div class="center catalog-item__name">
-                        <div class="catalog-item__image"
-                             :style="`background-image: url('${item.icon}')`">
+                    <v-ons-list-item
+                            ref="dropdownList"
+                            class="dropdown-list__item catalog-item"
+                            :expandable="!!item.child.length"
+                            @click="() => !!item.child.length ? () => {} :  goToProducts(item)"
+                    >
+                        <div class="center catalog-item__name">
+                            <div class="catalog-item__image"
+                                 :style="`background-image: url('${item.icon}')`">
+                            </div>
+                            <div style="flex: 1;">{{ item.name }}</div>
                         </div>
-                        <div style="flex: 1;">{{ item.name }}</div>
-                    </div>
-                    <div class="dropdown-list__content expandable-content">
-                        <div
-                                v-for="(listItem, indexItem) in item.child"
-                                :key="indexItem"
-                                class="catalog-item__info-wrap"
-                                @click="goToProducts(listItem)"
-                        >
-                            <div class="catalog-item__info-sub__name">
-                                <span class="contacts-subtitle">{{ listItem.name }}</span>
+                        <div class="dropdown-list__content expandable-content">
+                            <div
+                                    v-for="(listItem, indexItem) in item.child"
+                                    :key="indexItem"
+                                    class="catalog-item__info-wrap"
+                                    @click="goToProducts(listItem)"
+                            >
+                                <div class="catalog-item__info-sub__name">
+                                    <span class="contacts-subtitle">{{ listItem.name }}</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </v-ons-list-item>
-            </v-ons-list>
+                    </v-ons-list-item>
+                </v-ons-list>
+            </template>
+
+            <template v-if="!productSearchLoader && listDataSearch.length">
+                <product-item
+                        v-for="(item, index) in listDataSearch"
+                        :key="item.data.art_id"
+                        :item.sync="item"/>
+            </template>
+
+            <v-progress-circular
+                    v-else-if="productSearchLoader"
+                    :width="7"
+                    :size="70"
+                    indeterminate
+            />
+
+            <not-found-items
+                    v-else
+                    :message="$t('m_adresses_not_found')"
+            />
         </div>
     </v-ons-page>
 </template>
@@ -40,46 +61,54 @@
     import ProductItem from '../../components/product-item'
     import { mapActions, mapGetters } from 'vuex'
     import constants from '_vuex_constants'
-    import ImgDesert from '../../img/dessert.svg'
+    // import ImgDesert from '../../img/dessert.svg'
     import ScreenProducts from '_screen_products'
+    import NotFoundItems from '_not_found_items'
 
     export default {
         name: 'screen-shop-catalog',
         components: {
-            ProductItem
+            ProductItem,
+            NotFoundItems,
+        },
+        props: {
+            mode: {
+                type: String,
+                default: ''
+            }
         },
         data () {
             return {
-                listData: [
-                    {
-                        name: 'Торты',
-                        icon: ImgDesert,
-                        list: [
-                            {
-                                name: 'Бисквитные торты',
-                            },{
-                                name: 'Торты и суфле',
-                            },{
-                                name: 'Торты слоенные',
-                            }],
-                    },{
-                        name: 'Печенья',
-                        icon: '',
-                        list: [
-                            {
-                                name: 'Макаронс',
-                            },{
-                                name: 'Безе',
-                            }],
-                    }
-                ],
             }
         },
         computed: {
             ...mapGetters({
                 productsGroups: constants.MrewardShop.Getters.productsGroups,
+                productSearch: constants.MrewardShop.Getters.productSearch,
+                productSearchLoader: constants.MrewardShop.Getters.productSearchLoader,
+                loaderVisible: constants.App.Getters.loaderVisible,
+                cart: constants.MrewardShop.Getters.cart,
             }),
+            listDataSearch() {
+                if (!this.productSearch.length) {
+                    return []
+                }
 
+                return this.productSearch.map((item) => {
+                    const productCart = this.cart.find(c => c.data.art_id === item.art_id)
+
+                    return {
+                        id: item.id,
+                        name: item.product_name,
+                        price: item.product_price,
+                        wight: '',
+                        img: item.images[0] ? item.images[0].mobile_420_420 : '',
+                        top: item.top,
+                        count: productCart ? productCart.count : 0,
+                        data: item,
+                    }
+                });
+            }
         },
         async created () {
             try {

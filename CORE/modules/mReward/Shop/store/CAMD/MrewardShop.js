@@ -32,6 +32,14 @@ export default {
             name: 'PRODUCTSEARCH',
             nameGlobal: 'MrewardShop/PRODUCTSEARCH'
         },
+        PayData: {
+            name: 'PAYDATA',
+            nameGlobal: 'MrewardShop/PAYDATA'
+        },
+        ProductSearchLoader: {
+            name: 'PRODUCTSEARCHLOADER',
+            nameGlobal: 'MrewardShop/PRODUCTSEARCHLOADER'
+        },
     },
     Actions: {
         getProducts: 'MrewardShop/getProducts',
@@ -50,6 +58,7 @@ export default {
         getProduct: 'MrewardShop/getProduct',
         getProductSearch: 'MrewardShop/getProductSearch',
         getProductsCategory: 'MrewardShop/getProductsCategory',
+        clearProductSearch: 'MrewardShop/clearProductSearch',
     },
     Getters: {
         products: 'MrewardShop/products',
@@ -61,5 +70,7 @@ export default {
         deliveryList: 'MrewardShop/deliveryList',
         country: 'MrewardShop/country',
         productSearch: 'MrewardShop/productSearch',
+        payData: 'MrewardShop/payData',
+        productSearchLoader: 'MrewardShop/productSearchLoader',
     }
 }

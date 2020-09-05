@@ -1,6 +1,6 @@
 <template>
     <layout
-            :title="$t('m_profile_settings')"
+            :title="' '"
             page="product-details"
     >
         <div class="product-details__title">
@@ -36,21 +36,21 @@
 
         <div class="product-details__devider"/>
 
-        <div class="product-details__category">
-            <div class="product-details__category__header">
-                <div class="product-details__category__icon">
-                    <i class="icon-certificate"/>
-                </div>
-                <div class="product-details__category__name">
-                    Сертификаты
-                </div>
-            </div>
-            <div class="product-details__category__cotent">
-                <img :src="ImgHalal" />
-                <img :src="ImgKuvshin" />
-                <img :src="ImgRumka" />
-            </div>
-        </div>
+<!--        <div class="product-details__category">-->
+<!--            <div class="product-details__category__header">-->
+<!--                <div class="product-details__category__icon">-->
+<!--                    <i class="icon-certificate"/>-->
+<!--                </div>-->
+<!--                <div class="product-details__category__name">-->
+<!--                    Сертификаты-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="product-details__category__cotent">-->
+<!--                <img :src="ImgHalal" />-->
+<!--                <img :src="ImgKuvshin" />-->
+<!--                <img :src="ImgRumka" />-->
+<!--            </div>-->
+<!--        </div>-->
 
         <div class="product-details__category">
             <div class="product-details__category__header">
@@ -82,19 +82,19 @@
             </div>
         </div>
 
-        <div class="product-details__category">
-            <div class="product-details__category__header">
-                <div class="product-details__category__icon">
-                    <i class="icon-energy"/>
-                </div>
-                <div class="product-details__category__name">
-                    Энергетическая ценность:
-                </div>
-            </div>
-            <div class="product-details__category__cotent">
-                445,38 ккал
-            </div>
-        </div>
+<!--        <div class="product-details__category">-->
+<!--            <div class="product-details__category__header">-->
+<!--                <div class="product-details__category__icon">-->
+<!--                    <i class="icon-energy"/>-->
+<!--                </div>-->
+<!--                <div class="product-details__category__name">-->
+<!--                    Энергетическая ценность:-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="product-details__category__cotent">-->
+<!--                445,38 ккал-->
+<!--            </div>-->
+<!--        </div>-->
 
         <div class="product-details__category">
             <div class="product-details__category__header">

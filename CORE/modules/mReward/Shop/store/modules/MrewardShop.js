@@ -27,7 +27,8 @@ const state = {
     deliveryList: [],
     country: {},
     productSearch: [],
-
+    payData: null,
+    productSearchLoader: false
 }
 
 const mutations = {
@@ -54,6 +55,12 @@ const mutations = {
     },
     [ShopMutat.ProductSearch.name]: (state, data) => {
         state.productSearch = data
+    },
+    [ShopMutat.PayData.name]: (state, data) => {
+        state.payData = data
+    },
+    [ShopMutat.ProductSearchLoader.name]: (state, data) => {
+        state.productSearchLoader = data
     },
 }
 
@@ -109,7 +116,6 @@ const actions = {
             .filter(item => item.view_is_online)
             const items = sortBy(activeItems, 'parent_id')
             const list = []
-            debugger;
 
             items.forEach((item) => {
                 if (item.parent_id === 0) {
@@ -208,7 +214,7 @@ const actions = {
     addToCart ({state, commit, dispatch, rootState}, payload) {
         if (payload) {
             const list = state.cart
-            let product = list.find(item => item.data.id === payload.data.id)
+            let product = list.find(item => item.data.art_id === payload.data.art_id)
 
             if (!product) {
                 product = cloneDeep(payload)
@@ -223,7 +229,7 @@ const actions = {
     removeFromCart ({state, commit, dispatch, rootState}, payload) {
         if (payload) {
             const list = state.cart
-            const productIndex = list.findIndex(item => item.data.id === payload.data.id)
+            const productIndex = list.findIndex(item => item.data.art_id === payload.data.art_id)
             if (list[productIndex]) {
                 list[productIndex].count -= 1
 
@@ -283,7 +289,6 @@ const actions = {
                 receipt_description: 'Покупка в Интернет-Магазине',
                 receipt_details: JSON.stringify(receiptDetails),
             })
-            debugger
             dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })
 
             return response.pre_check
@@ -299,11 +304,12 @@ const actions = {
         console.log('STORE: MrewardShop Module - paymentUrl')
         try {
             dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
+            commit(ShopMutat.PayData.name, null)
 
             const response = await new MrewardShop().PaymentUrl({
                 precheck_id: payload.pre_check_id
             })
-            debugger
+            commit(ShopMutat.PayData.name, response)
             dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })
 
             return response
@@ -346,6 +352,9 @@ const actions = {
         try {
             dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
 
+            commit(ShopMutat.ProductSearch.name, [])
+            commit(ShopMutat.ProductSearchLoader.name, true)
+
             const response = await new MrewardShop().ProductSearch({
                 product: payload.name
             })
@@ -364,6 +373,7 @@ const actions = {
             })
 
             commit(ShopMutat.ProductSearch.name, list)
+            commit(ShopMutat.ProductSearchLoader.name, false)
 
             dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })
 
@@ -374,6 +384,11 @@ const actions = {
                 log: 'STORE: MrewardShop Module - getProductSearch'
             }, {root: true})
         }
+    },
+
+    async clearProductSearch({ commit, dispatch, rootState }, payload) {
+        console.log('STORE: MrewardShop Module - clearProductSearch')
+        commit(ShopMutat.ProductSearch.name, [])
     },
 
     async getProductsCategory({ commit, dispatch, rootState }, payload) {
@@ -442,6 +457,12 @@ const getters = {
     productSearch(state) {
         return state.productSearch
     },
+    payData(state) {
+        return state.payData
+    },
+    productSearchLoader(state) {
+        return state.productSearchLoader
+    }
 }
 
 export default {
