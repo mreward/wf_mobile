@@ -59,6 +59,8 @@ export default {
         getProductSearch: 'MrewardShop/getProductSearch',
         getProductsCategory: 'MrewardShop/getProductsCategory',
         clearProductSearch: 'MrewardShop/clearProductSearch',
+        getPriceDelivery: 'MrewardShop/getPriceDelivery',
+        loadSelectCountry: 'MrewardShop/loadSelectCountry',
     },
     Getters: {
         products: 'MrewardShop/products',

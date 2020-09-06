@@ -376,6 +376,12 @@ export class DbObject {
                 selectedAccount: {
                     name: 'selectedAccount',
                     time: 0
+                },
+                shop: {
+                    country: {
+                        name: 'shop-country',
+                        time: 0
+                    }
                 }
             },
             notificationsList: {

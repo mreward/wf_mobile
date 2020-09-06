@@ -28,7 +28,7 @@ export default class MrewardShop extends ApiClient {
         )
     }
 
-    GetProductsGroups(json) {
+    GetProductsGroups(json, config) {
         this.logger('MrewardShop:GetProductsGroups')
         const requestData = { ...this.APIEndPoints.Shop.GetProductsGroups }
 
@@ -37,11 +37,7 @@ export default class MrewardShop extends ApiClient {
           {
               ...json,
               networkFirst: true,
-          },
-          {
-              partnerKey: '1e417e47-2bb6-440d-8168-c6a56abcb5a0'
-          }
-        )
+          }, config)
     }
 
 
@@ -110,7 +106,7 @@ export default class MrewardShop extends ApiClient {
         )
     }
 
-    PreCheck(json) {
+    PreCheck(json, config) {
         this.logger('MrewardShop:PreCheck')
         const requestData = { ...this.APIEndPoints.Shop.PreCheck }
 
@@ -119,14 +115,10 @@ export default class MrewardShop extends ApiClient {
           {
               ...json,
               networkFirst: true,
-          },
-          {
-              partnerKey: '1e417e47-2bb6-440d-8168-c6a56abcb5a0'
-          }
-        )
+          }, config)
     }
 
-    GetProduct(json) {
+    GetProduct(json, config) {
         this.logger('MrewardShop:PreCheck')
         const requestData = { ...this.APIEndPoints.Shop.GetProduct }
 
@@ -135,14 +127,10 @@ export default class MrewardShop extends ApiClient {
           {
               ...json,
               networkFirst: true,
-          },
-          {
-              partnerKey: '1e417e47-2bb6-440d-8168-c6a56abcb5a0'
-          }
-        )
+          }, config)
     }
 
-    ProductSearch(json) {
+    ProductSearch(json, config) {
         this.logger('MrewardShop:ProductSearch')
         const requestData = { ...this.APIEndPoints.Shop.ProductSearch }
 
@@ -151,14 +139,10 @@ export default class MrewardShop extends ApiClient {
           {
               ...json,
               networkFirst: true,
-          },
-          {
-              partnerKey: '1e417e47-2bb6-440d-8168-c6a56abcb5a0'
-          }
-        )
+          }, config)
     }
 
-    GetProductsCategory(json) {
+    GetProductsCategory(json, config) {
         this.logger('MrewardShop:GetProductsCategory')
         const requestData = { ...this.APIEndPoints.Shop.GetProductsCategory }
 
@@ -167,11 +151,7 @@ export default class MrewardShop extends ApiClient {
           {
               ...json,
               networkFirst: true,
-          },
-          {
-              partnerKey: '1e417e47-2bb6-440d-8168-c6a56abcb5a0'
-          }
-        )
+          }, config)
     }
 
 

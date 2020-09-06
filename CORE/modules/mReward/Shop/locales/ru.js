@@ -17,4 +17,8 @@ export default {
     m_shop_total_amount: 'Общая сумма',
     m_shop_filter_base: 'Основа',
     m_shop_filter_taste: 'Вкус',
+    m_shop_composition: 'Состав',
+    m_shop_storage: 'Условия хранения',
+    m_shop_shelf_life: 'Срок хранения',
+    m_shop_content: 'В 100г продукта содержится',
 }

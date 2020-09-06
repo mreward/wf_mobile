@@ -97,12 +97,17 @@
                 return this.productSearch.map((item) => {
                     const productCart = this.cart.find(c => c.data.art_id === item.art_id)
 
+                    let img = ''
+                    if(item.images[0]) {
+                        img = item.images[0].mobile_420_420 || item.images[0].image_url_mobile
+                    }
+
                     return {
                         id: item.id,
                         name: item.product_name,
                         price: item.product_price,
                         wight: '',
-                        img: item.images[0] ? item.images[0].mobile_420_420 : '',
+                        img,
                         top: item.top,
                         count: productCart ? productCart.count : 0,
                         data: item,

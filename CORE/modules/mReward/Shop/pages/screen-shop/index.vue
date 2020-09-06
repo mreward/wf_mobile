@@ -19,10 +19,17 @@
                                 class="v-btn-rounded--small margin-left--small-base btn-country"
                                 @click="countryDialog = true"
                         >
-                            <img v-if="country.flag"
+                            <img v-if="country.flag && !loaderUpdate"
                                  class="flag"
                                  :src="country.flag"
                                  alt="">
+                            <v-progress-circular
+                                    v-else
+                                    :width="1"
+                                    :size="5"
+                                    indeterminate
+                            />
+
                             <i class="icon-next-page right currency-right "/>
                         </v-btn>
                     </div>
@@ -318,6 +325,11 @@
             font-size: 10px;
             transform: rotate(90deg);
             color: #000;
+        }
+
+        .v-progress-circular {
+            width: 10px !important;
+            height: 10px !important;
         }
     }
 

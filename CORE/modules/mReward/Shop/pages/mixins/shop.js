@@ -16,6 +16,7 @@ export default {
             tabbarIndex: 0,
             popoverFavorite: false,
             mode: '',
+            loaderUpdate: true
         }
     },
     computed: {
@@ -58,15 +59,12 @@ export default {
                 await this.getProductsFavorite()
             }
 
-            if (this.profile && this.profile.country) {
-                const country = this.countries.find(i => i.country_id === this.profile.country)
-                if (country) {
-                    this.selectCountry(country)
-                }
-            }
+            await this.loadSelectCountry()
         } catch (e) {
             this.$Alert.Error(e)
         }
+
+        this.loaderUpdate = false
     },
     beforeDestroy() {
         this.$bus.$off('showPopoverFavorite', this.showPopoverFavorite.bind(this))
@@ -85,6 +83,7 @@ export default {
             selectCountry: constants.MrewardShop.Actions.selectCountry,
             getProductSearch: constants.MrewardShop.Actions.getProductSearch,
             clearProductSearch: constants.MrewardShop.Actions.clearProductSearch,
+            loadSelectCountry: constants.MrewardShop.Actions.loadSelectCountry,
         }),
         setActiveTab(name, index) {
             this.tab = name;
@@ -102,9 +101,16 @@ export default {
                 this.popoverFavorite = false
             }, 3000)
         },
-        onSelectCountry(item) {
-            this.countryDialog = false
-            this.selectCountry(item)
+        async onSelectCountry(item) {
+            try {
+                this.loaderUpdate = true
+                this.countryDialog = false
+                await this.selectCountry(item)
+            } catch (e) {
+                console.log(e)
+            }
+
+            this.loaderUpdate = false
         },
         showCart() {
             this.isVisibleCart = true

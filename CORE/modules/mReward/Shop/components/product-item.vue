@@ -1,7 +1,7 @@
 <template>
     <div class="product-item__wrap">
         <div class="product-item__image"
-             :style="`background-image: url('${item.img}')`"
+             :style="`background-image: url('${item.img || ImgDefault}')`"
              @click="goToDetails"
         />
 
@@ -48,6 +48,7 @@
     import constants from '_vuex_constants'
     import ImgFavoritesActive from '../img/favorites-active.svg'
     import ImgFavoritesDefault from '../img/favorites-default.svg'
+    import ImgDefault from '../img/empty.jpg'
     import ScreenProductDetails from '_screen_product_details'
 
 
@@ -63,6 +64,7 @@
         },
         data () {
             return {
+                ImgDefault,
                 ImgFavoritesActive,
                 ImgFavoritesDefault
             }
@@ -255,8 +257,7 @@
         }
 
         &__favorite {
-            background-color: #FFFFFF;
-            opacity: 0.5;
+            background-color: rgba(255, 255, 255, 0.5);
             box-shadow: 0px 8px 15px rgba(39, 45, 45, 0.06);
             position: absolute;
             top: 8px;
@@ -268,6 +269,11 @@
             background-repeat: no-repeat;
             background-position: center;
             background-size: 16px;
+
+            &--big {
+                height: 46px;
+                width: 46px;
+            }
         }
     }
 </style>

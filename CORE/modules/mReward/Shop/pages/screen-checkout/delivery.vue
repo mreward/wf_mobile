@@ -61,12 +61,12 @@
                 </div>
             </div>
 
-            <v-checkbox
-                    v-model="checkbox"
-                    :label="'Запомнить адрес, что бы не вводить в следующий раз'"
-                    :error-messages="errorMessages['checkbox']"
-                    @change="$emit('hideError')"
-            />
+<!--            <v-checkbox-->
+<!--                    v-model="checkbox"-->
+<!--                    :label="'Запомнить адрес, что бы не вводить в следующий раз'"-->
+<!--                    :error-messages="errorMessages['checkbox']"-->
+<!--                    @change="$emit('hideError')"-->
+<!--            />-->
         </div>
 
         <div class="delivery__btn-pay">
@@ -142,9 +142,6 @@
                 getCountries: constants.MrewardGeo.Actions.getCountries,
                 getCityById: constants.MrewardGeo.Actions.getCityById,
             }),
-            setActiveTab (name) {
-                this.tab = name
-            },
             async setCityName () {
                 try {
                     const {target: {city_name: name}} = await this.getCityById({

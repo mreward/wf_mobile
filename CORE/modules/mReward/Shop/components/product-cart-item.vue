@@ -1,7 +1,7 @@
 <template>
     <div class="product-cart-item__wrap">
         <div class="product-cart-item__image"
-             :style="`background-image: url('${item.img}')`">
+             :style="`background-image: url('${item.img || ImgDefault}')`">
         </div>
 
         <div class="product-cart-item__content">
@@ -36,6 +36,7 @@
 <script>
     import { mapActions } from 'vuex'
     import constants from '_vuex_constants'
+    import ImgDefault from '../img/empty.jpg'
 
     export default {
         name: 'product-cart-item',
@@ -46,6 +47,11 @@
                     count: 0,
                 }
             },
+        },
+        data () {
+            return {
+                ImgDefault,
+            }
         },
         computed: {
             totalAmount() {
@@ -92,6 +98,7 @@
             display: flex;
             flex-direction: row;
             justify-content: space-between;
+            align-items: center;
         }
 
         &__name {

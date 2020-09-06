@@ -11,6 +11,8 @@ import { clone } from 'quasar-framework'
 import cloneDeep from 'lodash/cloneDeep'
 import sortBy from 'lodash/sortBy'
 import moment from 'moment'
+import { DbObject } from '_CORE/store/db-objects'
+import localforage from "localforage"
 
 const {
     MrewardShop: {
@@ -22,13 +24,18 @@ const state = {
     products: [],
     productsTop: [],
     productsGroups: [],
-    cart: [],
+    cart: {
+        kg: [],
+        kz: [],
+        ru: [],
+    },
     productsFavorite: [],
     deliveryList: [],
     country: {},
     productSearch: [],
     payData: null,
-    productSearchLoader: false
+    productSearchLoader: false,
+
 }
 
 const mutations = {
@@ -42,7 +49,8 @@ const mutations = {
         state.productsGroups = data
     },
     [ShopMutat.Cart.name]: (state, data) => {
-        state.cart = data
+        const key = state.country.code.toLowerCase()
+        state.cart[key] = data
     },
     [ShopMutat.ProductsFavorite.name]: (state, data) => {
         state.productsFavorite = data
@@ -110,7 +118,9 @@ const actions = {
         try {
             dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
 
-            const response = await new MrewardShop().GetProductsGroups(payload)
+            const response = await new MrewardShop().GetProductsGroups(payload, {
+                partnerKey: state.country.config.key,
+            })
 
             const activeItems = response.items
             .filter(item => item.view_is_online)
@@ -213,7 +223,8 @@ const actions = {
 
     addToCart ({state, commit, dispatch, rootState}, payload) {
         if (payload) {
-            const list = state.cart
+            const key = state.country.code.toLowerCase()
+            const list = state.cart[key]
             let product = list.find(item => item.data.art_id === payload.data.art_id)
 
             if (!product) {
@@ -228,7 +239,8 @@ const actions = {
 
     removeFromCart ({state, commit, dispatch, rootState}, payload) {
         if (payload) {
-            const list = state.cart
+            const key = state.country.code.toLowerCase()
+            const list = state.cart[key]
             const productIndex = list.findIndex(item => item.data.art_id === payload.data.art_id)
             if (list[productIndex]) {
                 list[productIndex].count -= 1
@@ -263,11 +275,12 @@ const actions = {
         }
     },
 
-    async preCheck({ commit, dispatch, rootState }, payload) {
+    async preCheck({ commit, state, dispatch, rootState }, payload) {
         console.log('STORE: MrewardShop Module - preCheck')
         try {
             dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
-            const list = state.cart
+            const key = state.country.code.toLowerCase()
+            const list = state.cart[key]
 
             const receiptDetails = list.map((item) => {
                 return {
@@ -280,7 +293,7 @@ const actions = {
             })
 
             const response = await new MrewardShop().PreCheck({
-                branch_id: 'И-М',
+                branch_id: state.country.config.code,
                 is_online_store: 1,
                 phone: rootState.MrewardProfile.userProfile.mobile,
                 receipt_bonus_amount: 0,
@@ -288,7 +301,10 @@ const actions = {
                 receipt_datetime: moment().format('X'),
                 receipt_description: 'Покупка в Интернет-Магазине',
                 receipt_details: JSON.stringify(receiptDetails),
+            }, {
+                partnerKey: state.country.config.key,
             })
+
             dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })
 
             return response.pre_check
@@ -321,19 +337,50 @@ const actions = {
         }
     },
 
-    async selectCountry ({commit}, payload) {
+    async selectCountry ({state, commit, rootState, dispatch}, payload) {
         console.log('STORE: MrewardShop Module - selectCountry')
+        const country = rootState.App.settings.partnerKeys.find(i => i.country === payload.code)
 
-        commit(ShopMutat.Country.name, payload)
+        const data = {
+            ...payload,
+            config: country,
+        }
+
+        const dataObject = new DbObject().GetDefaultObject(data)
+        await localforage.setItem(DbObject.keys.mReward.shop.country.name, dataObject)
+
+        commit(ShopMutat.Country.name, dataObject.data)
+
+        await dispatch(constants.MrewardShop.Actions.getProductsFavorite, {}, {root: true})
+        await dispatch(constants.MrewardShop.Actions.getProductsTop, {}, {root: true})
+        await dispatch(constants.MrewardShop.Actions.getProductsGroups, {}, {root: true})
     },
 
-    async getProduct({ commit, dispatch, rootState }, payload) {
+    async loadSelectCountry({ commit, dispatch, rootState }, payload) {
+        const dbData = await localforage.getItem(DbObject.keys.mReward.shop.country.name)
+        if(dbData) {
+            commit(ShopMutat.Country.name, dbData.data)
+        } else {
+            const profile = rootState.MrewardProfile.userProfile
+            if (profile && profile.country) {
+                const country = rootState.MrewardGeo.countries.find(i => i.country_id === profile.country)
+                if (country) {
+                    dispatch(constants.MrewardShop.Actions.selectCountry, country, { root: true })
+                }
+            }
+        }
+    },
+
+
+    async getProduct({ commit, dispatch, rootState, state }, payload) {
         console.log('STORE: MrewardShop Module - getProduct')
         try {
             dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
 
             const response = await new MrewardShop().GetProduct({
                 art_id: payload.data.art_id
+            }, {
+                partnerKey: state.country.config.key,
             })
 
             dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })
@@ -347,7 +394,7 @@ const actions = {
         }
     },
 
-    async getProductSearch({ commit, dispatch, rootState }, payload) {
+    async getProductSearch({ commit, dispatch, rootState, state }, payload) {
         console.log('STORE: MrewardShop Module - getProductSearch')
         try {
             dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
@@ -357,6 +404,8 @@ const actions = {
 
             const response = await new MrewardShop().ProductSearch({
                 product: payload.name
+            }, {
+                partnerKey: state.country.config.key,
             })
 
             const list = response.products.map((item) => {
@@ -386,18 +435,20 @@ const actions = {
         }
     },
 
-    async clearProductSearch({ commit, dispatch, rootState }, payload) {
+    async clearProductSearch({ commit, state, rootState }, payload) {
         console.log('STORE: MrewardShop Module - clearProductSearch')
         commit(ShopMutat.ProductSearch.name, [])
     },
 
-    async getProductsCategory({ commit, dispatch, rootState }, payload) {
+    async getProductsCategory({ commit, state, dispatch, rootState }, payload) {
         console.log('STORE: MrewardShop Module - getProductsCategory')
         try {
             dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
 
             const response = await new MrewardShop().GetProductsCategory({
                 group_id: payload.group_id
+            }, {
+                partnerKey: state.country.config.key,
             })
 
             const list = response.items.map((item) => {
@@ -423,7 +474,27 @@ const actions = {
         }
     },
 
+    async getPriceDelivery({ state, dispatch, rootState }, payload) {
+        console.log('STORE: MrewardShop Module - getPriceDelivery')
+        try {
+            dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
 
+            const response = await new MrewardShop().ProductSearch({
+                product: 'Доставка'
+            }, {
+                partnerKey: state.country.config.key,
+            })
+
+            dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })
+
+            return response.products[0]
+        } catch (error) {
+            await dispatch(constants.App.Actions.validateError, {
+                error,
+                log: 'STORE: MrewardShop Module - getPriceDelivery'
+            }, {root: true})
+        }
+    },
 
 }
 
@@ -435,15 +506,25 @@ const getters = {
         return state.productsTop;
     },
     productsGroups(state) {
-        return state.productsGroups;
+        return state.productsGroups
     },
-    cart(state) {
-        return state.cart;
+    cart (state) {
+        if (state.country.code) {
+            const key = state.country.code.toLowerCase()
+            return state.cart[key]
+        }
+
+        return []
     },
-    totalCartProduct(state) {
-        return state.cart.reduce((acc, item) => {
-            return acc + item.count
-        }, 0);
+    totalCartProduct (state) {
+        if (state.country.code) {
+            const key = state.country.code.toLowerCase()
+            const list = state.cart[key]
+            return list.reduce((acc, item) => {
+                return acc + item.count
+            }, 0)
+        }
+        return 0
     },
     productsFavorite(state) {
         return state.productsFavorite

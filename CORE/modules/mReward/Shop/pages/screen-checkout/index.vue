@@ -58,7 +58,6 @@
         },
         computed: {
             ...mapGetters({
-                deliveryList: constants.MrewardShop.Getters.deliveryList,
                 profile: constants.MrewardProfile.Getters.userProfile,
                 countries: constants.MrewardGeo.Getters.countries,
             }),
@@ -69,11 +68,11 @@
             try {
                 await this.getDeliveryList()
 
-                const result = await this.preCheck()
+                // const result = await this.preCheck()
+                //
+                // await this.paymentUrl(result)
 
-                await this.paymentUrl(result)
-
-                this.goToPay()
+                // this.goToPay()
             } catch (e) {
                 this.$Alert.Error(e)
             }
