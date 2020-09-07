@@ -154,6 +154,40 @@ export default class MrewardShop extends ApiClient {
           }, config)
     }
 
+    CheckConfirm(json, config) {
+        this.logger('MrewardShop:CheckConfirm')
+        const requestData = { ...this.APIEndPoints.Shop.CheckConfirm }
 
+        return this.sendRequest(
+          requestData,
+          {
+              ...json,
+              networkFirst: true,
+          }, config)
+    }
+
+    OnlineStoreApplication(json, config) {
+        this.logger('MrewardShop:OnlineStoreApplication')
+        const requestData = { ...this.APIEndPoints.Shop.OnlineStoreApplication }
+
+        return this.sendRequest(
+          requestData,
+          {
+              ...json,
+              networkFirst: true,
+          }, config)
+    }
+
+    OnlineOrder(json) {
+        this.logger('MrewardShop:OnlineOrder')
+        const requestData = { ...this.APIEndPoints.Shop.OnlineOrder }
+
+        return this.sendRequest(
+          requestData,
+          {
+              ...json,
+              networkFirst: true,
+          })
+    }
 
 }

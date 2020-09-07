@@ -15,6 +15,7 @@ export default {
     m_profile_lname: 'Прозвішча',
     m_profile_logout: 'Выходзь',
     m_profile_middel_name: 'імя па бацьку',
+    m_profile_orders: 'Мае заказы',
     m_profile_save: 'Захаваць',
     m_profile_settings: 'Налады',
     m_profile_take_picture: 'Камера',

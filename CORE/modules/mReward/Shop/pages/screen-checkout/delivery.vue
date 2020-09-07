@@ -2,9 +2,9 @@
     <div>
         <div class="will-change--helper">
             <v-text-field
-                    v-model="city.name"
+                    v-model="form.city.name"
                     readonly
-                    :label="$t('m_auth_city', '', {required: '*'})"
+                    :label="$t('m_auth_city', '', {required: ' '})"
                     type="text"
                     :error-messages="errorMessages['id_city']"
                     @focus="goToSelectCity"
@@ -12,7 +12,7 @@
 
 
             <v-text-field
-                    v-model="address"
+                    v-model="form.address"
                     :label="'Адрес'"
                     :error-messages="errorMessages['address']"
                     :hint="'sdsd'"
@@ -20,35 +20,73 @@
                     @focus="$emit('hideError')"
             />
 
-            <datepicker-custom
-                    :date.sync="date"
-                    :min-date="minDate"
-                    :max-date="maxDate"
-                    mockDate="2019-02-21"
-            >
-                <v-text-field
-                        v-model="date"
-                        :label="'label'"
-                        :error-messages="errorMessages['date']"
-                        :hint="'field.hint'"
-                        type="text"
-                        readonly
-                        @change="$emit('hideError')"
-                />
-            </datepicker-custom>
+            <div class="date-time__wrap">
+                <v-dialog
+                        ref="dialogDate"
+                        v-model="modalDate"
+                        :return-value.sync="form.date"
+                        persistent
+                        width="290px"
+                >
+                    <template v-slot:activator="{ on, attrs }">
+                        <v-text-field
+                                v-model="form.date"
+                                :label="$t('m_shop_date')"
+                                readonly
+                                v-bind="attrs"
+                                v-on="on"
+                                class="delivery__date"
+                                :error-messages="errorMessages['date']"
+                        ></v-text-field>
+                    </template>
+                    <v-date-picker v-model="form.date" scrollable>
+                        <v-spacer></v-spacer>
+                        <v-btn text color="primary" @click="modalDate = false">Cancel</v-btn>
+                        <v-btn text color="primary" @click="$refs.dialogDate.save(form.date)">OK</v-btn>
+                    </v-date-picker>
+                </v-dialog>
+
+                <v-dialog
+                        ref="dialogTime"
+                        v-model="modalTime"
+                        :return-value.sync="form.time"
+                        persistent
+                        width="290px"
+                >
+                    <template v-slot:activator="{ on, attrs }">
+                        <v-text-field
+                                v-model="form.time"
+                                :label="$t('m_shop_time')"
+                                readonly
+                                v-bind="attrs"
+                                v-on="on"
+                                :error-messages="errorMessages['time']"
+                        ></v-text-field>
+                    </template>
+                    <v-time-picker
+                            v-model="form.time"
+                            full-width
+                            format="24hr"
+                    >
+                        <v-spacer></v-spacer>
+                        <v-btn text color="primary" @click="modalTime = false">Cancel</v-btn>
+                        <v-btn text color="primary" @click="$refs.dialogTime.save(form.time)">OK</v-btn>
+                    </v-time-picker>
+                </v-dialog>
+            </div>
 
 
-            <div class="delivery__comment__title">Комментарий к заказу</div>
+            <div class="delivery__comment__title">{{$t('m_shop_comments_for_order')}}</div>
             <input-base
                     class="delivery__comment"
                     type="textarea"
-                    :value="comment"
+                    :value="form.comment"
                     placeholder="Введите текст"
             ></input-base>
 
             <div class="delivery__total_amount">
-                <div class="delivery__total_amount__title">Стоимость доставки курьером</div>
-                <div class="delivery__total_amount__price">15 c.</div>
+                <div class="delivery__total_amount__title">{{$t('m_shop_delivery_price')}}</div>
+                <div class="delivery__total_amount__price">{{delivery.price}} c.</div>
             </div>
 
             <div class="delivery__info">
@@ -75,6 +113,7 @@
                     depressed
                     color="primary"
                     type="main"
+                    @click="nextPage"
             >
                 {{ $t('m_next') }}
             </v-btn>
@@ -99,12 +138,17 @@
         data () {
             return {
                 checkbox: false,
-                city: {
-                    name: '',
+                modalDate: false,
+                modalTime: false,
+                form: {
+                    city: {
+                        name: '',
+                    },
+                    address: '',
+                    date: '',
+                    time: '',
+                    comment: '',
                 },
-                address: '',
-                date: '',
-                comment: '',
                 minDate: moment().format('YYYY-MM-DD'),
                 maxDate: '',
                 errorMessages: {
@@ -118,6 +162,9 @@
                 profile: constants.MrewardProfile.Getters.userProfile,
                 countries: constants.MrewardGeo.Getters.countries,
             }),
+            delivery() {
+                return this.deliveryList[0] || {}
+            },
         },
         async created () {
             try {
@@ -142,12 +189,18 @@
                 getCountries: constants.MrewardGeo.Actions.getCountries,
                 getCityById: constants.MrewardGeo.Actions.getCityById,
             }),
+            // sds() {
+            //     this.dateFrom = await this.pickDate({
+            //         maxDate: moment(),
+            //         date: this.dateFrom
+            //     })
+            // },
             async setCityName () {
                 try {
                     const {target: {city_name: name}} = await this.getCityById({
                         id: this.profile.id_city,
                     })
-                    this.city.name = name
+                    this.form.city.name = name
                 } catch (e) {
                     this.$Alert.Error(e)
                 }
@@ -168,6 +221,9 @@
                     iso,
                 }
             },
+            nextPage() {
+                this.$bus.$emit('goToTabCheckout', 'Pay', this.form)
+            }
         },
     }
 </script>
@@ -247,6 +303,34 @@
 
         &__btn-pay {
             padding-bottom: 50px;
+        }
+
+        &__date {
+            padding-right: 16px;
+        }
+    }
+
+    .date-time__wrap {
+        display: flex;
+    }
+
+    .v-application .primary {
+        background-color: #6D0978 !important;
+        border-color: #6D0978 !important;
+    }
+
+    .v-date-picker-table--date .v-btn {
+        min-height: 32px !important;
+    }
+
+    .v-application .accent {
+        background-color: #6D0978 !important;
+        border-color: #6D0978 !important;
+    }
+
+    .v-date-picker-table .v-btn.v-btn--active {
+        .v-btn__content {
+            color: #fff !important;
         }
     }
 </style>

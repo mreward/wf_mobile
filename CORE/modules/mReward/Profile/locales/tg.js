@@ -15,6 +15,7 @@ export default {
     m_profile_lname: 'Фамилия',
     m_profile_logout: 'Баромадан',
     m_profile_middel_name: 'номи Миёна',
+    m_profile_orders: 'Фармоиш ман',
     m_profile_save: 'Сарфа',
     m_profile_settings: 'Танзимот',
     m_profile_take_picture: 'Камера',

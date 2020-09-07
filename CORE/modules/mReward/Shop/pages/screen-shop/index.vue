@@ -311,6 +311,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 0 7px;
+            height: 100%;
         }
 
         img {
@@ -330,6 +331,7 @@
         .v-progress-circular {
             width: 10px !important;
             height: 10px !important;
+            margin: unset !important;
         }
     }
 

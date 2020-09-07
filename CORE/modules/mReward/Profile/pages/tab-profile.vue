@@ -123,6 +123,16 @@
                         color="secondary"
                         block
                         class="margin-top--small-base v-btn--third v-btn--secondary"
+                        @click="goToPage('orders')"
+                >
+                    {{ $t('m_profile_orders') }}
+                    <i class="icon-next-page"/>
+                </v-btn>
+
+                <v-btn
+                        color="secondary"
+                        block
+                        class="margin-top--small-base v-btn--third v-btn--secondary"
                         @click="goToRecoveryPassword()"
                 >
                     {{ $t('m_profile_change_password') }}

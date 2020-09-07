@@ -15,6 +15,7 @@ export default {
     m_profile_lname: 'Nom de famille',
     m_profile_logout: 'Sortir',
     m_profile_middel_name: 'deuxième nom',
+    m_profile_orders: 'Mes commandes',
     m_profile_save: 'sauvegarder',
     m_profile_settings: 'Réglages',
     m_profile_take_picture: 'Caméra',

@@ -15,6 +15,7 @@ export default {
     m_profile_lname: 'Фамилия',
     m_profile_logout: 'Выход',
     m_profile_middel_name: 'Отчество',
+    m_profile_orders: 'Мои заказы',
     m_profile_save: 'Сохранить',
     m_profile_settings: 'Настройки',
     m_profile_take_picture: 'Камера',

@@ -15,6 +15,7 @@ export default {
     m_profile_lname: 'Фамилиясы',
     m_profile_logout: 'Чыгуу',
     m_profile_middel_name: 'Атасынын аты',
+    m_profile_orders: 'Менин буйруктарым',
     m_profile_save: 'Save',
     m_profile_settings: 'Баптоолор',
     m_profile_take_picture: 'Камера',

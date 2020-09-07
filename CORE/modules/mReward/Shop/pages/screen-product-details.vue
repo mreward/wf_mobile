@@ -167,16 +167,16 @@
                         {{product.storage}}
                     </div>
                 </div>
+            </div>
 
-                <div class="button-cart"
-                     ref="btnCall"
-                     @click="$bus.$emit('showCart')"
-                >
-                    <i class="icon-cart"/>
-                    <div v-if="cart.length"
-                         class="button-cart__badge">
-                        {{totalCartProduct}}
-                    </div>
+            <div class="button-cart"
+                 ref="btnCall"
+                 @click="$bus.$emit('showCart')"
+            >
+                <i class="icon-cart"/>
+                <div v-if="cart.length"
+                     class="button-cart__badge">
+                    {{totalCartProduct}}
                 </div>
             </div>
         </template>
@@ -336,7 +336,7 @@
             min-height: 600px;
             background: #fff;
             border-radius: 8px 8px 0px 0px;
-
+            transform: translate3d(0,0,0);
         }
 
         &__carusel-wrap {

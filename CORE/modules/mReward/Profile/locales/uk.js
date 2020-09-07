@@ -15,6 +15,7 @@ export default {
     m_profile_lname: 'Прізвище',
     m_profile_logout: 'Вийди',
     m_profile_middel_name: 'прізвище',
+    m_profile_orders: 'Мої замовлення',
     m_profile_save: 'Зберегти',
     m_profile_settings: 'Налаштування',
     m_profile_take_picture: 'Камера',

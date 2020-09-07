@@ -15,6 +15,7 @@ export default {
     m_profile_lname: 'Тегі',
     m_profile_logout: 'Шығу',
     m_profile_middel_name: 'Әкесінің аты',
+    m_profile_orders: 'Менің тапсырыстарым',
     m_profile_save: 'Сақтау',
     m_profile_settings: 'Баптаулар',
     m_profile_take_picture: 'Камера',

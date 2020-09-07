@@ -15,6 +15,7 @@ export default {
     m_profile_lname: 'Last name',
     m_profile_logout: 'Log out',
     m_profile_middel_name: 'Middle name',
+    m_profile_orders: 'My orders',
     m_profile_save: 'Save',
     m_profile_settings: 'Settings',
     m_profile_take_picture: 'Camera',

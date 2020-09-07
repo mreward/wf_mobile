@@ -268,6 +268,26 @@ export default {
             method: 'GET',
             apiVersion: 'v2',
             apiTag: '/partner'
-        }
+        },
+        CheckConfirm: {
+            url: '/operation/check-confirm',
+            method: 'POST',
+            apiVersion: 'v2',
+            apiTag: '/partner'
+        },
+        OnlineStoreApplication: {
+            url: '/operation/online-store-application',
+            method: 'POST',
+            apiVersion: 'v2',
+            apiTag: '/partner'
+        },
+        OnlineOrder: {
+            url: '/online-order',
+            method: 'GET',
+            apiVersion: 'v2',
+            apiTag: '/client'
+        },
+
+
     }
 }

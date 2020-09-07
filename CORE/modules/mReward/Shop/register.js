@@ -17,6 +17,9 @@ module.exports = (dirname) => {
         _screen_products: `${PATH}/pages/screen-products.vue`,
         _screen_checkout: `${PATH}/pages/screen-checkout`,
         _screen_product_details: `${PATH}/pages/screen-product-details.vue`,
+        _screen_shop_pay_success: `${PATH}/pages/screen-pay-success.vue`,
+        _screen_orders: `${PATH}/pages/screen-orders`,
+        _screen_order_details: `${PATH}/pages/screen-order-details`,
 
         _screen_shop_img: `${PATH}/img`,
     }

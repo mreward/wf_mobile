@@ -40,6 +40,10 @@ export default {
             name: 'PRODUCTSEARCHLOADER',
             nameGlobal: 'MrewardShop/PRODUCTSEARCHLOADER'
         },
+        Orders: {
+            name: 'ORDERS',
+            nameGlobal: 'MrewardShop/ORDERS'
+        },
     },
     Actions: {
         getProducts: 'MrewardShop/getProducts',
@@ -61,6 +65,9 @@ export default {
         clearProductSearch: 'MrewardShop/clearProductSearch',
         getPriceDelivery: 'MrewardShop/getPriceDelivery',
         loadSelectCountry: 'MrewardShop/loadSelectCountry',
+        checkConfirm: 'MrewardShop/checkConfirm',
+        onlineStoreApplication: 'MrewardShop/onlineStoreApplication',
+        getOrders: 'MrewardShop/getOrders',
     },
     Getters: {
         products: 'MrewardShop/products',
@@ -74,5 +81,6 @@ export default {
         productSearch: 'MrewardShop/productSearch',
         payData: 'MrewardShop/payData',
         productSearchLoader: 'MrewardShop/productSearchLoader',
+        orders: 'MrewardShop/orders',
     }
 }

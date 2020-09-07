@@ -8,6 +8,7 @@ const ScreenSettings = () => import('_screen_settings')
 const ScreenEditProfile = () => import('_screen_edit_profile')
 const ScreenNotifications = () => import('_screen_notifications')
 const ScreenContactss = () => import('_screen_contacts')
+const ScreenOrders = () => import('_screen_orders')
 
 export default {
     computed: {
@@ -53,6 +54,10 @@ export default {
                 case 'contacts':
                     screen = ScreenContactss
                     break
+                case 'orders':
+                    screen = ScreenOrders
+                    break
+
                 default:
                     break
             }

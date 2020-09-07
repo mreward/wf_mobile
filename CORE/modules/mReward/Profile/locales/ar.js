@@ -15,6 +15,7 @@ export default {
     m_profile_lname: 'لقب',
     m_profile_logout: 'اذهب للخارج',
     m_profile_middel_name: 'الاسم الوسطى',
+    m_profile_orders: 'طلباتي',
     m_profile_save: 'حفظ',
     m_profile_settings: 'الإعدادات',
     m_profile_take_picture: 'الة تصوير',
