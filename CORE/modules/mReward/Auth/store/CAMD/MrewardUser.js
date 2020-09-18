@@ -7,7 +7,11 @@ export default {
         AuthToken: {
             name: 'USER_AUTH_TOKEN',
             nameGlobal: 'MrewardUser/USER_AUTH_TOKEN'
-        }
+        },
+        UserConfig: {
+            name: 'USER_CONFIG',
+            nameGlobal: 'MrewardUser/USER_CONFIG'
+        },
     },
     Actions: {
         getUserData: 'MrewardUser/getUserData',
@@ -19,9 +23,11 @@ export default {
         registrationUser: 'MrewardUser/registrationUser',
         registrationUserConfirm: 'MrewardUser/registrationUserConfirm',
         logoutUser: 'MrewardUser/logoutUser',
-        setUserData: 'MrewardUser/setUserData'
+        setUserConfig: 'MrewardUser/setUserConfig',
+        loadUserConfig: 'MrewardUser/loadUserConfig'
     },
     Getters: {
-        userData: 'MrewardUser/userData'
+        userData: 'MrewardUser/userData',
+        userConfig: 'MrewardUser/userConfig',
     }
 }

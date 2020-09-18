@@ -11,7 +11,7 @@
                 <div class="tabbar-button__wrapper">
                     <div class="country-row">
                         <span class="country-row__title">
-                             Страна доставки
+                             {{$t('m_shop_delivery_country')}}
                         </span>
 <!--                        // v-on="onSelectCountry"-->
                         <v-btn
@@ -151,7 +151,7 @@
                     flat
             >
                 <div class="dialog-header">
-                    <v-subheader>{{ $t('m_dashboard_wallets') }}</v-subheader>
+                    <v-subheader>{{ $t('m_shop_delivery_country') }}</v-subheader>
                     <v-btn
                             icon
                             fab
@@ -487,8 +487,5 @@
         .v-item-group {
             padding-top: 4px;
         }
-
-
-
     }
 </style>

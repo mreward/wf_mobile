@@ -60,6 +60,7 @@ export default {
             }
 
             await this.loadSelectCountry()
+
         } catch (e) {
             this.$Alert.Error(e)
         }

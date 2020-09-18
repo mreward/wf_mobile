@@ -40,7 +40,7 @@ module.exports = (dirname) => {
         _mixin_screen_select_country: `${PATH}/pages/mixins/screen-select-country.js`,
         _mixin_screen_select_city: `${PATH}/pages/mixins/screen-select-city.js`,
         _mixin_screen_confirm_pin: `${PATH}/pages/mixins/screen-confirm-pin.js`,
-        _mixin_screen_auth_confirm_pin: `${PATH}/pages/mixins/screen-confirm-pin.js`,
+        _mixin_screen_auth_confirm_pin: `${PATH}/pages/mixins/screen-auth-confirm-pin.js`,
 
         // mixins
         _mixin_choose_country: `${PATH}/mixins/choose-country.js`,
@@ -48,5 +48,6 @@ module.exports = (dirname) => {
 
         _img_touch_id: `${PATH}/img/touch-id.svg`,
         _img_face_id: `${PATH}/img/face-id.svg`,
+        _img_pin_illustration: `${PATH}/img/pin-illustration.svg`,
     }
 }

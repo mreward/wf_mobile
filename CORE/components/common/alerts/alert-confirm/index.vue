@@ -9,6 +9,7 @@
                 v-if="isNotification"
                 :item="pushData"
                 :icon="icon"
+                :img="img"
                 :title="title"
                 :text="text"
                 :cancel-name="cancelName"
@@ -20,6 +21,7 @@
             <alert-confirm-default
                 v-else
                 :icon="icon"
+                :img="img"
                 :sub-icon="subIcon"
                 :title="title"
                 :text="text"
@@ -73,6 +75,10 @@
                 default: () => ({})
             },
             icon: {
+                type: String,
+                default: ''
+            },
+            img: {
                 type: String,
                 default: ''
             },

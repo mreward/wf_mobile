@@ -10,6 +10,7 @@ export default {
                     timeout: options.timeout,
                     pushData: options.pushData,
                     icon: options.icon,
+                    img: options.img,
                     subIcon: options.subIcon,
                     title: options.title,
                     text: options.text || '',

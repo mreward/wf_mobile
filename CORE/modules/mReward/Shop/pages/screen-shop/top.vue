@@ -44,6 +44,7 @@
             ...mapGetters({
                 productsTop: constants.MrewardShop.Getters.productsTop,
                 cart: constants.MrewardShop.Getters.cart,
+                countries: constants.MrewardGeo.Getters.countries,
             }),
             listData() {
                 if (!this.productsTop.length) {
@@ -58,7 +59,7 @@
                         name: item.product_name,
                         price: item.product_price,
                         wight: '',
-                        img: item.images[0] ? item.images[0].mobile_420_420 : '',
+                        img: item.images[0] ? (item.images[0].mobile_420_420 || item.images[0].image_url_mobile) : '',
                         top: item.top,
                         count: productCart ? productCart.count : 0,
                         data: item,
@@ -68,7 +69,14 @@
         },
         async created () {
             try {
+                if (!this.countries.length) {
+                    await this.getCountries()
+                }
+
+                await this.loadSelectCountry()
+
                 await this.getProductsTop()
+                await this.getProductsFavorite()
             } catch (e) {
                 this.$Alert.Error(e)
             }
@@ -82,6 +90,8 @@
                 popToPage: constants.App.Actions.popToPage,
                 getCountries: constants.MrewardGeo.Actions.getCountries,
                 getProductsTop: constants.MrewardShop.Actions.getProductsTop,
+                getProductsFavorite: constants.MrewardShop.Actions.getProductsFavorite,
+                loadSelectCountry: constants.MrewardShop.Actions.loadSelectCountry,
             }),
         },
     }

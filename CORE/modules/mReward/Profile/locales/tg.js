@@ -5,6 +5,7 @@ export default {
     m_profile_change_profile_picture: 'Суратро бор кунед',
     m_profile_city: 'Шаҳр',
     m_profile_contacts: 'Тамос',
+    m_profile_create_pin: 'PIN созед',
     m_profile_edit_profile: 'Маълумоти шахсӣ',
     m_profile_edit_profile_success: 'Маълумот захира карда шуд',
     m_profile_email: 'Почтаи электронӣ',
@@ -17,8 +18,13 @@ export default {
     m_profile_middel_name: 'номи Миёна',
     m_profile_orders: 'Фармоиш ман',
     m_profile_save: 'Сарфа',
+    m_profile_security: 'Амният',
     m_profile_settings: 'Танзимот',
     m_profile_take_picture: 'Камера',
     m_profile_terms_loyalty: 'Шартҳои барномаи вафодорӣ',
+    m_profile_use_biometric: 'Маълумоти биометриро истифода баред',
+    m_profile_use_face_id: 'ID ID -ро истифода баред',
+    m_profile_use_pin: 'PIN-ро истифода баред',
+    m_profile_use_touch_id: 'ID Touch -ро истифода баред',
     m_profile_version: 'Версия'
 }

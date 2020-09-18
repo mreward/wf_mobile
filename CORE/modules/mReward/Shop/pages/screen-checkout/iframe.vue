@@ -1,9 +1,14 @@
 <template>
-    <div class="sdfd">
-        <template v-if="payData && payData.paymentPage">
-        <iframe ref="iframe" allowfullscreen></iframe>
-        </template>
-    </div>
+    <v-ons-page page="checkout-iframe" shown>
+        <div class="page__content no-after">
+            <template v-if="payData.paymentPage">
+                <iframe ref="iframe"
+                        frameborder="0"
+                        :src="payData.paymentPage"
+                        allowfullscreen></iframe>
+            </template>
+        </div>
+    </v-ons-page>
 </template>
 
 <script>
@@ -18,9 +23,9 @@
             })
         },
         mounted () {
-            if (this.payData && this.payData.url) {
-                this.setSrcdoc()
-            }
+            // if (this.payData && this.payData.url) {
+            //     this.setSrcdoc()
+            // }
         },
         methods: {
             setSrcdoc() {
@@ -49,16 +54,22 @@
                 //
                 // debugger
                // this.$refs.iframe.src = 'https://testpay.kkb.kz/jsp/process/logon.jsp';// = html
-                this.$refs.iframe.src = this.payData.paymentPage
-
+               //  this.$refs.iframe.src = this.payData.paymentPage
             }
         }
     }
 </script>
+q
+<style lang="scss">
+    .page[page="checkout-iframe"] {
+        .page__content {
+            padding: 0 !important;
+        }
 
-<style scoped
-       lang="scss">
-    .d {
-        width: auto;
+        iframe {
+            height: 100%;
+            width: 100%;
+            flex:1;
+        }
     }
 </style>

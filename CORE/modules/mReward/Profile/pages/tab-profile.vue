@@ -133,15 +133,6 @@
                         color="secondary"
                         block
                         class="margin-top--small-base v-btn--third v-btn--secondary"
-                        @click="goToRecoveryPassword()"
-                >
-                    {{ $t('m_profile_change_password') }}
-                </v-btn>
-
-                <v-btn
-                        color="secondary"
-                        block
-                        class="margin-top--small-base v-btn--third v-btn--secondary"
                         @click="openProtocol(settings.termsUrl)"
                 >
                     {{ $t('m_profile_terms_loyalty') }}

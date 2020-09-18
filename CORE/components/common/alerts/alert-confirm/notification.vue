@@ -67,6 +67,10 @@
                 type: String,
                 default: ''
             },
+            img: {
+                type: String,
+                default: ''
+            },
             title: {
                 type: String,
                 default: ''

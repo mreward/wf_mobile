@@ -5,6 +5,7 @@ export default {
     m_profile_change_profile_picture: 'Upload your photo',
     m_profile_city: 'City',
     m_profile_contacts: 'Contacts',
+    m_profile_create_pin: 'Create PIN',
     m_profile_edit_profile: 'Personal data',
     m_profile_edit_profile_success: 'Information saved',
     m_profile_email: 'Email',
@@ -17,8 +18,13 @@ export default {
     m_profile_middel_name: 'Middle name',
     m_profile_orders: 'My orders',
     m_profile_save: 'Save',
+    m_profile_security: 'Safety',
     m_profile_settings: 'Settings',
     m_profile_take_picture: 'Camera',
     m_profile_terms_loyalty: 'Loyalty Program Terms',
+    m_profile_use_biometric: 'Use biometric data',
+    m_profile_use_face_id: 'Use Face ID',
+    m_profile_use_pin: 'Use PIN',
+    m_profile_use_touch_id: 'Use Touch ID',
     m_profile_version: 'Version'
 }

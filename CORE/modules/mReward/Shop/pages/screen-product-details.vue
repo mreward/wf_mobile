@@ -28,7 +28,7 @@
 
                 <div v-if="product.images.length > 1"
                      class="product-details__dot-wrap">
-                    <div v-for="(item, index) in imgs"
+                    <div v-for="(item, index) in product.images"
                          :key="'dot-' + index"
                          class="product-details__dot-item"
                          :class="{'product-details__dot-item--active': carouselIndex === index}"
@@ -51,7 +51,7 @@
                 </div>
 
                 <div class="product-details__bottom">
-                    <span class="product-details__price">{{product.price}} c.</span>
+                    <span class="product-details__price">{{product.price}} {{country.config.currency}}</span>
                     <div class="product-details__btn-block">
                         <v-btn
                                 small
@@ -230,6 +230,7 @@
                 productsFavorite: constants.MrewardShop.Getters.productsFavorite,
                 totalCartProduct: constants.MrewardShop.Getters.totalCartProduct,
                 cart: constants.MrewardShop.Getters.cart,
+                country: constants.MrewardShop.Getters.country,
             }),
 
             isFavorite () {

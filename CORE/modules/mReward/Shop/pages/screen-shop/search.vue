@@ -59,7 +59,7 @@
                         name: item.product_name,
                         price: item.product_price,
                         wight: '',
-                        img: item.images[0] ? item.images[0].mobile_420_420 : '',
+                        img: item.images[0] ? (item.images[0].mobile_420_420 || item.images[0].image_url_mobile) : '',
                         top: item.top,
                         count: productCart ? productCart.count : 0,
                         data: item,

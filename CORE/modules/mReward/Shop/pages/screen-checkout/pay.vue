@@ -1,79 +1,91 @@
 <template>
-    <div class="checkout-pay">
-        <div class="will-change--helper">
-            <v-select
-                    v-model="paymentMethod"
-                    :items="methods"
-                    class="tile-selected"
-                    :label="$t('m_shop_payment_methods')"
-                    item-text="name"
-                    item-value="type"
-                    :menu-props="{maxHeight: 400}"
-                    @change="$emit('hideError')"
-            />
+    <v-ons-page shown>
+        <div class="page__content">
+            <div class="checkout-pay">
+                <div class="will-change--helper">
+                    <v-select
+                            v-model="paymentMethod"
+                            :items="methods"
+                            class="tile-selected"
+                            :label="$t('m_shop_payment_methods')"
+                            item-text="name"
+                            item-value="type"
+                            :menu-props="{maxHeight: 400}"
+                            @change="$emit('hideError')"
+                    />
 
-            <div class="checkout-pay__pre-check">
-                <div class="checkout-pay__pre-check__title">{{$t('m_shop_payment_amount')}}</div>
-                <div class="checkout-pay__pre-check__value">{{totalAmountCart}} c.</div>
-            </div>
-            <div class="checkout-pay__pre-check">
-                <div class="checkout-pay__pre-check__title">{{$t('m_shop_payment_delivery_amount')}}</div>
-                <div class="checkout-pay__pre-check__value">{{delivery.price}} c.</div>
-            </div>
+                    <div class="checkout-pay__pre-check">
+                        <div class="checkout-pay__pre-check__title">{{$t('m_shop_payment_amount')}}</div>
+                        <div class="checkout-pay__pre-check__value">{{totalAmountCart}} {{country.config.currency}}</div>
+                    </div>
+                    <div class="checkout-pay__pre-check">
+                        <div class="checkout-pay__pre-check__title">{{$t('m_shop_payment_delivery_amount')}}</div>
+                        <div class="checkout-pay__pre-check__value">{{delivery.price}} {{country.config.currency}}</div>
+                    </div>
 
-            <div v-if="paymentMethod !== 'cash'"
-                 class="checkout-pay__pre-check">
-                <div class="checkout-pay__pre-check__title">
-                    {{$t('m_shop_payment_bonuses_to_pay')}}
+                    <div v-if="paymentMethod !== 'cash'"
+                         class="checkout-pay__pre-check">
+                        <div class="checkout-pay__pre-check__title">
+                            {{$t('m_shop_payment_bonuses_to_pay')}}
 
-                    <div class="checkout-pay__pre-check__hint">
-                        {{$t('m_shop_payment_available_amount', '', {
-                            balance: balanceBonuse.avialable,
-                            currency: balanceBonuse.currency,
-                            available: 300,
-                        })}}
+                            <div class="checkout-pay__pre-check__hint">
+                                {{$t('m_shop_payment_available_amount', '', {
+                                balance: balanceBonuse.avialable || 0,
+                                currency: balanceBonuse.currency || `B${country.code.toUpperCase()}`,
+                                available: totalAvailableBonuses || 0,
+                                })}}
+                            </div>
+                        </div>
+                        <div class="checkout-pay__pre-check__value">
+                            <v-text-field
+                                    v-model="bonuses"
+                                    outlined
+                                    v-mask="maskNumeric"
+                                    autocapitalize="off"
+                                    autocomplete="off"
+                                    autocorrect="off"
+                                    placeholder="0"
+                                    type="number"
+                                    :max="totalAvailableBonuses"
+                                    @focus="$emit('hideError')"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="product-details__devider"/>
+
+                    <div class="checkout-pay__pre-check checkout-pay__pre-check--total">
+                        <div class="checkout-pay__pre-check__title">{{$t('m_shop_payment_amount_to_pay')}}</div>
+                        <div class="checkout-pay__pre-check__value">{{totalAmount}} {{country.config.currency}}</div>
+                    </div>
+
+                    <div v-if="paymentMethod === 'cash'"
+                         class="delivery__info">
+                        <div class="delivery__info__icon">
+                            <i class="icon-info"/>
+                        </div>
+                        <div class="delivery__info__text">
+                            Дорогой друг! Спешим сообщить, что при оплате заказа наличными бонусные баллы в мобильном
+                            приложении не начисляются. Также, при оплате наличными, нельзя совершить частичную оплату
+                            заказа бонусными баллами. Приносим извинения за доставленные неудобства!
+                        </div>
                     </div>
                 </div>
-                <div class="checkout-pay__pre-check__value">
-                    <v-text-field
-                            v-model="bonuses"
-                            type="text"
-                            outlined
-                            @focus="$emit('hideError')"
-                    />
-                </div>
-            </div>
 
-            <div class="product-details__devider"/>
-
-            <div class="checkout-pay__pre-check checkout-pay__pre-check--total">
-                <div class="checkout-pay__pre-check__title">{{$t('m_shop_payment_amount_to_pay')}}</div>
-                <div class="checkout-pay__pre-check__value">{{totalAmount}} c.</div>
-            </div>
-
-            <div v-if="paymentMethod === 'cash'"
-                 class="delivery__info">
-                <div class="delivery__info__icon">
-                    <i class="icon-info"/>
-                </div>
-                <div class="delivery__info__text">
-                    Дорогой друг! Спешим сообщить, что при оплате заказа наличными бонусные баллы в мобильном приложении не начисляются. Также, при оплате наличными, нельзя совершить частичную оплату заказа бонусными баллами. Приносим извинения за доставленные неудобства!
+                <div class="checkout-pay__btn-pay">
+                    <v-btn
+                            block
+                            depressed
+                            color="primary"
+                            type="main"
+                            @click="nextPage"
+                    >
+                        {{ $t('m_next') }}
+                    </v-btn>
                 </div>
             </div>
         </div>
-
-        <div class="checkout-pay__btn-pay">
-            <v-btn
-                    block
-                    depressed
-                    color="primary"
-                    type="main"
-                    @click="nextPage"
-            >
-                {{ $t('m_next') }}
-            </v-btn>
-        </div>
-    </div>
+    </v-ons-page>
 </template>
 
 <script>
@@ -81,19 +93,17 @@
     import constants from '_vuex_constants'
     import InputBase from '_CORE/components/common/inputs/input-base'
     import ScreenStatusPay from '_screen_shop_pay_success'
+    import { maskAmount, maskNumeric } from '_masks'
 
     export default {
         name: 'checkout-pay',
         components: {InputBase},
-        mixins: [
-        ],
+        mixins: [],
         data () {
             return {
-                errorMessages: {
-
-                },
-                bonuses: 0,
-                paymentMethod: 'cash',
+                errorMessages: {},
+                bonuses: '',
+                paymentMethod: 'card',
                 methods: [
                     {
                         name: 'Банковская карта',
@@ -103,11 +113,9 @@
                         name: 'Наличные',
                         type: 'cash',
                     },
-                    {
-                        name: 'Бонусы',
-                        type: 'bonus',
-                    }
-                ]
+                ],
+                preCheckData: {},
+                maskNumeric,
             }
         },
         computed: {
@@ -119,22 +127,60 @@
                 cart: constants.MrewardShop.Getters.cart,
                 country: constants.MrewardShop.Getters.country,
             }),
-            totalAmountCart() {
+            totalAmountCart () {
                 return this.cart.reduce((accumulator, item) => {
                     const total = item.price * item.count
                     return accumulator + total
                 }, 0)
             },
-            delivery() {
+            delivery () {
                 return this.deliveryList[0] || {}
             },
-            totalAmount() {
-                return this.totalAmountCart + (this.delivery.price || 0)
+            totalAmount () {
+                if(this.paymentMethod === 'cash') {
+                    return this.totalAmountCart + (this.delivery.price || 0)
+                } else {
+                    return this.totalAmountCart + (this.delivery.price || 0) - this.bonuses
+                }
             },
-            balanceBonuse() {
+            balanceBonuse () {
                 const balance = this.accounts.find(i => i.currency === `B${this.country.code}`)
                 return balance || {}
-            }
+            },
+            totalAvailableBonuses () {
+                debugger
+                if (this.preCheckData.receipt_details) {
+                    let total = this.preCheckData.receipt_details.reduce((result, item) => {
+                        return result += item.discount_limit
+                    }, 0)
+
+                    const avialable = parseFloat(this.balanceBonuse.avialable.replace(',', '.'))
+                    if(total > (avialable || 0)) {
+                        total = avialable || 0
+                    }
+
+                    return total
+                }
+
+                return 0
+            },
+        },
+        watch: {
+            paymentMethod: {
+                handler (val) {
+                    this.updatePreCheck()
+                },
+                immediate: true,
+            },
+            bonuses (value) {
+                const b = parseInt(value)
+                if (b > this.totalAvailableBonuses) {
+                    this.bonuses = this.totalAvailableBonuses
+                } else if (b <= 0) {
+                    this.bonuses = 0
+                }
+
+            },
         },
         methods: {
             ...mapActions({
@@ -145,13 +191,18 @@
 
             }),
 
-            async nextPage() {
-                this.$bus.$emit('goToPay', this.paymentMethod, this.bonuses)
+            async updatePreCheck () {
+                this.preCheckData = await this.preCheck({
+                    type: this.paymentMethod,
+                })
+            },
+            async nextPage () {
+                this.$bus.$emit('goToPay', this.paymentMethod, this.bonuses, this.totalAmount)
                 // await this.preCheck({type: paymentMethod})
 
                 // this.pushPage(ScreenStatusPay)
-            }
-        }
+            },
+        },
     }
 </script>
 
@@ -195,6 +246,7 @@
                         letter-spacing: 0.2px;
                         color: #000000;
                     }
+
                     &__value {
                         font-style: normal;
                         font-weight: 600;
@@ -234,7 +286,8 @@
                 height: 54px;
                 width: 94px;
             }
-            .v-text-field--outlined>.v-input__control>.v-input__slot {
+
+            .v-text-field--outlined > .v-input__control > .v-input__slot {
                 min-height: 49px;
             }
         }

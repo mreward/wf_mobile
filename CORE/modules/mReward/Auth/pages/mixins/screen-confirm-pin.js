@@ -64,7 +64,8 @@ export default {
     methods: {
         ...mapActions({
             replacePage: constants.App.Actions.replacePage,
-            setUserData: constants.MrewardUser.Actions.setUserData
+            popPage: constants.App.Actions.popPage,
+            setUserConfig: constants.MrewardUser.Actions.setUserConfig
         }),
         reset() {
             this.pin = ''
@@ -75,8 +76,9 @@ export default {
             try {
                 const pin = this.pin
 
-                this.setUserData({
-                    pin
+                await this.setUserConfig({
+                    pin,
+                    usePin: true,
                 })
 
                 if (!this.isRecoverPin) {
@@ -85,23 +87,32 @@ export default {
                         await TouchId.VerifyFingerprint({
                             title: this.$t('m_allow_fingerprint', '', { appName: this.settings.nameApp })
                         })
+
+                        await this.setUserConfig({
+                            useFingerprint: true,
+                        })
                     }
                 }
             } catch (error) {
                 console.error('COMPONENT: screen-auth-create-pin - useTouchId', error)
             }
+
             this.goToDashboard()
         },
         goToDashboard() {
-            this.replacePage({
-                extends: ScreenDashboard,
-                data: () => {
-                    return {
-                        mobile: this.mobile,
-                        code: this.selectedCountry.code
+            if (this.callackNext) {
+                this.callackNext()
+            } else {
+                this.replacePage({
+                    extends: ScreenDashboard,
+                    data: () => {
+                        return {
+                            mobile: this.mobile,
+                            code: this.selectedCountry.code
+                        }
                     }
-                }
-            })
+                })
+            }
         }
     }
 }

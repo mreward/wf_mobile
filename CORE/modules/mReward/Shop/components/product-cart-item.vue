@@ -10,7 +10,7 @@
                 <span class="product-cart-item__price">{{totalAmount}}</span>
             </div>
             <div class="product-cart-item__bottom">
-                <span class="product-cart-item__wight">1 x {{item.price}} c.</span>
+                <span class="product-cart-item__wight">1 x {{item.price}} {{country.config.currency}}</span>
                 <div class="product-cart-item__btn-block">
                     <v-btn
                             small
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-    import { mapActions } from 'vuex'
+    import { mapActions, mapGetters } from 'vuex'
     import constants from '_vuex_constants'
     import ImgDefault from '../img/empty.jpg'
 
@@ -43,9 +43,9 @@
         props: {
             item: {
                 type: Object,
-                default: {
+                default: () => ({
                     count: 0,
-                }
+                })
             },
         },
         data () {
@@ -54,6 +54,9 @@
             }
         },
         computed: {
+            ...mapGetters({
+                country: constants.MrewardShop.Getters.country,
+            }),
             totalAmount() {
                 return this.item.count * this.item.price
             }

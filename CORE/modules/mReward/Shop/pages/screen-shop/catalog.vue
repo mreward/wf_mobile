@@ -1,6 +1,6 @@
 <template>
     <v-ons-page>
-        <div class="page__content">
+        <div class="page__content" @scroll="scrollContent">
             <template v-if="!mode">
                 <v-ons-list
                         v-for="(item, index) in productsGroups"
@@ -14,9 +14,9 @@
                             @click="() => !!item.child.length ? () => {} :  goToProducts(item)"
                     >
                         <div class="center catalog-item__name">
-                            <div class="catalog-item__image"
-                                 :style="`background-image: url('${item.icon}')`">
-                            </div>
+<!--                            <div class="catalog-item__image"-->
+<!--                                 :style="`background-image: url('${item.icon}')`">-->
+<!--                            </div>-->
                             <div style="flex: 1;">{{ item.name }}</div>
                         </div>
                         <div class="dropdown-list__content expandable-content">
@@ -35,7 +35,7 @@
                 </v-ons-list>
             </template>
 
-            <template v-if="!productSearchLoader && listDataSearch.length">
+            <template v-else-if="!productSearchLoader && listDataSearch.length">
                 <product-item
                         v-for="(item, index) in listDataSearch"
                         :key="item.data.art_id"
@@ -64,6 +64,7 @@
     // import ImgDesert from '../../img/dessert.svg'
     import ScreenProducts from '_screen_products'
     import NotFoundItems from '_not_found_items'
+    import debounce from 'lodash/debounce'
 
     export default {
         name: 'screen-shop-catalog',
@@ -115,6 +116,11 @@
                 });
             }
         },
+        watch: {
+            productSearch() {
+
+            }
+        },
         async created () {
             try {
                 await this.getProductsGroups()
@@ -139,6 +145,11 @@
                         }
                     },
                 })
+            },
+            scrollContent() {
+                if (document.documentElement.attributes.getNamedItem('onsflag-keyboard-show')) {
+                    this.hideKeyboard()
+                }
             }
         }
     }

@@ -17,7 +17,7 @@
         <div class="product-item__content">
             <div class="product-item__info" @click="goToDetails">
                 <span class="product-item__name">{{item.name}}</span>
-                <span class="product-item__price">{{item.price}} c.</span>
+                <span class="product-item__price">{{item.price}} {{country.config.currency}}</span>
             </div>
             <div class="product-item__bottom">
                 <span class="product-item__wight"> </span>
@@ -72,6 +72,7 @@
         computed: {
             ...mapGetters({
                 productsFavorite: constants.MrewardShop.Getters.productsFavorite,
+                country: constants.MrewardShop.Getters.country,
             }),
 
             isFavorite() {

@@ -3,6 +3,7 @@
         :push-data="pushData"
         :timeout="timeout"
         :icon="icon"
+        :img="img"
         :sub-icon="subIcon"
         :title="title"
         :text="text"
@@ -34,6 +35,7 @@
                 },
                 timeout: 0,
                 icon: '',
+                img: '',
                 subIcon: '',
                 title: '',
                 text: '',
@@ -67,6 +69,7 @@
                 this.nextName = options.nextName
                 this.addFavorite = options.addFavorite
                 this.type = options.type
+                this.img = options.img
                 this.isBorder = options.isBorder
                 this.showAgainCheckbox = options.showAgainCheckbox
 

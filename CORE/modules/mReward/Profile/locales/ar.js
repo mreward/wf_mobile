@@ -5,6 +5,7 @@ export default {
     m_profile_change_profile_picture: 'حمل الصورة',
     m_profile_city: 'مدينة',
     m_profile_contacts: 'جهات الاتصال',
+    m_profile_create_pin: 'أنشئ PIN',
     m_profile_edit_profile: 'بيانات شخصية',
     m_profile_edit_profile_success: 'المعلومات المحفوظة',
     m_profile_email: 'البريد الإلكتروني',
@@ -17,8 +18,13 @@ export default {
     m_profile_middel_name: 'الاسم الوسطى',
     m_profile_orders: 'طلباتي',
     m_profile_save: 'حفظ',
+    m_profile_security: 'سلامة',
     m_profile_settings: 'الإعدادات',
     m_profile_take_picture: 'الة تصوير',
     m_profile_terms_loyalty: 'شروط برنامج الولاء',
+    m_profile_use_biometric: 'استخدم البيانات البيومترية',
+    m_profile_use_face_id: 'استخدم Face ID',
+    m_profile_use_pin: 'استخدم رقم التعريف الشخصي',
+    m_profile_use_touch_id: 'استخدم Touch ID',
     m_profile_version: 'الإصدار'
 }

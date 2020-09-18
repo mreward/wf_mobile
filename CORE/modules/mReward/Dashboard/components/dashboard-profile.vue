@@ -162,6 +162,9 @@
     import constants from '_vuex_constants'
     import { isEmpty } from 'lodash'
     const ScreenProfile = () => import('_tab_profile')
+    import IllustrationPin from '_img_pin_illustration'
+    import MaskPhone from '_PLUGINS/common/MaskPhone'
+    const ScreenConfirmPin = () => import('_screen_confirm_pin')
 
     const typeAnim = Power4.easeOut
     const timeAnim = 0.5
@@ -189,10 +192,12 @@
             ...mapGetters({
                 cards: constants.MrewardCard.Getters.cards,
                 userProfile: constants.MrewardProfile.Getters.userProfile,
+                profile: constants.MrewardProfile.Getters.userProfile,
                 userName: constants.MrewardProfile.Getters.userName,
                 accounts: constants.MrewardAccount.Getters.accounts,
                 balanceData: constants.MrewardAccount.Getters.balance,
                 selectedAccount: constants.MrewardAccount.Getters.selectedAccount,
+                userConfig: constants.MrewardUser.Getters.userConfig,
             }),
             cardNumber () {
                 if (this.userProfile.card_pan) {
@@ -269,6 +274,29 @@
                     this.getInfoCard({networkFirst: true}).catch((e) => console.log(e)),
                     this.getAccounts({networkFirst: true}).catch((e) => console.log(e)),
                 ])
+
+
+                if(!this.userConfig.pin && !this.userConfig.showPinAlert) {
+                    this.$Alert.Success({
+                        img: IllustrationPin,
+                        title: this.$t('m_auth_security_pin_title'),
+                        text: this.$t('m_auth_security_pin_text'),
+                        nextName: this.$t('m_auth_security_pin_next'),
+                        cancelName: this.$t('m_auth_security_pin_cancel'),
+                        nextEvent: () => {
+                            debugger
+                            this.setUserConfig({
+                                usePin: true,
+                            })
+                            this.goToCreatePin()
+                        },
+                        cancelEvent: () => {
+                            this.setUserConfig({
+                                showPinAlert: true,
+                            })
+                        }
+                    })
+                }
             } catch (e) {
                 console.error(e)
             }
@@ -283,6 +311,9 @@
             }
 
             this.$bus.$on('dashboard-open-toolbar', this.toggleMenu)
+
+
+            await this.loadSelectCountry()
         },
         mounted () {
             this.startHeight = this.defaultHeight
@@ -300,6 +331,8 @@
                 getSelectedAccount: constants.MrewardAccount.Actions.getSelectedAccount,
                 getRaffles: constants.MrewardRaffles.Actions.getRaffles,
                 pushPage: constants.App.Actions.pushPage,
+                setUserConfig: constants.MrewardUser.Actions.setUserConfig,
+                loadSelectCountry: constants.MrewardShop.Actions.loadSelectCountry,
             }),
             positionLeft () {
                 const {amount} = this.$refs
@@ -446,6 +479,26 @@
                     TweenLite.set([userName, avatar], {opacity: `1`})
                 }
             },
+            goToCreatePin() {
+                const fullMobileNumber = `+${this.profile.mobile}`
+                const clearPhoneNumber = MaskPhone.GetClearPhoneNumber(fullMobileNumber)
+                const clearPhoneMask = fullMobileNumber.replace(clearPhoneNumber, '')
+
+                this.pushPage({
+                    extends: ScreenConfirmPin,
+                    data: () => {
+                        return {
+                            mobile: clearPhoneNumber,
+                            code: clearPhoneMask,
+                        }
+                    },
+                    methods: {
+                        callackNext() {
+                            this.popPage()
+                        }
+                    }
+                })
+            }
         },
     }
 </script>

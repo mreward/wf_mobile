@@ -5,6 +5,7 @@ export default {
     m_profile_change_profile_picture: 'Загрузите фото',
     m_profile_city: 'Город',
     m_profile_contacts: 'Контакты',
+    m_profile_create_pin: 'Создать ПИН-код',
     m_profile_edit_profile: 'Анкетные данные',
     m_profile_edit_profile_success: 'Информация сохранена',
     m_profile_email: 'Email',
@@ -17,8 +18,13 @@ export default {
     m_profile_middel_name: 'Отчество',
     m_profile_orders: 'Мои заказы',
     m_profile_save: 'Сохранить',
+    m_profile_security: 'Безопасность',
     m_profile_settings: 'Настройки',
     m_profile_take_picture: 'Камера',
     m_profile_terms_loyalty: 'Условия программы лояльности',
+    m_profile_use_biometric: 'Использовать биометрические данные',
+    m_profile_use_face_id: 'Использовать Face ID',
+    m_profile_use_pin: 'Использовать ПИН-код',
+    m_profile_use_touch_id: 'Использовать Touch ID',
     m_profile_version: 'Версия'
 }

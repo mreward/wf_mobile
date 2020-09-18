@@ -19,6 +19,11 @@ export default class MrewardShop extends ApiClient {
         this.logger('MrewardShop:GetProductsTop')
         const requestData = { ...this.APIEndPoints.Shop.GetProductsTop }
 
+        requestData.url += `?partner_id=${json.partnerId}`
+        if (_get(json, 'page', false)) {
+            requestData.url += `&page=${json.page}`
+        }
+
         return this.sendRequest(
           requestData,
           {
@@ -134,6 +139,7 @@ export default class MrewardShop extends ApiClient {
         this.logger('MrewardShop:ProductSearch')
         const requestData = { ...this.APIEndPoints.Shop.ProductSearch }
 
+        debugger
         return this.sendRequest(
           requestData,
           {
@@ -181,6 +187,66 @@ export default class MrewardShop extends ApiClient {
     OnlineOrder(json) {
         this.logger('MrewardShop:OnlineOrder')
         const requestData = { ...this.APIEndPoints.Shop.OnlineOrder }
+
+        return this.sendRequest(
+          requestData,
+          {
+              ...json,
+              networkFirst: true,
+          })
+    }
+
+    CheckReturn(json, config) {
+        this.logger('MrewardShop:CheckReturn')
+        const requestData = { ...this.APIEndPoints.Shop.CheckReturn }
+
+        return this.sendRequest(
+          requestData,
+          {
+              ...json,
+              networkFirst: true,
+          }, config)
+    }
+
+    OnlineRefund(json) {
+        this.logger('MrewardShop:OnlineRefund')
+        const requestData = { ...this.APIEndPoints.Shop.OnlineRefund }
+
+        return this.sendRequest(
+          requestData,
+          {
+              ...json,
+              networkFirst: true,
+          })
+    }
+
+    OnlineStoreStatus(json, config) {
+        this.logger('MrewardShop:OnlineStoreStatus')
+        const requestData = { ...this.APIEndPoints.Shop.OnlineStoreStatus }
+
+        return this.sendRequest(
+          requestData,
+          {
+              ...json,
+              networkFirst: true,
+          }, config)
+    }
+
+    ListDeliveryAddress(json) {
+        this.logger('MrewardShop:ListDeliveryAddress')
+        const requestData = { ...this.APIEndPoints.Shop.ListDeliveryAddress }
+
+        return this.sendRequest(
+          requestData,
+          {
+              ...json,
+              networkFirst: true,
+          })
+    }
+
+    RemoveDeliveryAddress(json) {
+        this.logger('MrewardShop:RemoveDeliveryAddress')
+        const requestData = { ...this.APIEndPoints.Shop.RemoveDeliveryAddress }
 
         return this.sendRequest(
           requestData,

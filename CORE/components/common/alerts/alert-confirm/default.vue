@@ -11,6 +11,15 @@
             </div>
         </div>
 
+        <div
+                class="alert__image"
+                v-show="img"
+        >
+            <div :class="classesWrapper">
+                <img :src="img">
+            </div>
+        </div>
+
         <div class="alert__heading">
             {{ title }}
         </div>
@@ -30,6 +39,10 @@
         name: 'alert-confirm-default',
         props: {
             icon: {
+                type: String,
+                default: ''
+            },
+            img: {
                 type: String,
                 default: ''
             },

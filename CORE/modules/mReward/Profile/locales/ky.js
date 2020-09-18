@@ -5,6 +5,7 @@ export default {
     m_profile_change_profile_picture: 'Фото жүктөгүлө',
     m_profile_city: 'Шаары',
     m_profile_contacts: 'Байланыш',
+    m_profile_create_pin: 'ПИН түзүү',
     m_profile_edit_profile: 'Анкеталык маалыматтар.',
     m_profile_edit_profile_success: 'Маалымат сакталды',
     m_profile_email: 'Email',
@@ -17,8 +18,13 @@ export default {
     m_profile_middel_name: 'Атасынын аты',
     m_profile_orders: 'Менин буйруктарым',
     m_profile_save: 'Save',
+    m_profile_security: 'Коопсуздук',
     m_profile_settings: 'Баптоолор',
     m_profile_take_picture: 'Камера',
     m_profile_terms_loyalty: 'Лоялдуулук программасынын шарттары',
+    m_profile_use_biometric: 'Биометрикалык маалыматтарды колдонуңуз',
+    m_profile_use_face_id: 'Face ID\'ди колдонуңуз',
+    m_profile_use_pin: 'PIN кодду колдонуңуз',
+    m_profile_use_touch_id: 'Touch ID колдонуңуз',
     m_profile_version: 'Версия'
 }

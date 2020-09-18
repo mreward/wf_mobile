@@ -10,21 +10,27 @@
             <div class="checkout-step__item"
                  :class="{
                  'checkout-step__item--active': tab === 'delivery',
-                 'checkout-step__item--success': tab === 'Pay'
+                 'checkout-step__item--success': tab !== 'delivery'
             }">
                 <div class="checkout-step__item__number">
                     <span v-if="tab === 'delivery'">1</span>
-                    <i v-if="tab === 'Pay'" class="icon-checkmark"/>
+                    <i v-if="tab !== 'delivery'" class="icon-checkmark"/>
                 </div>
                 <div class="checkout-step__item__title">{{$t('m_shop_delivery')}}</div>
             </div>
             <div class="checkout-step__item"
-                 :class="{'checkout-step__item--active': tab === 'Pay'}">
-                <div class="checkout-step__item__number">2</div>
+                 :class="{
+                'checkout-step__item--active': tab === 'Pay',
+                 'checkout-step__item--success': tab === 'PayIframe'
+            }">
+                <div class="checkout-step__item__number">
+                    <span v-if="tab !== 'PayIframe'">2</span>
+                    <i v-if="tab === 'PayIframe'" class="icon-checkmark"/>
+                </div>
                 <div class="checkout-step__item__title">{{$t('m_shop_select_pay')}}</div>
             </div>
             <div class="checkout-step__item"
-                 :class="{'checkout-step__item--active': tab === 'delivary'}">
+                 :class="{'checkout-step__item--active': tab === 'PayIframe'}">
             <div class="checkout-step__item__number">3</div>
                 <div class="checkout-step__item__title">{{$t('m_shop_pay')}}</div>
             </div>
@@ -34,7 +40,7 @@
                 <template slot="pages">
                     <transition>
                         <keep-alive>
-                            <component :is="tab"></component>
+                            <component :is="tab" :class="{[tab.toLowerCase()]: true}"></component>
                         </keep-alive>
                     </transition>
                 </template>
@@ -108,7 +114,8 @@
                 paymentUrl: constants.MrewardShop.Actions.paymentUrl,
                 checkConfirm: constants.MrewardShop.Actions.checkConfirm,
                 onlineStoreApplication: constants.MrewardShop.Actions.onlineStoreApplication,
-                getCityById: constants.MrewardGeo.Actions.getCityById
+                getCityById: constants.MrewardGeo.Actions.getCityById,
+                clearCart: constants.MrewardShop.Actions.clearCart,
             }),
             setActiveTab(name) {
                 this.tab = name;
@@ -121,26 +128,39 @@
                 this.tab = name
                 this.delivery = data
             },
-            async sendToPay(method, bonuses) {
-                debugger
+            async sendToPay(method, bonuses, totalAmount) {
+                try {
+                    const preCheckData = await this.preCheck({
+                        type: method,
+                        bonuses: bonuses
+                    })
 
-                const preCheckData = await this.preCheck({type: method})
-                debugger
-                const checkConfirmData = await this.checkConfirm({
-                    check_number: `offline_${moment().format('X')}_`,
-                    pre_check_id: preCheckData.pre_check_id,
-                    money: preCheckData.payment.money,
-                });
-                debugger
-                const onlineStoreApplicationData = await this.onlineStoreApplication({
-                    address: this.delivery.address,
-                    pre_check_id: preCheckData.pre_check_id,
-                    date: '09-09-2020',
-                    info: this.delivery.comment,
-                })
-                debugger
+                    if (method === 'cash' || totalAmount === 0) {
+                        const checkConfirmData = await this.checkConfirm({
+                            check_number: `online_${moment().format('X')}`,
+                            pre_check_id: preCheckData.pre_check_id,
+                            money: preCheckData.payment.money,
+                        })
+                    } else if (method === 'card') {
+                        const dataUrl = await this.paymentUrl(preCheckData)
+                        this.setActiveTab('PayIframe')
+                    }
 
-                this.pushPage(ScreenStatusPay)
+                    const onlineStoreApplicationData = await this.onlineStoreApplication({
+                        address: this.delivery.address,
+                        pre_check_id: preCheckData.pre_check_id,
+                        date: moment().format('DD-MM-YYYY'),
+                        info: this.delivery.comment,
+                    })
+
+                    await this.clearCart()
+
+                    if (method === 'cash' || totalAmount === 0) {
+                        this.pushPage(ScreenStatusPay)
+                    }
+                } catch (e) {
+                    this.$Alert.Error(e)
+                }
             },
             goToPay() {
                 this.setActiveTab('PayIframe')
@@ -148,8 +168,10 @@
             onBack() {
                 if (this.tab === 'delivery') {
                     this.popPage()
-                } else if(this.tab === 'Pay') {
-                    this.tab === 'delivery'
+                } else if (this.tab === 'Pay') {
+                    this.tab = 'delivery'
+                } else if (this.tab === 'PayIframe') {
+                    this.tab = 'Pay'
                 }
             }
         }
@@ -162,6 +184,7 @@
         .page__background {
             background: #fff;
         }
+
 
         ons-tabbar,
         .page__content {
@@ -176,8 +199,11 @@
             display: flex;
             flex: 1;
             position: relative;
+
             .tabbar__content {
-                padding: 16px;
+                .page__content {
+                    padding: 16px;
+                }
             }
         }
 
@@ -191,7 +217,11 @@
 
         .tabbar__content.ons-tabbar__content.ons-swiper {
             position: inherit;
-            padding-top: 10px;
+
+            .page__content {
+                padding-top: 10px;
+            }
+            /*padding-top: 10px;*/
         }
 
 
@@ -216,7 +246,6 @@
             justify-content: space-between;
             border-bottom: solid 1px #F5F7FA;
             padding: 16px;
-            margin-bottom: 16px;
 
             &__item {
                 display: flex;
@@ -273,6 +302,10 @@
                     }
                 }
             }
+        }
+
+        .v-text-field {
+            margin-top: 16px;
         }
     }
 </style>

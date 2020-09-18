@@ -93,16 +93,19 @@ const PROD = {
         key: '1e417e47-2bb6-440d-8168-c6a56abcb5a0',
         code: '0050',
         country: 'KG',
+        currency: 'c.',
     },{
         id: 2,
         key: 'c37fdc5d-f41b-412f-b256-fb71e9d8eb0c',
         code: '1050',
         country: 'KZ',
+        currency: 'тг',
     },{
         id: 3,
         key: 'b1d36558-3f12-41d8-ba21-4e7ecebdce10',
         code: '2050',
         country: 'RU',
+        currency: 'р',
     }]
 }
 
@@ -147,16 +150,19 @@ const Environment = {
             key: '1e417e47-2bb6-440d-8168-c6a56abcb5a0',
             code: '0050',
             country: 'KG',
+            currency: 'c.',
         },{
             id: 2,
             key: 'c37fdc5d-f41b-412f-b256-fb71e9d8eb0c',
             code: '1050',
             country: 'KZ',
+            currency: 'тг',
         },{
             id: 3,
             key: 'b1d36558-3f12-41d8-ba21-4e7ecebdce10',
             code: '2050',
             country: 'RU',
+            currency: 'р',
         }]
     }, PROD)
 }

@@ -44,6 +44,10 @@ export default {
             name: 'ORDERS',
             nameGlobal: 'MrewardShop/ORDERS'
         },
+        Address: {
+            name: 'ADDRESS',
+            nameGlobal: 'MrewardShop/ADDRESS'
+        },
     },
     Actions: {
         getProducts: 'MrewardShop/getProducts',
@@ -68,6 +72,11 @@ export default {
         checkConfirm: 'MrewardShop/checkConfirm',
         onlineStoreApplication: 'MrewardShop/onlineStoreApplication',
         getOrders: 'MrewardShop/getOrders',
+        checkReturn: 'MrewardShop/checkReturn',
+        onlineRefund: 'MrewardShop/onlineRefund',
+        onlineStoreStatus: 'MrewardShop/onlineStoreStatus',
+        listDeliveryAddress: 'MrewardShop/listDeliveryAddress',
+        removeDeliveryAddress: 'MrewardShop/removeDeliveryAddress',
     },
     Getters: {
         products: 'MrewardShop/products',
@@ -82,5 +91,6 @@ export default {
         payData: 'MrewardShop/payData',
         productSearchLoader: 'MrewardShop/productSearchLoader',
         orders: 'MrewardShop/orders',
+        address: 'MrewardShop/address',
     }
 }

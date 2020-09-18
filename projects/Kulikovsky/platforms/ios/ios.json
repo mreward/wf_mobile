@@ -10,13 +10,13 @@
           "FirebaseAppDelegateProxyEnabled": [
             {
               "xml": "<true />",
-              "count": 74
+              "count": 100
             }
           ],
           "UIBackgroundModes": [
             {
               "xml": "<array><string>remote-notification</string></array>",
-              "count": 75
+              "count": 101
             }
           ],
           "NSFaceIDUsageDescription": [
@@ -282,7 +282,7 @@
           "UIUserInterfaceStyle": [
             {
               "xml": "<string>Light</string>",
-              "count": 51
+              "count": 77
             }
           ]
         }

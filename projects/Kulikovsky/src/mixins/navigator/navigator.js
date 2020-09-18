@@ -15,7 +15,7 @@ export default {
         ...mapGetters({
             settings: constants.App.Getters.settings,
             showOnBoarding: constants.OnBoarding.Getters.showOnBoarding,
-            pin: constants.MrewardUser.Getters.pin
+            userConfig: constants.MrewardUser.Getters.userConfig
         }),
 
         supportMail() {
@@ -50,7 +50,7 @@ export default {
 
             if (!this.showOnBoarding) {
                 this.replacePage(ScreenOnBoarding)
-            } else if (this.pin) {
+            } else if (this.userConfig.pin && this.userConfig.usePin) {
                 this.replacePage(ScreenAuthConfirmPin)
             } else if (authToken) {
                 this.replacePage(ScreenDashboard)

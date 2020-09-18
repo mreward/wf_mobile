@@ -177,17 +177,24 @@
             clearFilter() {
                 this.baseSelected = []
                 this.tasteSelected = []
+
+                // TODO: попросили сразу применять фильтр
+                this.baseSelectedOld = []
+                this.tasteSelectedOld = []
+                this.isVisibleFilters = false
+                this.$bus.$emit('clearSearch')
             },
             async onFiltered() {
                 const filter = []
 
-                this.baseSelected.forEach(i => filter.push(this.baseTags[i]))
-                this.tasteSelected.forEach(i => filter.push(this.tasteTags[i]))
+                this.baseSelected.forEach(i => filter.push(`%23${this.baseTags[i]}`))
+                this.tasteSelected.forEach(i => filter.push(`%23${this.tasteTags[i]}`))
 
                 this.isVisibleFilters = false
                 this.baseSelectedOld = []
                 this.tasteSelectedOld = []
 
+                debugger
                 if (filter.length) {
                     this.$bus.$emit('goToSearch')
 

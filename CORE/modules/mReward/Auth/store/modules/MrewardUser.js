@@ -16,7 +16,13 @@ const {
 
 const state = {
     userData: {},
-    authToken: ''
+    authToken: '',
+    userConfig: {
+        pin: '',
+        useFingerprint: false,
+        usePin: false,
+        showPinAlert: false,
+    }
 }
 
 const mutations = {
@@ -25,6 +31,9 @@ const mutations = {
     },
     [UserMutat.UserData.name]: (state, data) => {
         state.userData = { ...data }
+    },
+    [UserMutat.UserConfig.name]: (state, data) => {
+        state.userConfig = { ...data }
     }
 }
 
@@ -43,6 +52,8 @@ const actions = {
             if (user) {
                 commit(UserMutat.UserData.name, user.data)
             }
+
+            await dispatch(constants.MrewardUser.Actions.loadUserConfig, {}, { root: true })
         } catch (error) {
             await dispatch(constants.App.Actions.validateError, {
                 error,
@@ -279,12 +290,29 @@ const actions = {
         }
     },
 
-    async setUserData({ commit, dispatch, rootState, state, rootGetters }, data = {}) {
+    async setUserConfig({ commit, dispatch, rootState, state, rootGetters }, data = {}) {
         try {
-            data.pin = data.pin ? sha256(md5(data.pin).toString()).toString() : null
-            await localforage.setItem(DbObject.keys.user.name, {
-                pin: data.pin
-            })
+            debugger
+            if(data.pin) {
+                data.pin = data.pin ? sha256(md5(data.pin).toString()).toString() : null
+            }
+            const config = {
+                ...state.userConfig,
+                ...data,
+            }
+            await localforage.setItem(DbObject.keys.user.name, config)
+            commit(UserMutat.UserConfig.name, config)
+        } catch (error) {
+            throw new Error(error.message)
+        }
+    },
+
+    async loadUserConfig({ commit, dispatch, rootState, state, rootGetters }, data = {}) {
+        try {
+            const userConfig = await localforage.getItem(DbObject.keys.user.name)
+            if (userConfig) {
+                commit(UserMutat.UserConfig.name, userConfig)
+            }
         } catch (error) {
             throw new Error(error.message)
         }
@@ -295,8 +323,8 @@ const getters = {
     userData(state) {
         return state.userData
     },
-    pin(state) {
-        return state.user.pin
+    userConfig(state) {
+        return state.userConfig
     }
 }
 

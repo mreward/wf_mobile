@@ -5,6 +5,7 @@ import sha256 from 'crypto-js/sha256';
 import md5 from 'crypto-js/md5';
 import InputPin from '_input_pin_sequence';
 import TouchId from '_CORE/plugins/common/TouchId';
+const ScreenOnBoarding = () => import('_screen_onboarding')
 
 export default {
     data() {
@@ -21,10 +22,10 @@ export default {
     },
     computed: {
         ...mapGetters({
-            userPin: constants.User.Getters.pin,
+            loaderVisible: constants.App.Getters.loaderVisible,
             moduleOptions: constants.App.Getters.moduleOptions,
             settings: constants.App.Getters.settings,
-            userSettings: constants.User.Getters.userSettings,
+            userConfig: constants.MrewardUser.Getters.userConfig,
         }),
         title() {
             if (this.touchIdSupported) {
@@ -37,11 +38,23 @@ export default {
 
             return this.$t('m_auth_enter_with_pin_code');
         },
+        biometric() {
+            if (this.touchIdSupported) {
+                if (this.$ons.platform.isIPhoneX()) {
+                    return 'Touch ID'
+                }
+
+                return 'Face ID'
+            }
+
+            return ''
+        },
     },
     watch: {
         pin() {
             if (this.pin.length === this.lengthPin && !this.dataSent) {
-                if (sha256(md5(this.pin).toString()).toString() === this.userPin) {
+                debugger
+                if (sha256(md5(this.pin).toString()).toString() === this.userConfig.pin) {
                     this.hideKeyboard();
                     this.dataSent = true;
                     this.loadUser();
@@ -51,16 +64,23 @@ export default {
                         this.logout();
                     } else {
                         this.hideKeyboard();
-                        this.$Alert.Error({
-                            title: this.$t('m_auth_error'),
-                            text: `${this.$t('m_auth_invalid_pin_code')} ${this.pinTries} ${this.$t('m_auth_attempts_left')}`,
-                            nextName: this.$t('m_auth_ok'),
-                            nextEvent: () => {
-                                setTimeout(() => {
-                                    this.$refs.pin.focus();
-                                }, 100);
-                            },
-                        });
+                        this.$bus.$emit('showStatusPopover', {
+                            status: 2,
+                            title: this.$t('m_auth_login_code_error_code', '', {
+                                count: this.pinTries,
+                            })
+                        })
+
+                        // this.$Alert.Error({
+                        //     title: this.$t('m_auth_error'),
+                        //     text: `${this.$t('m_auth_invalid_pin_code')} ${this.pinTries} ${this.$t('m_auth_attempts_left')}`,
+                        //     nextName: this.$t('m_auth_ok'),
+                        //     nextEvent: () => {
+                        //         setTimeout(() => {
+                        //             this.$refs.pin.focus();
+                        //         }, 100);
+                        //     },
+                        // });
                         this.pin = '';
                         this.$refs.form.reset();
                         this.dataSent = false;
@@ -70,13 +90,12 @@ export default {
         },
     },
     async created() {
-        this.pinTries = this.moduleOptions('Auth.PinCode').pinTries || this.moduleOptions('Auth.PinAndPass').pinTries;
-        this.lengthPin = this.moduleOptions('Auth.PinCode').lengthPin || this.moduleOptions('Auth.PinAndPass').lengthPin;
         const touchId = await TouchId.IsAvailable();
-        if (touchId) {
+        if (touchId && this.userConfig.useFingerprint) {
             this.touchIdSupported = true;
+            await this.useTouchId();
         }
-        if (!this.userSettings.useFingerprint) {
+        if (!this.userConfig.useFingerprint) {
             setTimeout(() => {
                 this.$refs.pin.focus();
                 // TODO: Move to plugin
@@ -88,23 +107,37 @@ export default {
     },
     methods: {
         ...mapActions({
-            loadUserData: constants.User.Actions.loadUserData,
             replacePage: constants.App.Actions.replacePage,
             pushPage: constants.App.Actions.pushPage,
-            authMobile: constants.User.Actions.authMobile,
-            logout: constants.User.Actions.logout,
+            logout: constants.MrewardUser.Actions.logoutUser
         }),
         async loadUser() {
-            const $this = this;
+            const $this = this
             try {
-                this.$SplashScreen.Show();
-                await this.loadUserData();
-                this.replacePage(ScreenDashboard);
+                this.replacePage(ScreenDashboard)
             } catch (error) {
                 // Wait until user read error message
                 setTimeout(() => {
-                    $this.logout();
-                }, 1500);
+                    $this.logout()
+                }, 1500)
+            }
+        },
+        goToAboutApp() {
+            this.replacePage(ScreenOnBoarding)
+        },
+
+        async useTouchId() {
+            if (this.userConfig.useFingerprint) {
+                try {
+                    await TouchId.IsAvailable()
+
+                    await TouchId.VerifyFingerprint({
+                        locale: this.selectedLanguage
+                    })
+                    this.replacePage(ScreenDashboard)
+                } catch (e) {
+                    console.log('COMPONENT: screen-auth-confirm-pin - useTouchId fail init', e)
+                }
             }
         },
     },

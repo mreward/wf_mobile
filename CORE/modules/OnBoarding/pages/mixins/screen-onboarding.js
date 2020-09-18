@@ -20,7 +20,8 @@ export default {
     }),
     computed: {
         ...mapGetters({
-            moduleOptions: constants.App.Getters.moduleOptions
+            moduleOptions: constants.App.Getters.moduleOptions,
+            userConfig: constants.MrewardUser.Getters.userConfig
         }),
 
         lastScreen() {
@@ -50,10 +51,14 @@ export default {
     methods: {
         ...mapActions({
             pushPage: constants.App.Actions.pushPage,
-            setOnBoarding: constants.OnBoarding.Actions.setOnBoarding
+            setOnBoarding: constants.OnBoarding.Actions.setOnBoarding,
         }),
         async goToNext() {
-            this.$bus.$emit('goToPage', { page: 'auth' })
+            if (this.userConfig.pin) {
+                this.$bus.$emit('goToPage', { page: 'auth-pin' })
+            } else {
+                this.$bus.$emit('goToPage', { page: 'auth' })
+            }
 
             await this.setOnBoarding()
         },

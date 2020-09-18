@@ -37,12 +37,12 @@
         }),
         computed: {
             ...mapGetters({
-                userSettings: constants.User.Getters.userSettings,
+                userConfig: constants.MrewardUser.Getters.userConfig,
                 selectedLanguage: constants.App.Getters.language,
             }),
         },
         async created() {
-            if (this.userSettings.useFingerprint) {
+            if (this.userConfig.useFingerprint) {
                 const $this = this;
                 setTimeout(() => {
                     $this.useTouchId();
@@ -51,12 +51,8 @@
         },
         methods: {
             ...mapActions({
-                loadUserData: constants.User.Actions.loadUserData,
                 replacePage: constants.App.Actions.replacePage,
                 pushPage: constants.App.Actions.pushPage,
-                authMobile: constants.User.Actions.authMobile,
-                logout: constants.User.Actions.logout,
-                setLang: constants.App.Actions.setLang,
             }),
             async useTouchId() {
                 try {

@@ -9,6 +9,7 @@ const ScreenEditProfile = () => import('_screen_edit_profile')
 const ScreenNotifications = () => import('_screen_notifications')
 const ScreenContactss = () => import('_screen_contacts')
 const ScreenOrders = () => import('_screen_orders')
+const ScreenAuthConfirmPin = () => import('_screen_auth_confirm_pin')
 
 export default {
     computed: {
@@ -56,6 +57,9 @@ export default {
                     break
                 case 'orders':
                     screen = ScreenOrders
+                    break
+                case 'auth-pin':
+                    screen = ScreenAuthConfirmPin
                     break
 
                 default:

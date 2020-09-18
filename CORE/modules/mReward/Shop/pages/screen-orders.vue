@@ -4,61 +4,67 @@
             page="orders"
     >
 
-        <div   v-for="(item, i) in orders"
-               :key="i"
-               class="order-item"
-               @click="goToHistoryDetails(item)"
-        >
-            <div class="order-item__name">{{`${$t('m_shop_order')} №${item.precheck_id}`}}</div>
+        <div class="page__content">
+            <template v-if="!loading && orders.length">
+                <div v-for="(item, i) in orders"
+                     :key="i"
+                     class="order-item"
+                     @click="goToHistoryDetails(item)"
+                >
+                    <div class="order-item__name">{{`${$t('m_shop_order')} №${item.check_number}`}}</div>
 
-            <template v-if="item.application_details.application_delivery_address">
-                <div class="order-item__title">{{$t('m_shop_address_delivery')}}</div>
-                <div class="order-item__value">{{item.application_details.application_delivery_address}}</div>
+                    <template v-if="item.application_details.application_delivery_address">
+                        <div class="order-item__title">{{$t('m_shop_address_delivery')}}</div>
+                        <div class="order-item__value">{{item.application_details.application_delivery_address}}</div>
+                    </template>
+                    <template v-if="item.application_details.application_delivery_date">
+                        <div class="order-item__title">{{$t('m_shop_date_delivery')}}</div>
+                        <div class="order-item__value">{{getDate(item.application_details)}}</div>
+                    </template>
 
-                <div class="order-item__title">{{$t('m_shop_date_delivery')}}</div>
-                <div class="order-item__value">{{getDate(item.application_details)}}</div>
+                    <div class="order-item__timeline">
+                        <div class="order-item__timeline__item timeline__item--active"
+                             :class="{'timeline__item--current': item.application_details.application_status === 0}">
+                        </div>
+                        <div class="order-item__timeline__item"
+                             :class="{
+                                    'timeline__item--active': item.application_details.application_status >= 1,
+                                    'timeline__item--current': item.application_details.application_status === 1,
+                                    }">
+                        </div>
+                        <div class="order-item__timeline__item"
+                             :class="{
+                                    'timeline__item--active': item.application_details.application_status >= 2,
+                                      'timeline__item--current': item.application_details.application_status >=2}">
+                        </div>
+                        <!--                <div class="order-item__timeline__item"-->
+                        <!--                     :class="{'timeline__item&#45;&#45;active': item.check_status === 3}">-->
+                        <!--                    <span class="order-item__timeline__name-status" >-->
+                        <!--                        {{item.check_status_name}}-->
+                        <!--                    </span>-->
+                        <!--                </div>-->
+
+                        <div class="order-item__timeline__line" :class="{[`status--${item.application_details.application_status}`]: true}"></div>
+
+                        <div class="order-item__timeline__status" :class="{[`status--${item.application_details.application_status}`]: true}">
+                            <span>{{getNameStatus(item)}}</span>
+                        </div>
+                    </div>
+                </div>
             </template>
 
-            <div class="order-item__timeline">
-                <div class="order-item__timeline__item timeline__item--active"
-                :class="{'timeline__item--current': item.check_status === 0}">
-                    <span class="order-item__timeline__name-status" >
-                        {{$t('m_shop_status_new')}}
-                    </span>
-                </div>
-                <div class="order-item__timeline__item"
-                     :class="{
-                    'timeline__item--active': item.check_status >= 1,
-                    'timeline__item--current': item.check_status === 1,
-                    }">
-                    <span class="order-item__timeline__name-status" >
-                        {{$t('m_shop_status_inprogress')}}
-                    </span>
-                </div>
-                <div class="order-item__timeline__item"
-                     :class="{
-                    'timeline__item--active': item.check_status >= 2,
-                      'timeline__item--current': item.check_status >=2}">
-                    <span v-if="item.check_status === 2"
-                          class="order-item__timeline__name-status" >
-                        {{$t('m_shop_status_success')}}
-                    </span>
-                    <span v-if="item.check_status === 3"
-                          class="order-item__timeline__name-status" >
-                        {{$t('m_shop_status_cancel')}}
-                    </span>
-                </div>
-<!--                <div class="order-item__timeline__item"-->
-<!--                     :class="{'timeline__item&#45;&#45;active': item.check_status === 3}">-->
-<!--                    <span class="order-item__timeline__name-status" >-->
-<!--                        {{item.check_status_name}}-->
-<!--                    </span>-->
-<!--                </div>-->
+            <v-progress-circular
+                    v-else-if="loading"
+                    :width="7"
+                    :size="70"
+                    indeterminate
+            />
 
-                <div class="order-item__timeline__line"></div>
-            </div>
+            <not-found-items
+                    v-else
+                    :message="$t('m_adresses_not_found')"
+            />
         </div>
-
     </layout>
 </template>
 
@@ -67,6 +73,7 @@
     import { mapActions, mapGetters } from 'vuex'
     import constants from '_vuex_constants'
     import moment from 'moment'
+
     const ScreenOrderDetails = () => import('_screen_order_details')
 
     export default {
@@ -84,7 +91,7 @@
                 orders: constants.MrewardShop.Getters.orders,
             }),
 
-            listData() {
+            listData () {
                 if (!this.orders.length) {
                     return []
                 }
@@ -112,7 +119,7 @@
                 //         data: item,
                 //     }
                 // });
-            }
+            },
         },
 
         async created () {
@@ -131,17 +138,32 @@
                 popToPage: constants.App.Actions.popToPage,
                 getOrders: constants.MrewardShop.Actions.getOrders,
             }),
+            getNameStatus(item) {
+                const status = item.application_details.application_status
+                if (status === 0) {
+                    return this.$t('m_shop_status_new')
+                } else if (status === 1) {
+                    return this.$t('m_shop_status_inprogress')
+                } else if (status === 2) {
+                    return this.$t('m_shop_status_success')
+                } else if (status === 3) {
+                    return this.$t('m_shop_status_cancel')
+                }
 
-            getDate(data) {
-               if(data) {
-                   return moment(`${data.application_delivery_date} ${data.application_delivery_time_to}`, 'DD-MM-YYYY HH:mm').format('DD MMMM, HH:mm')
-               }
-
-               return ''
+                return ''
             },
-            goToHistoryDetails(item) {
+            getDate (data) {
+                if (data) {
+                    return moment(`${data.application_delivery_date} ${data.application_delivery_time_to}`,
+                      'DD-MM-YYYY HH:mm').format('DD MMMM, HH:mm')
+                }
+
+                return ''
+            },
+            goToHistoryDetails (item) {
                 const $this = this
 
+                debugger
                 this.pushPage({
                     extends: ScreenOrderDetails,
                     props: {
@@ -150,15 +172,15 @@
                             default: () => {
                                 return {
                                     ...item,
-                                    name: `${$this.$t('m_shop_order')} №${item.precheck_id}`,
+                                    name: `${$this.$t('m_shop_order')} №${item.check_number}`,
                                     products: item.check_details,
                                     sumTotal: item.pay_sum,
                                     accruedBonuses: item.bonus_accrued,
 
                                 }
-                            }
-                        }
-                    }
+                            },
+                        },
+                    },
                 })
             },
 
@@ -168,6 +190,9 @@
 
 <style lang="scss">
     .page[page="orders"] {
+        .page__content {
+            padding: 16px;
+        }
 
         .order-item {
             background: #FFFFFF;
@@ -185,6 +210,7 @@
                 letter-spacing: -0.24px;
                 color: #000000;
             }
+
             &__title {
                 font-style: normal;
                 font-weight: normal;
@@ -207,10 +233,36 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+                margin-top: 16px;
+                position: relative;
 
-                &__name-status {
-                    display: none;
+                &__status {
+                    width: 100%;
+                    display: flex;
+                    position: absolute;
+                    top: 24px;
+
+                    font-style: normal;
+                    font-weight: 600;
+                    font-size: 12px;
+                    line-height: 16px;
+                    text-align: center;
+                    color: #000000;
+
+                    &.status--0 {
+
+                    }
+
+                    &.status--1 {
+                        justify-content: center;
+                    }
+
+                    &.status--2,
+                    &.status--3 {
+                        justify-content: flex-end;
+                    }
                 }
+
                 &__item {
                     width: 6px;
                     height: 6px;
@@ -225,7 +277,7 @@
                 &__line {
                     position: absolute;
                     height: 1px;
-                    background: #6D0978;
+                    background: #CECED2;
                     left: 16px;
                     right: 16px;
 
@@ -234,8 +286,24 @@
                         position: absolute;
                         height: 1px;
                         background: #6D0978;
-                        left: 10px;
-                        right: 10px;
+                        left: 0px;
+                    }
+
+                    &.status--0 {
+
+                    }
+
+                    &.status--1 {
+                        &:before {
+                            width: 50%;
+                        }
+                    }
+
+                    &.status--2,
+                    &.status--3 {
+                        &:before {
+                            width: 100%;
+                        }
                     }
                 }
             }
@@ -282,6 +350,7 @@
 
 
         }
+
         /*ons-toolbar {*/
         /*    background: #fff !important;*/
         /*}*/

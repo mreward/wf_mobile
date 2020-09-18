@@ -10,6 +10,7 @@ import validatePagination from '_MODULES/mReward/libs/ValidatePagination'
 import { clone } from 'quasar-framework'
 import cloneDeep from 'lodash/cloneDeep'
 import sortBy from 'lodash/sortBy'
+import isNumber from 'lodash/isNumber'
 import moment from 'moment'
 import { DbObject } from '_CORE/store/db-objects'
 import localforage from "localforage"
@@ -36,6 +37,7 @@ const state = {
     payData: null,
     productSearchLoader: false,
     orders: [],
+    address: [],
 }
 
 const mutations = {
@@ -43,7 +45,11 @@ const mutations = {
         state.products = data
     },
     [ShopMutat.ProductsTop.name]: (state, data) => {
-        state.productsTop = data
+        if (data._meta.currentPage > 1) {
+            state.productsTop = state.productsTop.concat(data.items)
+        } else {
+            state.productsTop = [...data.items]
+        }
     },
     [ShopMutat.ProductsGroups.name]: (state, data) => {
         state.productsGroups = data
@@ -77,6 +83,9 @@ const mutations = {
     [ShopMutat.Orders.name]: (state, data) => {
         state.orders = data
     },
+    [ShopMutat.Address.name]: (state, data) => {
+        state.address = data
+    },
 }
 
 const actions = {
@@ -105,9 +114,15 @@ const actions = {
         try {
             dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
 
-            const response = await new MrewardShop().GetProductsTop(payload)
+            const response = await new MrewardShop().GetProductsTop({
+                ...payload,
+                partnerId: state.country.config.id
+            })
 
-            commit(ShopMutat.ProductsTop.name, response.items)
+            commit(ShopMutat.ProductsTop.name, response)
+
+            validatePagination(response, constants.MrewardShop.Actions.getProductsTop)
+
 
             dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })
 
@@ -290,29 +305,41 @@ const actions = {
             const list = state.cart[key]
 
 
-            const receiptDetails = list.map((item) => {
+            const receiptDetails = list.map((item, index) => {
                 const data = {
-                    position: item.id,
+                    position: index + 1,
                     prod_code: item.data.art_id,
                     prod_price: item.data.product_price,
                     prod_amount: item.count,
                     prod_sum: item.data.product_price * item.count,
-                    bonus_restrict: '1',
                 }
 
-                if (payload.type === 'cash') {
+                if(payload.type === 'cash') {
                     data.bonus_restrict = '1'
                 }
-
                 return data
             })
+
+            const deliveryList = state.deliveryList[0]
+            const deliveryReceiptDetails = {
+                position: receiptDetails.length + 1,
+                prod_code: deliveryList.art_id,
+                prod_price: deliveryList.price,
+                prod_amount: 1,
+                prod_sum: deliveryList.price,
+            }
+            if (payload.type === 'cash') {
+                deliveryReceiptDetails.bonus_restrict = '1'
+            }
+
+            receiptDetails.push(deliveryReceiptDetails)
 
             const response = await new MrewardShop().PreCheck({
                 branch_id: state.country.config.code,
                 is_online_store: 1,
                 phone: rootState.MrewardProfile.userProfile.mobile,
-                receipt_bonus_amount: 0,
-                receipt_currency: 'BKG',
+                receipt_bonus_amount: payload.type === 'cash' ? 0 : (payload.bonuses || 0),
+                receipt_currency: `B${state.country.code}`,
                 receipt_datetime: moment().format('X'),
                 receipt_description: 'Покупка в Интернет-Магазине',
                 receipt_details: JSON.stringify(receiptDetails),
@@ -377,10 +404,10 @@ const actions = {
             commit(ShopMutat.Country.name, dbData.data)
         } else {
             const profile = rootState.MrewardProfile.userProfile
-            if (profile && profile.country) {
+            if (profile && isNumber(profile.country)) {
                 const country = rootState.MrewardGeo.countries.find(i => i.country_id === profile.country)
                 if (country) {
-                    dispatch(constants.MrewardShop.Actions.selectCountry, country, { root: true })
+                    await dispatch(constants.MrewardShop.Actions.selectCountry, country, { root: true })
                 }
             }
         }
@@ -585,6 +612,122 @@ const actions = {
         }
     },
 
+    async checkReturn({ state, dispatch, commit }, payload) {
+        console.log('STORE: MrewardShop Module - checkReturn')
+        try {
+            dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
+
+            const returnDetails = payload.check_details.map((item) => ({
+                prod_amount: item.amount,
+                prod_code: item.art_id,
+            }))
+
+            const response = await new MrewardShop().CheckReturn({
+                branch_id: state.country.config.code,
+                check_number: `return_${moment().format('x')}`,
+                return_check_number: payload.check_number,
+                return_datetime: moment().format('X'),
+                return_details: JSON.stringify(returnDetails),
+            }, {
+                partnerKey: state.country.config.key,
+            })
+            debugger
+
+            dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })
+
+            return response
+        } catch (error) {
+            await dispatch(constants.App.Actions.validateError, {
+                error,
+                log: 'STORE: MrewardShop Module - checkReturn'
+            }, {root: true})
+        }
+    },
+
+    async onlineRefund({ state, dispatch, commit }, payload) {
+        console.log('STORE: MrewardShop Module - onlineRefund')
+        try {
+            dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
+            const response = await new MrewardShop().OnlineRefund({
+                precheck_id: payload.precheck_id,
+            })
+            debugger
+
+            dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })
+
+            return response
+        } catch (error) {
+            await dispatch(constants.App.Actions.validateError, {
+                error,
+                log: 'STORE: MrewardShop Module - onlineRefund'
+            }, {root: true})
+        }
+    },
+
+    async onlineStoreStatus({ state, dispatch, commit }, payload) {
+        console.log('STORE: MrewardShop Module - onlineStoreStatus')
+        try {
+            dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
+
+            const response = await new MrewardShop().OnlineStoreStatus({
+                check_number: payload.check_number,
+                precheck_id: payload.precheck_id,
+                status: payload.status,
+            }, {
+                partnerKey: state.country.config.key,
+            })
+            debugger
+
+            dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })
+
+            return response
+        } catch (error) {
+            await dispatch(constants.App.Actions.validateError, {
+                error,
+                log: 'STORE: MrewardShop Module - onlineStoreStatus'
+            }, {root: true})
+        }
+    },
+
+    async listDeliveryAddress({ state, dispatch, commit }, payload) {
+        console.log('STORE: MrewardShop Module - listDeliveryAddress')
+        try {
+            dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
+
+            const response = await new MrewardShop().ListDeliveryAddress()
+
+            commit(ShopMutat.Address.name, response.address)
+
+            dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })
+
+            return response.address
+        } catch (error) {
+            await dispatch(constants.App.Actions.validateError, {
+                error,
+                log: 'STORE: MrewardShop Module - listDeliveryAddress'
+            }, {root: true})
+        }
+    },
+
+    async removeDeliveryAddress({ state, dispatch, commit }, payload) {
+        console.log('STORE: MrewardShop Module - removeDeliveryAddress')
+        try {
+            dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
+
+            const response = await new MrewardShop().RemoveDeliveryAddress({
+                id: payload.id
+            })
+
+            dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })
+
+            return response
+        } catch (error) {
+            await dispatch(constants.App.Actions.validateError, {
+                error,
+                log: 'STORE: MrewardShop Module - removeDeliveryAddress'
+            }, {root: true})
+        }
+    },
 
 }
 
@@ -636,6 +779,9 @@ const getters = {
     },
     orders(state) {
         return state.orders
+    },
+    address(state) {
+        return state.address
     }
 }
 

@@ -287,7 +287,36 @@ export default {
             apiVersion: 'v2',
             apiTag: '/client'
         },
-
+        CheckReturn: {
+            url: '/operation/check-return',
+            method: 'POST',
+            apiVersion: 'v2',
+            apiTag: '/partner'
+        },
+        OnlineRefund: {
+            url: '/online-refund',
+            method: 'POST',
+            apiVersion: 'v2',
+            apiTag: '/client'
+        },
+        OnlineStoreStatus: {
+            url: '/operation/online-store-status',
+            method: 'POST',
+            apiVersion: 'v2',
+            apiTag: '/partner'
+        },
+        ListDeliveryAddress: {
+            url: '/list-delivery-address',
+            method: 'GET',
+            apiVersion: 'v2',
+            apiTag: '/client'
+        },
+        RemoveDeliveryAddress: {
+            url: '/remove-delivery-address',
+            method: 'POST',
+            apiVersion: 'v2',
+            apiTag: '/client'
+        },
 
     }
 }

@@ -77,20 +77,69 @@
                 <i class="icon-info"/>
             </div>
             <div class="delivery__info__text">
-                Дорогой друг, хотим тебя предупредить: если твой адрес доставки не входит в зону со стандартной суммой оплаты доставки, то тебе нужно будет совершить доплату наличными курьеру.
+                {{$t('m_shop_order_details_info')}}
             </div>
         </div>
+
+        <v-btn
+                v-if="history.opportunity_to_refund"
+                class="v-btn--secondary"
+                color="secondary"
+                depressed
+                block
+                @click.native="onCancelOrder"
+        >
+            {{ $t('m_shop_cancel_order') }}
+        </v-btn>
     </layout>
 </template>
 
 <script>
-    import ScreenHistoryDetailsMixin from '_screen_history_details_mixin'
+    import { mapActions } from 'vuex'
+    import constants from '_vuex_constants'
+    import IllustrationPin from '_img_pin_illustration'
+    import ProductItem from '_history_product_item'
+    import Illustration from '../img/cancel-order-illustration.svg';
 
     export default {
         name: 'screen-order-details',
-        mixins: [
-            ScreenHistoryDetailsMixin
-        ]
+        components: {
+            ProductItem
+        },
+        methods: {
+            ...mapActions({
+                popPage: constants.App.Actions.popPage,
+                pushPage: constants.App.Actions.pushPage,
+                checkReturn: constants.MrewardShop.Actions.checkReturn,
+                onlineRefund: constants.MrewardShop.Actions.onlineRefund,
+                getOrders: constants.MrewardShop.Actions.getOrders,
+                onlineStoreStatus: constants.MrewardShop.Actions.onlineStoreStatus,
+            }),
+            onCancelOrder() {
+                this.$Alert.Confirm({
+                    img: Illustration,
+                    title: this.$t('m_shop_cancel_order_confirm'),
+                    nextName: this.$t('m_shop_yes'),
+                    cancelName: this.$t('m_shop_no'),
+                    nextEvent: async () => {
+                        if (this.history.payment_type === 'cash') {
+                            await this.checkReturn(this.history)
+                        } else {
+                            await this.onlineRefund(this.history)
+                        }
+
+                        await this.onlineStoreStatus({
+                            ...this.history,
+                            status: 3
+                        })
+
+                        await this.getOrders()
+
+                        this.popPage()
+                    }
+                })
+            }
+        }
     }
 </script>
 

@@ -51,7 +51,7 @@
             <div v-show="cart.length"
                  class="shop-cart__total-wrap">
                 <span class="shop-cart__total-title">{{$t('m_shop_total_amount')}}</span>
-                <span class="shop-cart__total-amount">{{totalAmount}} c.</span>
+                <span class="shop-cart__total-amount">{{totalAmount}} {{country.config.currency}}</span>
             </div>
 
 
@@ -162,6 +162,7 @@
             ...mapGetters({
                 productsTop: constants.MrewardShop.Getters.productsTop,
                 cart: constants.MrewardShop.Getters.cart,
+                country: constants.MrewardShop.Getters.country,
                 totalCartProduct: constants.MrewardShop.Getters.totalCartProduct,
             }),
             totalAmount() {
