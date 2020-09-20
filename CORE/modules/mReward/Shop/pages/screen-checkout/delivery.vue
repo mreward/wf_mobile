@@ -39,6 +39,9 @@
                         :label="$t('m_shop_address')"
                         :return-object="false"
                         class="combobox-address"
+                        :error-messages="addressErrors"
+                        @input="$v.form.address.$touch()"
+                        @blur="$v.form.address.$touch()"
                 >
                     <template v-slot:item="{ index, item }">
                         {{ item.address }}
@@ -76,6 +79,7 @@
                         </template>
                         <v-date-picker v-model="form.date"
                                        scrollable
+                                       :locale="selectedLanguage"
                                        :min="minDate">
                             <v-spacer></v-spacer>
                             <v-btn text
@@ -111,6 +115,7 @@
                                 full-width
                                 format="24hr"
                                 :min="minTime"
+                                :locale="selectedLanguage"
                         >
                             <v-spacer></v-spacer>
                             <v-btn text
@@ -219,6 +224,7 @@
                 countries: constants.MrewardGeo.Getters.countries,
                 country: constants.MrewardShop.Getters.country,
                 address: constants.MrewardShop.Getters.address,
+                selectedLanguage: constants.App.Getters.language,
             }),
             delivery () {
                 return this.deliveryList[0] || {}

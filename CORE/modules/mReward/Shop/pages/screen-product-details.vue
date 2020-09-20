@@ -79,21 +79,23 @@
 
                 <div class="product-details__devider"/>
 
-                <!--        <div class="product-details__category">-->
-                <!--            <div class="product-details__category__header">-->
-                <!--                <div class="product-details__category__icon">-->
-                <!--                    <i class="icon-certificate"/>-->
-                <!--                </div>-->
-                <!--                <div class="product-details__category__name">-->
-                <!--                    Сертификаты-->
-                <!--                </div>-->
-                <!--            </div>-->
-                <!--            <div class="product-details__category__cotent">-->
-                <!--                <img :src="ImgHalal" />-->
-                <!--                <img :src="ImgKuvshin" />-->
-                <!--                <img :src="ImgRumka" />-->
-                <!--            </div>-->
-                <!--        </div>-->
+                        <div v-if="isCerts" class="product-details__category">
+                            <div class="product-details__category__header">
+                                <div class="product-details__category__icon">
+                                    <i class="icon-certificate"/>
+                                </div>
+                                <div class="product-details__category__name">
+                                    {{$t('m_shop_certificates')}}
+                                </div>
+                            </div>
+                            <div class="product-details__category__cotent">
+                                <img v-if="properties.safety == 'сертифицирован'" :src="ImgZnakSertificatedCompany" />
+                                <img v-if="properties.halal == 'сертифицирован'" :src="ImgZnakHalal" />
+                                <img v-if="properties.alcohol == 'сертифицирован'" :src="ImgZnakAlcohol" />
+                                <img v-if="properties.customs == 'сертифицирован'" :src="ImgZnakTomozheniy" />
+                                <img v-if="properties.milk == 'сертифицирован'" :src="ImgZnakTermostatniyYogurt" />
+                            </div>
+                        </div>
 
                 <div class="product-details__category" v-if="product.composition">
                     <div class="product-details__category__header">
@@ -124,19 +126,19 @@
                     </div>
                 </div>
 
-                <!--        <div class="product-details__category">-->
-                <!--            <div class="product-details__category__header">-->
-                <!--                <div class="product-details__category__icon">-->
-                <!--                    <i class="icon-energy"/>-->
-                <!--                </div>-->
-                <!--                <div class="product-details__category__name">-->
-                <!--                    Энергетическая ценность:-->
-                <!--                </div>-->
-                <!--            </div>-->
-                <!--            <div class="product-details__category__cotent">-->
-                <!--                445,38 ккал-->
-                <!--            </div>-->
-                <!--        </div>-->
+                        <div v-if="properties.kcal" class="product-details__category">
+                            <div class="product-details__category__header">
+                                <div class="product-details__category__icon">
+                                    <i class="icon-energy"/>
+                                </div>
+                                <div class="product-details__category__name">
+                                    {{$t('m_shop_kal')}}:
+                                </div>
+                            </div>
+                            <div class="product-details__category__cotent">
+                                {{properties.kcal}}
+                            </div>
+                        </div>
 
                 <div v-if="product.shelf_life"
                      class="product-details__category">
@@ -195,9 +197,13 @@
     import ProductItem from '../components/product-item'
     import { mapActions, mapGetters } from 'vuex'
     import constants from '_vuex_constants'
-    import ImgHalal from '../img/halal.png'
-    import ImgKuvshin from '../img/kuvshin.png'
-    import ImgRumka from '../img/rumka.png'
+
+    import ImgZnakHalal from '../img/halal.svg'
+    import ImgZnakTermostatniyYogurt from '../img/termostatniy-yogurt.svg'
+    import ImgZnakSertificatedCompany from '../img/sertificated-company.svg'
+    import ImgZnakTomozheniy from '../img/tomozheniy-znak.svg'
+    import ImgZnakAlcohol from '../img/znak-alcohol.svg'
+
     import ToolbarLeft from '_CORE/components/common/toolbar/left'
     import ImgFavoritesActive from '../img/favorites-active.svg'
     import ImgFavoritesDefault from '../img/favorites-default.svg'
@@ -212,9 +218,13 @@
         data () {
             return {
                 carouselIndex: 0,
-                ImgHalal,
-                ImgRumka,
-                ImgKuvshin,
+
+                ImgZnakHalal,
+                ImgZnakTermostatniyYogurt,
+                ImgZnakSertificatedCompany,
+                ImgZnakTomozheniy,
+                ImgZnakAlcohol,
+
                 ImgFavoritesActive,
                 ImgFavoritesDefault,
                 imgs: [
@@ -223,6 +233,7 @@
                 ],
                 loader: true,
                 product: {},
+                properties: {},
             }
         },
         computed: {
@@ -245,12 +256,17 @@
                 const productCart = this.cart.find(c => c.data.art_id === this.item.data.art_id)
                 return productCart ? productCart.count : 0
             },
+
+            isCerts() {
+                return Object.keys(this.properties).find(key => this.properties[key] === 'сертифицирован')
+            }
         },
 
         async created () {
             try {
                 const result = await this.getProduct(this.item)
                 this.product = result.product
+                this.properties = result.properties
 
                 if(!this.product.images[0]) {
                     this.product.images.push({

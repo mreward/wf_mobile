@@ -34,18 +34,18 @@
 
         <div
             class="history__info-row"
-            v-if="history.sumMoney"
+            v-if="history.pay_sum"
         >
             <div>{{ $t('m_history_paid_money') }}</div>
-            <div>{{ history.sumMoney }}</div>
+            <div>{{ history.pay_sum }}</div>
         </div>
 
         <div
             class="history__info-row"
-            v-if="history.debitedBonuses"
+            v-if="history.bonus_redeemed"
         >
             <div>{{ $t('m_history_debited_onuses') }}</div>
-            <div>{{ history.debitedBonuses }}</div>
+            <div>{{ history.bonus_redeemed }}</div>
         </div>
 
         <div

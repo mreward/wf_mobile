@@ -154,7 +154,7 @@
             },
             getDate (data) {
                 if (data) {
-                    return moment(`${data.application_delivery_date} ${data.application_delivery_time_to}`,
+                    return moment(`${data.application_delivery_date} ${data.application_delivery_time_from}`,
                       'DD-MM-YYYY HH:mm').format('DD MMMM, HH:mm')
                 }
 

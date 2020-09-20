@@ -149,8 +149,9 @@
                     const onlineStoreApplicationData = await this.onlineStoreApplication({
                         address: this.delivery.address,
                         pre_check_id: preCheckData.pre_check_id,
-                        date: moment().format('DD-MM-YYYY'),
+                        date: moment(this.delivery.date, 'YYYY-MM-DD').format('DD-MM-YYYY'),
                         info: this.delivery.comment,
+                        time_from: this.delivery.time,
                     })
 
                     await this.clearCart()

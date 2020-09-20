@@ -130,10 +130,13 @@
                 block
                 class="margin-top--small-base v-btn--third v-btn--secondary"
         >
-            <span class="icon-and-label">
+            <span v-if="$ons.platform.isIPhoneX()" class="icon-and-label">
+                <i class="icon-face-id"/>
+                {{ $t('m_profile_use_face_id') }}
+            </span>
+            <span v-else class="icon-and-label">
                 <i class="icon-touch-id"/>
-
-                {{ $t($ons.platform.isIPhoneX() ? 'm_profile_use_face_id' : 'm_profile_use_touch_id') }}
+                {{ $t('m_profile_use_touch_id') }}
             </span>
             <v-ons-switch
                     v-model="useBiometric"
