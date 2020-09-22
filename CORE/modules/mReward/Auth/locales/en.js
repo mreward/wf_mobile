@@ -1,4 +1,5 @@
 export default {
+    m_allow_fingerprint: 'Allow {appName} to use the fingerprint reader?',
     m_auth_about_application: 'Learn about the application',
     m_auth_cancel: 'Cancel',
     m_auth_change_password_title: 'Change Password',

@@ -46,6 +46,7 @@ export default {
     m_shop_status_cancel: 'Canceled',
     m_shop_status_inprogress: 'In the process',
     m_shop_status_new: 'New',
+    m_shop_status_pay_fail: 'An error occurred while paying',
     m_shop_status_pay_info: 'Our operator will contact you to confirm the order within a few minutes',
     m_shop_status_pay_title: 'Thank you, your order has been accepted!',
     m_shop_status_success: 'Completed',

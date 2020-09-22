@@ -292,7 +292,6 @@ const actions = {
 
     async setUserConfig({ commit, dispatch, rootState, state, rootGetters }, data = {}) {
         try {
-            debugger
             if(data.pin) {
                 data.pin = data.pin ? sha256(md5(data.pin).toString()).toString() : null
             }

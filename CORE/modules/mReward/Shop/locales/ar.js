@@ -46,6 +46,7 @@ export default {
     m_shop_status_cancel: 'ألغيت',
     m_shop_status_inprogress: 'فى المعالجة',
     m_shop_status_new: 'جديد',
+    m_shop_status_pay_fail: 'حدث خطأ أثناء الدفع',
     m_shop_status_pay_info: 'سيتصل بك مشغلنا لتأكيد الطلب في غضون بضع دقائق',
     m_shop_status_pay_title: 'شكرا لك ، تم قبول طلبك!',
     m_shop_status_success: 'منجز',

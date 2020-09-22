@@ -1,4 +1,5 @@
 export default {
+    m_allow_fingerprint: 'Autoriser {appName} à utiliser le lecteur d\'empreintes digitales?',
     m_auth_about_application: 'En savoir plus sur l\'application',
     m_auth_cancel: 'Annuler',
     m_auth_change_password_title: 'changer le mot de passe',

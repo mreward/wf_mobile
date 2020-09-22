@@ -46,6 +46,7 @@ export default {
     m_shop_status_cancel: 'Бекор карда шуд',
     m_shop_status_inprogress: 'Дар раванди',
     m_shop_status_new: 'Нав',
+    m_shop_status_pay_fail: 'Ҳангоми пардохт хатогӣ ба амал омад',
     m_shop_status_pay_info: 'Оператори мо барои тасдиқи фармоиш дар тӯли якчанд дақиқа бо шумо тамос мегирад',
     m_shop_status_pay_title: 'Ташаккур, фармоиши шумо қабул карда шуд!',
     m_shop_status_success: 'Анҷом',

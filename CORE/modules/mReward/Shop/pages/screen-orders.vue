@@ -17,7 +17,7 @@
                         <div class="order-item__title">{{$t('m_shop_address_delivery')}}</div>
                         <div class="order-item__value">{{item.application_details.application_delivery_address}}</div>
                     </template>
-                    <template v-if="item.application_details.application_delivery_date">
+                    <template v-if="getDate(item.application_details)">
                         <div class="order-item__title">{{$t('m_shop_date_delivery')}}</div>
                         <div class="order-item__value">{{getDate(item.application_details)}}</div>
                     </template>
@@ -154,8 +154,14 @@
             },
             getDate (data) {
                 if (data) {
-                    return moment(`${data.application_delivery_date} ${data.application_delivery_time_from}`,
-                      'DD-MM-YYYY HH:mm').format('DD MMMM, HH:mm')
+                    if (data.application_delivery_date && data.application_delivery_time_from) {
+                        return moment(`${data.application_delivery_date} ${data.application_delivery_time_from}`,
+                          'DD-MM-YYYY HH:mm').format('DD MMMM, HH:mm')
+                    } else if (data.application_delivery_date) {
+                        return moment(data.application_delivery_date, 'DD-MM-YYYY').format('DD MMMM')
+                    } else if (data.application_delivery_time_from) {
+                        return data.application_delivery_time_from
+                    }
                 }
 
                 return ''
@@ -163,7 +169,6 @@
             goToHistoryDetails (item) {
                 const $this = this
 
-                debugger
                 this.pushPage({
                     extends: ScreenOrderDetails,
                     props: {
@@ -176,7 +181,6 @@
                                     products: item.check_details,
                                     sumTotal: item.pay_sum,
                                     accruedBonuses: item.bonus_accrued,
-
                                 }
                             },
                         },

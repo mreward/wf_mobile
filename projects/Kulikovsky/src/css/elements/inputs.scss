@@ -233,6 +233,7 @@ body .v-application {
                 border: 1px solid $grey-light-third;
                 border-radius: $border-radius;
                 font-size: rem(15);
+                -webkit-appearance: none;
 
                 @include transition();
 

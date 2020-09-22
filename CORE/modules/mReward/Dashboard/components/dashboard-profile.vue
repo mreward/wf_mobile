@@ -284,7 +284,6 @@
                         nextName: this.$t('m_auth_security_pin_next'),
                         cancelName: this.$t('m_auth_security_pin_cancel'),
                         nextEvent: () => {
-                            debugger
                             this.setUserConfig({
                                 usePin: true,
                             })
@@ -617,5 +616,6 @@
     span.btn-currency {
         align-self: center;
         display: flex;
+        margin-top: 6px;
     }
 </style>

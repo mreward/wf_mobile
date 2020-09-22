@@ -1,4 +1,5 @@
 export default {
+    m_allow_fingerprint: 'Разрешить {appName} использовать сканер отпечатка пальца?',
     m_auth_about_application: 'Узнать о приложении',
     m_auth_cancel: 'Отменить',
     m_auth_change_password_title: 'Изменение пароля',

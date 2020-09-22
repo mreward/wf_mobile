@@ -46,6 +46,7 @@ export default {
     m_shop_status_cancel: 'Бас тартылды',
     m_shop_status_inprogress: 'Процесс барысында',
     m_shop_status_new: 'Жаңа',
+    m_shop_status_pay_fail: 'Төлеу кезінде қате пайда болды',
     m_shop_status_pay_info: 'Біздің оператор бірнеше минут ішінде тапсырысты растау үшін сізбен байланысады',
     m_shop_status_pay_title: 'Рақмет, сіздің тапсырысыңыз қабылданды!',
     m_shop_status_success: 'Аяқталды',

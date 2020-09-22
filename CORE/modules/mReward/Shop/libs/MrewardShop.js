@@ -139,7 +139,6 @@ export default class MrewardShop extends ApiClient {
         this.logger('MrewardShop:ProductSearch')
         const requestData = { ...this.APIEndPoints.Shop.ProductSearch }
 
-        debugger
         return this.sendRequest(
           requestData,
           {

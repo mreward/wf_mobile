@@ -202,6 +202,7 @@
 
         .page__content {
             padding: 16px !important;
+            padding-bottom: 32px !important;
         }
 
         .contacts-info {

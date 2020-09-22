@@ -1,4 +1,5 @@
 export default {
+    m_allow_fingerprint: 'Дазволіць {appName} выкарыстоўваць счытвальнік адбіткаў пальцаў?',
     m_auth_about_application: 'Даведайцеся пра прыкладанне',
     m_auth_cancel: 'Адмяніць',
     m_auth_change_password_title: 'змяніць пароль',

@@ -1,4 +1,5 @@
 export default {
+    m_allow_fingerprint: '{AppName} дарегине манжа изин окугучту колдонууга уруксат берилсинби?',
     m_auth_about_application: 'колдонуу жөнүндө көбүрөөк билүү',
     m_auth_cancel: 'Жокко чыгаруу',
     m_auth_change_password_title: 'Сыр сөздү өзгөртүү',

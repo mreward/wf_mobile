@@ -41,10 +41,10 @@ export default {
         biometric() {
             if (this.touchIdSupported) {
                 if (this.$ons.platform.isIPhoneX()) {
-                    return 'Touch ID'
+                    return 'Face ID'
                 }
 
-                return 'Face ID'
+                return 'Touch ID'
             }
 
             return ''
@@ -53,7 +53,6 @@ export default {
     watch: {
         pin() {
             if (this.pin.length === this.lengthPin && !this.dataSent) {
-                debugger
                 if (sha256(md5(this.pin).toString()).toString() === this.userConfig.pin) {
                     this.hideKeyboard();
                     this.dataSent = true;

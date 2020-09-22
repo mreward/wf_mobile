@@ -46,6 +46,7 @@ export default {
     m_shop_status_cancel: 'Адменена',
     m_shop_status_inprogress: 'У працэсе',
     m_shop_status_new: 'Новы',
+    m_shop_status_pay_fail: 'Пры аплаце адбылася памылка',
     m_shop_status_pay_info: 'Наш аператар звяжацца з вамі для пацверджання замовы на працягу некалькіх хвілін',
     m_shop_status_pay_title: 'Дзякуй, ваш заказ прыняты!',
     m_shop_status_success: 'Завершаны',

@@ -543,7 +543,6 @@ const actions = {
         try {
             dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
 
-            debugger
             const response = await new MrewardShop().CheckConfirm({
                 check_number: payload.check_number,
                 pre_check_id: payload.pre_check_id,
@@ -568,7 +567,6 @@ const actions = {
         try {
             dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
 
-            debugger
             const response = await new MrewardShop().OnlineStoreApplication({
                 address: payload.address,
                 date: payload.date,
@@ -598,7 +596,6 @@ const actions = {
         try {
             dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
             const response = await new MrewardShop().OnlineOrder({})
-            debugger
             commit(ShopMutat.Orders.name, response.orders)
 
             dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })
@@ -631,7 +628,6 @@ const actions = {
             }, {
                 partnerKey: state.country.config.key,
             })
-            debugger
 
             dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })
 
@@ -651,7 +647,6 @@ const actions = {
             const response = await new MrewardShop().OnlineRefund({
                 precheck_id: payload.precheck_id,
             })
-            debugger
 
             dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })
 
@@ -676,7 +671,6 @@ const actions = {
             }, {
                 partnerKey: state.country.config.key,
             })
-            debugger
 
             dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })
 

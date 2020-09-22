@@ -1,4 +1,5 @@
 export default {
+    m_allow_fingerprint: 'Ба {appName} иҷозат диҳед, ки хонандаи изи ангуштро истифода кунад?',
     m_auth_about_application: 'Дар бораи барнома маълумот гиред',
     m_auth_cancel: 'Бекор кардан',
     m_auth_change_password_title: 'ивази калидвожа',

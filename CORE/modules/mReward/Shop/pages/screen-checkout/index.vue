@@ -84,6 +84,7 @@
         async created () {
             this.$bus.$on('goToPay', this.sendToPay.bind(this))
             this.$bus.$on('goToTabCheckout', this.goToTabCheckout.bind(this))
+            this.$bus.$on('goToPayStatus', this.goToPayStatus.bind(this))
 
             try {
                 await this.getDeliveryList()
@@ -102,6 +103,7 @@
         beforeDestroy() {
             this.$bus.$off('goToPay', this.sendToPay.bind(this))
             this.$bus.$off('goToTabCheckout', this.goToTabCheckout.bind(this))
+            this.$bus.$off('goToPayStatus', this.goToPayStatus.bind(this))
         },
         methods: {
             ...mapActions({
@@ -124,7 +126,6 @@
 
             },
             goToTabCheckout(name, data) {
-              debugger
                 this.tab = name
                 this.delivery = data
             },
@@ -136,32 +137,37 @@
                     })
 
                     if (method === 'cash' || totalAmount === 0) {
-                        const checkConfirmData = await this.checkConfirm({
+                        await this.checkConfirm({
                             check_number: `online_${moment().format('X')}`,
                             pre_check_id: preCheckData.pre_check_id,
                             money: preCheckData.payment.money,
                         })
+                        this.goToPayStatus()
                     } else if (method === 'card') {
-                        const dataUrl = await this.paymentUrl(preCheckData)
+                        await this.paymentUrl(preCheckData)
                         this.setActiveTab('PayIframe')
                     }
 
-                    const onlineStoreApplicationData = await this.onlineStoreApplication({
+                    await this.onlineStoreApplication({
                         address: this.delivery.address,
                         pre_check_id: preCheckData.pre_check_id,
-                        date: moment(this.delivery.date, 'YYYY-MM-DD').format('DD-MM-YYYY'),
+                        date: this.delivery.date ? moment(this.delivery.date, 'YYYY-MM-DD').format('DD-MM-YYYY') : '',
                         info: this.delivery.comment,
                         time_from: this.delivery.time,
                     })
-
-                    await this.clearCart()
-
-                    if (method === 'cash' || totalAmount === 0) {
-                        this.pushPage(ScreenStatusPay)
-                    }
                 } catch (e) {
                     this.$Alert.Error(e)
                 }
+            },
+            async goToPayStatus(data) {
+                await this.clearCart()
+
+                this.pushPage({
+                    extends: ScreenStatusPay,
+                    options: {
+                        animation: 'lift'
+                    },
+                })
             },
             goToPay() {
                 this.setActiveTab('PayIframe')

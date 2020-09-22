@@ -19,7 +19,7 @@
                     type="main"
                     @click="goToOrder"
             >
-                {{ $t('m_shop_view_order') }}
+                {{ $t('m_done') }}
             </v-btn>
         </div>
     </layout>
@@ -53,7 +53,6 @@
             }),
             async goToOrder () {
                 this.popToPage('screen-dashboard')
-                this.goToPage('orders')
             },
         },
     }
@@ -66,6 +65,10 @@
             flex: 1;
             flex-direction: column;
             justify-content: space-between;
+        }
+
+        .checkout-pay__btn-pay {
+            margin-bottom: 32px;
         }
     }
 
@@ -97,6 +100,12 @@
         i {
             color: #2DB055;
             font-size: 46px;
+        }
+
+        &--error {
+            i {
+                color: #2DB055;
+            }
         }
     }
 </style>

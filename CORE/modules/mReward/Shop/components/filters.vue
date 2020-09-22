@@ -128,7 +128,7 @@
                     'Песочная',
                 ],
                 tasteTags: [
-                    'Слвочный',
+                    'Сливочный',
                     'Сливочно-сырный',
                     'Ягодный',
                     'Сливочно-йогуртовый',
@@ -194,7 +194,6 @@
                 this.baseSelectedOld = []
                 this.tasteSelectedOld = []
 
-                debugger
                 if (filter.length) {
                     this.$bus.$emit('goToSearch')
 

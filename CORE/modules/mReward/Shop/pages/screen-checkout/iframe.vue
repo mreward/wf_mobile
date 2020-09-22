@@ -1,7 +1,7 @@
 <template>
     <v-ons-page page="checkout-iframe" shown>
         <div class="page__content no-after">
-            <template v-if="payData.paymentPage">
+            <template v-if="payData && payData.paymentPage">
                 <iframe ref="iframe"
                         frameborder="0"
                         :src="payData.paymentPage"
@@ -22,12 +22,58 @@
                 payData: constants.MrewardShop.Getters.payData,
             })
         },
-        mounted () {
-            // if (this.payData && this.payData.url) {
-            //     this.setSrcdoc()
-            // }
+        watch: {
+            payData: {
+                deep: true,
+                handler() {
+                    console.log('iFrame watch payData');
+                },
+                immediate: true
+            }
+        },
+        mounted() {
+            console.log('iFrame mounted');
+            window.addEventListener('message', this.postMessage, false);
+        },
+        destroyed() {
+            console.log('iFrame destroyed');
+            window.removeEventListener('message', this.postMessage);
         },
         methods: {
+            postMessage(e) {
+                debugger
+                console.log('iFrame postMessage');
+
+                if (e.data) {
+                    console.log('iFrame postmessage emitted with data: ', e.data);
+                    let code = ''
+                    let message = ''
+                    let status = ''
+
+                    if (typeof e.data === 'string') {
+                        try {
+                            const data = JSON.parse(e.data)
+                            code = data.code
+                            message = data.message
+                            status = data.status
+                        } catch (e) {
+                            return
+                        }
+                    } else if (typeof e.data === 'object') {
+                        code = e.data.code
+                        message = e.data.message
+                        status = e.data.status
+                    }
+
+                    if (status) {
+                        this.$bus.$emit('goToPayStatus', {
+                            code,
+                            message,
+                            status
+                        })
+                    }
+                }
+            },
             setSrcdoc() {
                 // const inputs = Object.keys(this.payData.form).reduce((result, key) => {
                 //     return result + `<input type="hidden" name="${key}" value="${this.payData.form[key]}"/>`

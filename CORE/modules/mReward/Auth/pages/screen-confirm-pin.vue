@@ -4,6 +4,7 @@
         :title="$t('m_auth_pin_code')"
         button-left="back"
         icon-left="arrow"
+        page="auth-pin-code"
     >
         <form
             ref="form"
@@ -62,3 +63,15 @@
         mixins: [MixinScreenConfirmPin]
     }
 </script>
+
+<style lang="scss">
+    .page[page="auth-pin-code"] {
+        .margin-top--small-base {
+            margin-top: 28px;
+        }
+
+        .layout-auth__form {
+            margin-top: 16px;
+        }
+    }
+</style>

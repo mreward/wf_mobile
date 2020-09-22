@@ -1,4 +1,5 @@
 export default {
+    m_allow_fingerprint: '{appName} саусақ ізін оқу құрылғысын пайдалануға рұқсат берілсін бе?',
     m_auth_about_application: 'Қолданба туралы біліңіз',
     m_auth_cancel: 'болдырмау',
     m_auth_change_password_title: 'Құпиясөзді өзгерту',

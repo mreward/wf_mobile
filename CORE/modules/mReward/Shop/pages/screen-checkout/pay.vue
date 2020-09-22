@@ -148,7 +148,6 @@
                 return balance || {}
             },
             totalAvailableBonuses () {
-                debugger
                 if (this.preCheckData.receipt_details) {
                     let total = this.preCheckData.receipt_details.reduce((result, item) => {
                         return result += item.discount_limit
@@ -225,6 +224,7 @@
                 line-height: 18px;
                 letter-spacing: -0.078px;
                 color: #000000;
+                padding-right: 8px;
             }
 
             &__value {

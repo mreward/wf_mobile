@@ -46,6 +46,7 @@ export default {
     m_shop_status_cancel: 'Жокко чыгарылды',
     m_shop_status_inprogress: 'Бул процессте',
     m_shop_status_new: 'Жаңы',
+    m_shop_status_pay_fail: 'Төлөө учурунда ката кетти',
     m_shop_status_pay_info: 'Биздин оператор бир нече мүнөттүн ичинде буйрутманы ырастоо үчүн сиз менен байланышат',
     m_shop_status_pay_title: 'Рахмат, буйругуңуз кабыл алынды!',
     m_shop_status_success: 'Аяктаган',

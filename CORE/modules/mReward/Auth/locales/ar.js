@@ -1,4 +1,5 @@
 export default {
+    m_allow_fingerprint: 'هل تريد السماح لـ {appName} باستخدام قارئ بصمات الأصابع؟',
     m_auth_about_application: 'تعرف على التطبيق',
     m_auth_cancel: 'إلغاء',
     m_auth_change_password_title: 'غير كلمة السر',

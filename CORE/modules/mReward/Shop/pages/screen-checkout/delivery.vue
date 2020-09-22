@@ -74,7 +74,9 @@
                                     v-bind="attrs"
                                     v-on="on"
                                     class="delivery__date"
-
+                                    :error-messages="dateErrors"
+                                    @input="$v.form.date.$touch()"
+                                    @blur="$v.form.date.$touch()"
                             ></v-text-field>
                         </template>
                         <v-date-picker v-model="form.date"
@@ -93,41 +95,43 @@
                         </v-date-picker>
                     </v-dialog>
 
-                    <v-dialog
-                            ref="dialogTime"
-                            v-model="modalTime"
-                            :return-value.sync="form.time"
-                            persistent
-                            width="290px"
-                    >
-                        <template v-slot:activator="{ on, attrs }">
-                            <v-text-field
-                                    v-model="form.time"
-                                    :label="$t('m_shop_time')"
-                                    readonly
-                                    v-bind="attrs"
-                                    v-on="on"
-
-                            ></v-text-field>
-                        </template>
-                        <v-time-picker
-                                v-model="form.time"
-                                full-width
-                                format="24hr"
-                                :min="minTime"
-                                :locale="selectedLanguage"
-                        >
-                            <v-spacer></v-spacer>
-                            <v-btn text
-                                   color="primary"
-                                   @click="modalTime = false">{{$t('m_cancel')}}
-                            </v-btn>
-                            <v-btn text
-                                   color="primary"
-                                   @click="$refs.dialogTime.save(form.time)">{{$t('m_confirm')}}
-                            </v-btn>
-                        </v-time-picker>
-                    </v-dialog>
+<!--                    <v-dialog-->
+<!--                            ref="dialogTime"-->
+<!--                            v-model="modalTime"-->
+<!--                            :return-value.sync="form.time"-->
+<!--                            persistent-->
+<!--                            width="290px"-->
+<!--                    >-->
+<!--                        <template v-slot:activator="{ on, attrs }">-->
+<!--                            <v-text-field-->
+<!--                                    v-model="form.time"-->
+<!--                                    :label="$t('m_shop_time')"-->
+<!--                                    readonly-->
+<!--                                    v-bind="attrs"-->
+<!--                                    v-on="on"-->
+<!--                                    :error-messages="timeErrors"-->
+<!--                                    @input="$v.form.time.$touch()"-->
+<!--                                    @blur="$v.form.time.$touch()"-->
+<!--                            ></v-text-field>-->
+<!--                        </template>-->
+<!--                        <v-time-picker-->
+<!--                                v-model="form.time"-->
+<!--                                full-width-->
+<!--                                format="24hr"-->
+<!--                                :min="minTime"-->
+<!--                                :locale="selectedLanguage"-->
+<!--                        >-->
+<!--                            <v-spacer></v-spacer>-->
+<!--                            <v-btn text-->
+<!--                                   color="primary"-->
+<!--                                   @click="modalTime = false">{{$t('m_cancel')}}-->
+<!--                            </v-btn>-->
+<!--                            <v-btn text-->
+<!--                                   color="primary"-->
+<!--                                   @click="$refs.dialogTime.save(form.time)">{{$t('m_confirm')}}-->
+<!--                            </v-btn>-->
+<!--                        </v-time-picker>-->
+<!--                    </v-dialog>-->
                 </div>
 
 
@@ -185,7 +189,7 @@
     import MaskPhone from '_PLUGINS/common/MaskPhone'
     import InputBase from '_CORE/components/common/inputs/input-base'
     import ValidationHelpers from '_plugins_validation_helpers';
-    import { required, email, minLength, validPassword, isTrue } from '_plugins_validators';
+    import { required, requiredIf, minLength, validPassword, isTrue } from '_plugins_validators';
     import Illustration from '../../img/delete-address-illustration.svg';
 
     export default {
@@ -368,6 +372,22 @@
                             order: 1,
                         },
                     },
+                    date: {
+                        required: requiredIf(function() {
+                            return this.form.time
+                        }),
+                        $params: {
+                            order: 2,
+                        },
+                    },
+                    // time: {
+                    //     required: requiredIf(function() {
+                    //         return this.form.time || this.form.date;
+                    //     }),
+                    //     $params: {
+                    //         order: 3,
+                    //     },
+                    // },
                     $params: {
                         order: 100,
                     },
@@ -461,7 +481,7 @@
         }
 
         &__date {
-            padding-right: 16px;
+            /*padding-right: 16px;*/
         }
     }
 

@@ -213,6 +213,10 @@
                 overflow: hidden;
                 padding: 16px;
             }
+
+            .shop-cart__btn-pay {
+                margin-bottom: 10px;
+            }
         }
 
         .shop-cart {
@@ -302,6 +306,16 @@
                 padding: 28px 0 15px 0;
                 display: flex;
                 justify-content: space-between;
+            }
+        }
+    }
+
+    html[onsflag-iphonex-portrait] {
+        .action-sheet {
+            &__shop-cart {
+                .shop-cart__btn-pay {
+                    margin-bottom: 24px;
+                }
             }
         }
     }
