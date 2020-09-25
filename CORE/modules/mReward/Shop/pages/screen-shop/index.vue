@@ -90,8 +90,9 @@
                     </v-btn>
                 </div>
                 <v-btn
-                        small
-                        class="btn-constructor"
+                    small
+                    class="btn-constructor"
+                    @click="goToCakeDesigner"
                 >
                     <img :src="ImgConstructor"/>
                     <span>Конструктор тортов</span>
@@ -197,6 +198,7 @@
     import Favorite from './favorite'
     import Top from './top'
     import Search from './search'
+    import ScreenDesigner from '_screen_designer'
 
     export default {
         name: 'screen-shop',
@@ -221,6 +223,13 @@
                 countryDialog: false,
             }
         },
+        methods: {
+            goToCakeDesigner(item) {
+                this.pushPage({
+                    extends: ScreenDesigner
+                })
+            }
+        }
     }
 </script>
 

@@ -20,7 +20,8 @@ module.exports = {
             Notifications: true,
             Contacts: true,
             Raffles: true,
-            Shop: true
+            Shop: true,
+            СakeDesigner: true
         },
         Dashboard: {
             Base: true

@@ -146,6 +146,7 @@ const webpackConfig = {
             },
             title: wallet.application.nameApp,
             inject: 'body',
+            chunksSortMode: 'none',
             meta: {
                 viewport: 'width=device-width,height=device-height, minimum-scale=1.0, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover'
             }
