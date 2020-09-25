@@ -1,8 +1,26 @@
 export default {
+    m_cake_designer_add_lettering: 'أضف بطاقة بريدية ماستيك',
+    m_cake_designer_add_text: 'أضف النقش الخاص بك',
     m_cake_designer_catalog_decor_title: 'كتالوج التصميم',
+    m_cake_designer_catalog_image: 'صورة من الكتالوج',
+    m_cake_designer_catalog_lettering_title: 'كتالوج النقش',
+    m_cake_designer_catalog_text: 'نقش من الكتالوج',
+    m_cake_designer_custom_image: 'صورتي',
+    m_cake_designer_custom_text: 'نقشي',
+    m_cake_designer_decor: 'نوع التسجيل',
     m_cake_designer_default_decor_description: 'Lorem ipsum dolor sit amet، consectetur adipiscing elit.',
     m_cake_designer_default_filling_description: 'كعكة إسفنجية بيضاء كلاسيكية مع كريمة الزبدة',
     m_cake_designer_exclusive: 'حصرية',
+    m_cake_designer_filling: 'حشوة',
+    m_cake_designer_price: 'التكلفة',
+    m_cake_designer_select_from_catalog: 'اختر من الكتالوج',
     m_cake_designer_standart: 'اساسي',
-    m_cake_designer_title: 'صانع كعكة'
+    m_cake_designer_submit_checkout: 'الدفع',
+    m_cake_designer_title: 'صانع كعكة',
+    m_cake_designer_upload_custom_description: 'الحد الأدنى لحجم الصورة 720 * 1020 ، تنسيق png أو jpg',
+    m_cake_designer_upload_custom_image: 'قم بتحميل صورتك',
+    m_cake_designer_weight: 'وزن الكيك',
+    m_cake_designer_weight_value: '{القيمة} كجم',
+    m_cake_designer_without_description: 'بدون وصف',
+    m_cake_designer_without_name: 'بدون عنوان'
 }

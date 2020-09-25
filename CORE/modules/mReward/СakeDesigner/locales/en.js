@@ -1,8 +1,26 @@
 export default {
+    m_cake_designer_add_lettering: 'Add a mastic postcard',
+    m_cake_designer_add_text: 'Add your own inscription',
     m_cake_designer_catalog_decor_title: 'Design catalog',
+    m_cake_designer_catalog_image: 'Image from the catalog',
+    m_cake_designer_catalog_lettering_title: 'Inscription catalog',
+    m_cake_designer_catalog_text: 'Inscription from the catalog',
+    m_cake_designer_custom_image: 'My image',
+    m_cake_designer_custom_text: 'My inscription',
+    m_cake_designer_decor: 'Type of registration',
     m_cake_designer_default_decor_description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     m_cake_designer_default_filling_description: 'Classic white sponge cake with butter cream',
     m_cake_designer_exclusive: 'Exclusive',
+    m_cake_designer_filling: 'Filling',
+    m_cake_designer_price: 'The cost',
+    m_cake_designer_select_from_catalog: 'Choose from catalog',
     m_cake_designer_standart: 'Standard',
-    m_cake_designer_title: 'Cake constructor'
+    m_cake_designer_submit_checkout: 'Checkout',
+    m_cake_designer_title: 'Cake constructor',
+    m_cake_designer_upload_custom_description: 'Minimum image size 720 * 1020, png or jpg format',
+    m_cake_designer_upload_custom_image: 'Upload your image',
+    m_cake_designer_weight: 'Cake weight',
+    m_cake_designer_weight_value: '{value} kg',
+    m_cake_designer_without_description: 'No description',
+    m_cake_designer_without_name: 'Untitled'
 }

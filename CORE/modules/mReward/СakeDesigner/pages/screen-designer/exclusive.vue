@@ -1,6 +1,8 @@
 <template>
     <v-ons-page shown>
-        <div class="page__content">Скоро будет...</div>
+        <div class="page__content">
+            Скоро будет...
+        </div>
     </v-ons-page>
 </template>
 

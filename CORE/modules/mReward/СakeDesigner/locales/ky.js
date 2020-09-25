@@ -1,8 +1,26 @@
 export default {
+    m_cake_designer_add_lettering: 'Мастикалык открытка кошуңуз',
+    m_cake_designer_add_text: 'Өз жазууңузду кошуңуз',
     m_cake_designer_catalog_decor_title: 'Дизайн каталогу',
+    m_cake_designer_catalog_image: 'Каталогдон алынган сүрөт',
+    m_cake_designer_catalog_lettering_title: 'Жазуулар каталогу',
+    m_cake_designer_catalog_text: 'Каталогдон жазуу',
+    m_cake_designer_custom_image: 'Менин сүрөтүм',
+    m_cake_designer_custom_text: 'Менин жазуум',
+    m_cake_designer_decor: 'Каттоонун түрү',
     m_cake_designer_default_decor_description: 'Lorem ipsum dolor sit amet, adipiscing elit.',
     m_cake_designer_default_filling_description: 'Классикалык ак губка торту май каймак менен',
     m_cake_designer_exclusive: 'Exclusive',
+    m_cake_designer_filling: 'Толтуруу',
+    m_cake_designer_price: 'Баасы',
+    m_cake_designer_select_from_catalog: 'Каталогдон тандаңыз',
     m_cake_designer_standart: 'Стандарттык',
-    m_cake_designer_title: 'Торт конструктору'
+    m_cake_designer_submit_checkout: 'Текшерүү',
+    m_cake_designer_title: 'Торт конструктору',
+    m_cake_designer_upload_custom_description: 'Сүрөттүн минималдуу көлөмү 720 * 1020, png же jpg формат',
+    m_cake_designer_upload_custom_image: 'Сүрөтүңүздү жүктөп бериңиз',
+    m_cake_designer_weight: 'Торттун салмагы',
+    m_cake_designer_weight_value: '{маани} кг',
+    m_cake_designer_without_description: 'Сүрөттөмө жок',
+    m_cake_designer_without_name: 'Untitled'
 }

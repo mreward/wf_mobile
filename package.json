@@ -21,7 +21,7 @@
         "all-r-d": "grunt set-wallet && cross-env NODE_ENV=production DEVMOD=\"true\" LOG=\"true\" grunt \"build:build all r\"",
         "webpack-build": "yarn start && cross-env NODE_ENV=development DEVMOD=\"true\" LOG=\"true\" webpack",
         "lint": "eslint CORE/ projects/",
-        "lint-fix": "eslint CORE/ projects/ --fix",
+        "lint-fix": "eslint CORE/modules/mReward/СakeDesigner/**/**/*.vue --fix",
         "mwallet-init": "grunt mwallet-init",
         "all-store": "grunt set-wallet && cross-env DEVMOD=\"false\" LOG=\"true\" NODE_ENV=production grunt \"build:build all store\"",
         "web-upload": "yarn start && cross-env DEVMOD=\"false\" LOG=\"true\" NODE_ENV=production grunt \"build:build web\"",

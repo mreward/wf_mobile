@@ -1,8 +1,26 @@
 export default {
+    m_cake_designer_add_lettering: 'Дадайце паштоўку з масцікі',
+    m_cake_designer_add_text: 'Дадайце ўласную надпіс',
     m_cake_designer_catalog_decor_title: 'Дызайнерскі каталог',
+    m_cake_designer_catalog_image: 'Выява з каталога',
+    m_cake_designer_catalog_lettering_title: 'Каталог надпісаў',
+    m_cake_designer_catalog_text: 'Надпіс з каталога',
+    m_cake_designer_custom_image: 'Мой вобраз',
+    m_cake_designer_custom_text: 'Мой надпіс',
+    m_cake_designer_decor: 'Тып рэгістрацыі',
     m_cake_designer_default_decor_description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     m_cake_designer_default_filling_description: 'Класічны белы бісквітны торт са сметанковым крэмам',
     m_cake_designer_exclusive: 'Эксклюзіў',
+    m_cake_designer_filling: 'Запаўненне',
+    m_cake_designer_price: 'Кошт',
+    m_cake_designer_select_from_catalog: 'Абярыце з каталога',
     m_cake_designer_standart: 'Стандартны',
-    m_cake_designer_title: 'Канструктар торта'
+    m_cake_designer_submit_checkout: 'Каса',
+    m_cake_designer_title: 'Канструктар торта',
+    m_cake_designer_upload_custom_description: 'Мінімальны памер выявы 720 * 1020, фармат PNG або JPG',
+    m_cake_designer_upload_custom_image: 'Загрузіце малюнак',
+    m_cake_designer_weight: 'Вага пірага',
+    m_cake_designer_weight_value: '{значэнне} кг',
+    m_cake_designer_without_description: 'Без апісання',
+    m_cake_designer_without_name: 'Без назвы'
 }

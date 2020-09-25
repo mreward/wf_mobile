@@ -1,8 +1,26 @@
 export default {
+    m_cake_designer_add_lettering: 'Открыткаи мастик илова кунед',
+    m_cake_designer_add_text: 'Навиштаҳои худро илова кунед',
     m_cake_designer_catalog_decor_title: 'Феҳристи тарроҳӣ',
+    m_cake_designer_catalog_image: 'Акс аз феҳрист',
+    m_cake_designer_catalog_lettering_title: 'Феҳристи навиштаҷот',
+    m_cake_designer_catalog_text: 'Навиштаҳо аз феҳрист',
+    m_cake_designer_custom_image: 'Тасвири ман',
+    m_cake_designer_custom_text: 'Навиштаи ман',
+    m_cake_designer_decor: 'Намуди бақайдгирӣ',
     m_cake_designer_default_decor_description: 'Lorem ipsum dolor sit amet, consitetur adipiscing elit.',
     m_cake_designer_default_filling_description: 'Торти исфанҷии сафед бо креми равғанӣ',
     m_cake_designer_exclusive: 'Истисноӣ',
+    m_cake_designer_filling: 'Пуркунӣ',
+    m_cake_designer_price: 'Арзиш',
+    m_cake_designer_select_from_catalog: 'Аз каталог интихоб кунед',
     m_cake_designer_standart: 'Стандарт',
-    m_cake_designer_title: 'Созандаи торт'
+    m_cake_designer_submit_checkout: 'Тафтиш',
+    m_cake_designer_title: 'Созандаи торт',
+    m_cake_designer_upload_custom_description: 'Андозаи ҳадди аққали тасвир 720 * 1020, png ё jpg формати',
+    m_cake_designer_upload_custom_image: 'Тасвири худро бор кунед',
+    m_cake_designer_weight: 'Вазни торт',
+    m_cake_designer_weight_value: '{арзиш} кг',
+    m_cake_designer_without_description: 'Тавсиф нест',
+    m_cake_designer_without_name: 'Беном'
 }
