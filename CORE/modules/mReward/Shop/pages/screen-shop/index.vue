@@ -89,13 +89,13 @@
                         <i class="icon-filters"/>
                     </v-btn>
                 </div>
-                <v-btn
-                        small
-                        class="btn-constructor"
-                >
-                    <img :src="ImgConstructor"/>
-                    <span>Конструктор тортов</span>
-                </v-btn>
+<!--                <v-btn-->
+<!--                        small-->
+<!--                        class="btn-constructor"-->
+<!--                >-->
+<!--                    <img :src="ImgConstructor"/>-->
+<!--                    <span>Конструктор тортов</span>-->
+<!--                </v-btn>-->
 
             </div>
         </template>
@@ -279,7 +279,8 @@
     .toolbar.toolbar--shop {
         display: flex;
         flex-direction: column;
-        height: 230px;
+        /*height: 230px;*/
+        height: 174px;
     }
 
     .country-row {

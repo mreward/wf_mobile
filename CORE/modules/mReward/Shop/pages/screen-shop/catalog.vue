@@ -164,7 +164,7 @@
 
                 box-shadow: 0px 8px 15px rgba(39, 45, 45, 0.06);
                 border-radius: 8px;
-                height: 80px !important;
+                height: 48px !important;
             }
         }
     }
@@ -203,11 +203,12 @@
         }
 
         &__info-wrap {
-                background: #FFFFFF;
-                box-shadow: 0px 8px 15px rgba(39, 45, 45, 0.06);
-                border-radius: 8px;
-                margin: 8px 0;
+            background: #FFFFFF;
+            box-shadow: 0px 8px 15px rgba(39, 45, 45, 0.06);
+            border-radius: 8px;
+            margin: 8px 0 8px 32px;
             padding: 0 16px;
+            height: 38px;
 
             &:last-child {
                 margin-bottom: 2px !important;
@@ -217,10 +218,11 @@
         &__info-sub {
             &__name {
                 font-weight: 600;
-                font-size: 15px;
-                line-height: 48px;
-                letter-spacing: -0.24px;
-                color: #000000;
+                font-size: 13px;
+                line-height: 38px;
+                letter-spacing: -0.208px;
+                color: rgba(60, 60, 67, 0.6);
+
             }
         }
     }

@@ -173,6 +173,7 @@
                 this.setActiveTab('PayIframe')
             },
             onBack() {
+                debugger
                 if (this.tab === 'delivery') {
                     this.popPage()
                 } else if (this.tab === 'Pay') {

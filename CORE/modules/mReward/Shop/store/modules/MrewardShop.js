@@ -148,6 +148,30 @@ const actions = {
             .filter(item => item.view_is_online)
             const items = sortBy(activeItems, 'parent_id')
             const list = []
+            //
+            // const newList = [];
+            // items.forEach((item, index) => {
+            //     if (item.parent_id === 0) {
+            //         list.push({
+            //             ...item,
+            //             child: [],
+            //         })
+            //     } else {
+            //         newList.push(item)
+            //     }
+            // })
+            //
+            // newList.forEach((item, index) => {
+            //
+            // }
+            // const buildTree = (item) => {
+            //     const el = newList.find(i => i.parent_id === item.group_id)
+            //
+            //
+            //
+            // }
+            //
+            //
 
             items.forEach((item) => {
                 if (item.parent_id === 0) {

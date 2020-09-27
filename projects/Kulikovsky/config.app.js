@@ -90,19 +90,19 @@ const PROD = {
     appCenterAndroid: 'sokolenkoigor32-gmail.com/Kulikovsky-2',
     partnerKeys: [{
         id: 1,
-        key: '1e417e47-2bb6-440d-8168-c6a56abcb5a0',
+        key: '6d6e14df-87d8-4225-9e89-0748c6f8dc2f',
         code: '0050',
         country: 'KG',
         currency: 'c.',
     },{
         id: 2,
-        key: 'c37fdc5d-f41b-412f-b256-fb71e9d8eb0c',
+        key: 'a07339c6-a80a-40b6-a95e-da66c343fac7',
         code: '1050',
         country: 'KZ',
         currency: 'тг',
     },{
         id: 3,
-        key: 'b1d36558-3f12-41d8-ba21-4e7ecebdce10',
+        key: 'f07e0b7b-2ead-4f50-822c-f295d3c05a59',
         code: '2050',
         country: 'RU',
         currency: 'р',
@@ -169,7 +169,7 @@ const Environment = {
 
 module.exports = defaultsDeep({
     name: 'Kulikovsky', // required
-    application: Environment.UAT,
+    application: Environment.PROD,
     notesHockeyapp: buildNotesHockeyapp(CHANGELOG)
 }, configDefault.app_config)
 

@@ -12,7 +12,7 @@
 </template>
 
 <script>
-    import { mapGetters } from 'vuex'
+    import { mapActions, mapGetters } from 'vuex'
     import constants from '_vuex_constants'
 
     export default {
@@ -40,6 +40,11 @@
             window.removeEventListener('message', this.postMessage);
         },
         methods: {
+            ...mapActions({
+                popPage: constants.App.Actions.popPage,
+                pushPage: constants.App.Actions.pushPage,
+                popToPage: constants.App.Actions.popToPage,
+            }),
             postMessage(e) {
                 debugger
                 console.log('iFrame postMessage');

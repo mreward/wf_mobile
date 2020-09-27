@@ -343,6 +343,10 @@
         .toolbar--search {
 
         }
+
+        .button-cart {
+            bottom: 34px;
+        }
     }
 
     .product-details {
