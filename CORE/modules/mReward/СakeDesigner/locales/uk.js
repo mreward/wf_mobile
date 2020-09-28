@@ -1,4 +1,5 @@
 export default {
+    m_cake_designer_add: 'Додати до',
     m_cake_designer_add_lettering: 'Додайте листівку з мастики',
     m_cake_designer_add_lettering_text: 'Придумайте унікальні візитні картки для вашого торта, щоб його було приємно бачити',
     m_cake_designer_add_lettering_title: 'Візитна картка написи',

@@ -1,4 +1,5 @@
 export default {
+    m_cake_designer_add: 'Add to',
     m_cake_designer_add_lettering: 'Add a mastic postcard',
     m_cake_designer_add_lettering_text: 'Come up with a unique business card lettering for your cake to make it a pleasure to see',
     m_cake_designer_add_lettering_title: 'Business card lettering',

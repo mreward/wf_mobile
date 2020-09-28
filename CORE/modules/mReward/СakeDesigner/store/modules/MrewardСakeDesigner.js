@@ -2,7 +2,8 @@ import constants from '_vuex_constants'
 import MrewardСakeDesigner from '../../libs/MrewardСakeDesigner'
 // import MrewardСakeDesignerMock from '../../libs/MrewardСakeDesignerMock'
 
-import { get } from 'lodash'
+import moment from 'moment'
+import { get, map, compact } from 'lodash'
 
 const {
     MrewardСakeDesigner: {
@@ -18,16 +19,18 @@ const state = {
     letterings: [],
     letteringGallery: [],
     order: {
-        decor: {
-            item: {},
-            gallery: null
-        },
         filling: {
             item: {}
         },
+        decor: {
+            item: {},
+            gallery: null,
+            custom: null
+        },
         lettering: {
             item: {},
-            gallery: null
+            gallery: null,
+            custom: null
         }
     }
 }
@@ -184,11 +187,133 @@ const actions = {
     },
 
     uploadOrderDecor({ state, commit }, payload) {
-
+        // TODO: @slain Implements this feature
     },
 
     uploadOrderLettering({ state, commit }, payload) {
+        // TODO: @slain Implements this feature
+    },
 
+    async order({ commit, state, dispatch, rootState }, payload) {
+        console.log('STORE: MrewardСakeDesigner Module - order')
+        try {
+            dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
+
+            const country = rootState.MrewardShop.country
+            const phone = rootState.MrewardProfile.userProfile.mobile
+
+            const decor = get(state.order, 'decor', {})
+            const filling = get(state.order, 'filling', {})
+            const lettering = get(state.order, 'lettering', {})
+
+            const response = await new MrewardСakeDesigner().Order({
+                decor_id: decor.item.id,
+                filling_id: filling.item.id,
+                ...(lettering.item.id ? {
+                    lettering_id: lettering.item.id
+                } : {}),
+                ...(decor.gallery ? {
+                    decor_gallery_id: decor.gallery.id
+                } : {}),
+                ...(decor.custom ? {
+                    decor_image_id: decor.custom.id
+                } : {}),
+                ...(lettering.gallery ? {
+                    lettering_gallery_id: lettering.gallery.id
+                } : {}),
+                ...(lettering.custom ? {
+                    lettering: lettering.custom.text
+                } : {}),
+                partner_id: country.config.id,
+                phone,
+                ...payload
+            })
+
+            commit(ConstructMutat.LetteringGallery.name, get(response, 'items', []))
+
+            dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })
+
+            return response
+        } catch (error) {
+            await dispatch(constants.App.Actions.validateError, {
+                error,
+                log: 'STORE: MrewardСakeDesigner Module - order'
+            }, { root: true })
+        }
+    },
+
+    async preCheck({ commit, state, dispatch, rootState }, payload) {
+        console.log('STORE: MrewardСakeDesigner Module - preCheck')
+        try {
+            dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
+            const country = rootState.MrewardShop.country
+            const deliveryList = rootState.MrewardShop.deliveryList
+
+            const phone = rootState.MrewardProfile.userProfile.mobile
+
+            const list = [
+                state.order.filling.item,
+                state.order.decor.item,
+                state.order.lettering.item
+            ]
+
+            const receiptDetails = map(list, (item, index) => {
+                if (!item.art_id) {
+                    return false
+                }
+
+                const count = item.count || 1
+                const data = {
+                    position: index + 1,
+                    prod_code: item.art_id,
+                    prod_price: item.price,
+                    prod_amount: count,
+                    prod_sum: item.price * count
+                }
+
+                if (payload.type === 'cash') {
+                    data.bonus_restrict = '1'
+                }
+                return data
+            })
+
+            const delivery = get(deliveryList, '0', {})
+            const deliveryReceiptDetails = {
+                position: receiptDetails.length + 1,
+                prod_code: delivery.art_id,
+                prod_price: delivery.price,
+                prod_amount: 1,
+                prod_sum: delivery.price
+            }
+            if (payload.type === 'cash') {
+                deliveryReceiptDetails.bonus_restrict = '1'
+            }
+
+            receiptDetails.push(deliveryReceiptDetails)
+
+            const response = await new MrewardСakeDesigner().PreCheck({
+                branch_id: country.config.code,
+                is_online_store: 1,
+                construct_id: payload.construct_id,
+                phone,
+                receipt_bonus_amount: payload.bonuses || 0,
+                receipt_currency: `B${country.code}`,
+                receipt_datetime: moment().format('X'),
+                receipt_description: 'Заказ конструктора',
+                receipt_details: JSON.stringify(compact(receiptDetails))
+            }, {
+                partnerKey: country.config.key
+            })
+
+            dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })
+
+            return response.pre_check
+        } catch (error) {
+            await dispatch(constants.App.Actions.validateError, {
+                error,
+                log: 'STORE: MrewardСakeDesigner Module - preCheck'
+            }, { root: true })
+        }
     }
 }
 

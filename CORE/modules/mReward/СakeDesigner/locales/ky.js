@@ -1,4 +1,5 @@
 export default {
+    m_cake_designer_add: 'Кошуу',
     m_cake_designer_add_lettering: 'Мастикалык открытка кошуңуз',
     m_cake_designer_add_lettering_text: 'Сиздин торт үчүн уникалдуу визиттик карта менен таанышып, аны көрүү жагымдуу болот',
     m_cake_designer_add_lettering_title: 'Визиткага жазуу',

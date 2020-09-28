@@ -1,4 +1,5 @@
 export default {
+    m_cake_designer_add: 'Ajouter à',
     m_cake_designer_add_lettering: 'Ajouter une carte postale en mastic',
     m_cake_designer_add_lettering_text: 'Créez un lettrage de carte de visite unique pour votre gâteau pour en faire un plaisir à voir',
     m_cake_designer_add_lettering_title: 'Lettrage de carte de visite',

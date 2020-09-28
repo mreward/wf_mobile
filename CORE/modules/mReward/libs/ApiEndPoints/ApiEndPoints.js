@@ -378,6 +378,12 @@ export default {
             method: 'POST',
             apiVersion: 'v2',
             apiTag: '/client/construct'
+        },
+        Order: {
+            url: '/construct-order',
+            method: 'POST',
+            apiVersion: 'v2',
+            apiTag: '/client/construct'
         }
     }
 }

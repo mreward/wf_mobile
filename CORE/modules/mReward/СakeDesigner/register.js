@@ -15,6 +15,7 @@ module.exports = (dirname) => {
         // pages
         _screen_designer: `${PATH}/pages/screen-designer`,
         _screen_designer_catalog: `${PATH}/pages/screen-designer-catalog`,
-        _screen_designer_add_lettering: `${PATH}/pages/screen-designer-add-lettering`
+        _screen_designer_add_lettering: `${PATH}/pages/screen-designer-add-lettering`,
+        _screen_designer_checkout: `${PATH}/pages/screen-checkout`
     }
 }

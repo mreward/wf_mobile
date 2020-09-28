@@ -197,7 +197,7 @@
     import SelectedItem from '../../components/selected-item'
     import SelectDesignerCatalog from '_screen_designer_catalog'
     import SelectDesignerAddLettering from '_screen_designer_add_lettering'
-    import ScreenCheckout from '../screen-checkout'
+    import ScreenCheckout from '_screen_designer_checkout'
 
     export default {
         name: 'screen-standart',

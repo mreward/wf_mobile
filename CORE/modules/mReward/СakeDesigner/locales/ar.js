@@ -1,4 +1,5 @@
 export default {
+    m_cake_designer_add: 'اضف إليه',
     m_cake_designer_add_lettering: 'أضف بطاقة بريدية ماستيك',
     m_cake_designer_add_lettering_text: 'ابتكر حروفًا فريدة لبطاقة العمل لكعكتك لتجعل من السهل رؤيتها',
     m_cake_designer_add_lettering_title: 'حروف بطاقات العمل',

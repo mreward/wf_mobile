@@ -1,4 +1,5 @@
 export default {
+    m_cake_designer_add: 'Дадаць да',
     m_cake_designer_add_lettering: 'Дадайце паштоўку з масцікі',
     m_cake_designer_add_lettering_text: 'Прыдумайце унікальны надпіс візітнай карткі для вашага торта, каб яго было прыемна бачыць',
     m_cake_designer_add_lettering_title: 'Надпісы на візітнай картцы',

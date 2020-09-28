@@ -48,7 +48,9 @@ export default {
         setOrderDecor: 'MrewardСakeDesigner/setOrderDecor',
         setOrderLettering: 'MrewardСakeDesigner/setOrderLettering',
         uploadOrderDecor: 'MrewardСakeDesigner/uploadOrderDecor',
-        uploadOrderLettering: 'MrewardСakeDesigner/uploadOrderLettering'
+        uploadOrderLettering: 'MrewardСakeDesigner/uploadOrderLettering',
+        order: 'MrewardСakeDesigner/order',
+        preCheck: 'MrewardСakeDesigner/preCheck'
     },
     Getters: {
         agreement: 'MrewardСakeDesigner/agreement',

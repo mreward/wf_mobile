@@ -84,4 +84,28 @@ export default class MrewardСakeDesigner extends ApiClient {
                 networkFirst: true
             })
     }
+
+    Order(json, config) {
+        this.logger('MrewardСakeDesigner:Order')
+        const requestData = { ...this.APIEndPoints.Construct.Order }
+
+        return this.sendRequest(
+            requestData,
+            {
+                ...json,
+                networkFirst: true
+            }, config)
+    }
+
+    PreCheck(json, config) {
+        this.logger('MrewardСakeDesigner:PreCheck')
+        const requestData = { ...this.APIEndPoints.Shop.PreCheck }
+
+        return this.sendRequest(
+            requestData,
+            {
+                ...json,
+                networkFirst: true
+            }, config)
+    }
 }

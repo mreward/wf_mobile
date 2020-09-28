@@ -1,4 +1,5 @@
 export default {
+    m_cake_designer_add: 'Добавить',
     m_cake_designer_add_lettering: 'Добавить мастичную открытку',
     m_cake_designer_add_lettering_text: 'Придумайте уникальную надпись для визитки к Вашему торту, чтобы приятно увидивить',
     m_cake_designer_add_lettering_title: 'Надпись для визитки',
@@ -18,7 +19,6 @@ export default {
     m_cake_designer_filling: 'Начинка',
     m_cake_designer_price: 'Стоимость',
     m_cake_designer_select: 'Выбрать',
-    m_cake_designer_add: 'Добавить',
     m_cake_designer_select_from_catalog: 'Выбрать из каталога',
     m_cake_designer_standart: 'Стандарт',
     m_cake_designer_submit_checkout: 'Оформить заказ',
@@ -28,5 +28,7 @@ export default {
     m_cake_designer_weight: 'Вес торта',
     m_cake_designer_weight_value: '{value} кг',
     m_cake_designer_without_description: 'Без описания',
-    m_cake_designer_without_name: 'Без названия'
+    m_cake_designer_without_name: 'Без названия',
+    m_cake_designer_delivery_time: 'Время доставки от',
+    m_cake_designer_delivery_time_end: 'до'
 }

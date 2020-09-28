@@ -1,4 +1,5 @@
 export default {
+    m_cake_designer_add: 'илова ба',
     m_cake_designer_add_lettering: 'Открыткаи мастик илова кунед',
     m_cake_designer_add_lettering_text: 'Бо тортҳои беназири корти корти худ биёед, то аз дидани он лаззат баред',
     m_cake_designer_add_lettering_title: 'Номаи корти корӣ',
