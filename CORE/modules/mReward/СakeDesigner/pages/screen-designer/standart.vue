@@ -69,6 +69,7 @@
             <v-checkbox
                 v-model="checked"
                 :label="$t('m_cake_designer_add_lettering')"
+                readonly
                 off-icon=""
                 on-icon="icon-checkmark"
                 :ripple="false"
@@ -214,7 +215,7 @@
                 filling: {},
                 decor: {},
                 lettering: {},
-                checked: false,
+                checked: true,
                 imageDialog: false,
                 imageDialogUrl: ''
             }
