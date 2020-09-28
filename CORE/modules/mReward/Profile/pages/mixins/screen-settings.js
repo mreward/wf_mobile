@@ -66,6 +66,11 @@ export default {
                     useFingerprint: this.useBiometric,
                 })
             }
+        },
+        'userConfig.useFingerprint'() {
+            if (this.useBiometric !== this.userConfig.useFingerprint) {
+                this.useBiometric = this.userConfig.useFingerprint
+            }
         }
     },
     async created() {

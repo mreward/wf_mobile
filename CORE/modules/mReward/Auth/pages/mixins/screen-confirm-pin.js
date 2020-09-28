@@ -31,7 +31,7 @@ export default {
     watch: {
         pin() {
             if (this.pin.length === this.lengthPin) {
-                this.hideKeyboard()
+                // this.hideKeyboard()
                 setTimeout(() => {
                     this.$refs.confirm.focus()
                 }, 400)
@@ -60,6 +60,11 @@ export default {
                 this.createPin()
             }
         }
+    },
+    mounted() {
+        setTimeout(() => {
+            this.$refs.pin.focus()
+        }, 2000)
     },
     methods: {
         ...mapActions({

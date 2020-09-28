@@ -139,6 +139,7 @@
                 {{ $t('m_profile_use_touch_id') }}
             </span>
             <v-ons-switch
+
                     v-model="useBiometric"
             />
         </v-btn>
