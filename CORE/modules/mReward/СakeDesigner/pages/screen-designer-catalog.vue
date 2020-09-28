@@ -18,7 +18,7 @@
                 :disabled="isDisabledSelect"
                 @click="goToBack"
             >
-                Выбрать
+                {{ $t('m_cake_designer_select') }}
             </v-btn>
         </div>
     </layout>
@@ -62,6 +62,22 @@
     .page[page="cake-designer-catalog"] {
         &> .toolbar, &> .page__background {
             background-color: #fff !important;
+        }
+
+        .select-card-list {
+            margin-bottom: 80px;
+        }
+
+        .designer__btn-submit {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            left: 0;
+
+            padding: 16px;
+            padding-bottom: 34px;
+
+            background-color: #fff;
         }
     }
 </style>

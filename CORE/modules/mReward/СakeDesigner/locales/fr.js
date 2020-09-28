@@ -1,6 +1,10 @@
 export default {
     m_cake_designer_add_lettering: 'Ajouter une carte postale en mastic',
+    m_cake_designer_add_lettering_text: 'Créez un lettrage de carte de visite unique pour votre gâteau pour en faire un plaisir à voir',
+    m_cake_designer_add_lettering_title: 'Lettrage de carte de visite',
     m_cake_designer_add_text: 'Ajoutez votre propre inscription',
+    m_cake_designer_agreement_check: 'Je suis d\'accord avec les termes',
+    m_cake_designer_agreement_title: 'termes',
     m_cake_designer_catalog_decor_title: 'Catalogue de conception',
     m_cake_designer_catalog_image: 'Image du catalogue',
     m_cake_designer_catalog_lettering_title: 'Catalogue d\'inscription',
@@ -13,6 +17,7 @@ export default {
     m_cake_designer_exclusive: 'Exclusif',
     m_cake_designer_filling: 'Remplissage',
     m_cake_designer_price: 'Le coût',
+    m_cake_designer_select: 'Choisir',
     m_cake_designer_select_from_catalog: 'Choisissez dans le catalogue',
     m_cake_designer_standart: 'la norme',
     m_cake_designer_submit_checkout: 'Check-out',

@@ -92,7 +92,7 @@
                 <v-btn
                     small
                     class="btn-constructor"
-                    @click="goToCakeDesigner"
+                    @click="contructorDialog = true"
                 >
                     <img :src="ImgConstructor"/>
                     <span>Конструктор тортов</span>
@@ -184,6 +184,51 @@
             </v-list>
         </v-dialog>
 
+        <v-dialog
+            v-model="contructorDialog"
+            content-class="agreement--dialog"
+        >
+            <v-list
+                flat
+            >
+                <div class="dialog-header">
+                    <v-subheader>{{ $t('m_cake_designer_agreement_title') }}</v-subheader>
+                    <v-btn
+                        icon
+                        fab
+                        @click="contructorDialog = false"
+                    >
+                        <i class="icon icon-close" />
+                    </v-btn>
+                </div>
+
+                <div
+                    class="dialog-content"
+                    v-html="agreement"
+                />
+
+                <v-checkbox
+                    v-model="agreementChecked"
+                    :label="$t('m_cake_designer_agreement_check')"
+                    off-icon=""
+                    on-icon="icon-checkmark"
+                    :ripple="false"
+                />
+
+                <div class="designer__btn-submit">
+                    <v-btn
+                        block
+                        depressed
+                        color="primary"
+                        type="main"
+                        :disabled="!agreementChecked"
+                        @click="goToCakeDesigner"
+                    >
+                        {{ $t('m_next') }}
+                    </v-btn>
+                </div>
+            </v-list>
+        </v-dialog>
     </layout>
 </template>
 
@@ -221,10 +266,14 @@
                 img: ShopIllustration,
                 ImgConstructor,
                 countryDialog: false,
+                contructorDialog: false,
+                agreementChecked: false,
             }
         },
         methods: {
             goToCakeDesigner(item) {
+                this.contructorDialog = false
+                this.agreementChecked = false
                 this.pushPage({
                     extends: ScreenDesigner
                 })
@@ -288,8 +337,8 @@
     .toolbar.toolbar--shop {
         display: flex;
         flex-direction: column;
-        /*height: 230px;*/
-        height: 174px;
+        height: 230px;
+        // height: 174px;
     }
 
     .country-row {
@@ -430,7 +479,8 @@
         }
     }
 
-    .country--dialog {
+    .country--dialog,
+    .agreement--dialog {
         border-radius: 8px;
         box-shadow: 0px 8px 15px rgba(39, 45, 45, 0.06);
 
@@ -496,6 +546,15 @@
 
         .v-item-group {
             padding-top: 4px;
+        }
+    }
+
+    .agreement--dialog {
+        margin: 16px;
+
+        .dialog-content {
+            margin-top: 16px;
+            margin-bottom: 14px;
         }
     }
 </style>

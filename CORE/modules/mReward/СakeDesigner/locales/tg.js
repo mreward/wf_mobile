@@ -1,6 +1,10 @@
 export default {
     m_cake_designer_add_lettering: 'Открыткаи мастик илова кунед',
+    m_cake_designer_add_lettering_text: 'Бо тортҳои беназири корти корти худ биёед, то аз дидани он лаззат баред',
+    m_cake_designer_add_lettering_title: 'Номаи корти корӣ',
     m_cake_designer_add_text: 'Навиштаҳои худро илова кунед',
+    m_cake_designer_agreement_check: 'Ман бо шартҳо розӣ ҳастам',
+    m_cake_designer_agreement_title: 'Шартҳои',
     m_cake_designer_catalog_decor_title: 'Феҳристи тарроҳӣ',
     m_cake_designer_catalog_image: 'Акс аз феҳрист',
     m_cake_designer_catalog_lettering_title: 'Феҳристи навиштаҷот',
@@ -13,6 +17,7 @@ export default {
     m_cake_designer_exclusive: 'Истисноӣ',
     m_cake_designer_filling: 'Пуркунӣ',
     m_cake_designer_price: 'Арзиш',
+    m_cake_designer_select: 'Интихоб кунед',
     m_cake_designer_select_from_catalog: 'Аз каталог интихоб кунед',
     m_cake_designer_standart: 'Стандарт',
     m_cake_designer_submit_checkout: 'Тафтиш',

@@ -1,6 +1,10 @@
 export default {
     m_cake_designer_add_lettering: 'Дадайце паштоўку з масцікі',
+    m_cake_designer_add_lettering_text: 'Прыдумайце унікальны надпіс візітнай карткі для вашага торта, каб яго было прыемна бачыць',
+    m_cake_designer_add_lettering_title: 'Надпісы на візітнай картцы',
     m_cake_designer_add_text: 'Дадайце ўласную надпіс',
+    m_cake_designer_agreement_check: 'Я згодны з умовамі',
+    m_cake_designer_agreement_title: 'Умовы',
     m_cake_designer_catalog_decor_title: 'Дызайнерскі каталог',
     m_cake_designer_catalog_image: 'Выява з каталога',
     m_cake_designer_catalog_lettering_title: 'Каталог надпісаў',
@@ -13,6 +17,7 @@ export default {
     m_cake_designer_exclusive: 'Эксклюзіў',
     m_cake_designer_filling: 'Запаўненне',
     m_cake_designer_price: 'Кошт',
+    m_cake_designer_select: 'Выбірайце',
     m_cake_designer_select_from_catalog: 'Абярыце з каталога',
     m_cake_designer_standart: 'Стандартны',
     m_cake_designer_submit_checkout: 'Каса',

@@ -11,6 +11,7 @@ const {
 } = constants
 
 const state = {
+    agreement: {},
     fillings: [],
     decors: [],
     decorGallery: [],
@@ -32,6 +33,9 @@ const state = {
 }
 
 const mutations = {
+    [ConstructMutat.Agreement.name]: (state, data) => {
+        state.agreement = data
+    },
     [ConstructMutat.Fillings.name]: (state, data) => {
         state.fillings = data
     },
@@ -59,6 +63,24 @@ const mutations = {
 }
 
 const actions = {
+    async getAgreement({ state, dispatch, commit }, payload) {
+        console.log('STORE: MrewardСakeDesigner Module - getAgreement')
+        try {
+            dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
+            const response = await new MrewardСakeDesigner().GetAgreement(payload)
+            commit(ConstructMutat.Agreement.name, get(response, 'agreement.0', {}))
+
+            dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })
+
+            return response
+        } catch (error) {
+            await dispatch(constants.App.Actions.validateError, {
+                error,
+                log: 'STORE: MrewardСakeDesigner Module - getAgreement'
+            }, {root: true})
+        }
+    },
+
     async getFillings({ state, dispatch, commit }, payload) {
         console.log('STORE: MrewardСakeDesigner Module - getFillings')
         try {
@@ -171,6 +193,9 @@ const actions = {
 }
 
 const getters = {
+    agreement(state) {
+        return get(state.agreement, 'agreement', '')
+    },
     fillings(state) {
         return state.fillings
     },

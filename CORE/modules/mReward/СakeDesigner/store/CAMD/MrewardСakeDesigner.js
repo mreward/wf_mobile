@@ -1,5 +1,9 @@
 export default {
     Mutations: {
+        Agreement: {
+            name: 'AGREEMENT',
+            nameGlobal: 'MrewardСakeDesigner/AGREEMENT'
+        },
         Fillings: {
             name: 'FILLINGS',
             nameGlobal: 'MrewardСakeDesigner/FILLINGS'
@@ -34,6 +38,7 @@ export default {
         }
     },
     Actions: {
+        getAgreement: 'MrewardСakeDesigner/getAgreement',
         getFillings: 'MrewardСakeDesigner/getFillings',
         getDecor: 'MrewardСakeDesigner/getDecor',
         getDecorGallery: 'MrewardСakeDesigner/getDecorGallery',
@@ -46,6 +51,7 @@ export default {
         uploadOrderLettering: 'MrewardСakeDesigner/uploadOrderLettering'
     },
     Getters: {
+        agreement: 'MrewardСakeDesigner/agreement',
         fillings: 'MrewardСakeDesigner/fillings',
         decors: 'MrewardСakeDesigner/decors',
         decorGallery: 'MrewardСakeDesigner/decorGallery',

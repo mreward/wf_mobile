@@ -1,6 +1,10 @@
 export default {
     m_cake_designer_add_lettering: 'Мастикалык открытка кошуңуз',
+    m_cake_designer_add_lettering_text: 'Сиздин торт үчүн уникалдуу визиттик карта менен таанышып, аны көрүү жагымдуу болот',
+    m_cake_designer_add_lettering_title: 'Визиткага жазуу',
     m_cake_designer_add_text: 'Өз жазууңузду кошуңуз',
+    m_cake_designer_agreement_check: 'Мен шарттарга макулмун',
+    m_cake_designer_agreement_title: 'Шарттар',
     m_cake_designer_catalog_decor_title: 'Дизайн каталогу',
     m_cake_designer_catalog_image: 'Каталогдон алынган сүрөт',
     m_cake_designer_catalog_lettering_title: 'Жазуулар каталогу',
@@ -13,6 +17,7 @@ export default {
     m_cake_designer_exclusive: 'Exclusive',
     m_cake_designer_filling: 'Толтуруу',
     m_cake_designer_price: 'Баасы',
+    m_cake_designer_select: 'Тандоо',
     m_cake_designer_select_from_catalog: 'Каталогдон тандаңыз',
     m_cake_designer_standart: 'Стандарттык',
     m_cake_designer_submit_checkout: 'Текшерүү',

@@ -32,7 +32,7 @@
                             v-bind="bindingsValidationMessage($v.order.decor.gallery)"
                         >
                             <div
-                                v-if="decor.required_gallery"
+                                v-if="decor.required_gallery && !order.decor.gallery && !order.decor.custom"
                                 class="btn-select"
                                 @click="goToDecorCatalog"
                             >
@@ -44,22 +44,23 @@
                             v-bind="bindingsValidationMessage($v.order.decor.custom)"
                         >
                             <select-list-item
-                                v-if="decor.required_upload"
+                                v-if="decor.required_upload && !order.decor.gallery && !order.decor.custom"
                                 :value="{}"
                                 :with-price="false"
                                 icon="icon-plus"
                                 icon-direction="left"
                                 :default-name="$t('m_cake_designer_upload_custom_image')"
                                 :default-description="$t('m_cake_designer_upload_custom_description')"
-                                :selected="{}"
+                                :selected="true"
                             />
                         </validation-error>
                         <selected-item
-                            v-if="order.decor.gallery"
-                            :value="order.decor.gallery"
+                            v-if="order.decor.gallery || order.decor.custom"
+                            :value="order.decor.gallery || order.decor.custom"
                             :default-name="$t('m_cake_designer_without_name')"
                             :default-description="$t('m_cake_designer_catalog_image')"
                             @select="setDecor(decor)"
+                            @click-image="(url) => imageDialogUrl = imageDialog = url"
                         />
                     </template>
                 </select-list>
@@ -94,7 +95,7 @@
                                 v-bind="bindingsValidationMessage($v.order.lettering.gallery)"
                             >
                                 <div
-                                    v-if="lettering.required_gallery"
+                                    v-if="lettering.required_gallery && !order.lettering.gallery && !order.lettering.custom"
                                     class="btn-select"
                                     @click="goToLetteringCatalog"
                                 >
@@ -106,20 +107,21 @@
                                 v-bind="bindingsValidationMessage($v.order.lettering.custom)"
                             >
                                 <select-list-item
-                                    v-if="lettering.required_input"
+                                    v-if="lettering.required_input && !order.lettering.gallery && !order.lettering.custom"
                                     :value="{}"
                                     :with-price="false"
                                     icon="icon-plus"
                                     icon-direction="left"
-                                    :default-name="$t('m_cake_designer_add_lettering')"
-                                    :selected="{}"
+                                    :default-name="$t('m_cake_designer_add_text')"
+                                    :selected="true"
+                                    @select="goToAddLettering"
                                 />
                             </validation-error>
                             <selected-item
-                                v-if="order.lettering.gallery"
-                                :value="order.lettering.gallery"
+                                v-if="order.lettering.gallery || order.lettering.custom"
+                                :value="order.lettering.gallery || order.lettering.custom"
                                 :default-name="$t('m_cake_designer_without_name')"
-                                :default-description="$t('m_cake_designer_catalog_text')"
+                                :default-description="$t(order.lettering.gallery ? 'm_cake_designer_catalog_text' : 'm_cake_designer_custom_text')"
                                 @select="setLettering(lettering)"
                             />
                         </template>
@@ -136,7 +138,10 @@
                 </div>
             </div>
 
-            <div class="designer__info-item">
+            <div
+                v-show="isShowPrice"
+                class="designer__info-item"
+            >
                 <div class="designer__info-item__title">
                     {{ $t('m_cake_designer_price') }}
                 </div>
@@ -158,13 +163,31 @@
                 </v-btn>
             </div>
         </div>
+
+        <v-dialog
+            v-model="imageDialog"
+            content-class="image--dialog"
+        >
+            <div
+                class="dialog-image"
+                :style="{ backgroundImage: `url(${imageDialogUrl})` }"
+            >
+                <v-btn
+                    icon
+                    fab
+                    @click="imageDialog = false"
+                >
+                    <i class="icon icon-close" />
+                </v-btn>
+            </div>
+        </v-dialog>
     </v-ons-page>
 </template>
 
 <script>
     import { mapActions, mapGetters } from 'vuex'
     import constants from '_vuex_constants'
-    import { get, sumBy } from 'lodash'
+    import { get, sumBy, isEmpty } from 'lodash'
 
     import ValidationHelpers from '_plugins_validation_helpers'
     import { required, requiredIf } from '_plugins_validators'
@@ -173,6 +196,7 @@
     import SelectListItem from '../../components/select-list-item'
     import SelectedItem from '../../components/selected-item'
     import SelectDesignerCatalog from '_screen_designer_catalog'
+    import SelectDesignerAddLettering from '_screen_designer_add_lettering'
     import ScreenCheckout from '../screen-checkout'
 
     export default {
@@ -190,7 +214,9 @@
                 filling: {},
                 decor: {},
                 lettering: {},
-                checked: false
+                checked: false,
+                imageDialog: false,
+                imageDialogUrl: ''
             }
         },
         computed: {
@@ -204,6 +230,10 @@
 
             isDisabledCheckbox() {
                 return this.validationInvalid({ startFromFirst: true })
+            },
+
+            isShowPrice() {
+                return !isEmpty(this.filling) && !isEmpty(this.decor)
             },
 
             price() {
@@ -350,6 +380,19 @@
                                 gallery: this.item
                             })
                             this.popPage()
+                        }
+                    }
+                })
+            },
+            goToAddLettering() {
+                this.pushPage({
+                    extends: SelectDesignerAddLettering,
+                    props: {
+                        lettering: {
+                            type: Object,
+                            default: () => {
+                                return this.lettering
+                            }
                         }
                     }
                 })
@@ -515,6 +558,37 @@
             .v-icon {
                 border: 1px solid #6D0978;
                 background-color: #6D0978;
+            }
+        }
+    }
+
+    .image--dialog {
+        margin: 16px;
+
+        .dialog-image {
+            position: relative;
+            border-radius: 8px;
+            height: 343px;
+            background-size: cover;
+            background-position: center;
+
+            button {
+                position: absolute;
+                top: 16px;
+                right: 16px;
+                width: 36px;
+                height: 36px;
+                min-width: 36px;
+                min-height: 36px;
+                border-radius: 50%;
+                background: #F5F7FA !important;
+
+                box-shadow: unset !important;
+
+                i {
+                    color: #000;
+                    font-size: 14px;
+                }
             }
         }
     }

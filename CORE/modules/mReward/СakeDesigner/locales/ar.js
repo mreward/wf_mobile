@@ -1,6 +1,10 @@
 export default {
     m_cake_designer_add_lettering: 'أضف بطاقة بريدية ماستيك',
+    m_cake_designer_add_lettering_text: 'ابتكر حروفًا فريدة لبطاقة العمل لكعكتك لتجعل من السهل رؤيتها',
+    m_cake_designer_add_lettering_title: 'حروف بطاقات العمل',
     m_cake_designer_add_text: 'أضف النقش الخاص بك',
+    m_cake_designer_agreement_check: 'أنا أتفق مع الشروط',
+    m_cake_designer_agreement_title: 'شروط',
     m_cake_designer_catalog_decor_title: 'كتالوج التصميم',
     m_cake_designer_catalog_image: 'صورة من الكتالوج',
     m_cake_designer_catalog_lettering_title: 'كتالوج النقش',
@@ -13,6 +17,7 @@ export default {
     m_cake_designer_exclusive: 'حصرية',
     m_cake_designer_filling: 'حشوة',
     m_cake_designer_price: 'التكلفة',
+    m_cake_designer_select: 'أختر',
     m_cake_designer_select_from_catalog: 'اختر من الكتالوج',
     m_cake_designer_standart: 'اساسي',
     m_cake_designer_submit_checkout: 'الدفع',

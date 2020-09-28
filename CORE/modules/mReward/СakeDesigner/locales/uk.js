@@ -1,6 +1,10 @@
 export default {
     m_cake_designer_add_lettering: 'Додайте листівку з мастики',
+    m_cake_designer_add_lettering_text: 'Придумайте унікальні візитні картки для вашого торта, щоб його було приємно бачити',
+    m_cake_designer_add_lettering_title: 'Візитна картка написи',
     m_cake_designer_add_text: 'Додайте власний напис',
+    m_cake_designer_agreement_check: 'Я згоден з умовами',
+    m_cake_designer_agreement_title: 'Умови',
     m_cake_designer_catalog_decor_title: 'Каталог дизайну',
     m_cake_designer_catalog_image: 'Зображення з каталогу',
     m_cake_designer_catalog_lettering_title: 'Каталог написів',
@@ -13,6 +17,7 @@ export default {
     m_cake_designer_exclusive: 'Ексклюзивно',
     m_cake_designer_filling: 'Наповнення',
     m_cake_designer_price: 'Вартість',
+    m_cake_designer_select: 'Вибирайте',
     m_cake_designer_select_from_catalog: 'Виберіть з каталогу',
     m_cake_designer_standart: 'Стандартний',
     m_cake_designer_submit_checkout: 'Перевіряти',

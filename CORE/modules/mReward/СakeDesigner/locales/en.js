@@ -1,6 +1,10 @@
 export default {
     m_cake_designer_add_lettering: 'Add a mastic postcard',
+    m_cake_designer_add_lettering_text: 'Come up with a unique business card lettering for your cake to make it a pleasure to see',
+    m_cake_designer_add_lettering_title: 'Business card lettering',
     m_cake_designer_add_text: 'Add your own inscription',
+    m_cake_designer_agreement_check: 'I agree with the terms',
+    m_cake_designer_agreement_title: 'Terms',
     m_cake_designer_catalog_decor_title: 'Design catalog',
     m_cake_designer_catalog_image: 'Image from the catalog',
     m_cake_designer_catalog_lettering_title: 'Inscription catalog',
@@ -13,6 +17,7 @@ export default {
     m_cake_designer_exclusive: 'Exclusive',
     m_cake_designer_filling: 'Filling',
     m_cake_designer_price: 'The cost',
+    m_cake_designer_select: 'Choose',
     m_cake_designer_select_from_catalog: 'Choose from catalog',
     m_cake_designer_standart: 'Standard',
     m_cake_designer_submit_checkout: 'Checkout',

@@ -8,6 +8,7 @@
             :style="{
                 backgroundImage: `url(${image})`
             }"
+            @click="$emit('click-image', image)"
         />
 
         <div class="selected-item__content">
