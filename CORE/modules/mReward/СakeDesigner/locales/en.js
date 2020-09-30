@@ -15,6 +15,8 @@ export default {
     m_cake_designer_decor: 'Type of registration',
     m_cake_designer_default_decor_description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     m_cake_designer_default_filling_description: 'Classic white sponge cake with butter cream',
+    m_cake_designer_delivery_time: 'Delivery time from',
+    m_cake_designer_delivery_time_end: 'before',
     m_cake_designer_exclusive: 'Exclusive',
     m_cake_designer_filling: 'Filling',
     m_cake_designer_price: 'The cost',

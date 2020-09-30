@@ -15,6 +15,8 @@ export default {
     m_cake_designer_decor: 'نوع التسجيل',
     m_cake_designer_default_decor_description: 'Lorem ipsum dolor sit amet، consectetur adipiscing elit.',
     m_cake_designer_default_filling_description: 'كعكة إسفنجية بيضاء كلاسيكية مع كريمة الزبدة',
+    m_cake_designer_delivery_time: 'وقت التسليم من',
+    m_cake_designer_delivery_time_end: 'قبل',
     m_cake_designer_exclusive: 'حصرية',
     m_cake_designer_filling: 'حشوة',
     m_cake_designer_price: 'التكلفة',

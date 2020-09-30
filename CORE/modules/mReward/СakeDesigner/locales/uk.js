@@ -15,6 +15,8 @@ export default {
     m_cake_designer_decor: 'Тип реєстрації',
     m_cake_designer_default_decor_description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     m_cake_designer_default_filling_description: 'Класичний білий бісквіт з масляним кремом',
+    m_cake_designer_delivery_time: 'Час доставки від',
+    m_cake_designer_delivery_time_end: 'раніше',
     m_cake_designer_exclusive: 'Ексклюзивно',
     m_cake_designer_filling: 'Наповнення',
     m_cake_designer_price: 'Вартість',

@@ -15,6 +15,8 @@ export default {
     m_cake_designer_decor: 'Каттоонун түрү',
     m_cake_designer_default_decor_description: 'Lorem ipsum dolor sit amet, adipiscing elit.',
     m_cake_designer_default_filling_description: 'Классикалык ак губка торту май каймак менен',
+    m_cake_designer_delivery_time: 'Жеткирүү убактысы',
+    m_cake_designer_delivery_time_end: 'чейин',
     m_cake_designer_exclusive: 'Exclusive',
     m_cake_designer_filling: 'Толтуруу',
     m_cake_designer_price: 'Баасы',

@@ -15,6 +15,8 @@ export default {
     m_cake_designer_decor: 'Тып рэгістрацыі',
     m_cake_designer_default_decor_description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     m_cake_designer_default_filling_description: 'Класічны белы бісквітны торт са сметанковым крэмам',
+    m_cake_designer_delivery_time: 'Час дастаўкі ад',
+    m_cake_designer_delivery_time_end: 'раней',
     m_cake_designer_exclusive: 'Эксклюзіў',
     m_cake_designer_filling: 'Запаўненне',
     m_cake_designer_price: 'Кошт',

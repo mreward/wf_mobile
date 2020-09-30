@@ -15,6 +15,8 @@ export default {
     m_cake_designer_decor: 'Type d\'inscription',
     m_cake_designer_default_decor_description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     m_cake_designer_default_filling_description: 'Gâteau éponge blanc classique avec crème au beurre',
+    m_cake_designer_delivery_time: 'Délai de livraison à partir de',
+    m_cake_designer_delivery_time_end: 'avant',
     m_cake_designer_exclusive: 'Exclusif',
     m_cake_designer_filling: 'Remplissage',
     m_cake_designer_price: 'Le coût',

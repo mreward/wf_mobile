@@ -15,6 +15,8 @@ export default {
     m_cake_designer_decor: 'Тип оформления',
     m_cake_designer_default_decor_description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     m_cake_designer_default_filling_description: 'Классический белый бисквит со сливочным кремом',
+    m_cake_designer_delivery_time: 'Время доставки от',
+    m_cake_designer_delivery_time_end: 'до',
     m_cake_designer_exclusive: 'Эксклюзив',
     m_cake_designer_filling: 'Начинка',
     m_cake_designer_price: 'Стоимость',
@@ -28,7 +30,5 @@ export default {
     m_cake_designer_weight: 'Вес торта',
     m_cake_designer_weight_value: '{value} кг',
     m_cake_designer_without_description: 'Без описания',
-    m_cake_designer_without_name: 'Без названия',
-    m_cake_designer_delivery_time: 'Время доставки от',
-    m_cake_designer_delivery_time_end: 'до'
+    m_cake_designer_without_name: 'Без названия'
 }

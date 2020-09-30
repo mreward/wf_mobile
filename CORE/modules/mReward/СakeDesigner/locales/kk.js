@@ -15,6 +15,8 @@ export default {
     m_cake_designer_decor: 'Тіркеу түрі',
     m_cake_designer_default_decor_description: 'Lorem ipsum dolor sit amet, adipiscing elit.',
     m_cake_designer_default_filling_description: 'Сары майға арналған кілегейлі ақ губка торты',
+    m_cake_designer_delivery_time: 'Жеткізу уақыты',
+    m_cake_designer_delivery_time_end: 'бұрын',
     m_cake_designer_exclusive: 'Эксклюзивті',
     m_cake_designer_filling: 'Толтыру',
     m_cake_designer_price: 'Баға',
