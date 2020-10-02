@@ -52,7 +52,7 @@ module.exports = {
         Faq: false,
     },
     plugins: {
-        Toast: false,
+        Toast: '_CORE/plugins/onsen/Toast',
         Alert: true,
         Quasar: false,
         Vuelidate: 'vuelidate',

@@ -14,7 +14,7 @@
             <img :src="imgPhoto">
         </div>
         <div class="add-lettering__text__title">
-            {{ $t('', 'Надпись') }}
+            {{ $t('m_cake_designer_add_lettering_message') }}
         </div>
         <input-base
             v-model="form.text"
@@ -22,7 +22,7 @@
             :max-length="30"
             class="add-lettering__text"
             type="textarea"
-            placeholder="Введите текст, макс. 30 символов"
+            :placeholder="$t('m_cake_designer_add_lettering_message_text')"
         />
 
         <div class="designer__btn-submit">

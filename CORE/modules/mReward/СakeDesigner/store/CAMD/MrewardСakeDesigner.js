@@ -53,6 +53,8 @@ export default {
         setOrderDecor: 'MrewardСakeDesigner/setOrderDecor',
         setOrderLettering: 'MrewardСakeDesigner/setOrderLettering',
         uploadDecorImage: 'MrewardСakeDesigner/uploadDecorImage',
+        uploadFeedbackImage: 'MrewardСakeDesigner/uploadFeedbackImage',
+        feedback: 'MrewardСakeDesigner/feedback',
         order: 'MrewardСakeDesigner/order',
         preCheck: 'MrewardСakeDesigner/preCheck'
     },

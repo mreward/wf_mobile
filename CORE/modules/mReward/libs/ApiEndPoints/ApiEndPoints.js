@@ -379,7 +379,7 @@ export default {
             apiVersion: 'v2',
             apiTag: '/client/construct'
         },
-        SendFeedback: {
+        Feedback: {
             url: '/construct-feedback',
             method: 'POST',
             apiVersion: 'v2',

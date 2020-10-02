@@ -362,6 +362,56 @@ const actions = {
                 log: 'STORE: MrewardСakeDesigner Module - preCheck'
             }, { root: true })
         }
+    },
+
+    /**
+     * Upload feedback image
+     * @param commit
+     * @param dispatch
+     * @param payload
+     */
+    async uploadFeedbackImage({ commit, dispatch }, payload) {
+        console.log('STORE: MrewardСakeDesigner Module - uploadFeedbackImage')
+        try {
+            dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
+
+            const response = await new MrewardСakeDesigner().UploadFeedbackImage({
+                imageURI: payload.imageURI,
+                options: payload.options
+            })
+
+            dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })
+
+            return response
+        } catch (error) {
+            await dispatch(constants.App.Actions.validateError, {
+                error,
+                log: 'STORE: MrewardСakeDesigner Module - uploadFeedbackImage'
+            }, { root: true })
+        }
+    },
+
+    async feedback({ commit, state, dispatch, rootState }, payload) {
+        console.log('STORE: MrewardСakeDesigner Module - order')
+        try {
+            dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
+
+            const country = rootState.MrewardShop.country
+
+            const response = await new MrewardСakeDesigner().Feedback({
+                partner_id: country.config.id,
+                ...payload
+            })
+
+            dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })
+
+            return response
+        } catch (error) {
+            await dispatch(constants.App.Actions.validateError, {
+                error,
+                log: 'STORE: MrewardСakeDesigner Module - order'
+            }, { root: true })
+        }
     }
 }
 
