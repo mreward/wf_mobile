@@ -156,20 +156,20 @@
             },
             async sendToPay(method, bonuses, totalAmount) {
                 try {
-                    const { address, date, time, timeEnd, comment } = this.delivery
+                    const { address, date, maxDate, time, comment } = this.delivery
 
-                    const timeFrom = moment(`${date} ${time}`, 'YYYY-MM-DD HH:mm').format('X')
-                    const timeTo = moment(`${date} ${timeEnd}`, 'YYYY-MM-DD HH:mm').format('X')
+                    const dateFrom = moment(date, 'YYYY-MM-DD').format('X')
+                    const dateTo = moment(maxDate, 'YYYY-MM-DD').format('X')
 
                     const { order_id: orderId } = await this.order({
                         delivering_address: address,
-                        delivering_date_from: timeFrom,
-                        delivering_date_to: timeTo,
+                        delivering_date_from: dateFrom,
+                        delivering_date_to: dateTo,
                         delivering_id: 2
                     })
 
                     const preCheckData = await this.preCheck({
-                        construct_id: orderId,
+                        order_id: orderId,
                         type: method,
                         bonuses: bonuses
                     })

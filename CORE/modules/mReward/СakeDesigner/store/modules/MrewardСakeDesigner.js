@@ -18,6 +18,7 @@ const state = {
     decorGallery: [],
     letterings: [],
     letteringGallery: [],
+    deliveryPreset: {},
     order: {
         filling: {
             item: {}
@@ -53,6 +54,9 @@ const mutations = {
     },
     [ConstructMutat.LetteringGallery.name]: (state, data) => {
         state.letteringGallery = data
+    },
+    [ConstructMutat.DeliveryPreset.name]: (state, data) => {
+        state.deliveryPreset = data
     },
     [ConstructMutat.OrderFilling.name]: (state, data) => {
         state.order.filling = data
@@ -170,6 +174,24 @@ const actions = {
             await dispatch(constants.App.Actions.validateError, {
                 error,
                 log: 'STORE: MrewardСakeDesigner Module - getLetteringGallery'
+            }, {root: true})
+        }
+    },
+
+    async getDeliveryPreset({ state, dispatch, commit }, payload) {
+        console.log('STORE: MrewardСakeDesigner Module - getDeliveryPreset')
+        try {
+            dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
+            const response = await new MrewardСakeDesigner().GetDeliveryPreset(payload)
+            commit(ConstructMutat.DeliveryPreset.name, get(response, 'list.0.list.0', {}))
+
+            dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })
+
+            return response
+        } catch (error) {
+            await dispatch(constants.App.Actions.validateError, {
+                error,
+                log: 'STORE: MrewardСakeDesigner Module - getDeliveryPreset'
             }, {root: true})
         }
     },
@@ -319,7 +341,8 @@ const actions = {
             const response = await new MrewardСakeDesigner().PreCheck({
                 branch_id: country.config.code,
                 is_online_store: 1,
-                construct_id: payload.construct_id,
+                order_id: payload.order_id,
+                construct_id: payload.order_id,
                 phone,
                 receipt_bonus_amount: payload.bonuses || 0,
                 receipt_currency: `B${country.code}`,
@@ -360,6 +383,9 @@ const getters = {
     },
     letteringGallery(state) {
         return state.letteringGallery
+    },
+    deliveryPreset(state) {
+        return state.deliveryPreset
     },
     order(state) {
         return state.order

@@ -142,7 +142,10 @@
 
         .page__content {
             background-color: #F5F7FA !important;
-            padding: 16px !important;
+            padding-top: 16px !important;
+            padding-left: 16px !important;
+            padding-right: 16px !important;
+            padding-bottom: 34px !important;
         }
 
         .ons-tabbar__footer {

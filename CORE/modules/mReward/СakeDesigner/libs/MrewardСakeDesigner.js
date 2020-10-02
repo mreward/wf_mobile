@@ -115,6 +115,18 @@ export default class MrewardСakeDesigner extends ApiClient {
             })
     }
 
+    GetDeliveryPreset(json) {
+        this.logger('MrewardСakeDesigner:GetDeliveryPreset')
+        const requestData = { ...this.APIEndPoints.Construct.GetDeliveryPreset }
+
+        return this.sendRequest(
+            requestData,
+            {
+                ...json,
+                networkFirst: true
+            })
+    }
+
     Order(json, config) {
         this.logger('MrewardСakeDesigner:Order')
         const requestData = { ...this.APIEndPoints.Construct.Order }

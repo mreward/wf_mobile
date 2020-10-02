@@ -24,6 +24,10 @@ export default {
             name: 'LETTERING_GALLERY',
             nameGlobal: 'MrewardСakeDesigner/LETTERING_GALLERY'
         },
+        DeliveryPreset: {
+            name: 'DELIVERY_PRESET',
+            nameGlobal: 'MrewardСakeDesigner/DELIVERY_PRESET'
+        },
         OrderFilling: {
             name: 'ORDER_FILLING',
             nameGlobal: 'MrewardСakeDesigner/ORDER_FILLING'
@@ -44,6 +48,7 @@ export default {
         getDecorGallery: 'MrewardСakeDesigner/getDecorGallery',
         getLetterings: 'MrewardСakeDesigner/getLetterings',
         getLetteringGallery: 'MrewardСakeDesigner/getLetteringGallery',
+        getDeliveryPreset: 'MrewardСakeDesigner/getDeliveryPreset',
         setOrderFilling: 'MrewardСakeDesigner/setOrderFilling',
         setOrderDecor: 'MrewardСakeDesigner/setOrderDecor',
         setOrderLettering: 'MrewardСakeDesigner/setOrderLettering',
@@ -58,6 +63,7 @@ export default {
         decorGallery: 'MrewardСakeDesigner/decorGallery',
         letterings: 'MrewardСakeDesigner/letterings',
         letteringGallery: 'MrewardСakeDesigner/letteringGallery',
+        deliveryPreset: 'MrewardСakeDesigner/deliveryPreset',
         order: 'MrewardСakeDesigner/order'
     }
 }

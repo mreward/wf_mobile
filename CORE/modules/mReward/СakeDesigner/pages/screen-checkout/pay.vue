@@ -108,8 +108,7 @@
     import { mapActions, mapGetters } from 'vuex'
     import constants from '_vuex_constants'
     import InputBase from '_CORE/components/common/inputs/input-base'
-    import ScreenStatusPay from '_screen_shop_pay_success'
-    import { maskAmount, maskNumeric } from '_masks'
+    import { maskNumeric } from '_masks'
     import { get, sumBy } from 'lodash'
 
     export default {
@@ -218,9 +217,6 @@
             },
             async nextPage () {
                 this.$bus.$emit('goToPay', this.paymentMethod, this.bonuses, this.totalAmount)
-                // await this.preCheck({type: paymentMethod})
-
-                // this.pushPage(ScreenStatusPay)
             }
         }
     }

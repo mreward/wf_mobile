@@ -361,6 +361,12 @@ export default {
             apiVersion: 'v2',
             apiTag: '/client/construct'
         },
+        GetDeliveryPreset: {
+            url: '/construct-delivery-preset',
+            method: 'GET',
+            apiVersion: 'v2',
+            apiTag: '/client/construct'
+        },
         UploadDecorImage: {
             url: '/construct-decor-user-image',
             method: 'POST',

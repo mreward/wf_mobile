@@ -67,6 +67,7 @@
                             scrollable
                             :locale="selectedLanguage"
                             :min="minDate"
+                            :max="maxDate"
                         >
                             <v-spacer />
                             <v-btn
@@ -87,7 +88,7 @@
                     </v-dialog>
                 </div>
 
-                <div class="date-time__wrap">
+                <!-- <div class="date-time__wrap">
                     <v-dialog
                         ref="dialogTime"
                         v-model="modalTime"
@@ -180,7 +181,7 @@
                             </v-btn>
                         </v-time-picker>
                     </v-dialog>
-                </div>
+                </div> -->
 
                 <div class="delivery__comment__title">
                     {{ $t('m_shop_comments_for_order') }}
@@ -231,12 +232,13 @@
     import moment from 'moment'
     import MixinChooseCity from '_mixin_choose_city'
     import { mapActions, mapGetters } from 'vuex'
+    import { get } from 'lodash'
     import constants from '_vuex_constants'
     import MaskPhone from '_PLUGINS/common/MaskPhone'
     import InputBase from '_CORE/components/common/inputs/input-base'
     import ValidationHelpers from '_plugins_validation_helpers'
-    import { required, requiredIf, minLength, validPassword, isTrue } from '_plugins_validators'
-    // import Illustration from '../../img/delete-address-illustration.svg'
+    import { required } from '_plugins_validators'
+    import Illustration from '../../img/delete-address-illustration.svg'
 
     export default {
         name: 'delivery',
@@ -249,21 +251,23 @@
             return {
                 checkbox: false,
                 modalDate: false,
-                modalTime: false,
-                endTimePicker: false,
+                // modalTime: false,
+                // modalTimeEnd: false,
+                // endTimePicker: false,
                 form: {
                     city: {
                         name: ''
                     },
                     address: '',
                     date: '',
+                    maxDate: '',
                     time: '',
-                    timeEnd: '',
+                    // timeEnd: '',
                     comment: ''
                 },
-                minDate: moment().add(3, 'days').format('YYYY-MM-DD'),
-                minTime: '',
-                maxDate: '',
+                minDate: moment().add(1, 'days').format('YYYY-MM-DD'),
+                // minTime: '',
+                maxDate: moment().add(10, 'days').format('YYYY-MM-DD'),
                 errorMessages: {
                     'id_city': ''
                 }
@@ -276,6 +280,7 @@
                 countries: constants.MrewardGeo.Getters.countries,
                 country: constants.MrewardShop.Getters.country,
                 address: constants.MrewardShop.Getters.address,
+                deliveryPreset: constants.MrewardСakeDesigner.Getters.deliveryPreset,
                 selectedLanguage: constants.App.Getters.language
             }),
             delivery () {
@@ -321,6 +326,10 @@
         watch: {
             'city.name'(value) {
                 this.form.city.name = value
+            },
+            deliveryPreset(value) {
+                this.minDate = moment().add(value.min_hours, 'hours').format('YYYY-MM-DD')
+                this.maxDate = moment().add(value.max_hours, 'hours').format('YYYY-MM-DD')
             }
         },
         async created () {
@@ -336,6 +345,9 @@
                 this.setCountry()
 
                 await this.listDeliveryAddress()
+                await this.getDeliveryPreset({
+                    partnerId: get(this.country, 'config.id')
+                })
             } catch (e) {
                 this.$Alert.Error(e)
             }
@@ -347,14 +359,9 @@
                 getCountries: constants.MrewardGeo.Actions.getCountries,
                 getCityById: constants.MrewardGeo.Actions.getCityById,
                 listDeliveryAddress: constants.MrewardShop.Actions.listDeliveryAddress,
-                removeDeliveryAddress: constants.MrewardShop.Actions.removeDeliveryAddress
+                removeDeliveryAddress: constants.MrewardShop.Actions.removeDeliveryAddress,
+                getDeliveryPreset: constants.MrewardСakeDesigner.Actions.getDeliveryPreset
             }),
-            // sds() {
-            //     this.dateFrom = await this.pickDate({
-            //     maxDate: moment(),
-            //     date: this.dateFrom
-            //     })
-            // },
             async setCityName () {
                 try {
                     const {target: {city_name: name}} = await this.getCityById({
@@ -390,11 +397,13 @@
                     return true
                 }
 
+                this.form.maxDate = this.maxDate
+
                 this.$bus.$emit('goToTabCheckout', 'Pay', this.form)
             },
             onDelete(id) {
                 this.$Alert.Confirm({
-                    // img: Illustration,
+                    img: Illustration,
                     title: this.$t('m_shop_delete_address_title'),
                     nextName: this.$t('m_shop_yes'),
                     cancelName: this.$t('m_shop_no'),
@@ -417,29 +426,27 @@
                         }
                     },
                     date: {
-                        required: requiredIf(function() {
-                            return this.form.time
-                        }),
+                        required,
                         $params: {
                             order: 2
                         }
                     },
-                    time: {
-                        required: requiredIf(function() {
-                            return this.form.time || this.form.date
-                        }),
-                        $params: {
-                            order: 3
-                        }
-                    },
-                    timeEnd: {
-                        required: requiredIf(function() {
-                            return this.form.timeEnd || this.form.date
-                        }),
-                        $params: {
-                            order: 3
-                        }
-                    },
+                    // time: {
+                    //     required: requiredIf(function() {
+                    //         return this.form.time || this.form.date
+                    //     }),
+                    //     $params: {
+                    //         order: 3
+                    //     }
+                    // },
+                    // timeEnd: {
+                    //     required: requiredIf(function() {
+                    //         return this.form.timeEnd || this.form.date
+                    //     }),
+                    //     $params: {
+                    //         order: 3
+                    //     }
+                    // },
                     $params: {
                         order: 100
                     }
