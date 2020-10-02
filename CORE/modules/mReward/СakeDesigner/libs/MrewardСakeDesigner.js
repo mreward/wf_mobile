@@ -49,6 +49,36 @@ export default class MrewardСakeDesigner extends ApiClient {
             })
     }
 
+    /**
+     * Upload decor image
+     * @param imageURI
+     * @param options
+     * @returns {Promise}
+     * @constructor
+     */
+    UploadDecorImage({ imageURI, options }) {
+        this.logger('MrewardСakeDesigner:UploadDecorImage')
+        const ft = new FileTransfer()
+
+        if (this.authToken) {
+            const encodedAuthorizationToken = btoa(`${this.authToken}:`)
+            options.headers.Authorization = `Basic ${encodedAuthorizationToken}`
+        }
+
+        const { apiVersion, apiTag, url } = this.APIEndPoints.Construct.UploadDecorImage
+
+        return new Promise((resolve, reject) => {
+            ft.upload(imageURI, this.url + apiVersion + apiTag + url, (r) => {
+                if (JSON.parse(r.response).success === true) {
+                    resolve(JSON.parse(r.response).data)
+                }
+                reject(new Error('Error occurred'))
+            }, (e) => {
+                reject(JSON.parse(e.body).data)
+            }, options)
+        })
+    }
+
     GetLetterings(json) {
         this.logger('MrewardСakeDesigner:GetLetterings')
         const requestData = { ...this.APIEndPoints.Construct.GetLetterings }

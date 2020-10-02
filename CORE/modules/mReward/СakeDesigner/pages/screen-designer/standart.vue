@@ -1,167 +1,179 @@
 <template>
     <v-ons-page shown>
         <div class="page__content">
-            <validation-error
-                v-bind="bindingsValidationMessage($v.order.filling.item)"
-            >
-                <select-list
-                    v-model="filling"
-                    :title="$t('m_cake_designer_filling')"
-                    :items="fillings"
-                    :with-price="true"
-                    :currency="country.config.currency"
-                    :default-item-name="$t('m_cake_designer_without_name')"
-                    @input="setFilling"
-                />
-            </validation-error>
-
-            <validation-error
-                v-bind="bindingsValidationMessage($v.order.decor.item)"
-            >
-                <select-list
-                    v-model="decor"
-                    :title="$t('m_cake_designer_decor')"
-                    :items="decors"
-                    :with-price="true"
-                    :currency="country.config.currency"
-                    :default-item-name="$t('m_cake_designer_without_name')"
-                    @input="setDecor"
-                >
-                    <template slot="content">
-                        <validation-error
-                            v-bind="bindingsValidationMessage($v.order.decor.gallery)"
-                        >
-                            <div
-                                v-if="decor.required_gallery && !order.decor.gallery && !order.decor.custom"
-                                class="btn-select"
-                                @click="goToDecorCatalog"
-                            >
-                                <span>{{ $t('m_cake_designer_select_from_catalog') }}</span>
-                                <i class="icon-closet" />
-                            </div>
-                        </validation-error>
-                        <validation-error
-                            v-bind="bindingsValidationMessage($v.order.decor.custom)"
-                        >
-                            <select-list-item
-                                v-if="decor.required_upload && !order.decor.gallery && !order.decor.custom"
-                                :value="{}"
-                                :with-price="false"
-                                icon="icon-plus"
-                                icon-direction="left"
-                                :default-name="$t('m_cake_designer_upload_custom_image')"
-                                :default-description="$t('m_cake_designer_upload_custom_description')"
-                                :selected="true"
-                            />
-                        </validation-error>
-                        <selected-item
-                            v-if="order.decor.gallery || order.decor.custom"
-                            :value="order.decor.gallery || order.decor.custom"
-                            :default-name="$t('m_cake_designer_without_name')"
-                            :default-description="$t('m_cake_designer_catalog_image')"
-                            @select="setDecor(decor)"
-                            @click-image="(url) => imageDialogUrl = imageDialog = url"
-                        />
-                    </template>
-                </select-list>
-            </validation-error>
-
-            <v-checkbox
-                v-model="checked"
-                :label="$t('m_cake_designer_add_lettering')"
-                off-icon=""
-                on-icon="icon-checkmark"
-                :ripple="false"
+            <v-progress-circular
+                v-if="loading"
+                :width="7"
+                :size="70"
+                indeterminate
             />
-
-            <div
-                v-if="checked"
-                class="designer__info-postcard"
-            >
+            <template v-else>
                 <validation-error
-                    v-bind="bindingsValidationMessage($v.order.lettering.item)"
+                    v-bind="bindingsValidationMessage($v.order.filling.item)"
                 >
                     <select-list
-                        v-model="lettering"
-                        title=""
-                        :items="letterings"
+                        v-model="filling"
+                        :title="$t('m_cake_designer_filling')"
+                        :items="fillings"
                         :with-price="true"
                         :currency="country.config.currency"
                         :default-item-name="$t('m_cake_designer_without_name')"
-                        @input="setLettering"
+                        :not-found-message="$t('m_cake_designer_not_found_fillings')"
+                        @input="setFilling"
+                    />
+                </validation-error>
+
+                <validation-error
+                    v-bind="bindingsValidationMessage($v.order.decor.item)"
+                >
+                    <select-list
+                        v-model="decor"
+                        :title="$t('m_cake_designer_decor')"
+                        :items="decors"
+                        :with-price="true"
+                        :currency="country.config.currency"
+                        :default-item-name="$t('m_cake_designer_without_name')"
+                        :not-found-message="$t('m_cake_designer_not_found_decors')"
+                        @input="setDecor"
                     >
                         <template slot="content">
                             <validation-error
-                                v-bind="bindingsValidationMessage($v.order.lettering.gallery)"
+                                v-bind="bindingsValidationMessage($v.order.decor.gallery)"
                             >
                                 <div
-                                    v-if="lettering.required_gallery && !order.lettering.gallery && !order.lettering.custom"
+                                    v-if="decor.required_gallery && !order.decor.gallery && !order.decor.custom"
                                     class="btn-select"
-                                    @click="goToLetteringCatalog"
+                                    @click="goToDecorCatalog"
                                 >
                                     <span>{{ $t('m_cake_designer_select_from_catalog') }}</span>
                                     <i class="icon-closet" />
                                 </div>
                             </validation-error>
                             <validation-error
-                                v-bind="bindingsValidationMessage($v.order.lettering.custom)"
+                                v-bind="bindingsValidationMessage($v.order.decor.custom)"
                             >
                                 <select-list-item
-                                    v-if="lettering.required_input && !order.lettering.gallery && !order.lettering.custom"
+                                    v-if="decor.required_upload && !order.decor.gallery && !order.decor.custom"
                                     :value="{}"
                                     :with-price="false"
                                     icon="icon-plus"
                                     icon-direction="left"
-                                    :default-name="$t('m_cake_designer_add_text')"
+                                    :default-name="$t('m_cake_designer_upload_custom_image')"
+                                    :default-description="$t('m_cake_designer_upload_custom_description')"
                                     :selected="true"
-                                    @select="goToAddLettering"
+                                    @select="selectDecorSource"
                                 />
                             </validation-error>
                             <selected-item
-                                v-if="order.lettering.gallery || order.lettering.custom"
-                                :value="order.lettering.gallery || order.lettering.custom"
+                                v-if="order.decor.gallery || order.decor.custom"
+                                :value="order.decor.gallery || order.decor.custom"
                                 :default-name="$t('m_cake_designer_without_name')"
-                                :default-description="$t(order.lettering.gallery ? 'm_cake_designer_catalog_text' : 'm_cake_designer_custom_text')"
-                                @select="setLettering(lettering)"
+                                :default-description="$t(order.decor.gallery ? 'm_cake_designer_catalog_image' : 'm_cake_designer_custom_image')"
+                                @select="setDecor(decor)"
+                                @click-image="(url) => imageDialogUrl = imageDialog = url"
                             />
                         </template>
                     </select-list>
                 </validation-error>
-            </div>
 
-            <div class="designer__info-item">
-                <div class="designer__info-item__title">
-                    {{ $t('m_cake_designer_weight') }}
-                </div>
-                <div class="designer__info-item__price">
-                    {{ $t('m_cake_designer_weight_value', '', { value: '1,3' }) }}
-                </div>
-            </div>
+                <v-checkbox
+                    v-model="checked"
+                    :label="$t('m_cake_designer_add_lettering')"
+                    off-icon=""
+                    on-icon="icon-checkmark"
+                    :ripple="false"
+                />
 
-            <div
-                v-show="isShowPrice"
-                class="designer__info-item"
-            >
-                <div class="designer__info-item__title">
-                    {{ $t('m_cake_designer_price') }}
-                </div>
-                <div class="designer__info-item__price">
-                    {{ price }} {{ country.config.currency }}
-                </div>
-            </div>
-
-            <div class="designer__btn-submit">
-                <v-btn
-                    block
-                    depressed
-                    color="primary"
-                    type="main"
-                    :disabled="isDisabledCheckbox"
-                    @click="goToCheckout"
+                <div
+                    v-if="checked"
+                    class="designer__info-postcard"
                 >
-                    {{ $t('m_cake_designer_submit_checkout') }}
-                </v-btn>
-            </div>
+                    <validation-error
+                        v-bind="bindingsValidationMessage($v.order.lettering.item)"
+                    >
+                        <select-list
+                            v-model="lettering"
+                            title=""
+                            :items="letterings"
+                            :with-price="true"
+                            :currency="country.config.currency"
+                            :default-item-name="$t('m_cake_designer_without_name')"
+                            :not-found-message="$t('m_cake_designer_not_found_letterings')"
+                            @input="setLettering"
+                        >
+                            <template slot="content">
+                                <validation-error
+                                    v-bind="bindingsValidationMessage($v.order.lettering.gallery)"
+                                >
+                                    <div
+                                        v-if="lettering.required_gallery && !order.lettering.gallery && !order.lettering.custom"
+                                        class="btn-select"
+                                        @click="goToLetteringCatalog"
+                                    >
+                                        <span>{{ $t('m_cake_designer_select_from_catalog') }}</span>
+                                        <i class="icon-closet" />
+                                    </div>
+                                </validation-error>
+                                <validation-error
+                                    v-bind="bindingsValidationMessage($v.order.lettering.custom)"
+                                >
+                                    <select-list-item
+                                        v-if="lettering.required_input && !order.lettering.gallery && !order.lettering.custom"
+                                        :value="{}"
+                                        :with-price="false"
+                                        icon="icon-plus"
+                                        icon-direction="left"
+                                        :default-name="$t('m_cake_designer_add_text')"
+                                        :selected="true"
+                                        @select="goToAddLettering"
+                                    />
+                                </validation-error>
+                                <selected-item
+                                    v-if="order.lettering.gallery || order.lettering.custom"
+                                    :value="order.lettering.gallery || order.lettering.custom"
+                                    :default-name="$t('m_cake_designer_without_name')"
+                                    :default-description="$t(order.lettering.gallery ? 'm_cake_designer_catalog_text' : 'm_cake_designer_custom_text')"
+                                    @select="setLettering(lettering)"
+                                />
+                            </template>
+                        </select-list>
+                    </validation-error>
+                </div>
+
+                <div class="designer__info-item">
+                    <div class="designer__info-item__title">
+                        {{ $t('m_cake_designer_weight') }}
+                    </div>
+                    <div class="designer__info-item__price">
+                        {{ $t('m_cake_designer_weight_value', '', { value: '1,3' }) }}
+                    </div>
+                </div>
+
+                <div
+                    v-show="isShowPrice"
+                    class="designer__info-item"
+                >
+                    <div class="designer__info-item__title">
+                        {{ $t('m_cake_designer_price') }}
+                    </div>
+                    <div class="designer__info-item__price">
+                        {{ price }} {{ country.config.currency }}
+                    </div>
+                </div>
+
+                <div class="designer__btn-submit">
+                    <v-btn
+                        block
+                        depressed
+                        color="primary"
+                        type="main"
+                        :disabled="isDisabledCheckbox"
+                        @click="goToCheckout"
+                    >
+                        {{ $t('m_cake_designer_submit_checkout') }}
+                    </v-btn>
+                </div>
+            </template>
         </div>
 
         <v-dialog
@@ -199,6 +211,8 @@
     import SelectDesignerAddLettering from '_screen_designer_add_lettering'
     import ScreenCheckout from '_screen_designer_checkout'
 
+    import Camera from '_CORE/plugins/common/Camera'
+
     export default {
         name: 'screen-standart',
         components: {
@@ -214,6 +228,7 @@
                 filling: {},
                 decor: {},
                 lettering: {},
+                loading: true,
                 checked: false,
                 imageDialog: false,
                 imageDialogUrl: ''
@@ -259,6 +274,8 @@
                 ])
             } catch (e) {
                 this.$Alert.Error(e)
+            } finally {
+                this.loading = false
             }
         },
         methods: {
@@ -269,8 +286,58 @@
                 getLetterings: constants.MrewardСakeDesigner.Actions.getLetterings,
                 setOrderFilling: constants.MrewardСakeDesigner.Actions.setOrderFilling,
                 setOrderDecor: constants.MrewardСakeDesigner.Actions.setOrderDecor,
-                setOrderLettering: constants.MrewardСakeDesigner.Actions.setOrderLettering
+                setOrderLettering: constants.MrewardСakeDesigner.Actions.setOrderLettering,
+                uploadDecorImage: constants.MrewardСakeDesigner.Actions.uploadDecorImage
             }),
+            selectDecorSource() {
+                const buttons = [
+                    this.$t('m_profile_from_gallery'),
+                    this.$t('m_profile_take_picture'),
+                    this.$t('m_profile_cancel')
+                ]
+
+                this.$ons.openActionSheet({
+                    buttons,
+                    title: this.$t('m_profile_change_profile_picture'),
+                    cancelable: true,
+                    destructive: 2,
+                    class: 'alert--avatar',
+                    callback: (buttonIndex) => {
+                        if (buttonIndex !== -1 && buttonIndex !== 2) {
+                            let imageSource = 1 // Camera
+                            if (buttonIndex === 0) {
+                                imageSource = 0 // From Gallery
+                            }
+                            this.uploadDecor(imageSource)
+                        }
+                    }
+                })
+            },
+            async uploadDecor(imageSource) {
+                try {
+                    const picture = await Camera.GetPicture({
+                        imageSource,
+                        targetWidth: 1024,
+                        targetHeight: 768
+                    })
+                    const payload = await Camera.PreparePicture({
+                        picture,
+                        isHashFileName: false,
+                        fileKey: 'file',
+                        w: 1024,
+                        h: 768
+                    })
+
+                    payload.options.params = {
+                        partner_id: get(this.country, 'config.id')
+                    }
+
+                    await this.uploadDecorImage({ ...payload })
+                } catch (e) {
+                    console.log(e)
+                    this.$Alert.Error(e)
+                }
+            },
             async setFilling(item) {
                 await this.setOrderFilling({
                     item
@@ -303,6 +370,12 @@
                             default: () => {
                                 return this.$t('m_cake_designer_catalog_decor_title')
                             }
+                        },
+                        notFoundMessage: {
+                            type: String,
+                            default: () => {
+                                return this.$t('m_cake_designer_not_found_decors')
+                            }
                         }
                     },
                     computed: {
@@ -318,6 +391,8 @@
                             })
                         } catch (e) {
                             this.$Alert.Error(e)
+                        } finally {
+                            this.loading = false
                         }
                     },
                     methods: {
@@ -351,6 +426,12 @@
                             default: () => {
                                 return this.$t('m_cake_designer_catalog_lettering_title')
                             }
+                        },
+                        notFoundMessage: {
+                            type: String,
+                            default: () => {
+                                return this.$t('m_cake_designer_not_found_letterings')
+                            }
                         }
                     },
                     computed: {
@@ -366,6 +447,8 @@
                             })
                         } catch (e) {
                             this.$Alert.Error(e)
+                        } finally {
+                            this.loading = false
                         }
                     },
                     methods: {

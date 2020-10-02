@@ -7,23 +7,29 @@
             {{ title }}
         </div>
 
-        <select-list-item
-            v-for="(item, index) in items"
-            :key="index"
-            :value="item"
-            :with-price="withPrice"
-            :currency="currency"
-            :selected="isSelected(item)"
-            :default-name="defaultItemName"
-            :default-description="defaultItemDescription"
-            @select="$emit('input', $event)"
-        >
-            <template slot="content">
-                <slot
-                    name="content"
-                />
-            </template>
-        </select-list-item>
+        <template v-if="items.length">
+            <select-list-item
+                v-for="(item, index) in items"
+                :key="index"
+                :value="item"
+                :with-price="withPrice"
+                :currency="currency"
+                :selected="isSelected(item)"
+                :default-name="defaultItemName"
+                :default-description="defaultItemDescription"
+                @select="$emit('input', $event)"
+            >
+                <template slot="content">
+                    <slot
+                        name="content"
+                    />
+                </template>
+            </select-list-item>
+        </template>
+        <not-found-items
+            v-else
+            :message="notFoundMessage"
+        />
     </div>
 </template>
 
@@ -31,12 +37,14 @@
     import { isEqual } from 'lodash'
 
     import SelectListItem from './select-list-item'
+    import NotFoundItems from '_not_found_items'
 
     export default {
         name: 'select-list',
 
         components: {
-            SelectListItem
+            SelectListItem,
+            NotFoundItems
         },
 
         props: {
@@ -57,6 +65,10 @@
                 default: ''
             },
             title: {
+                type: String,
+                default: ''
+            },
+            notFoundMessage: {
                 type: String,
                 default: ''
             },

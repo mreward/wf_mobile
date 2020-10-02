@@ -1,26 +1,36 @@
 <template>
     <layout
         :title="title"
+        :show-loader="false"
         button-left="back"
         page="cake-designer-catalog"
     >
-        <select-card-list
-            v-model="item"
-            :items="items"
+        <v-progress-circular
+            v-if="loading"
+            :width="7"
+            :size="70"
+            indeterminate
         />
+        <template v-else>
+            <select-card-list
+                v-model="item"
+                :items="items"
+                :not-found-message="notFoundMessage"
+            />
 
-        <div class="designer__btn-submit">
-            <v-btn
-                block
-                depressed
-                color="primary"
-                type="main"
-                :disabled="isDisabledSelect"
-                @click="goToBack"
-            >
-                {{ $t('m_cake_designer_select') }}
-            </v-btn>
-        </div>
+            <div class="designer__btn-submit">
+                <v-btn
+                    block
+                    depressed
+                    color="primary"
+                    type="main"
+                    :disabled="isDisabledSelect"
+                    @click="goToBack"
+                >
+                    {{ $t('m_cake_designer_select') }}
+                </v-btn>
+            </div>
+        </template>
     </layout>
 </template>
 
@@ -37,9 +47,24 @@
         components: {
             SelectCardList
         },
+        props: {
+            decor: {
+                type: Object,
+                default: () => ({})
+            },
+            title: {
+                type: String,
+                default: ''
+            },
+            notFoundMessage: {
+                type: String,
+                default: ''
+            }
+        },
         data () {
             return {
-                item: {}
+                item: {},
+                loading: true
             }
         },
         computed: {

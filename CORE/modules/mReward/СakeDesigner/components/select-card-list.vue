@@ -1,5 +1,8 @@
 <template>
-    <div class="select-card-list">
+    <div
+        v-if="items.length"
+        class="select-card-list"
+    >
         <select-card-list-item
             v-for="(item, index) in items"
             :key="index"
@@ -8,6 +11,10 @@
             @select="$emit('input', $event)"
         />
     </div>
+    <not-found-items
+        v-else
+        :message="notFoundMessage"
+    />
 </template>
 
 <script>
@@ -30,6 +37,10 @@
             value: {
                 type: Object,
                 default: () => ({})
+            },
+            notFoundMessage: {
+                type: String,
+                default: ''
             }
         },
 

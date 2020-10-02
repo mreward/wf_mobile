@@ -7,7 +7,11 @@
     >
 
         <template slot="toolbar">
-            <div class="toolbar toolbar--search toolbar--shop">
+            <div
+                :class="['toolbar', 'toolbar--search', 'toolbar--shop', {
+                    'toolbar--constructor': isConstructor
+                }]"
+            >
                 <div class="tabbar-button__wrapper">
                     <div class="country-row">
                         <span class="country-row__title">
@@ -90,14 +94,15 @@
                     </v-btn>
                 </div>
                 <v-btn
+                    v-if="isConstructor"
                     small
                     class="btn-constructor"
+                    :disabled="loaderUpdate"
                     @click="contructorDialog = true"
                 >
                     <img :src="ImgConstructor"/>
-                    <span>Конструктор тортов</span>
+                    <span>{{ $t('m_cake_designer_button_title') }}</span>
                 </v-btn>
-
             </div>
         </template>
 
@@ -185,6 +190,7 @@
         </v-dialog>
 
         <v-dialog
+            v-if="isConstructor"
             v-model="contructorDialog"
             content-class="agreement--dialog"
         >
@@ -204,7 +210,7 @@
 
                 <div
                     class="dialog-content"
-                    v-html="agreement"
+                    v-html="agreement.agreement"
                 />
 
                 <v-checkbox
@@ -334,11 +340,16 @@
         }
     }
 
-    .toolbar.toolbar--shop {
-        display: flex;
-        flex-direction: column;
-        height: 230px;
-        // height: 174px;
+    .toolbar {
+        &--shop {
+            display: flex;
+            flex-direction: column;
+            height: 174px;
+        }
+
+        &--constructor {
+            height: 230px !important;
+        }
     }
 
     .country-row {
@@ -403,6 +414,10 @@
         box-shadow: unset !important;
         padding: 0 16px;
         justify-content: start;
+
+        &.v-btn.theme--light.v-btn--disabled:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined):not(.v-btn--secondary) {
+            background-color: #F5F7FA !important;
+        }
 
         img {
             height: 20px;

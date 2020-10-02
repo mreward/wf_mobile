@@ -186,12 +186,37 @@ const actions = {
         commit(ConstructMutat.OrderLettering.name, payload)
     },
 
-    uploadOrderDecor({ state, commit }, payload) {
-        // TODO: @slain Implements this feature
-    },
+    /**
+     * Upload decor image
+     * @param commit
+     * @param dispatch
+     * @param payload
+     */
+    async uploadDecorImage({ commit, dispatch }, payload) {
+        console.log('STORE: MrewardСakeDesigner Module - uploadDecorImage')
+        try {
+            dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
 
-    uploadOrderLettering({ state, commit }, payload) {
-        // TODO: @slain Implements this feature
+            const response = await new MrewardСakeDesigner().UploadDecorImage({
+                imageURI: payload.imageURI,
+                options: payload.options
+            })
+
+            commit(ConstructMutat.OrderDecor.name, {
+                ...state.order.decor,
+                gallery: null,
+                custom: response
+            })
+
+            dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })
+
+            return response
+        } catch (error) {
+            await dispatch(constants.App.Actions.validateError, {
+                error,
+                log: 'STORE: MrewardСakeDesigner Module - uploadDecorImage'
+            }, { root: true })
+        }
     },
 
     async order({ commit, state, dispatch, rootState }, payload) {
@@ -319,7 +344,7 @@ const actions = {
 
 const getters = {
     agreement(state) {
-        return get(state.agreement, 'agreement', '')
+        return state.agreement
     },
     fillings(state) {
         return state.fillings

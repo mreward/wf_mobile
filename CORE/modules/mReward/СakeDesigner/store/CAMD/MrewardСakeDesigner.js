@@ -47,8 +47,7 @@ export default {
         setOrderFilling: 'MrewardСakeDesigner/setOrderFilling',
         setOrderDecor: 'MrewardСakeDesigner/setOrderDecor',
         setOrderLettering: 'MrewardСakeDesigner/setOrderLettering',
-        uploadOrderDecor: 'MrewardСakeDesigner/uploadOrderDecor',
-        uploadOrderLettering: 'MrewardСakeDesigner/uploadOrderLettering',
+        uploadDecorImage: 'MrewardСakeDesigner/uploadDecorImage',
         order: 'MrewardСakeDesigner/order',
         preCheck: 'MrewardСakeDesigner/preCheck'
     },

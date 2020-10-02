@@ -2,6 +2,7 @@
     <layout
         :layout="layout"
         :title="$t('m_cake_designer_title')"
+        :show-loader="false"
         button-left="none"
         page="cake-designer"
     >

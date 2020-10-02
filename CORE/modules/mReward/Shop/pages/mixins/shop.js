@@ -1,7 +1,7 @@
 import { mapActions, mapGetters } from 'vuex'
 import constants from '_vuex_constants'
 import PullToWrapper from '_pull_to_wrapper'
-import { get, isFunction } from 'lodash'
+import { get, isEmpty, isFunction } from 'lodash'
 const ScreenPromotionsDetails = () => import('_screen_promotions_details')
 
 export default {
@@ -32,6 +32,10 @@ export default {
         showCancelButton() {
             return this.search.length > 0
         },
+
+        isConstructor() {
+            return !isEmpty(this.agreement) && get(this.agreement, 'status', 0) === 1
+        }
     },
     watch: {
         async search(value) {
