@@ -5,8 +5,8 @@
     >
 
         <div class="page__content">
-            <template v-if="!loading && orders.length">
-                <div v-for="(item, i) in orders"
+            <template v-if="!loading && listData.length">
+                <div v-for="(item, i) in listData"
                      :key="i"
                      class="order-item"
                      @click="goToHistoryDetails(item)"
@@ -73,6 +73,7 @@
     import { mapActions, mapGetters } from 'vuex'
     import constants from '_vuex_constants'
     import moment from 'moment'
+    import { filter } from 'lodash'
 
     const ScreenOrderDetails = () => import('_screen_order_details')
 
@@ -96,7 +97,9 @@
                     return []
                 }
 
-                let list = this.orders
+                return filter(this.orders, order => order.check_status > 0)
+
+                // let list = this.orders
                 // if (this.search) {
                 //     list = list.filter(item => item.product_name.toLowerCase().includes(this.search.toLowerCase()))
                 //
