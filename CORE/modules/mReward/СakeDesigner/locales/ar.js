@@ -24,6 +24,7 @@ export default {
     m_cake_designer_exclusive_text: 'إذا كنت ترغب في طلب كعكة حصرية ، أرسل طلبًا وسنعاود الاتصال بك لتوضيح التفاصيل',
     m_cake_designer_feedback_add_photo: 'ارفاق الصورة',
     m_cake_designer_feedback_message: 'رسالة',
+    m_cake_designer_feedback_success_text: 'تم الارسال',
     m_cake_designer_feedback_text: 'أدخل النص',
     m_cake_designer_feedback_title: 'ردود الفعل',
     m_cake_designer_filling: 'حشوة',

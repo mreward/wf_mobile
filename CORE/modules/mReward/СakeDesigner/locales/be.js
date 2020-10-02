@@ -24,6 +24,7 @@ export default {
     m_cake_designer_exclusive_text: 'Калі вы хочаце замовіць эксклюзіўны торт, адпраўце запыт, і мы ператэлефануем вам, каб удакладніць дэталі',
     m_cake_designer_feedback_add_photo: 'Далучыце фотаздымак',
     m_cake_designer_feedback_message: 'Паведамленне',
+    m_cake_designer_feedback_success_text: 'Паведамленне адпраўлена',
     m_cake_designer_feedback_text: 'Увядзіце тэкст',
     m_cake_designer_feedback_title: 'Зваротная сувязь',
     m_cake_designer_filling: 'Запаўненне',

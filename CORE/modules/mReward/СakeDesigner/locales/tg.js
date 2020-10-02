@@ -24,6 +24,7 @@ export default {
     m_cake_designer_exclusive_text: 'Агар шумо хоҳед, ки торти истисноӣ фармоиш диҳед, дархост фиристед ва мо барои бозгӯи тафсилот ба шумо занг мезанем',
     m_cake_designer_feedback_add_photo: 'Аксро замима кунед',
     m_cake_designer_feedback_message: 'Паём',
+    m_cake_designer_feedback_success_text: 'Паём фиристода шуд',
     m_cake_designer_feedback_text: 'Матн ворид кунед',
     m_cake_designer_feedback_title: 'Алоқа',
     m_cake_designer_filling: 'Пуркунӣ',

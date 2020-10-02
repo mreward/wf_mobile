@@ -24,6 +24,7 @@ export default {
     m_cake_designer_exclusive_text: 'Эгерде сиз эксклюзивдүү тортко буйрук бергиңиз келсе, сурам жөнөтүңүз, биз сиз менен байланышып, чоо-жайын тактап алабыз',
     m_cake_designer_feedback_add_photo: 'Сүрөт тиркеңиз',
     m_cake_designer_feedback_message: 'Билдирүү',
+    m_cake_designer_feedback_success_text: 'Билдирүү жөнөтүлдү',
     m_cake_designer_feedback_text: 'Текст киргизиңиз',
     m_cake_designer_feedback_title: 'Пикир',
     m_cake_designer_filling: 'Толтуруу',

@@ -24,6 +24,7 @@ export default {
     m_cake_designer_exclusive_text: 'If you want to order an exclusive cake, send a request and we will call you back to clarify the details',
     m_cake_designer_feedback_add_photo: 'Attach a photo',
     m_cake_designer_feedback_message: 'Message',
+    m_cake_designer_feedback_success_text: 'Message sent',
     m_cake_designer_feedback_text: 'Enter text',
     m_cake_designer_feedback_title: 'Feedback',
     m_cake_designer_filling: 'Filling',

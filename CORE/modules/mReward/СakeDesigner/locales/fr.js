@@ -24,6 +24,7 @@ export default {
     m_cake_designer_exclusive_text: 'Si vous souhaitez commander un gâteau exclusif, envoyez une demande et nous vous rappellerons pour clarifier les détails',
     m_cake_designer_feedback_add_photo: 'Joindre une photo',
     m_cake_designer_feedback_message: 'Message',
+    m_cake_designer_feedback_success_text: 'Message envoyé',
     m_cake_designer_feedback_text: 'Entrez du texte',
     m_cake_designer_feedback_title: 'Retour d\'information',
     m_cake_designer_filling: 'Remplissage',

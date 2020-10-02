@@ -24,6 +24,7 @@ export default {
     m_cake_designer_exclusive_text: 'Егер сіз эксклюзивті тортқа тапсырыс бергіңіз келсе, сұраныс жіберіңіз, біз сізбен хабарласып, мәліметтерді нақтылауымыз керек',
     m_cake_designer_feedback_add_photo: 'Фотосуретті тіркеңіз',
     m_cake_designer_feedback_message: 'Хабар',
+    m_cake_designer_feedback_success_text: 'Хабар жіберілді',
     m_cake_designer_feedback_text: 'Мәтін енгізіңіз',
     m_cake_designer_feedback_title: 'Кері байланыс',
     m_cake_designer_filling: 'Толтыру',
