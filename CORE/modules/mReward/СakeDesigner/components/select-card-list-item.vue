@@ -2,7 +2,7 @@
     <div
         :class="['select-card-list__item', `select-card-list__item--${iconDirection}`]"
         :style="{
-            backgroundImage: `url(${value.img_main_800_600})`
+            backgroundImage: `url(${image})`
         }"
         @click="$emit('select', value)"
     >
@@ -26,6 +26,8 @@
 </template>
 
 <script>
+    import { get } from 'lodash'
+
     export default {
         name: 'select-list-item',
 
@@ -42,6 +44,10 @@
                 type: String,
                 default: 'right'
             },
+            defaultImage: {
+                type: String,
+                default: ''
+            },
             selected: {
                 type: Boolean,
                 default: false
@@ -49,6 +55,9 @@
         },
 
         computed: {
+            image() {
+                return get(this.value, 'img_main_800_600', this.defaultImage)
+            },
             isSelected() {
                 return this.selected
             }

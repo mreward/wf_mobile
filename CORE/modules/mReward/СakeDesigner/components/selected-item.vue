@@ -3,7 +3,8 @@
         :class="['selected-item', `selected-item--${iconDirection}`]"
     >
         <div
-            v-if="image"
+            v-if="withImage"
+            ref="image"
             class="selected-item__image"
             :style="{
                 backgroundImage: `url(${image})`
@@ -37,7 +38,7 @@
 </template>
 
 <script>
-    import { get } from 'lodash'
+    import { get, has } from 'lodash'
 
     export default {
         name: 'selected-item',
@@ -71,13 +72,55 @@
 
         computed: {
             image() {
-                return get(this.value, 'img_main_800_600', this.defaultImage)
+                return get(this.value, 'img_icon_40_40', this.defaultImage)
+            },
+            withImage() {
+                return this.image || has(this.value, 'imageURI')
             },
             description() {
                 return get(this.value, 'description', this.defaultDescription)
             },
             name() {
-                return get(this.value, 'name', get(this.value, 'text', this.defaultName))
+                return get(this.value, 'name', get(this.value, 'text', get(this.value, 'options.fileName', this.defaultName)))
+            }
+        },
+
+        watch: {
+            'value.imageURI'(value, oldValue) {
+                if (value && value !== oldValue) {
+                    this.loadImageFromFile(value)
+                }
+            }
+        },
+
+        mounted() {
+            if (has(this.value, 'imageURI')) {
+                this.loadImageFromFile(get(this.value, 'imageURI'))
+            }
+        },
+
+        methods: {
+            /**
+             * Load image from file
+             * @param imageURI is cdvfile:....... (string)
+             */
+            loadImageFromFile(imageURI) {
+                const element = this.$refs.image
+                window.resolveLocalFileSystemURL(imageURI, function success(fileEntry) {
+                    fileEntry.file((file) => {
+                        const reader = new FileReader()
+                        reader.onloadend = function() {
+                            if (this.result) {
+                                const blob = new Blob([new Uint8Array(this.result)], { type: 'image/png' })
+                                element.style.backgroundImage = `url(${window.URL.createObjectURL(blob)})`
+                                window.URL.revokeObjectURL(blob)
+                            }
+                        }
+                        reader.readAsArrayBuffer(file)
+                    })
+                }, () => {
+                    console.log(`File not found: ${imageURI}`)
+                })
             }
         }
     }

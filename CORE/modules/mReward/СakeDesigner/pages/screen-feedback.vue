@@ -27,6 +27,7 @@
                 class="bordered"
                 :value="item"
                 :default-name="$t('m_cake_designer_without_name')"
+                :default-description="$t('m_cake_designer_custom_image')"
                 @select="onDelete(item)"
             />
 
@@ -34,7 +35,6 @@
                 class="bordered"
                 :value="{}"
                 :with-price="false"
-                :disabled="true"
                 icon="icon-plus"
                 icon-direction="left"
                 :default-name="$t('m_cake_designer_feedback_add_photo')"
@@ -48,7 +48,7 @@
                     depressed
                     color="primary"
                     type="main"
-                    :disabled="isDisabledAdd"
+                    :disabled="isDisabledSend"
                     @click="sendFeedback"
                 >
                     {{ $t('m_send') }}
@@ -68,9 +68,10 @@
     import SelectListItem from '../components/select-list-item'
     import SelectedItem from '../components/selected-item'
 
-    import { isEmpty, filter } from 'lodash'
+    import { get, map, isEmpty, filter } from 'lodash'
 
     import * as libphonenumber from 'libphonenumber-js'
+    import Camera from '_CORE/plugins/common/Camera'
 
     export default {
         name: 'screen-feedback',
@@ -88,6 +89,7 @@
                     mobile: '',
                     text: ''
                 },
+                loading: false,
                 images: []
             }
         },
@@ -95,8 +97,8 @@
             ...mapGetters({
                 profile: constants.MrewardProfile.Getters.userProfile
             }),
-            isDisabledAdd() {
-                return isEmpty(this.form.text) || isEmpty(this.form.mobile)
+            isDisabledSend() {
+                return isEmpty(this.form.text) || isEmpty(this.form.mobile) || this.loading
             }
         },
         mounted() {
@@ -115,26 +117,81 @@
             ...mapActions({
                 popPage: constants.App.Actions.popPage,
                 uploadFeedbackImage: constants.MrewardСakeDesigner.Actions.uploadFeedbackImage,
-                feedback: constants.MrewardСakeDesigner.Actions.feedback
+                feedback: constants.MrewardСakeDesigner.Actions.feedback,
+                partnerCountry: constants.MrewardShop.Getters.country
             }),
             onDelete(item) {
-                this.images = filter(this.images, image => image.id !== item.id)
+                this.images = filter(this.images, image => image.imageURI !== item.imageURI)
             },
             goToAddImage() {
-                // TODO: create upload images
+                const buttons = [
+                    this.$t('m_profile_from_gallery'),
+                    this.$t('m_profile_take_picture'),
+                    this.$t('m_profile_cancel')
+                ]
+
+                this.$ons.openActionSheet({
+                    buttons,
+                    title: this.$t('m_profile_change_profile_picture'),
+                    cancelable: true,
+                    destructive: 2,
+                    class: 'alert--avatar',
+                    callback: (buttonIndex) => {
+                        if (buttonIndex !== -1 && buttonIndex !== 2) {
+                            let imageSource = 1 // Camera
+                            if (buttonIndex === 0) {
+                                imageSource = 0 // From Gallery
+                            }
+                            this.uploadDecor(imageSource)
+                        }
+                    }
+                })
+            },
+            async uploadDecor(imageSource) {
+                try {
+                    const picture = await Camera.GetPicture({
+                        imageSource,
+                        targetWidth: 1024,
+                        targetHeight: 768
+                    })
+                    const payload = await Camera.PreparePicture({
+                        picture,
+                        isHashFileName: false,
+                        fileKey: 'file',
+                        w: 1024,
+                        h: 768
+                    })
+
+                    this.images.push({ ...payload })
+                } catch (e) {
+                    console.log(e)
+                    this.$Alert.Error(e)
+                }
             },
             async sendFeedback() {
                 try {
-                    await this.feedback({
+                    this.loading = true
+                    const response = await this.feedback({
                         ...this.form,
                         phone: `${this.selectedCountry.code}${this.form.mobile}`
                     })
+
+                    await Promise.all(map(this.images, payload => {
+                        payload.options.params = {
+                            partner_id: get(response, 'partner_id'),
+                            feedback_id: get(response, 'feedback_id')
+                        }
+
+                        return this.uploadFeedbackImage({ ...payload })
+                    }))
 
                     this.popPage()
 
                     this.$Toast.Success(this.$t('m_cake_designer_feedback_success_text'))
                 } catch (e) {
                     this.$Alert.Error(e)
+                } finally {
+                    this.loading = false
                 }
             }
         }
