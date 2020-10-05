@@ -7,7 +7,11 @@
     >
 
         <template slot="toolbar">
-            <div class="toolbar toolbar--search toolbar--shop">
+            <div
+                :class="['toolbar', 'toolbar--search', 'toolbar--shop', {
+                    'toolbar--constructor': isConstructor
+                }]"
+            >
                 <div class="tabbar-button__wrapper">
                     <div class="country-row">
                         <span class="country-row__title">
@@ -89,14 +93,16 @@
                         <i class="icon-filters"/>
                     </v-btn>
                 </div>
-<!--                <v-btn-->
-<!--                        small-->
-<!--                        class="btn-constructor"-->
-<!--                >-->
-<!--                    <img :src="ImgConstructor"/>-->
-<!--                    <span>Конструктор тортов</span>-->
-<!--                </v-btn>-->
-
+                <v-btn
+                    v-if="isConstructor"
+                    small
+                    class="btn-constructor"
+                    :disabled="loaderUpdate"
+                    @click="contructorDialog = true"
+                >
+                    <img :src="ImgConstructor"/>
+                    <span>{{ $t('m_cake_designer_button_title') }}</span>
+                </v-btn>
             </div>
         </template>
 
@@ -183,6 +189,52 @@
             </v-list>
         </v-dialog>
 
+        <v-dialog
+            v-if="isConstructor"
+            v-model="contructorDialog"
+            content-class="agreement--dialog"
+        >
+            <v-list
+                flat
+            >
+                <div class="dialog-header">
+                    <v-subheader>{{ $t('m_cake_designer_agreement_title') }}</v-subheader>
+                    <v-btn
+                        icon
+                        fab
+                        @click="contructorDialog = false"
+                    >
+                        <i class="icon icon-close" />
+                    </v-btn>
+                </div>
+
+                <div
+                    class="dialog-content"
+                    v-html="agreement.agreement"
+                />
+
+                <v-checkbox
+                    v-model="agreementChecked"
+                    :label="$t('m_cake_designer_agreement_check')"
+                    off-icon=""
+                    on-icon="icon-checkmark"
+                    :ripple="false"
+                />
+
+                <div class="designer__btn-submit">
+                    <v-btn
+                        block
+                        depressed
+                        color="primary"
+                        type="main"
+                        :disabled="!agreementChecked"
+                        @click="goToCakeDesigner"
+                    >
+                        {{ $t('m_next') }}
+                    </v-btn>
+                </div>
+            </v-list>
+        </v-dialog>
     </layout>
 </template>
 
@@ -197,6 +249,7 @@
     import Favorite from './favorite'
     import Top from './top'
     import Search from './search'
+    import ScreenDesigner from '_screen_designer'
 
     export default {
         name: 'screen-shop',
@@ -219,8 +272,19 @@
                 img: ShopIllustration,
                 ImgConstructor,
                 countryDialog: false,
+                contructorDialog: false,
+                agreementChecked: false,
             }
         },
+        methods: {
+            goToCakeDesigner(item) {
+                this.contructorDialog = false
+                this.agreementChecked = false
+                this.pushPage({
+                    extends: ScreenDesigner
+                })
+            }
+        }
     }
 </script>
 
@@ -276,11 +340,16 @@
         }
     }
 
-    .toolbar.toolbar--shop {
-        display: flex;
-        flex-direction: column;
-        /*height: 230px;*/
-        height: 174px;
+    .toolbar {
+        &--shop {
+            display: flex;
+            flex-direction: column;
+            height: 174px;
+        }
+
+        &--constructor {
+            height: 230px !important;
+        }
     }
 
     .country-row {
@@ -345,6 +414,10 @@
         box-shadow: unset !important;
         padding: 0 16px;
         justify-content: start;
+
+        &.v-btn.theme--light.v-btn--disabled:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined):not(.v-btn--secondary) {
+            background-color: #F5F7FA !important;
+        }
 
         img {
             height: 20px;
@@ -421,7 +494,8 @@
         }
     }
 
-    .country--dialog {
+    .country--dialog,
+    .agreement--dialog {
         border-radius: 8px;
         box-shadow: 0px 8px 15px rgba(39, 45, 45, 0.06);
 
@@ -487,6 +561,15 @@
 
         .v-item-group {
             padding-top: 4px;
+        }
+    }
+
+    .agreement--dialog {
+        margin: 16px;
+
+        .dialog-content {
+            margin-top: 16px;
+            margin-bottom: 14px;
         }
     }
 </style>

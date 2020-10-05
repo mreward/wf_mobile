@@ -1,7 +1,7 @@
 import { mapActions, mapGetters } from 'vuex'
 import constants from '_vuex_constants'
 import PullToWrapper from '_pull_to_wrapper'
-import isFunction from 'lodash/isFunction'
+import { get, isEmpty, isFunction } from 'lodash'
 const ScreenPromotionsDetails = () => import('_screen_promotions_details')
 
 export default {
@@ -26,11 +26,16 @@ export default {
             cart: constants.MrewardShop.Getters.cart,
             totalCartProduct: constants.MrewardShop.Getters.totalCartProduct,
             country: constants.MrewardShop.Getters.country,
+            agreement: constants.MrewardСakeDesigner.Getters.agreement,
         }),
 
         showCancelButton() {
             return this.search.length > 0
         },
+
+        isConstructor() {
+            return !isEmpty(this.agreement) && get(this.agreement, 'status', 0) === 1
+        }
     },
     watch: {
         async search(value) {
@@ -61,6 +66,9 @@ export default {
 
             await this.loadSelectCountry()
 
+            await this.getAgreement({
+                partnerId: get(this.country, 'config.id')
+            })
         } catch (e) {
             this.$Alert.Error(e)
         }
@@ -85,6 +93,7 @@ export default {
             getProductSearch: constants.MrewardShop.Actions.getProductSearch,
             clearProductSearch: constants.MrewardShop.Actions.clearProductSearch,
             loadSelectCountry: constants.MrewardShop.Actions.loadSelectCountry,
+            getAgreement: constants.MrewardСakeDesigner.Actions.getAgreement,
         }),
         setActiveTab(name, index) {
             this.tab = name;
@@ -107,6 +116,9 @@ export default {
                 this.loaderUpdate = true
                 this.countryDialog = false
                 await this.selectCountry(item)
+                await this.getAgreement({
+                    partnerId: get(this.country, 'config.id')
+                })
             } catch (e) {
                 console.log(e)
             }

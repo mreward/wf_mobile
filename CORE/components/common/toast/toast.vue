@@ -11,13 +11,19 @@
                 />
             </div>
             <div>
-                <div class="toast-title">
+                <div
+                    v-show="title"
+                    class="toast-title"
+                >
                     {{ title }}
                 </div>
-                <div>
+                <div v-show="text">
                     {{ text }}
                 </div>
-                <div class="text--muted">
+                <div
+                    v-if="time"
+                    class="text--muted"
+                >
                     {{ formatTime(time) }}
                 </div>
             </div>

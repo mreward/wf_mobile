@@ -316,7 +316,80 @@ export default {
             method: 'POST',
             apiVersion: 'v2',
             apiTag: '/client'
+        }
+    },
+    Construct: {
+        GetAgreement: {
+            url: '/construct-agreement',
+            method: 'GET',
+            apiVersion: 'v2',
+            apiTag: '/client/construct'
         },
-
+        GetDecor: {
+            url: '/construct-decor',
+            method: 'GET',
+            apiVersion: 'v2',
+            apiTag: '/client/construct'
+        },
+        GetDecorGallery: {
+            url: '/gallery',
+            method: 'GET',
+            apiVersion: 'v2',
+            apiTag: '/client/construct'
+        },
+        GetFillings: {
+            url: '/construct-filling',
+            method: 'GET',
+            apiVersion: 'v2',
+            apiTag: '/client/construct'
+        },
+        GetLetterings: {
+            url: '/construct-lettering-list',
+            method: 'GET',
+            apiVersion: 'v2',
+            apiTag: '/client/construct'
+        },
+        GetLetteringCategories: {
+            url: '/construct-lettering-category',
+            method: 'GET',
+            apiVersion: 'v2',
+            apiTag: '/client/construct'
+        },
+        GetLetteringGallery: {
+            url: '/construct-lettering-gallery',
+            method: 'GET',
+            apiVersion: 'v2',
+            apiTag: '/client/construct'
+        },
+        GetDeliveryPreset: {
+            url: '/construct-delivery-preset',
+            method: 'GET',
+            apiVersion: 'v2',
+            apiTag: '/client/construct'
+        },
+        UploadDecorImage: {
+            url: '/construct-decor-user-image',
+            method: 'POST',
+            apiVersion: 'v2',
+            apiTag: '/client/construct'
+        },
+        UploadFeedbackImage: {
+            url: '/construct-feedback-image',
+            method: 'POST',
+            apiVersion: 'v2',
+            apiTag: '/client/construct'
+        },
+        Feedback: {
+            url: '/construct-feedback',
+            method: 'POST',
+            apiVersion: 'v2',
+            apiTag: '/client/construct'
+        },
+        Order: {
+            url: '/construct-order',
+            method: 'POST',
+            apiVersion: 'v2',
+            apiTag: '/client/construct'
+        }
     }
 }

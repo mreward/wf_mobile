@@ -72,7 +72,7 @@ export default class ApiClient {
         }
 
         if (this.authToken) {
-            if(config.partnerKey) {
+            if (config.partnerKey) {
                 const encodedAuthorizationToken = btoa(`${config.partnerKey}:`)
                 headers.Authorization = `Basic ${encodedAuthorizationToken}`
             } else {
@@ -153,6 +153,17 @@ export default class ApiClient {
             }
             case this.APIEndPoints.Shop.GetProductsCategory.url: {
                 return `${apiEndpoint.url}?group_id=${json.group_id}`
+            }
+            case this.APIEndPoints.Construct.GetAgreement.url:
+            case this.APIEndPoints.Construct.GetDecor.url:
+            case this.APIEndPoints.Construct.GetFillings.url:
+            case this.APIEndPoints.Construct.GetLetterings.url:
+            case this.APIEndPoints.Construct.GetDeliveryPreset.url: {
+                return `${apiEndpoint.url}?partner=${json.partnerId}`
+            }
+            case this.APIEndPoints.Construct.GetDecorGallery.url:
+            case this.APIEndPoints.Construct.GetLetteringGallery.url: {
+                return `${apiEndpoint.url}?partner_id=${json.partnerId}`
             }
 
             default: {
