@@ -12,6 +12,10 @@ export default {
             name: 'DECORS',
             nameGlobal: 'MrewardСakeDesigner/DECORS'
         },
+        DecorCategories: {
+            name: 'DECOR_CATEGORIES',
+            nameGlobal: 'MrewardСakeDesigner/DECOR_CATEGORIES'
+        },
         DecorGallery: {
             name: 'DECOR_GALLERY',
             nameGlobal: 'MrewardСakeDesigner/DECOR_GALLERY'
@@ -45,6 +49,7 @@ export default {
         getAgreement: 'MrewardСakeDesigner/getAgreement',
         getFillings: 'MrewardСakeDesigner/getFillings',
         getDecor: 'MrewardСakeDesigner/getDecor',
+        getDecorImageCategories: 'MrewardСakeDesigner/getDecorImageCategories',
         getDecorGallery: 'MrewardСakeDesigner/getDecorGallery',
         getLetterings: 'MrewardСakeDesigner/getLetterings',
         getLetteringGallery: 'MrewardСakeDesigner/getLetteringGallery',
@@ -62,6 +67,7 @@ export default {
         agreement: 'MrewardСakeDesigner/agreement',
         fillings: 'MrewardСakeDesigner/fillings',
         decors: 'MrewardСakeDesigner/decors',
+        decorCategories: 'MrewardСakeDesigner/decorCategories',
         decorGallery: 'MrewardСakeDesigner/decorGallery',
         letterings: 'MrewardСakeDesigner/letterings',
         letteringGallery: 'MrewardСakeDesigner/letteringGallery',

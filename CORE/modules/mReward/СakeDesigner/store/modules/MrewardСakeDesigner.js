@@ -15,6 +15,7 @@ const state = {
     agreement: {},
     fillings: [],
     decors: [],
+    decorCategories: [],
     decorGallery: [],
     letterings: [],
     letteringGallery: [],
@@ -45,6 +46,9 @@ const mutations = {
     },
     [ConstructMutat.Decors.name]: (state, data) => {
         state.decors = data
+    },
+    [ConstructMutat.DecorCategories.name]: (state, data) => {
+        state.decorCategories = data
     },
     [ConstructMutat.DecorGallery.name]: (state, data) => {
         state.decorGallery = data
@@ -120,6 +124,24 @@ const actions = {
             await dispatch(constants.App.Actions.validateError, {
                 error,
                 log: 'STORE: MrewardСakeDesigner Module - getDecor'
+            }, {root: true})
+        }
+    },
+
+    async getDecorImageCategories({ state, dispatch, commit }, payload) {
+        console.log('STORE: MrewardСakeDesigner Module - getDecorImageCategories')
+        try {
+            dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
+            const response = await new MrewardСakeDesigner().GetDecorImageCategories(payload)
+            commit(ConstructMutat.DecorCategories.name, get(response, 'category.0.category', []))
+
+            dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })
+
+            return response
+        } catch (error) {
+            await dispatch(constants.App.Actions.validateError, {
+                error,
+                log: 'STORE: MrewardСakeDesigner Module - getDecorImageCategories'
             }, {root: true})
         }
     },
@@ -424,6 +446,9 @@ const getters = {
     },
     decors(state) {
         return state.decors
+    },
+    decorCategories(state) {
+        return state.decorCategories
     },
     decorGallery(state) {
         return state.decorGallery

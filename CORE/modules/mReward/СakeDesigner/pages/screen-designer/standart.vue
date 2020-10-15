@@ -43,7 +43,7 @@
                                 <div
                                     v-if="decor.required_gallery && !order.decor.gallery && !order.decor.custom"
                                     class="btn-select"
-                                    @click="goToDecorCatalog"
+                                    @click="goToDecorCategories"
                                 >
                                     <span>{{ $t('m_cake_designer_select_from_catalog') }}</span>
                                     <i class="icon-closet" />
@@ -207,6 +207,7 @@
     import SelectList from '../../components/select-list'
     import SelectListItem from '../../components/select-list-item'
     import SelectedItem from '../../components/selected-item'
+    import SelectDesignerCategories from '_screen_designer_categories'
     import SelectDesignerCatalog from '_screen_designer_catalog'
     import SelectDesignerAddLettering from '_screen_designer_add_lettering'
     import ScreenCheckout from '_screen_designer_checkout'
@@ -355,9 +356,9 @@
                     gallery: null
                 })
             },
-            goToDecorCatalog(item) {
+            goToDecorCategories(item) {
                 this.pushPage({
-                    extends: SelectDesignerCatalog,
+                    extends: SelectDesignerCategories,
                     props: {
                         decor: {
                             type: Object,
@@ -376,37 +377,6 @@
                             default: () => {
                                 return this.$t('m_cake_designer_not_found_decors')
                             }
-                        }
-                    },
-                    computed: {
-                        ...mapGetters({
-                            items: constants.MrewardСakeDesigner.Getters.decorGallery,
-                            country: constants.MrewardShop.Getters.country
-                        })
-                    },
-                    async created () {
-                        try {
-                            await this.getDecorGallery({
-                                partnerId: get(this.country, 'config.id')
-                            })
-                        } catch (e) {
-                            this.$Alert.Error(e)
-                        } finally {
-                            this.loading = false
-                        }
-                    },
-                    methods: {
-                        ...mapActions({
-                            getDecorGallery: constants.MrewardСakeDesigner.Actions.getDecorGallery,
-                            setOrderDecor: constants.MrewardСakeDesigner.Actions.setOrderDecor,
-                            popPage: constants.App.Actions.popPage
-                        }),
-                        async goToBack() {
-                            await this.setOrderDecor({
-                                item: this.decor,
-                                gallery: this.item
-                            })
-                            this.popPage()
                         }
                     }
                 })
