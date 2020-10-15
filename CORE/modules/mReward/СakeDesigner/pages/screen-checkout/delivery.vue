@@ -26,7 +26,7 @@
                     @input="$v.form.address.$touch()"
                     @blur="$v.form.address.$touch()"
                 >
-                    <template v-slot:item="{ index, item }">
+                    <template v-slot:item="{ item }">
                         {{ item.address }}
                         <v-spacer />
 
@@ -86,6 +86,19 @@
                             </v-btn>
                         </v-date-picker>
                     </v-dialog>
+
+                    <v-combobox
+                        v-model="form.time"
+                        :items="avialableTimes"
+                        item-text="label"
+                        item-value="value"
+                        :label="$t('m_shop_time')"
+                        :return-object="true"
+                        class="combobox-address"
+                        :error-messages="timeErrors"
+                        @input="$v.form.time.$touch()"
+                        @blur="$v.form.time.$touch()"
+                    />
                 </div>
 
                 <!-- <div class="date-time__wrap">
@@ -232,7 +245,7 @@
     import moment from 'moment'
     import MixinChooseCity from '_mixin_choose_city'
     import { mapActions, mapGetters } from 'vuex'
-    import { get } from 'lodash'
+    import { get, filter } from 'lodash'
     import constants from '_vuex_constants'
     import MaskPhone from '_PLUGINS/common/MaskPhone'
     import InputBase from '_CORE/components/common/inputs/input-base'
@@ -268,6 +281,36 @@
                 minDate: moment().add(1, 'days').format('YYYY-MM-DD'),
                 // minTime: '',
                 maxDate: moment().add(10, 'days').format('YYYY-MM-DD'),
+                times: [
+                    {
+                        label: '10:00 - 12:00',
+                        value: {
+                            from: '10:00',
+                            to: '12:00'
+                        }
+                    },
+                    {
+                        label: '12:00 - 14:00',
+                        value: {
+                            from: '12:00',
+                            to: '14:00'
+                        }
+                    },
+                    {
+                        label: '14:00 - 16:00',
+                        value: {
+                            from: '14:00',
+                            to: '16:00'
+                        }
+                    },
+                    {
+                        label: '16:00 - 18:00',
+                        value: {
+                            from: '16:00',
+                            to: '18:00'
+                        }
+                    }
+                ],
                 errorMessages: {
                     'id_city': ''
                 }
@@ -285,6 +328,18 @@
             }),
             delivery () {
                 return this.deliveryList[0] || {}
+            },
+            avialableTimes () {
+                return filter(this.times, (time) => {
+                    const minDate = (moment(this.minDate, 'YYYY-MM-DD HH:mm') || moment())
+                    const maxDate = (moment(this.maxDate, 'YYYY-MM-DD HH:mm') || moment())
+                    const date = (moment(this.form.date) || moment()).format('YYYY-MM-DD')
+
+                    const fromBetween = moment(`${date} ${time.value.from}`, 'YYYY-MM-DD HH:mm').isBetween(minDate, maxDate)
+                    const toBetween = moment(`${date} ${time.value.to}`, 'YYYY-MM-DD HH:mm').isBetween(minDate, maxDate)
+
+                    return fromBetween || toBetween
+                })
             },
             addressErrors() {
                 const errors = []
@@ -328,8 +383,8 @@
                 this.form.city.name = value
             },
             deliveryPreset(value) {
-                this.minDate = moment().add(value.min_hours, 'hours').format('YYYY-MM-DD')
-                this.maxDate = moment().add(value.max_hours, 'hours').format('YYYY-MM-DD')
+                this.minDate = moment().add(value.min_hours, 'hours').format('YYYY-MM-DD HH:mm')
+                this.maxDate = moment().add(value.max_hours, 'hours').format('YYYY-MM-DD HH:mm')
             }
         },
         async created () {
@@ -431,14 +486,12 @@
                             order: 2
                         }
                     },
-                    // time: {
-                    //     required: requiredIf(function() {
-                    //         return this.form.time || this.form.date
-                    //     }),
-                    //     $params: {
-                    //         order: 3
-                    //     }
-                    // },
+                    time: {
+                        required,
+                        $params: {
+                            order: 3
+                        }
+                    },
                     // timeEnd: {
                     //     required: requiredIf(function() {
                     //         return this.form.timeEnd || this.form.date
@@ -459,132 +512,138 @@
 
 <style lang="scss">
     .page[page="delivery"] {
-    .page__content {
-        padding-top: 16px;
-    }
+        .page__content {
+            padding-top: 16px;
+        }
     }
     .delivery {
-    &__info {
-        background: #F5F7FA;
-        border-radius: 8px;
-        padding: 16px;
-        display: flex;
-        margin: 16px 0;
+        &__info {
+            background: #F5F7FA;
+            border-radius: 8px;
+            padding: 16px;
+            display: flex;
+            margin: 16px 0;
 
-        &__icon {
-        color: #6D0978;
+            &__icon {
+            color: #6D0978;
+            }
+
+            &__text {
+            font-style: normal;
+            font-weight: normal;
+            font-size: 12px;
+            line-height: 16px;
+            color: #000000;
+            padding-left: 10px;
+            }
         }
 
-        &__text {
-        font-style: normal;
-        font-weight: normal;
-        font-size: 12px;
-        line-height: 16px;
-        color: #000000;
-        padding-left: 10px;
-        }
-    }
+        &__total_amount {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 16px;
 
-    &__total_amount {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 16px;
+            &__title {
+            font-size: 13px;
+            line-height: 18px;
+            letter-spacing: -0.078px;
+            color: #000000;
+            }
 
-        &__title {
-        font-size: 13px;
-        line-height: 18px;
-        letter-spacing: -0.078px;
-        color: #000000;
-        }
-
-        &__price {
-        ont-weight: 600;
-        font-size: 15px;
-        line-height: 20px;
-        text-align: right;
-        letter-spacing: -0.24px;
-        color: #000000;
-        }
-    }
-
-    &__comment {
-        max-height: unset;
-        padding: 16px;
-        border: 1px solid #CECED2;
-        box-sizing: border-box;
-        border-radius: 6px;
-
-        &__title {
-        font-style: normal;
-        font-weight: normal;
-        font-size: 12px;
-        line-height: 16px;
-        color: rgba(60, 60, 67, 0.6);
-        margin-bottom: 4px;
-        margin-top: 16px;
+            &__price {
+            ont-weight: 600;
+            font-size: 15px;
+            line-height: 20px;
+            text-align: right;
+            letter-spacing: -0.24px;
+            color: #000000;
+            }
         }
 
-        textarea {
-        padding: 12px 16px;
-        font-size: 15px;
-        line-height: 20px;
-        /* identical to box height, or 133% */
+        &__comment {
+            max-height: unset;
+            padding: 16px;
+            border: 1px solid #CECED2;
+            box-sizing: border-box;
+            border-radius: 6px;
 
-        letter-spacing: -0.24px;
+            &__title {
+            font-style: normal;
+            font-weight: normal;
+            font-size: 12px;
+            line-height: 16px;
+            color: rgba(60, 60, 67, 0.6);
+            margin-bottom: 4px;
+            margin-top: 16px;
+            }
+
+            textarea {
+            padding: 12px 16px;
+            font-size: 15px;
+            line-height: 20px;
+            /* identical to box height, or 133% */
+
+            letter-spacing: -0.24px;
+            }
         }
-    }
 
-    &__btn-pay {
-        padding-bottom: 50px;
-    }
+        &__btn-pay {
+            padding-bottom: 50px;
+        }
 
-    &__date {
-        /*padding-right: 16px;*/
-    }
+        &__date {
+            /*padding-right: 16px;*/
+        }
     }
 
     .date-time__wrap {
-    display: flex;
+        display: flex;
+        margin: 0 -8px;
+
+        &> * {
+            margin: 0 8px;
+            flex: 1;
+        }
     }
 
     .v-application .primary {
-    background-color: #6D0978 !important;
-    border-color: #6D0978 !important;
+        background-color: #6D0978 !important;
+        border-color: #6D0978 !important;
     }
 
     .v-date-picker-table--date .v-btn {
-    min-height: 32px !important;
+        min-height: 32px !important;
     }
 
     .v-application .accent {
-    background-color: #6D0978 !important;
-    border-color: #6D0978 !important;
+        background-color: #6D0978 !important;
+        border-color: #6D0978 !important;
     }
 
     .v-date-picker-table .v-btn.v-btn--active {
-    .v-btn__content {
-        color: #fff !important;
-    }
+        .v-btn__content {
+            color: #fff !important;
+        }
     }
 
     .v-date-picker-table .v-btn--disabled {
-    .v-btn__content {
-        color: #949494;
-    }
+        .v-btn__content {
+            color: #949494;
+        }
     }
 
     .v-autocomplete__content {
-    .v-list .v-list-item {
-        height: 42px;
-    }
+        .v-list .v-list-item {
+            height: 42px;
+        }
 
-    .v-btn {
-        height: 48px;
-        width: 48px;
-    }
-    ons-icon {
-        color: #6D0978;
-    }
+        .v-btn {
+            height: 48px;
+            width: 48px;
+        }
+        ons-icon {
+            color: #6D0978;
+        }
     }
 </style>
