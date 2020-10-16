@@ -9,11 +9,13 @@
                         fullscreen
                         swipeable
                         auto-scroll
-                        overscrollable
                         centered
                         auto-scroll-ratio="0.1"
                         item-height="250"
                         :index.sync="carouselIndex"
+                        :on-swipe="onSwipe"
+                        @postchange="postChange"
+                        @refresh="refreshScroll"
                 >
                     <v-ons-carousel-item
                             v-for="(item, index) of product.images"
@@ -279,6 +281,9 @@
 
             this.loader = false
         },
+        mounted () {
+            this.postChange()
+        },
         methods: {
             ...mapActions({
                 popPage: constants.App.Actions.popPage,
@@ -295,7 +300,25 @@
                 await this.setFavorite(item)
                 this.$bus.$emit('showPopoverFavorite')
             },
-        },
+            onSwipe (e) {
+                const html = document.getElementsByTagName('html')[0]
+
+                if (!html.hasAttribute('scroll-pictures')) {
+                    html.setAttribute('scroll-pictures', '')
+                }
+            },
+            postChange (e) {
+                const html = document.getElementsByTagName('html')[0]
+
+                if (html.hasAttribute('scroll-pictures')) {
+                    html.removeAttribute('scroll-pictures')
+                }
+            },
+            refreshScroll () {
+                this.postChange()
+            },
+
+        }
     }
 </script>
 
@@ -346,6 +369,14 @@
 
         .button-cart {
             bottom: 34px;
+        }
+    }
+
+    html[scroll-pictures] {
+        .page[page="product-details"] {
+            .page__content {
+                overflow: hidden;
+            }
         }
     }
 
