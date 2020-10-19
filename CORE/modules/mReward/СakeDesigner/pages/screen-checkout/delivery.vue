@@ -87,7 +87,7 @@
                         </v-date-picker>
                     </v-dialog>
 
-                    <v-combobox
+                    <v-select
                         v-model="form.time"
                         :items="avialableTimes"
                         item-text="label"
@@ -96,9 +96,11 @@
                         :return-object="true"
                         class="combobox-address"
                         :error-messages="timeErrors"
-                        @input="$v.form.time.$touch()"
-                        @blur="$v.form.time.$touch()"
-                    />
+                    >
+                        <template v-slot:no-data>
+                            <v-list-item>{{ $t('m_shop_time_no_data','Нет доступного времени') }}</v-list-item>
+                        </template>
+                    </v-select>
                 </div>
 
                 <!-- <div class="date-time__wrap">

@@ -43,5 +43,6 @@ export default {
     m_cake_designer_weight: 'Вага торта',
     m_cake_designer_weight_value: '{значення} кг',
     m_cake_designer_without_description: 'без опису',
-    m_cake_designer_without_name: 'Без назви'
+    m_cake_designer_without_name: 'Без назви',
+    m_shop_time_no_data: 'Немає часу'
 }

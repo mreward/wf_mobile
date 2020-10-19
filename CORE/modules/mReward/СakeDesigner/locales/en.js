@@ -43,5 +43,6 @@ export default {
     m_cake_designer_weight: 'Cake weight',
     m_cake_designer_weight_value: '{value} kg',
     m_cake_designer_without_description: 'No description',
-    m_cake_designer_without_name: 'Untitled'
+    m_cake_designer_without_name: 'Untitled',
+    m_shop_time_no_data: 'No time available'
 }

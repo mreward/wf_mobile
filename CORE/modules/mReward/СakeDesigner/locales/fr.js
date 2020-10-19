@@ -43,5 +43,6 @@ export default {
     m_cake_designer_weight: 'Poids du gâteau',
     m_cake_designer_weight_value: '{value} kg',
     m_cake_designer_without_description: 'Pas de description',
-    m_cake_designer_without_name: 'Sans titre'
+    m_cake_designer_without_name: 'Sans titre',
+    m_shop_time_no_data: 'Pas de temps disponible'
 }

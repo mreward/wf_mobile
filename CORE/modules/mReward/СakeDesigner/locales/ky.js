@@ -43,5 +43,6 @@ export default {
     m_cake_designer_weight: 'Торттун салмагы',
     m_cake_designer_weight_value: '{маани} кг',
     m_cake_designer_without_description: 'Сүрөттөмө жок',
-    m_cake_designer_without_name: 'Untitled'
+    m_cake_designer_without_name: 'Untitled',
+    m_shop_time_no_data: 'Убакыт жок'
 }

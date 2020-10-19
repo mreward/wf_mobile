@@ -43,5 +43,6 @@ export default {
     m_cake_designer_weight: 'وزن الكيك',
     m_cake_designer_weight_value: '{القيمة} كجم',
     m_cake_designer_without_description: 'بدون وصف',
-    m_cake_designer_without_name: 'بدون عنوان'
+    m_cake_designer_without_name: 'بدون عنوان',
+    m_shop_time_no_data: 'لا يوجد وقت متاح'
 }
