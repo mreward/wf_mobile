@@ -331,6 +331,12 @@ export default {
             apiVersion: 'v2',
             apiTag: '/client/construct'
         },
+        GetDecorImageCategories: {
+            url: '/construct-decor-image-category',
+            method: 'GET',
+            apiVersion: 'v2',
+            apiTag: '/client/construct'
+        },
         GetDecorGallery: {
             url: '/gallery',
             method: 'GET',

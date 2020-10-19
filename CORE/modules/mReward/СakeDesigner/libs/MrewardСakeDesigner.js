@@ -25,6 +25,18 @@ export default class MrewardСakeDesigner extends ApiClient {
             })
     }
 
+    GetDecorImageCategories(json) {
+        this.logger('MrewardСakeDesigner:GetDecor')
+        const requestData = { ...this.APIEndPoints.Construct.GetDecorImageCategories }
+
+        return this.sendRequest(
+            requestData,
+            {
+                ...json,
+                networkFirst: true
+            })
+    }
+
     GetDecorGallery(json) {
         this.logger('MrewardСakeDesigner:GetDecorGallery')
         const requestData = { ...this.APIEndPoints.Construct.GetDecorGallery }

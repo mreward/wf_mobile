@@ -13,6 +13,7 @@
                 :key="index"
                 :value="item"
                 :with-price="withPrice"
+                :icon="icon"
                 :currency="currency"
                 :selected="isSelected(item)"
                 :default-name="defaultItemName"
@@ -67,6 +68,10 @@
             title: {
                 type: String,
                 default: ''
+            },
+            icon: {
+                type: String,
+                default: 'icon-checkmark'
             },
             notFoundMessage: {
                 type: String,

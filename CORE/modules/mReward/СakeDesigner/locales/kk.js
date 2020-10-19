@@ -43,5 +43,6 @@ export default {
     m_cake_designer_weight: 'Торттың салмағы',
     m_cake_designer_weight_value: '{мән} кг',
     m_cake_designer_without_description: 'Сипаттама жоқ',
-    m_cake_designer_without_name: 'Атауы жоқ'
+    m_cake_designer_without_name: 'Атауы жоқ',
+    m_shop_time_no_data: 'Уақыт жоқ'
 }

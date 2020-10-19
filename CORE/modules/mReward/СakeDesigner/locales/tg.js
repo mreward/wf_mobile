@@ -43,5 +43,6 @@ export default {
     m_cake_designer_weight: 'Вазни торт',
     m_cake_designer_weight_value: '{арзиш} кг',
     m_cake_designer_without_description: 'Тавсиф нест',
-    m_cake_designer_without_name: 'Беном'
+    m_cake_designer_without_name: 'Беном',
+    m_shop_time_no_data: 'Вақт нест'
 }

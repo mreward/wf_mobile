@@ -156,14 +156,17 @@ export default class ApiClient {
             }
             case this.APIEndPoints.Construct.GetAgreement.url:
             case this.APIEndPoints.Construct.GetDecor.url:
+            case this.APIEndPoints.Construct.GetDecorImageCategories.url:
             case this.APIEndPoints.Construct.GetFillings.url:
             case this.APIEndPoints.Construct.GetLetterings.url:
             case this.APIEndPoints.Construct.GetDeliveryPreset.url: {
                 return `${apiEndpoint.url}?partner=${json.partnerId}`
             }
-            case this.APIEndPoints.Construct.GetDecorGallery.url:
             case this.APIEndPoints.Construct.GetLetteringGallery.url: {
                 return `${apiEndpoint.url}?partner_id=${json.partnerId}`
+            }
+            case this.APIEndPoints.Construct.GetDecorGallery.url: {
+                return `${apiEndpoint.url}?partner_id=${json.partnerId}&decor_id=${json.decorId}&category_id=${json.categoryId}`
             }
 
             default: {

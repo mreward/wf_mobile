@@ -43,5 +43,6 @@ export default {
     m_cake_designer_weight: 'Вага пірага',
     m_cake_designer_weight_value: '{значэнне} кг',
     m_cake_designer_without_description: 'Без апісання',
-    m_cake_designer_without_name: 'Без назвы'
+    m_cake_designer_without_name: 'Без назвы',
+    m_shop_time_no_data: 'Часу няма'
 }
