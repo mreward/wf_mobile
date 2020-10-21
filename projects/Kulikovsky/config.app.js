@@ -19,6 +19,13 @@ const LogRocketId = {
     PROD: 'kulikovsky/kulikovsky' // required
 }
 
+const appCenter = {
+    ios: 'WalletFactory/Kulikovsky-IOS',
+    android: 'WalletFactory/Kulikovsky',
+    iosSecret: 'feec1eb3-f11e-427f-b70b-fd124d478253',
+    androidSecret: 'cc4bffd3-2984-408c-af0d-ec8e22a77ccc'
+}
+
 const PROD = {
     meta: [
         {
@@ -63,6 +70,7 @@ const PROD = {
             }
         }
     },
+    appCenter,
     mainJsModules,
     appleTeamId: 'N9UTTLR2F7',
     contacts: {
@@ -121,6 +129,12 @@ const Environment = {
                 }
             }
         ],
+        appCenter: {
+            ios: 'WalletFactory/Kulikovsky-SIT-IOS',
+            android: 'WalletFactory/Kulikovsky-SIT',
+            iosSecret: '2b738d27-ad2a-4482-a5de-a660c5646880',
+            androidSecret: '368d93b7-987e-45bc-a63d-55f8c153f7e7'
+        },
         nameApp: 'Куликовский SIT', // required
         bundleID: 'pro.mwallet.kulikovskysit',
         hockeyAppID: '368d93b7987e45bca63d55f8c153f7e7',
@@ -137,6 +151,12 @@ const Environment = {
                 }
             }
         ],
+        appCenter: {
+            ios: 'WalletFactory/Kulikovsky-UAT-IOS',
+            android: 'WalletFactory/Kulikovsky-UAT',
+            iosSecret: '5e035a5b-54d8-4b96-8bef-6e5e628d50a8',
+            androidSecret: 'dbf74cfb-fcf6-42c4-81d6-83b7e3e46a79'
+        },
         nameApp: 'Куликовский UAT', // required
         bundleID: 'pro.mwallet.kulikovskyuat',
         hockeyAppID: 'dbf74cfbfcf642c481d683b7e3e46a79', // TODO change

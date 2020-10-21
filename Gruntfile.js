@@ -12,41 +12,34 @@ module.exports = function (grunt) {
             grunt.option('pathBuild', require('./CORE/configs/grunt-modules/utils').getPathBuild(wallet.name))
 
             // Сжатие картинок
-            const imagemin = require('./CORE/configs/grunt-modules/imagemin')({grunt, wallet})
+            const imagemin = require('./CORE/configs/grunt-modules/imagemin')({ grunt, wallet })
             grunt.config.merge(imagemin)
 
             // Выполнение скриптов в коммандной строке
-            const shell = require('./CORE/configs/grunt-modules/shell')({grunt, wallet})
+            const shell = require('./CORE/configs/grunt-modules/shell')({ grunt, wallet })
             grunt.config.merge(shell)
 
             // Создание иконок
-            const gmPicturefill = require('./CORE/configs/grunt-modules/gm_picturefill')({grunt, wallet})
+            const gmPicturefill = require('./CORE/configs/grunt-modules/gm_picturefill')({ grunt, wallet })
             grunt.config.merge(gmPicturefill)
 
             // Создание иконок
-            const phonegapsplash = require('./CORE/configs/grunt-modules/phonegapsplash')({grunt, wallet})
+            const phonegapsplash = require('./CORE/configs/grunt-modules/phonegapsplash')({ grunt, wallet })
             grunt.config.merge(phonegapsplash)
 
-            // Загрузка apk/ipa на хокеап
-            const onDone = function (data) {
-                grunt.option('hockeyAppResult', data)
-                grunt.task.run('notification-slack')
-            }
-            const hockeyapp = require('./CORE/configs/grunt-modules/hockeyapp')({grunt, wallet, onDone})
-            grunt.config.merge(hockeyapp)
-
-            const appCenter = require('./CORE/configs/grunt-modules/appcenter')({grunt, wallet})
-            grunt.config.merge(appCenter)
+            // Загрузка apk/ipa на appcenter
+            const appcenter = require('./CORE/configs/grunt-modules/appcenter')({ grunt, wallet })
+            grunt.config.merge(appcenter)
 
             // cordova cli
-            const cordovacli = require('./CORE/configs/grunt-modules/cordovacli')({grunt, wallet})
+            const cordovacli = require('./CORE/configs/grunt-modules/cordovacli')({ grunt, wallet })
             grunt.config.merge(cordovacli)
 
-            const copy = require('./CORE/configs/grunt-modules/copy')({grunt, wallet})
+            const copy = require('./CORE/configs/grunt-modules/copy')({ grunt, wallet })
             grunt.config.merge(copy)
 
             // преезапись строк в файлах
-            const replace = require('./CORE/configs/grunt-modules/replace')({grunt, wallet})
+            const replace = require('./CORE/configs/grunt-modules/replace')({ grunt, wallet })
             grunt.config.merge(replace)
             grunt.registerTask('default', ['webpack:dev'])
 
@@ -106,7 +99,7 @@ module.exports = function (grunt) {
 
                     'cordovacli:compile_release_android',
                     'copy:android_release',
-                    'shell:appcenterAndroid'
+                    'appcenter:android'
                 ]
 
                 const wallet = require('./wallets.config.js').wallet
@@ -122,7 +115,7 @@ module.exports = function (grunt) {
                         'replace:RemoveArm64Android',
 
                         'copy:android_release',
-                        'hockeyapp:androidArm64'
+                        'appcenter:androidArm64'
                     ])
                 }
                 grunt.task.run(tasks)
@@ -142,8 +135,7 @@ module.exports = function (grunt) {
 
                 'shell:xcodebuild_xcarchive',
                 'shell:xcodebuild_exportArchive',
-                'hockeyapp:ios',
-                'shell:appcenterIos',
+                'appcenter:ios'
             ])
 
             grunt.registerTask('build all store', '', () => {
@@ -169,7 +161,7 @@ module.exports = function (grunt) {
                     'cordovacli:compile_release_android',
 
                     'copy:android_release',
-                    'shell:appcenterAndroid'
+                    'appcenter:android'
                 ]
 
                 const wallet = require('./wallets.config.js').wallet
@@ -185,7 +177,7 @@ module.exports = function (grunt) {
                         'replace:RemoveArm64Android',
 
                         'copy:android_release',
-                        'hockeyapp:androidArm64'
+                        'appcenter:androidArm64'
                     ])
                 }
                 grunt.task.run(tasks)
@@ -218,14 +210,14 @@ module.exports = function (grunt) {
                     'replace:CFBundleVersionIOS',
                     'shell:xcodebuild_xcarchive',
                     'shell:xcodebuild_exportArchive',
-                    'shell:appcenterIos',
+                    'appcenter:ios',
 
                     'cordovacli:prepare_android',
                     'replace:VersionCodeAndroid',
                     'replace:ResXmlConfigAndroid',
                     'cordovacli:compile_release_android',
                     'copy:android_release',
-                    'shell:appcenterAndroid'
+                    'appcenter:android'
                 ])
             })
 
@@ -524,7 +516,7 @@ module.exports = function (grunt) {
 
                 grunt.registerTask('set-xcode-project-configs', function () {
                     const xcodeProjectConfigs = require('./CORE/configs/grunt-modules/xcode-project-configs')
-                    xcodeProjectConfigs.setConfigs(pathProject, {DEVELOPMENT_TEAM})
+                    xcodeProjectConfigs.setConfigs(pathProject, { DEVELOPMENT_TEAM })
                 })
 
                 grunt.registerTask('get-xcode-project-configs', function () {
@@ -731,7 +723,7 @@ module.exports = function (grunt) {
                             src: [
                                 `./projects/${wallet.name}/www/**/*`
                             ],
-                            dest: `./${wallet.application.domain}`,
+                            dest: `./${wallet.application.domain}`
                         }
                     ]
                 }
@@ -765,7 +757,7 @@ module.exports = function (grunt) {
             'replace:DateBuild',
             'replace:IndexHtmlTitle',
             'webpack:prod',
-            'copy:webUploadWww',
+            'copy:webUploadWww'
             // 'shell:uploadWww',
         ])
     })
@@ -779,8 +771,8 @@ module.exports = function (grunt) {
                 options: {
                     stats: !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
                 },
-                prod: Object.assign({mode: 'production'}, webpackConfig),
-                dev: Object.assign({watch: true}, webpackConfig)
+                prod: Object.assign({ mode: 'production' }, webpackConfig),
+                dev: Object.assign({ watch: true }, webpackConfig)
             }
         })
 
@@ -813,20 +805,20 @@ module.exports = function (grunt) {
         // });
 
         const wallet = require(configPath).wallet
-        require('./CORE/configs/generate-configs/generate.configurations')({grunt, wallet})
+        require('./CORE/configs/generate-configs/generate.configurations')({ grunt, wallet })
     })
 
     grunt.task.registerTask('langs-generate', '', () => {
         const wallet = require('./wallets.config.js').wallet
-        require('./CORE/configs/grunt-modules/langs-generate')({grunt, wallet})
+        require('./CORE/configs/grunt-modules/langs-generate')({ grunt, wallet })
     })
 
     grunt.task.registerTask('langs-export', '', () => {
-        let wallet = null;
+        let wallet = null
         if (!(grunt.option('type') === 'platforms')) {
             wallet = require('./wallets.config.js').wallet
         }
-        require('./CORE/configs/grunt-modules/langs-export')({grunt, wallet})
+        require('./CORE/configs/grunt-modules/langs-export')({ grunt, wallet })
     })
 
     grunt.task.registerTask('export-project', '', () => {
@@ -835,103 +827,23 @@ module.exports = function (grunt) {
     })
 
     grunt.task.registerTask('langs-import', '', () => {
-        let wallet = null;
+        let wallet = null
         if (!(grunt.option('type') === 'platforms')) {
             wallet = require('./wallets.config.js').wallet
         }
-        require('./CORE/configs/grunt-modules/langs-import')({grunt, wallet})
+        require('./CORE/configs/grunt-modules/langs-import')({ grunt, wallet })
     })
 
     grunt.task.registerTask('docs-generate', '', () => {
-        require('./CORE/configs/grunt-modules/docs-generate')({grunt})
+        require('./CORE/configs/grunt-modules/docs-generate')({ grunt })
     })
 
     grunt.task.registerTask('docs-generate-projects', '', () => {
-        require('./CORE/configs/grunt-modules/docs-generate-projects')({grunt})
+        require('./CORE/configs/grunt-modules/docs-generate-projects')({ grunt })
     })
 
-    grunt.task.registerTask('notification-slack', '', async () => {
-        const wallet = require('./wallets.config.js').wallet
-        const CHANGELOG = require(`./projects/${wallet.name}/CHANGELOG`)
-
-        const {newFeatures = [], bugFixes = []} = CHANGELOG[0]
-
-        if (!wallet.application.idChanel) {
-            return
-        }
-
-        let features = ''
-        newFeatures.forEach((item) => {
-            features += `• ${item.replace(/(\[#\w*-\d*])\((.*)\) - /, '<$2|$1> ')}\n`
-        })
-
-        let fixes = ''
-        bugFixes.forEach((item) => {
-            fixes += `• ${item.replace(/(\[#\w*-\d*])\((.*)\) - /, '<$2|$1> ')}\n`
-        })
-
-        const {
-            device_family: deviceFamily,
-            minimum_os_version: minOsVersion,
-            title,
-            platform,
-            config_url: configUrl,
-            public_url: publicUrl,
-            public_identifier: publicId
-        } = grunt.option('hockeyAppResult')
-
-        let iconFooter = 'https://freeiconshop.com/wp-content/uploads/edd/android-flat.png'
-        if (platform === 'iOS') {
-            iconFooter = 'https://image.flaticon.com/icons/png/512/23/23656.png'
-        }
-
-        const idApp = configUrl.split('/').slice(-1).pop()
-        const {version, versionCode} = wallet.application
-        let text = `<${publicUrl}/app_versions/${idApp}| *${title} v${version} (${versionCode})* >\n`
-        if (newFeatures.length) {
-            text += `> *New Features (${newFeatures.length})*\n${features}\n`
-        }
-
-        if (bugFixes.length) {
-            text += `> *Bug Fixes (${bugFixes.length})*\n${fixes}`
-        }
-
-        const data = {
-            attachments: [
-                {
-                    footer: `${platform} ${deviceFamily ? `${deviceFamily} ` : ''}${minOsVersion}`,
-                    // title: `${title} v${wallet.application.version} (${wallet.application.versionCode})`,
-                    // title_link: `${publicUrl}/app_versions/${configUrl.split('/').slice(-1).pop()}`,
-                    footer_icon: iconFooter,
-                    ts: moment().format('X'),
-                    thumb_url: `https://rink.hockeyapp.net/api/2/apps/${publicId}?format=png`,
-                    text: text,
-                    mrkdwn: true,
-                    color: '#0675a6'
-                }]
-        }
-
-        grunt.registerTask('notification-slack-axios', async function () {
-            const done = this.async()
-
-            const logChanel = 'https://hooks.slack.com/services/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'
-            const options = {
-                method: 'post',
-                url: logChanel,
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                data: {
-                    ...data,
-                    channel: wallet.application.idChanel //  'GFUUKJGM8',
-                },
-                json: true
-            }
-            const result = await axios(options)
-            done(result)
-        })
-
-        grunt.task.run('notification-slack-axios')
+    grunt.task.registerTask('notification-slack', '', () => {
+        require('./CORE/configs/grunt-modules/notification-slack')({ grunt })
     })
 
     // TODO: @ARSHE fixed
@@ -970,22 +882,7 @@ module.exports = function (grunt) {
         }
         console.log(buildWallet)
 
-        // Если есть токен HockeyApp
-        // ( что бы небыло конфликта со старой версией )
-        const isTokenHockeyApp = grunt.file.exists('keyHockeyApp.js')
-
-        // Token default for GitLab ( Upload & Release )
-        let tokenHockeyApp = process.env.CI_HOCKEYAPP_TOKEN || ''
-        if (isTokenHockeyApp) {
-            tokenHockeyApp = require('./keyHockeyApp.js')
-            grunt.file.delete('keyHockeyApp.js')
-        }
-
         const getVersionCode = require('./CORE/getVersionCode.js')
-        const isWalletsConfig = grunt.file.exists('wallets.config.js')
-        if (isWalletsConfig) {
-            tokenHockeyApp = require('./wallets.config').keyHockeyApp
-        }
 
         const isWalletsType = grunt.file.exists('wallets-type.js')
         if (isWalletsType) {
@@ -1004,8 +901,6 @@ module.exports = function (grunt) {
                 path: './wallets.config.js',
                 content: '/* eslint-disable import/no-dynamic-require */\n' +
                     'const walletType = require(\'./wallets\')\n' +
-                    '\n' +
-                    `module.exports.keyHockeyApp = '${tokenHockeyApp}'\n` +
                     '\n' +
                     `let wallet = walletType.${walletType}\n\n` +
                     'if (process.env.WALLET) {\n' +
