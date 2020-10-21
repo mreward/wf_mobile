@@ -37,12 +37,12 @@ module.exports = [
             '[#12338](https://tm.walletfactory.com/issues/12338) - Забыл слово пароль - позвонить',
             '[#12329](https://tm.walletfactory.com/issues/12329) - Пропали подписи полей в настройках',
             '[#8616](https://tm.walletfactory.com/issues/8616) - Добавление функционала по работе c картами лояльности',
-            '[#12451](https://tm.walletfactory.com/issues/12451) - Добавить автоматическое заполнение поля "Email" при выборе чек-бокса "подарить себе" в разделе "магазин", "купить сертификат"'
+            '[#12451](https://tm.walletfactory.com/issues/12451) - Добавить автоматическое заполнение поля \'Email\' при выборе чек-бокса \'подарить себе\' в разделе \'магазин\', \'купить сертификат\''
         ],
         bugFixes: [
             'fixed method beforeUpdateHook: bug page not opening',
             'InputNext v2 - fixed paste from clipboard on ios',
-            'Fixed error: "Application error. The connection to the server was unsuccessful"',
+            'Fixed error: \'Application error. The connection to the server was unsuccessful\'',
             '[#12427](https://tm.walletfactory.com/issues/12427) - Поправить Ру текст при добавлении карты'
         ]
     }

@@ -46,6 +46,8 @@
                                     autocorrect="off"
                                     placeholder="0"
                                     type="number"
+                                    inputmode="numeric"
+                                    oninput="if(Number(this.value) > Number(this.max)) this.value = this.max;"
                                     :max="totalAvailableBonuses"
                                     @focus="$emit('hideError')"
                             />
