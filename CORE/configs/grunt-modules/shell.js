@@ -7,62 +7,82 @@ const path = require('path')
  * @param wallet
  * @returns {{shell: {xcodebuild_xcarchive: {command: string}, xcodebuild_exportArchive: {command: string}, xcodebuild_exportArchiveA: {command: string}}}}
  */
-module.exports = function({ grunt, wallet }) {
+module.exports = function ({ grunt, wallet }) {
     // для работы с терминалом
     grunt.loadNpmTasks('grunt-shell')
 
-    let pathXcode = '/Applications/Xcode.app'
-    if (grunt.file.exists('/Volumes/Mivina/Xcode.app')) {
-        pathXcode = '/Volumes/Mivina/Xcode.app'
-    }
+    // let pathXcode = '/Applications/Xcode.app'
+    // if (grunt.file.exists('/Volumes/Mivina/Xcode.app')) {
+    //     pathXcode = '/Volumes/Mivina/Xcode.app'
+    // }
 
-    const {appleConnectId, appleConnectKey} = require('../../../wallets.config.js')
+    const { appleConnectId, appleConnectKey } = require('../../../wallets.config.js')
 
     const _appleConnectId = process.env.CI_APPLE_CONNECT_ID || appleConnectId
     const _appleConnectKey = process.env.CI_APPLE_CONNECT_KEY || appleConnectKey
 
     return {
         shell: {
-            options: {
-                execOptions: {
-                    maxBuffer: 1000 * 1000 * 100,
-                },
-            },
             xcodebuild_xcarchive: {
                 command: [
                     `cd ./projects/${wallet.name}/platforms/ios/`,
                     `xcodebuild -allowProvisioningUpdates -workspace "${wallet.name}.xcworkspace" -scheme ${wallet.name} -configuration Release archive -archivePath ${wallet.name}`
-                ].join('&&')
+                ].join('&&'),
+                options: {
+                    execOptions: {
+                        maxBuffer: Infinity
+                    }
+                }
             },
             // TODO: добавить папку с датой добавления
             xcodebuild_exportArchive: {
                 command: [
                     `cd ./projects/${wallet.name}/platforms/ios/`,
                     `xcodebuild -allowProvisioningUpdates -exportArchive -exportPath ${path.resolve(__dirname, `${grunt.option('pathBuild')}/IOS/`)} -archivePath ${wallet.name}.xcarchive/ -exportOptionsPlist ${wallet.name}/${wallet.name}-Info.plist`
-                ].join('&&')
+                ].join('&&'),
+                options: {
+                    execOptions: {
+                        maxBuffer: Infinity
+                    }
+                }
             },
 
             xcodebuild_exportArchiveA: {
                 command: [
                     `cd ./projects/${wallet.name}/platforms/ios/`,
                     'xcrun -sdk iphoneos PackageApplication -v "${RELEASE_BUILDDIR}/${APPLICATION_NAME}.app" -o "${BUILD_HISTORY_DIR}/${APPLICATION_NAME}.ipa" --sign "${DEVELOPER_NAME}" --embed "${PROVISONING_PROFILE}"'
-                ].join('&&')
+                ].join('&&'),
+                options: {
+                    execOptions: {
+                        maxBuffer: Infinity
+                    }
+                }
             },
 
             xcodebuild_exportArchive_store: {
                 command: [
                     `cd ./projects/${wallet.name}/platforms/ios/`,
                     `xcodebuild -allowProvisioningUpdates -exportArchive -exportPath ${path.resolve(__dirname, `${grunt.option('pathBuild')}/IOS/`)} -archivePath ${wallet.name}.xcarchive/ -exportOptionsPlist ${path.resolve(__dirname, '../../../projects/certificates/ExportOptions.plist')}`
-                ].join('&&')
+                ].join('&&'),
+                options: {
+                    execOptions: {
+                        maxBuffer: Infinity
+                    }
+                }
             },
 
             altool_app_store: {
                 command: [
                     'echo "Validating app..."',
-                    `${pathXcode}/Contents/Applications/Application\\ Loader.app/Contents/Frameworks/ITunesSoftwareService.framework/Versions/A/Support/altool --validate-app --type ios -f "${path.resolve(__dirname, `${grunt.option('pathBuild')}/IOS/${wallet.name}.ipa`)}" -u "${_appleConnectId}" -p "${_appleConnectKey}"`,
+                    `xcrun altool --validate-app --type ios -f "${path.resolve(__dirname, `${grunt.option('pathBuild')}/IOS/${wallet.name}.ipa`)}" -u "${_appleConnectId}" -p "${_appleConnectKey}"`,
                     'echo "Uploading app to App Store Connect..."',
-                    `${pathXcode}/Contents/Applications/Application\\ Loader.app/Contents/Frameworks/ITunesSoftwareService.framework/Versions/A/Support/altool --upload-app --type ios -f "${path.resolve(__dirname, `${grunt.option('pathBuild')}/IOS/${wallet.name}.ipa`)}" -u "${_appleConnectId}" -p "${_appleConnectKey}"`
-                ].join('&&')
+                    `xcrun altool --upload-app --type ios -f "${path.resolve(__dirname, `${grunt.option('pathBuild')}/IOS/${wallet.name}.ipa`)}" -u "${_appleConnectId}" -p "${_appleConnectKey}"`
+                ].join('&&'),
+                options: {
+                    execOptions: {
+                        maxBuffer: Infinity
+                    }
+                }
             }
         }
     }
