@@ -34,7 +34,7 @@ export default {
         },
 
         isConstructor() {
-            return false // !isEmpty(this.agreement) && get(this.agreement, 'status', 0) === 1
+            return !isEmpty(this.agreement) && get(this.agreement, 'status', 0) === 1
         }
     },
     watch: {
