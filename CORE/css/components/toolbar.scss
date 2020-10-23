@@ -1,0 +1,114 @@
+@include b(toolbar-button) {
+    margin: 0;
+    padding: 0;
+    color: $toolbar-color;
+
+    @if (mixin-exists(hook-toolbar-button)) {
+        @include hook-toolbar-button();
+    }
+}
+
+@include b(toolbar) {
+    z-index: 1;
+    height: $toolbar-height;
+    background-color: $toolbar-background-color;
+    background-image: $toolbar-background-image;
+
+    @if (mixin-exists(hook-toolbar)) {
+        @include hook-toolbar();
+    }
+
+    .ons-icon {
+        position: relative;
+        font-size: $toolbar-icon-font-size;
+    }
+
+    @include e(left) {
+        margin-left: #{map-get($paddings, base)};
+
+        @extend .flex--justify-left;
+        @extend .flex--align-center;
+
+        & .back-button {
+            color: $toolbar-color;
+
+            @extend .flex;
+            @extend .flex--align-center;
+        }
+
+        @if (mixin-exists(hook-toolbar-left)) {
+            @include hook-toolbar-left();
+        }
+    }
+
+    @include e(center) {
+        color: $toolbar-color;
+        text-transform: $toolbar-text-transform;
+
+        @include font-settings($toolbar-font-size, $toolbar-font-weight, $toolbar-line-height);
+
+        &.toolbar__title {
+            @extend .flex--justify-center;
+        }
+
+        img {
+            height: 100%;
+        }
+
+        @if (mixin-exists(hook-toolbar-center)) {
+            @include hook-toolbar-center();
+        }
+    }
+
+    @include e(right) {
+        margin-right: #{map-get($paddings, base)};
+
+        @extend .flex--justify-right;
+        @extend .flex--align-center;
+
+        > * {
+            margin-right: -#{map-get($paddings, base)};
+            padding: map-get($paddings, base);
+        }
+
+        @if (mixin-exists(hook-toolbar-right)) {
+            @include hook-toolbar-right();
+        }
+    }
+
+    & [class*=button] {
+        &:hover,
+        &:visited,
+        &:active {
+            opacity: 1;
+        }
+
+        @if (mixin-exists(hook-toolbar-all-button)) {
+            @include hook-toolbar-all-button();
+        }
+    }
+
+    @include e(title) {
+        @extend .flex;
+        @extend .flex--justify-center;
+        @extend .flex--align-center;
+    }
+}
+
+@include b(toolbar-main) {
+    @if (mixin-exists(hook-toolbar-main)) {
+        @include hook-toolbar-main();
+    }
+}
+
+@if (mixin-exists(hook-toolbar-misc)) {
+    @include hook-toolbar-misc();
+}
+
+html[onsflag-iphonex-portrait] {
+    .toolbar {
+        @if (mixin-exists(hook-toolbar-iphonex)) {
+            @include hook-toolbar-iphonex();
+        }
+    }
+}

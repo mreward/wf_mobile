@@ -1,0 +1,104 @@
+html[qr-scanner] {
+    body {
+        background: transparent;
+    }
+}
+
+.qr-scanner {
+    .page__background {
+        top: 0 !important;
+        background: transparent;
+
+        &::after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-image: url('../../img/background-qr-scanner.svg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 100% auto;
+            content: '';
+        }
+
+        &::before {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: $white !important;
+            opacity: 0;
+            transition: opacity 0.3s;
+            content: '';
+        }
+    }
+
+    &.black-preview {
+        .page__background {
+            &::before {
+                opacity: 1;
+            }
+        }
+    }
+
+    .page__content,
+    .toolbar_main {
+        background: transparent;
+    }
+
+    .laser {
+        position: absolute;
+        top: calc(50% - 50px - calc(100vw - 180px) / 2);
+        z-index: 2;
+        width: 50%;
+        height: 2px;
+        background: linear-gradient(225deg, #ff7b07 0%, #f7551c 100%);
+        border-radius: 1px;
+        box-shadow: 0 0 4px red;
+        animation: scanning 3s infinite;
+    }
+
+    .diode {
+        //animation: beam .01s infinite;
+        justify-content: center;
+    }
+
+    @keyframes beam {
+        50% {
+            opacity: 0;
+        }
+    }
+
+    @keyframes scanning {
+        50% {
+            transform: translateY(calc(100vw - 190px));
+        }
+    }
+
+    .qr-scanner-btn {
+        position: absolute;
+        top: calc(100vw + 40px);
+        justify-content: center;
+        width: calc(100% - 32px);
+
+        .button {
+            padding: 0 30px;
+            color: $white;
+            font-size: rem(24);
+        }
+    }
+}
+
+html[onsflag-iphonex-portrait] {
+    .qr-scanner {
+        .laser {
+            top: calc(50% - calc(100vw - 215px));
+        }
+    }
+
+    .qr-scanner-btn {
+        top: calc(100vw + 80px);
+    }
+}

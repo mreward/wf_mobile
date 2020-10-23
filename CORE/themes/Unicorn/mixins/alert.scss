@@ -1,0 +1,148 @@
+@mixin hook-alert() {
+    & .dialog-mask {
+        background: $valuable-gradient;
+        opacity: 0.8;
+    }
+
+    @include m(default) {
+        & .alert__body {
+            @extend .card__body;
+            @extend .width--full;
+        }
+    }
+}
+
+@mixin hook-alert-buttons() {
+    @extend .flex;
+    @extend .flex--justify-center;
+    @extend .flex--align-center;
+
+    margin-top: 32px;
+    margin-bottom: 24px;
+
+    &.is-length {
+        .button {
+            //width: 100% !important;
+        }
+    }
+}
+
+@mixin hook-alert-button-primary() {
+    box-shadow: $alert-default-buttons-primary-shadow;
+    max-width: 230px;
+}
+
+@mixin hook-alert-button-cancel() {
+    @extend .button--default;
+    @extend .text--center;
+    @extend .text--bold;
+    @extend .width--auto;
+
+    position: absolute;
+    right: 8px;
+    bottom: -40px;
+    left: 8px;
+    z-index: -1;
+    color: $alert-button-cancel-color;
+    font-size: rem(14);
+    line-height: rem(19);
+    letter-spacing: 0.4px;
+    background: $alert-button-cancel-background;
+    border: 0;
+    border-radius: 0 0 6px 6px;
+    box-shadow: $alert-button-cancel-box-shadow;
+
+    &:active {
+        background: $alert-button-cancel-background;
+        color: $alert-button-cancel-color;
+    }
+}
+
+@mixin hook-alert-button-cancel-active() {
+    background: $alert-button-cancel-background !important;
+}
+
+@mixin hook-alert-heading() {
+    color: $black;
+    font-size: rem(18);
+    line-height: rem(24);
+    letter-spacing: 0.2px;
+
+    @extend .text--center;
+    @extend .text--bold;
+}
+
+@mixin hook-alert-icon() {
+    @extend .flex;
+    @extend .flex--justify-center;
+    @extend .flex--align-center;
+
+    padding: 16px;
+
+    & [class^=alert__icon--sub] {
+        @extend .position--relative;
+
+        &::after, &::before {
+            @extend .position--absolute;
+            @include size(16px, 16px);
+
+            bottom: 8px;
+            right: 3px;
+        }
+
+        &::before {
+            content: '';
+            background: $white;
+            border-radius: 50%;
+        }
+
+        &::after {
+            font-family: "icons";
+            font-size: $alert-sub-icon-font-size;// 16px;
+        }
+    }
+
+    & [class$=sub-success] {
+        color: $success;
+
+        &::after {
+            content: $alert-sub-icon-success;// "\F13E";
+        }
+    }
+
+    & [class$=sub-fail] {
+        color: $danger;
+
+        &::after {
+            content: $alert-sub-icon-fail;//  "\F13E";
+        }
+    }
+
+    .ons-icon {
+        font-size: rem(50);
+        line-height: 51px !important;
+        border: 1px solid $white;
+    }
+}
+
+@mixin hook-alert-text() {
+    padding-top: 6px;
+    color: $alert-color;
+    font-weight: $alert-font-weight;
+    font-size: $alert-text;
+    line-height: $alert-line-height;
+    letter-spacing: $alert-letter-spacing;
+    text-align: center;
+}
+
+@mixin hook-dialog() {
+    width: calc(100% - 32px);
+}
+
+@mixin hook-alert-confirm() {
+    .alert__icon {
+        .ons-icon {
+            color: $primary;
+        }
+    }
+}

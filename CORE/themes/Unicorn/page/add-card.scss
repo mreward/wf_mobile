@@ -1,0 +1,27 @@
+.card-pan-wrap {
+    &__button-scan {
+        background: none;
+        border: none;
+
+        @extend .padding-top--base;
+        @extend .padding-right--none;
+        @extend .padding-left--base;
+
+        .ons-icon {
+            color: $white;
+            font-size: rem(24);
+
+            @include size(24px, 24px);
+        }
+    }
+
+    .corty-milly-img {
+        @extend .margin-left--base;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .card-pan-wrap__button-scan {
+        display: none;
+    }
+}

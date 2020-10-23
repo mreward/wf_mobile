@@ -1,0 +1,12 @@
+.gift-items {
+    &__item {
+        overflow: hidden;
+        border-radius: 6px !important;
+
+        .screen-gift__image--square {
+            width: vw(104);
+            height: calc(100% + 24px);
+            margin-left: -12px;
+        }
+    }
+}

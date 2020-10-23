@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>Icons/16x16/nearby</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Icons/16x16/nearby" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M14.0010128,2.00612242 L2.0010128,7.19070216 L6.18254093,7.72579019 C7.25230553,7.86268231 8.09937991,8.69634006 8.25333275,9.76378318 L8.865184,14.0061224 L14.0010128,2.00612242 Z M12.8059454,0.197863539 C14.7015858,-0.621151942 16.6248176,1.29551246 15.8123137,3.1939659 L10.9235371,14.6168222 C10.01527,16.7390307 6.89161678,16.3288086 6.56209752,14.0440445 L5.9796764,10.0057438 L1.99929312,9.49639112 C-0.305364458,9.2014739 -0.749709231,6.05461281 1.38318416,5.1330917 L12.8059454,0.197863539 Z" id="nearby" fill="#000000" fill-rule="nonzero"></path>
+    </g>
+</svg>

@@ -1,0 +1,5 @@
+@include b(stepper-bar) {
+    @if (mixin-exists(hook-stepper-bar)) {
+        @include hook-stepper-bar();
+    }
+}

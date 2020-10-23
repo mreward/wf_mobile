@@ -1,0 +1,13 @@
+build/*.js
+/projects/*/platforms/**/*
+/projects/*/plugins/**/*
+/projects/*/www/**/*
+/projects/*/res/**/*
+/projects/*/node_modules/**/*
+/projects/*/build.json
+/projects/*/config.xml
+/projects/*/build.json
+/plugins_mwallet/
+/template/*.js
+/test/*.js
+/CORE/__configs.generate__/

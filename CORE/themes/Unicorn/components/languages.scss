@@ -1,0 +1,25 @@
+@include b(languages) {
+    @extend .padding-horizontal--default;
+
+    @include e(item) {
+        box-sizing: border-box;
+        font-size: rem(16);
+        line-height: 46px;
+        text-transform: uppercase;
+        border: 2px solid $white;
+        border-radius: 50px;
+        transition: 0.2s border-color ease-in;
+
+        @include size(46px, 46px);
+
+        @extend .text--default;
+        @extend .flex;
+        @extend .flex--justify-center;
+        @extend .flex--align-center;
+        @extend .margin-right--small;
+
+        &.is-active {
+            border: 2px solid $languages-border-color;
+        }
+    }
+}

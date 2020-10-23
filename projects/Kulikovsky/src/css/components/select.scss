@@ -1,0 +1,11 @@
+.v-select {
+    &__slot {
+        .v-input {
+            &__append-inner {
+                .v-icon {
+                    color: $black;
+                }
+            }
+        }
+    }
+}

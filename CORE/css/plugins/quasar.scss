@@ -1,0 +1,16 @@
+.q-toast-container {
+    .q-toast {
+        justify-content: space-between;
+        align-items: center;
+        min-height: 80px;
+        padding: 0 16px;
+
+        i, a {
+            display: none;
+        }
+
+        .q-toast-message {
+            padding: 5px 5px;
+        }
+    }
+}

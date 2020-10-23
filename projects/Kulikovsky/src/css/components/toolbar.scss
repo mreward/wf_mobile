@@ -1,0 +1,232 @@
+.toolbar {
+    &--search {
+        z-index: 2;
+
+        @include transition();
+
+        .input--search {
+            .input__prefix {
+                .ons-icon {
+                    color: $black;
+                }
+            }
+
+            .input__inner {
+                font-size: rem(15);
+                letter-spacing: -0.24px;
+
+                @include placeholder($muted, rem(15), 1);
+            }
+        }
+
+        .v-btn--text {
+            @extend .padding-horizontal--none;
+
+            .v-btn__content {
+                justify-content: flex-end;
+            }
+        }
+
+        .toolbar__wrapper {
+            z-index: 2;
+            background: $white !important;
+            background-color: $white !important;
+
+            @extend .padding-horizontal--base;
+            @extend .width--full;
+            @extend .flex;
+            @extend .flex--justify-center;
+            @extend .flex--align-center;
+        }
+    }
+
+    &--base {
+        .left {
+            .ons-icon {
+                font-size: rem(20);
+            }
+
+            .back-button {
+               @extend .padding-left--none;
+            }
+        }
+
+        .left,
+        .right {
+            width: 36px;
+        }
+
+        .center {
+            width: auto;
+        }
+    }
+
+    &--auth {
+        .left {
+            width: auto;
+        }
+    }
+}
+
+.toolbar-upper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 999;
+    padding-top: 0;
+    padding-right: 16px;
+    padding-left: 16px;
+    overflow: hidden;
+
+    &__header {
+        padding-top: 35px;
+        @extend .flex;
+        @extend .flex--justify-between;
+        @extend .flex--align-top;
+    }
+
+    @extend .padding-top--medium;
+    @extend .background-color--primary;
+
+    &__img {
+        @extend .flex;
+        @extend .flex--justify-center;
+        @extend .flex--align-center;
+
+        @include size(58px, 58px);
+        @include background(cover, center, no-repeat);
+
+        .ons-icon {
+            color: $white;
+            font-size: rem(58.5);
+        }
+
+        border-radius: 50%;
+    }
+
+    &__text {
+        @extend .text--bold;
+
+        color: $white;
+        font-size: rem(15);
+    }
+
+    &__content {
+        opacity: 0;
+    }
+
+    &__qr {
+        @extend .margin-bottom--base;
+        @extend .position--relative;
+
+        margin-top: 70px;
+
+        > .ons-icon {
+            @extend .position--absolute;
+
+            top: -57px;
+            left: calc(100% - 130px);
+            color: $white;
+            font-size: rem(60);
+        }
+
+        .qr-block {
+            padding-top: vw(21);
+            text-align: center;
+            background: $white;
+            border-radius: $border-radius;
+
+            @extend .margin-horizontal--auto;
+
+            width: vw(171) !important;
+            height: vw(171) !important;
+
+            img {
+                @extend .margin-horizontal--auto;
+
+                width: vw(128) !important;
+                height: vw(128) !important;
+            }
+
+            canvas {
+                width: vw(128) !important;
+                height: vw(128) !important;
+            }
+        }
+    }
+
+    &__hint {
+        @extend .padding-horizontal--small;
+        @extend .text--center;
+
+        color: $white;
+        font-size: rem(13);
+    }
+
+    .left,
+    .right {
+        //flex-grow: 1;
+    }
+
+    .center {
+        @extend .width--full;
+        @extend .padding-horizontal--middle;
+        @extend .text--left;
+
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        height: 58px;
+    }
+
+    .right {
+        @extend .flex;
+        @extend .flex--justify-right;
+        height: 58px;
+
+        .amount {
+            color: $white;
+            font-size: rem(30);
+
+            &__sub {
+                @extend .text--bold;
+
+                font-size: rem(15);
+            }
+        }
+
+        .ons-icon {
+            color: $white;
+            font-size: rem(18);
+
+            @extend .position--relative;
+
+            &::after {
+                top: 0;
+                left: -6px;
+                content: '';
+                z-index: 1;
+                background: red;
+                border-radius: 50%;
+
+                @include size(6px, 6px);
+
+                @extend .position--absolute;
+            }
+        }
+
+        .currency-right {
+            height: unset;
+        }
+    }
+}
+
+html[onsflag-iphonex-portrait] {
+    .toolbar-upper {
+        &__header {
+            padding-top: 59px;
+        }
+    }
+}
+

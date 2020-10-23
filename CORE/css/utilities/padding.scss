@@ -1,0 +1,53 @@
+@include b(padding) {
+    @include m(none) {
+        padding: 0 !important;
+    }
+
+    @each $size, $value in $paddings {
+        @include m($size) {
+            padding: $value;
+        }
+    }
+}
+
+@each $position in top, right, bottom, left {
+    @include b(padding-#{$position}) {
+        @each $size, $value in $paddings {
+            @include m(none) {
+                padding-#{$position}: 0 !important;
+            }
+
+            @include m($size) {
+                padding-#{$position}: $value;
+            }
+        }
+    }
+}
+
+@include b(padding-horizontal) {
+    @each $size, $value in $paddings {
+        @include m($size) {
+            padding-right: $value;
+            padding-left: $value;
+        }
+
+        @include m(none) {
+            padding-right: 0 !important;
+            padding-left: 0 !important;
+        }
+    }
+}
+
+@include b(padding-vertical) {
+    @each $size, $value in $paddings {
+        @include m($size) {
+            padding-top: $value;
+            padding-bottom: $value;
+        }
+
+        @include m(none) {
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+        }
+    }
+}

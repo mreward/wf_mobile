@@ -1,0 +1,74 @@
+.payment-tools {
+    .toolbar-main {
+        background: $white;
+    }
+
+    .history-wrapper {
+        //@extend .padding-top--none;
+
+        transform: translate3d(0, 0, 0);
+        will-change: auto;
+    }
+
+    .not-found-items__icon {
+        display: none;
+    }
+}
+
+.payment-tools-header {
+    transform: translate3d(0, 0, 0);
+    will-change: auto;
+
+    @extend .position--relative;
+    @extend .flex--column;
+
+    &__withdraw-block {
+        @extend .margin-top--small;
+        color: $primary;
+
+        font-size: rem(12);
+
+        @extend .flex--column;
+        @extend .text--center;
+        @extend .flex;
+        @extend .flex--justify-center;
+        @extend .flex--align-center;
+
+        .button {
+            @extend .margin-top--middle;
+            @extend .margin-bottom--base;
+        }
+    }
+
+    &::after {
+        @extend .position--absolute;
+
+        @include size(calc(100% + 32px), 200px);
+        bottom: 0;
+        left: -16px;
+        z-index: -1;
+        background: $white;
+        box-shadow: $payment-tools-header-shadow;
+
+        content: '';
+    }
+
+    .amount {
+        line-height: 32px;
+
+        &__currency {
+            font-size: rem(14);
+            line-height: 16px;
+        }
+    }
+}
+
+@media screen and (max-width: 374px) {
+    .payment-tools-header {
+        & + .grid {
+            .tile__title {
+                font-size: rem(14);
+            }
+        }
+    }
+}

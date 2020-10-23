@@ -1,0 +1,11 @@
+$nameSpace: 'animation';
+
+@import "~hover.css/scss/_options.scss";
+@import "~hover.css/scss/_hacks.scss";
+@import "~hover.css/scss/_mixins.scss";
+//@import "~hover.css/scss/effects/2d-transitions/bounce-in";
+//@import "~hover.css/scss/effects/2d-transitions/bounce-out";
+@import "~hover.css/scss/effects/2d-transitions/pop";
+.#{$nameSpace}--pop {
+    @include pop();
+}

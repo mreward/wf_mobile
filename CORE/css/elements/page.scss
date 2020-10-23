@@ -1,0 +1,69 @@
+@include b(page) {
+    @if (mixin-exists(hook-page)) {
+        @include hook-page();
+    }
+
+    @include e(content) {
+        @if (mixin-exists(hook-page-content)) {
+            @include hook-page-content();
+        }
+
+        &::after {
+            display: block;
+            width: 100%;
+            height: 0;
+            content: '';
+        }
+
+        &::-webkit-scrollbar {
+            display: none !important;
+            height: 0 !important;
+            background: none !important;
+            border-radius: 0;
+        }
+    }
+
+    @include e(background) {
+        background: $page-background;
+
+        @if (mixin-exists(hook-page-background)) {
+            @include hook-page-background();
+        }
+    }
+
+    @include e(layout) {
+        @extend .padding--base;
+
+        overflow-x: hidden;
+
+        @if (mixin-exists(hook-page-layout)) {
+            @include hook-page-layout();
+        }
+    }
+
+    @include e(layout-simple) {
+        @extend .margin-horizontal--base;
+
+        overflow-x: hidden;
+
+        @if (mixin-exists(hook-page-layout)) {
+            @include hook-page-layout();
+        }
+    }
+}
+
+@if (mixin-exists(hook-page-misc)) {
+    @include hook-page-misc();
+}
+
+.page.overflow-visible .page__content.content-swiping,
+.page.overflow-visible .page__content.content-swiping .page,
+.page.overflow-visible .page__content.content-swiping .page__content {
+    @extend .overflow-visible;
+}
+
+html[onsflag-iphonex-portrait] {
+    @if (mixin-exists(hook-iphonex)) {
+        @include hook-iphonex();
+    }
+}

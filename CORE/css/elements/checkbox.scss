@@ -1,0 +1,17 @@
+@include b(checkbox) {
+    @if (mixin-exists(hook-checkbox)) {
+        @include hook-checkbox();
+    }
+
+    @include e(input) {
+        @if (mixin-exists(hook-checkbox-input)) {
+            @include hook-checkbox-input();
+        }
+    }
+
+    @include e(checkmark) {
+        @if (mixin-exists(hook-checkbox-checkmark)) {
+            @include hook-checkbox-checkmark();
+        }
+    }
+}

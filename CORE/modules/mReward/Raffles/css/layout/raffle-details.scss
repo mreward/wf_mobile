@@ -1,0 +1,174 @@
+.layout-raffle-details {
+    .page__background {
+        background: $white;
+    }
+
+    .page__layout {
+        padding: 0;
+        overflow: hidden;
+
+        &.is-scrolled-up {
+            .page__background--cover {
+                z-index: 2;
+
+                .toolbar-large__header {
+                    flex-direction: row;
+
+                    i {
+                        font-size: rem(22);
+                    }
+
+                    .text--top {
+                        margin-left: 8px;
+                        font-weight: $bold;
+                        font-size: rem(22);
+                        line-height: rem(28);
+                        letter-spacing: rem(0.2);
+                        text-align: center;
+                    }
+                }
+            }
+        }
+
+        &.muted {
+            .page__background--cover {
+                .toolbar-large {
+                    &__header {
+                        color: $muted !important;
+                        padding-bottom: 16px;
+                    }
+
+                    i {
+                        color: $muted !important;
+                    }
+                }
+            }
+        }
+    }
+
+    .page-content {
+        background: $grey-light-second;
+
+        &.is-moor-animation {
+            transition: transform 0.5s linear;
+        }
+
+        .top-blur {
+            position: absolute;
+            width: 100%;
+            height: 56px;
+            -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0)));
+            background: $white;
+        }
+    }
+
+    .raffle-content {
+        padding: 0 16px;
+        background: $white;
+        border-radius: $border-radius;
+    }
+
+    .back-button {
+        position: fixed;
+        left: 16px;
+        z-index: 10;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 46px;
+        height: 46px;
+        padding-left: 0;
+        color: $white;
+        background-color: $primary;
+        border-radius: 50%;
+
+        .ons-icon {
+            font-size: rem(20);
+        }
+    }
+
+    .page__background--cover {
+        position: fixed;
+        top: 0 !important;
+        z-index: -1;
+        width: 100%;
+        padding-top: 20px;
+        background-color: $grey-light-second;
+
+        .toolbar-large {
+            display: flex;
+            flex-direction: column;
+
+            &__header {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                min-height: 52px;
+                color: $black;
+
+                i {
+                    color: $primary;
+                    font-size: rem(36);
+                    transition: font-size 0.5s linear;
+                }
+
+                .text--top {
+                    font-weight: $bold;
+                    font-size: rem(60);
+                    line-height: rem(60);
+                    letter-spacing: rem(-0.24);
+                    text-align: center;
+                }
+
+                .text--bottom {
+                    margin-top: 2px;
+                    font-weight: $bold;
+                    font-size: rem(15);
+                    line-height: rem(20);
+                    letter-spacing: rem(-0.24);
+                    text-align: center;
+                }
+            }
+
+            &__footer {
+                width: 100%;
+                padding: 16px;
+                color: $muted;
+                font-weight: $normal;
+                font-size: rem(13);
+                line-height: rem(20);
+                letter-spacing: rem(-0.08);
+                text-align: center;
+
+                @media screen and (max-width: 320px) {
+                    padding: 16px 8px;
+                }
+
+                .text--ellipse {
+                    height: 26px;
+                    padding: 4.5px 9px;
+                    margin-right: 4.5px;
+                    background: white;
+                    color: $black;
+                    border-radius: 13px;
+                    font-weight: $bold;
+                    font-size: rem(15);
+                    line-height: rem(20);
+                    letter-spacing: rem(-0.24);
+                    text-align: center;
+                    white-space: nowrap;
+                }
+            }
+        }
+    }
+}
+
+html[onsflag-iphonex-portrait] {
+    .layout-raffle-details {
+        .page__background--cover {
+            padding-top: 44px;
+        }
+    }
+}

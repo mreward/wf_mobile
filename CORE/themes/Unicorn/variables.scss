@@ -1,0 +1,556 @@
+@import "~_CORE/css/mixins/function";
+
+// Base
+
+$white: rgba(255, 255, 255, 1) !default;
+$black: rgba(25, 24, 28, 1) !default;
+$black-lite: rgba(59, 57, 52, 1) !default;
+$blue-dark: rgba(34, 39, 72, 1) !default;
+$grey-light: rgba(245, 247, 250, 1) !default;
+$grey-light-second: rgba(227, 232, 239, 1) !default;
+$grey-light-third: rgba(205, 210, 213, 1) !default;
+$grey-light-fore: rgba(227, 229, 238, 1) !default;
+$grey-dark: rgba(113, 117, 139, 1) !default;
+$grey-dark-second: rgba(47, 52, 81, 0.8) !default;
+$grey-bg-2: rgba(242, 243, 27, 1) !default;
+$grey-bg: rgba(229, 231, 242, 1) !default;
+$green: rgba(49, 211, 33, 1) !default;
+$yellow: #FFC800;
+$red: rgba(208, 2, 27, 1) !default;
+$red-light: rgba(245, 7, 7, 1) !default;
+$red-second: rgba(227, 44, 44, 1) !default;
+$orange: rgba(255, 123, 7, 1) !default;
+$violet: rgba(101, 46, 133, 1) !default;
+$purple: rgba(223, 184, 239, 1) !default;
+$muted: rgba(155, 159, 162, 1) !default;
+
+$major-gradient: linear-gradient(90deg, #b500d4 0%, #5b007f 100%) !default;
+$great-gradient: linear-gradient(270deg, #423fb1 0%, #0b79bf 100%) !default;
+$valuable-gradient: linear-gradient(45deg, #202438 0%, #3c3e51 100%) !default;
+$mediocre-gradient: linear-gradient(225deg, #5067d0 0%, #5c3584 71%) !default;
+$indifferent-gradient: linear-gradient(225deg, #f50707 0%, #b41010 100%) !default;
+$shallow-gradient: linear-gradient(270deg, #13667a 0%, #2aa87f 100%) !default;
+$lower-gradient: linear-gradient(90deg, #ff7d00 0%, #f76b1c 100%) !default;
+
+$card-color-first: $major-gradient !default;
+$card-color-second: $shallow-gradient !default;
+$card-color-third: $great-gradient !default;
+$card-color-fourth: $lower-gradient !default;
+$card-color-fifth: rgba(32, 36, 56, 1) !default;
+$credit-card-validation: #e32c2c;
+
+$great-gradient-transparent: linear-gradient(270deg, rgba(66, 63, 177, 0.3) 0%, rgba(11, 121, 191, 0.31) 100%) !default;
+$mediocre-gradient-transparent: linear-gradient(225deg, #4054ad 0%, #522a7a 100%) !default;
+
+$red-negative-balance: $red-second !default;
+
+// Global
+$global-font-family: "HelveticaNeueCyr", sans-serif !default;
+$page-background: $grey-light !default;
+
+$shadow-block: 0 8px 15px 0 rgba(39, 45, 45, 0.06);
+$shadow: 0 8px 15px 0 rgba(227, 232, 239, 1);
+$shadow-lite: 0 8px 15px 0 rgba(33, 49, 52, 0.2);
+
+$normal: 300 !default;
+$bold: 500 !default;
+$primary: $violet !default;
+$secondary: $blue-dark !default;
+$third: #b500d4 !default;
+$letter-spacing: 0.2px;
+$card-shadow: $shadow-block;
+$border-radius: 6px !default;
+$success: $green !default;
+$muted: $grey-dark !default;
+$danger: rgba(208, 2, 27, 1) !default;
+$warning: rgba(246, 98, 67, 1) !default;
+
+$primary-gradient: $major-gradient;
+$secondary-gradient: $major-gradient;
+
+// Elements
+$page-background: $mediocre-gradient !default;
+$layout-auth-button-shadow: $shadow-lite !default;
+// TODO watch after
+$layout-auth-card-shadow: $shadow-block !default;
+
+$margins: (
+    border: 2px,
+    small: 4px,
+    small-m: 6px,
+    small-base: 8px,
+    base: 16px,
+    middle: 12px,
+    default: 20px,
+    medium: 35px,
+    large: 45px,
+    large-m: 65px,
+    xlarge: 100px,
+) !default;
+
+$paddings: (
+    xsmall: 4px,
+    small-m: 6px,
+    small: 16px,
+    xmiddle: 8px,
+    middle: 12px,
+    base: 16px,
+    default: 24px,
+    medium: 35px,
+    large: 45px,
+    large-m: 65px,
+    xlarge: 100px,
+);
+
+$colors: (
+    default: $black,
+    base: $white,
+    primary: $primary,
+    muted: $muted,
+    danger: $danger,
+    warning: $warning,
+    success: $success,
+) !default;
+
+$gradients: (
+    major: $major-gradient,
+    great: $great-gradient,
+    valuable: $valuable-gradient,
+    mediocre: $mediocre-gradient,
+    indifferent: $indifferent-gradient,
+    shallow: $shallow-gradient,
+    lower: $lower-gradient,
+) !default;
+
+$action-menu-width: 48px !default;
+$action-menu-height: 64px !default;
+$action-menu-container-height: 64px !default;
+$action-menu-active-container-height: $action-menu-container-height !default;
+$action-menu-block-height: 190px !default;
+$action-menu-background: $white !default;
+$action-menu-border-radius: 30px 0 0 30px !default;
+$action-menu-button-active-border-radius: 100px 0 0 100px !default;
+$action-menu-button-active-background: rgba(227, 232, 239, 1) !default;
+$action-menu-button-icon-size: rem(24) !default;
+$action-menu-button-icon-color: $black-lite !default;
+$action-menu-button-active-icon-color: $muted !default;
+$action-menu-button-border-color: rgba(227, 232, 239, 1) !default;
+
+$action-sheet-phones-border: rem(1) solid $grey-light;
+
+$add-document-border-radius: $border-radius;
+$add-document-list-item-border-bottom: none;
+$add-document-select-border-color: $grey-light-second;
+$add-document-select-expandable-content-background: $grey-light;
+$add-document-select-height: 40px;
+$add-document-select-expandable-top: 35px;
+$add-document-document-photo-border-color: $grey-light-second;
+$add-document-document-photo-border-radius: $border-radius;
+$add-document-document-photo-width: calc(100% + 16px);
+$add-document-sup-title-min-height: 25px;
+$add-document-sup-title-color: $muted;
+$add-document-sup-title-center-height: 20px;
+$add-document-add-button-color-icon: $primary;
+
+// Alerts
+$alert-text: rem(16);
+$alert-color: $black;
+$alert-letter-spacing: normal;
+$alert-line-height: rem(20);
+$alert-font-weight: 300;
+$alert-icon-info: $major-gradient;
+$alert-icon-error: $indifferent-gradient;
+$alert-icon-success: $major-gradient !default;
+$alert-button-cancel-background: $grey-light !default;
+$alert-button-cancel-color: $black !default;
+$alert-button-cancel-box-shadow: $shadow-block;
+
+$alert-default-body-shadow: none;
+$alert-default-icon-size: 52px;
+$alert-default-buttons-cancel-background: $grey-light-second;
+$alert-default-buttons-primary-shadow: $shadow-block;
+
+$alert-sub-icon-font-size: rem(16);
+$alert-sub-icon-success: '\f13c';
+$alert-sub-icon-fail: '\f13b';
+
+$about-release-secondary-border-radius:6px 6px 0 0;
+$about-release-secondary-margin-bottom: -6px;
+
+$layout-auth-logo-height: 30px;
+$layout-auth-logo-width: 103.78px;
+$layout-auth-code-color: $primary;
+$layout-auth-code-font-weight: 500;
+$layout-auth-text-message-font-size: rem(16);
+$layout-auth-text-message-color: $black;
+$layout-auth-text-message-letter-spacing: $letter-spacing;
+$layout-auth-text-message-line-height: rem(20);
+$layout-auth-text-message-font-weight: 300;
+$layout-auth-fingerprint-height: auto !default;
+$layout-auth-fingerprint-justify-content: normal;
+
+$layout-auth-input-inner-color: $black;
+$layout-auth-input-inner-height: 40px;
+$layout-auth-input-inner-font-weight: 300;
+$layout-auth-input-inner-font-size: rem(24);
+$layout-auth-input-inner-line-height: rem(20);
+$layout-auth-input-prefix-line-height: rem(26) !default;
+$layout-auth-input-inner-letter-spacing: $letter-spacing;
+
+$layout-auth-button-text-letter-spacing: $letter-spacing;
+$layout-auth-button-text-font-weight: normal;
+//$layout-auth-button-text-color: $muted;
+$layout-auth-button-max-width: 200px;
+$layout-auth-checkbox-square-width: calc(100vw - 62px);
+$layout-auth-checkbox-square-height: 20px;
+
+$layout-cover-page-background-height: 160px !default;
+$layout-cover-page-background-color: $white !default;
+$layout-cover-page-layout-margin-top: calc(160px - 58px) !default;
+
+$button-add-font-size: rem(14);
+$button-add-icon-font-size: rem(24);
+$button-add-icon-size: 27px !default;
+$button-add-icon-before-size: 24px !default;
+$button-outline-color: $white !default;
+$button-outline-border-color: $major-gradient;
+$button-outline-border-radius: 30px;
+$button-outline-border: 2px solid $white;
+$button-outline-max-width: 200px;
+$button-outline-max-height: 40px;
+$button-outline-font-size: rem(14);
+$button-primary-color: $white;
+$button-primary-background: $major-gradient !default;
+$button-main-background: $major-gradient !default;
+$button-main-box-shadow: $shadow !default;
+$button-main-border-radius: rem(25) !default;
+
+$favorites-list-item-right-icon-color: $muted;
+$favorites-list-item-first-min-height: 76px;
+$favorites-list-item-center-padding-top: 6px;
+$favorites-favorites-wrap-margin-top: -6px;
+$favorites-search-border-radius: 6px;
+$favorites-search-box-shadow: $shadow-block;
+
+$tile-title-color: $black;
+$tile-title-font-weight: 300;
+$tile-title-font-size: vw(16);
+$tile-title-font-size-main: rem(16);
+$tile-title-line-height: rem(20);
+$tile-icon-background: $major-gradient;
+$tile-box-shadow: $shadow-block;
+
+$tabbar-home-tabbar-button-color: $white;
+$tabbar-home-tabbar-button-opacity: 0.5;
+$tabbar-home-tabbar-icon-height: 25px;
+$tabbar-home-tabbar-icon-font-size: rem(20);
+$tabbar-home-tabbar-icon-line-height: 20px;
+$tabbar-home-tabbar-icon-label-font-size: 10px;
+$tabbar-home-tabbar-icon-label-line-height: 14px;
+
+$tabbar-background: $primary-gradient;
+
+$tabbar-button-circle-shadow: $shadow-lite;
+$tabbar-button-circle-background: $great-gradient !default;
+$tabbar-button-tab-circle-icon-color: $white;
+
+$tabbar-large-size-main: 128px;
+$tabbar-large-iphonex-size-main: 154px;
+$tabbar-large-height-size: $tabbar-large-size-main;
+$tabbar-large-min-height-size: $tabbar-large-size-main;
+$tabbar-large-height-size-content: 130px;
+$tabbar-large-iphonex-height-size-content: 154px;
+$tabbar-large-wrapper-before-background: $mediocre-gradient-transparent;
+$tabbar-large-wrapper-before-border-radius: 0 0 6px 6px;
+$tabbar-large-top-background: transparent !default;
+$tabbar-large-top-icon-margin: 0 auto 6px;
+$tabbar-large-top-icon-font-size: rem(36);
+$tabbar-large-top-icon-size: 36px;
+$tabbar-large-top-after: rgba(255, 255, 255, 0.15);
+$tabbar-large-top-after-bottom: 28px;
+$tabbar-large-top-after-bottom-small: 14px;
+
+$tabbar-top-footer-height: 40px;
+$tabbar-top-footer-background: transparent;
+//$tabbar-top-footer-background-before: $mediocre-gradient;
+//$tabbar-top-footer-color-before: $white;
+//$tabbar-top-footer-border-radius-before: 8px 8px 0 0;
+
+$tabbar-bottom-footer-height: 74px;
+$tabbar-bottom-footer-width: calc(100% - 32px);
+$tabbar-bottom-footer-background-color: transparent !default;
+$tabbar-bottom-footer-background-image: $great-gradient-transparent !default;
+$tabbar-bottom-footer-border-radius: 6px 6px 0 0;
+$tabbar-bottom-footer-bottom: 74px;
+$tabbar-bottom-footer-padding-bottom: 34px;
+
+$tabbar-button-tab-background: transparent;
+$tabbar-button-tab-icon-size: rem(24);
+$tabbar-button-tab-active-opacity: 1;
+$tabbar-button-tab-active-background: $great-gradient !default;
+$tabbar-button-tab-lablel-color: rgba($white, 0.6);
+$tabbar-button-tab-lablel-font-size: rem(14);
+$tabbar-button-tab-lablel-justify-content: center !default;
+$tabbar-button-tab-height: 40px;
+$tabbar-button-tab-badge-color: $white;
+$tabbar-button-tab-badge-font-size: rem(10);
+$tabbar-button-tab-active-lablel-color: $white;
+$tabbar-button-tab-font-weight: $bold !default;
+$tabbar-button-tab-label-color: inherit;
+$tabbar-gift-content-top: 8px;
+
+$toolbar-balances-separator-display: block;
+$toolbar-balances-separator-color: rgba(227, 232, 239, 1);
+$toolbar-balances-margin: -8px 16px 16px -16px;
+$toolbar-balances-background: $white;
+$toolbar-balances-box-shadow: $shadow-block;
+$toolbar-balances-title-color: $muted;
+$toolbar-balances-title-font-size: rem(14);
+$toolbar-balances-title-line-height: rem(16);
+$toolbar-balances-amount-color: $black;
+$toolbar-balances-amount-font-size: rem(32);
+$toolbar-balances-amount-line-height: rem(32);
+$toolbar-balances-amount-currency-color: $black;
+$toolbar-balances-amount-currency-font-size: rem(14);
+$toolbar-balances-amount-currency-line-height: rem(16);
+$toolbar-right-button-right-width: 26px !default;
+
+//$toolbar-background-color: $white;
+$toolbar-color: $black;
+$toolbar-font-size: rem(24);
+$toolbar-font-weight: $bold;
+$toolbar-line-height: rem(24);
+$toolbar-text-transform: unset;
+
+$toolbar-auth-color: $black;
+$toolbar-auth-font-weight: $bold;
+$toolbar-auth-font-size: rem(18);
+$toolbar-auth-line-height: rem(24);
+$toolbar-auth-letter-spacing: $letter-spacing;
+$toolbar-auth-text-transform: initial;
+$toolbar-main-tabbar-background: $white;
+
+$contacts-icon-color: $major-gradient;
+$checkbox-square-text-line-height: 17px;
+$checkbox-square-text-font-size: rem(14);
+$checkbox-square-size: 24px;
+$checkbox-square-checkmark-border: 2px solid $grey-light-second;
+$checkbox-square-checkmark-checked-border: 2px solid $primary;
+$checkbox-square-checkmark-checked-mask-color: $primary;
+$checkbox-square-checkmark-checked-width: 10px;
+$checkbox-square-checkmark-checked-height: 5px;
+$checkbox-square-checkmark-checked-top-left: 6px;
+$checkbox-square-border-color: $primary;
+
+$carousel-banners-height: vw(96);
+$carousel-banners-min-height: $carousel-banners-height;
+$carousel-item-padding: $carousel-banners-height;
+
+$input-height: 44px;
+$checkout-amount-currency-line-height: rem(24) !default;
+
+$input-underbar-border-active: 2px solid $primary;
+$input-underbar-border: 2px solid $grey-light-second !default;
+$input-validation-error-color: $red-light;
+$input-pin-auth-height: 40px;
+$input-pin-height: 40px;
+$input-pin-font-size: rem(24) !default;
+
+$input-font-size: rem(20) !default;
+
+$input-error-message-min-height: 30px;
+$input-error-message-border-radius: 2px;
+$input-default-placeholder-color: $grey-light-third;
+$input-default-placeholder-font-size: rem(20);
+$input-default-font-size: rem(20) !default;
+$input-default-line-height: 30px;
+$input-default-height: auto;
+$input-default-max-height: 60px;
+$input-placeholder-line-height: 30px;
+$input-amount-color: $black;
+$input-amount-font-weight: $black;
+
+$textarea-default-line-height: 22px;
+$textarea-placeholder-line-height: 22px;
+
+$input-checkmark-checked-border: 2px solid $primary;
+$input-checkmark-circle-active-dot-color: $major-gradient;
+$input-checkmark-circle-border-active: $major-gradient;
+$input-checkmark-circle-border: 2px solid $grey-light-second;
+
+$input-clearable-icon-color: $grey-light-third !default;
+
+$invoices-tabbar-label-color: $white;
+$invoices-header-min-height: 18px;
+$invoices-header-background: none;
+$invoices-header-box-shadow: none;
+$invoices-list-item-box-shadow: $shadow-block;
+$invoices-list-item-top-box-shadow: none;
+$invoices-list-item-border-radius: 6px;
+$invoices-list-item-expandable-content-background: $white;
+$invoices-list-item-expandable-content-button-text: rem(14);
+$invoices-list-item-top-content-font-size: rem(20);
+$invoices-list-item-top-content-time-font-size: rem(12);
+$invoices-list-item-top-content-amount-font-size: rem(32);
+$invoices-list-item-top-content-amount-line-height: rem(28);
+$invoices-list-item-top-content-currency-line-height: rem(18);
+$invoices-list-item-top-content-currency-font-size: rem(14);
+
+$history-height: 34px;
+$history-top-horizontal-padding: 9px;
+$history-select-list-font-size: rem(20);
+
+$history-box-shadow: $shadow-block;
+$history-header-min-height: 62px;
+$history-min-width-button: 200px;
+$history-icon-font-size: rem(16);
+$history-status-font-size: rem(16);
+$history-button-size: 34px;
+
+$history-calendar-title-background: $grey-light-second;
+$history-calendar-cell-size: vw(33);
+$history-calendar-title-size: 34px;
+$history-calendar-cell-background: $third;
+$history-calendar-cell-ranged:  0.15;
+$history-calendar-cell-selected: 0.3;
+$history-calendar-cell-color: $black;
+$history-checkmark-icon-font-size: rem(12);
+$history-not-found-items-color: $muted;
+$history-expandable-content-background: $grey-light-second;
+$history-header-background-color:  $grey-light-second;
+$history-expandable-content-box-shadow: $shadow-block;
+$history-col-border: 1px solid $grey-light-fore;
+$history-expandable-position-left-right: calc(0vw - 24px);
+$history-list-top-right-font-size: rem(18) !default;
+$history-list-expandable-content-font-size: rem(16) !default;
+
+$create-request-main-color: $white !default;
+
+$personal-edit-border-bottom-color: $grey-light-second;
+$personal-edit-border-active-bottom-color: $primary !default;
+$personal-edit-border-radius: 6px;
+
+$payment-tools-header-shadow: $shadow-block;
+$payment-cards-input-default-font-size: rem(20);
+$payment-cards-input-default-placeholder-color: rgba($white, 0.7);
+
+$qr-scanner-laser-background: $mediocre-gradient-transparent;
+$qr-scanner-default-font-size: rem(16);
+$qr-scanner-default-line-height: rem(20);
+
+$gift-list-item-border-bottom: 1px solid $grey-light;
+$gift-list-item-letter-spacing: 0.2px;
+$gift-list-item-line-height: 20px;
+$gift-list-item-font-size: rem(16);
+$gift-list-item-min-height: 40px;
+
+$screen-gift-delivery-padding: 5px;
+$screen-gift-delivery-color: $white;
+$screen-gift-delivery-font-size: rem(20);
+$screen-gift-delivery-background: $valuable-gradient;
+$screen-gift-delivery-border-radius:  0 0 6px 0;
+
+$screen-gift-discount-background: $major-gradient !default;
+$screen-gift-discount-color: $white;
+$screen-gift-discount-border-radius: 0 0 $border-radius 0;
+$screen-gift-discount-font-size: rem(12);
+$screen-gift-discount-width: 100%;
+$screen-gift-discount-padding: 5px 10px;
+$screen-gift-price-font-size: rem(32);
+$screen-gift-price-font-weight: bold !default;
+$screen-gift-price-color: $primary !default;
+$screen-gift-price-currency-line-height: 16px;
+$screen-gift-price-currency-font-size: rem(16);
+$screen-gift-price-currency-top: 6px !default;
+$screen-gift-name-font-size: rem(16);
+$screen-gift-name-font-weight: bold !default;
+$screen-gift-details-name-font-size: rem(20);
+$screen-gift-details-price-height: auto;
+$screen-gift-details-price-line-height: 20px;
+$screen-gift-details-price-color: $primary !default;
+$screen-gift-details-price-discount-color: $muted;
+$screen-gift-details-price-discount-opacity: 0.8;
+$screen-gift-details-price-discount-font-size: rem(14);
+$screen-gift-details-price-discount-after-background-color: $primary;
+$screen-gift-details-price-discount-after-transform: 15deg;
+$screen-gift-name-line-height: 18px;
+$screen-gift-a-link-color: $black;
+$screen-gift-a-link-border-color: $primary;
+$screen-gift-icon-size: 16px;
+$screen-gift-icon-color: $primary;
+$screen-gift-logo-name-border-bottom: none;
+$screen-gift-image-border-radius: 6px 6px 0 0;
+$screen-gift-categories-image-min-height: vw(94) !default;
+$screen-gift-scan-button-font-size: rem(24);
+$screen-gift-scan-button-color: $white;
+
+$screen-contacts-header-height: 20px;
+$screen-contacts-line-height: $screen-contacts-header-height;
+
+$screen-catalog-list-border-bottom: 1px solid $grey-light-second;
+$screen-catalog-list-width: calc(100% - 8px);
+$screen-catalog-list-content-width: calc(100% - 16px);
+
+$screen-auth-pin-message: 4px !default;
+
+$sidebar-menu-icon-color: $major-gradient;
+
+$status-warning: $warning;
+$status-success: $success;
+$status-danger: $danger;
+
+$status-icon-before-font-size: 16px;
+$status-icon-before-size: 16px;
+
+$list-item-notification-height: 100px;
+//$list-item-box-shadow: $shadow-lite !default;
+
+$success-page-add-icon-background: $major-gradient !default;
+
+$list-header-color: $black;
+$list-header-font-weight: $bold;
+$list-header-font-size: rem(15);
+$list-header-line-height: rem(52);
+$list-header-height: rem(42);
+$list-header-letter-spacing: $letter-spacing;
+
+$list-header-default-color: $black-lite !default;
+
+$list-notifications-header-color: $black;
+$list-notifications-header-font-weight: 300;
+$list-notifications-header-font-size: rem(20);
+$list-notifications-header-line-height: rem(22);
+$list-notifications-header-letter-spacing: $letter-spacing;
+
+$list-notifications-description-height: 40px;
+$list-notifications-description-color: $black;
+$list-notifications-description-font-weight: 300;
+$list-notifications-description-font-size: rem(16);
+$list-notifications-description-line-height: rem(20);
+$list-notifications-description-letter-spacing: $letter-spacing;
+
+$list-notifications-time-color: rgba(155, 159, 162, 1);
+$list-notifications-time-font-weight: 300;
+$list-notifications-time-font-size: rem(12);
+$list-notifications-time-line-height: rem(14);
+$list-notifications-time-letter-spacing: $letter-spacing;
+
+$list-notifications-icon-background: $major-gradient;
+$list-notifications-icon-font-size: rem(24);
+
+$languages-border-color: $primary;
+
+$not-found-items-color: $muted;
+
+$modal-gift-title-color: $black;
+$modal-gift-title-close-color: $black;
+
+$messangers-tile-margin-bottom: 4px;
+
+$favorites-icon-color: $muted;
+$favorites-description-color: $muted;
+
+$my-qr-title-color: $white !default;
+
+$status-icon-height: 16px;
+$status-icon-wight: 16px;

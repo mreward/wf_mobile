@@ -1,0 +1,142 @@
+@mixin font-settings(
+    $set-size: 1rem,
+    $set-weight: normal,
+    $line-height: normal,
+    $letter-spacing: normal) {
+    font-weight: $set-weight;
+    font-size: $set-size;
+    line-height: $line-height;
+    letter-spacing: $letter-spacing;
+}
+
+@mixin position($display: flex, $justify-content: center, $align-items: center) {
+    display: $display;
+    justify-content: $justify-content;
+    align-items: $align-items;
+}
+
+@mixin size($width, $height) {
+    width: $width;
+    height: $height;
+}
+
+@mixin transition($element: all, $time: 0.2) {
+    transition: $element #{$time}s ease-in-out;
+}
+
+@mixin height-partly-screen($exclude: 0, $divide: 3) {
+    height: calc(calc(100vh - #{$exclude + 'px'}) / #{$divide});
+}
+
+@mixin background($bg-size, $bg-position, $bg-repeat) {
+    background-repeat: $bg-repeat;
+    background-position: $bg-position;
+    background-size: $bg-size;
+}
+
+@mixin placeholder($color, $fontSize: $global-font-size, $opacity: 1) {
+    &::-webkit-input-placeholder {
+        color: $color;
+        font-size: $fontSize;
+        opacity: $opacity;
+    }
+
+    &:-moz-placeholder {
+        color: $color;
+        font-size: $fontSize;
+        opacity: $opacity;
+    }
+
+    &::-moz-placeholder {
+        color: $color;
+        font-size: $fontSize;
+        opacity: $opacity;
+    }
+
+    &:-ms-input-placeholder {
+        color: $color;
+        font-size: $fontSize;
+        opacity: $opacity;
+    }
+
+    &::placeholder {
+        color: $color;
+        font-size: $fontSize;
+        opacity: $opacity;
+    }
+}
+
+/* Placeholder
+ -------------------------- */
+//@mixin placeholder {
+//    &::-webkit-input-placeholder {
+//        @content
+//    }
+//
+//    &::-moz-placeholder {
+//        @content
+//    }
+//
+//    &:-ms-input-placeholder {
+//        @content
+//    }
+//}
+
+/* Break-points
+ -------------------------- */
+@mixin res($key, $map: $--breakpoints) {
+    @if map-has-key($map, $key) {
+        @media only screen and #{inspect(map-get($map, $key))} {
+            @content;
+        }
+    }
+
+    @else {
+        @warn "Undefeined points: `#{$map}`";
+    }
+}
+
+/* Scrollbar
+ -------------------------- */
+@mixin scroll-bar {
+    $--scrollbar-thumb-background: #b4bccc;
+    $--scrollbar-track-background: #fff;
+
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+        z-index: 11;
+        width: 6px;
+
+        &:horizontal {
+            height: 6px;
+        }
+
+        &-thumb {
+            width: 6px;
+            background: $--scrollbar-thumb-background;
+            border-radius: 5px;
+        }
+
+        &-corner {
+            background: $--scrollbar-track-background;
+        }
+
+        &-track {
+            background: $--scrollbar-track-background;
+
+            &-piece {
+                width: 6px;
+                background: $--scrollbar-track-background;
+            }
+        }
+    }
+}
+
+// Legacy method gradient generate
+
+@mixin text-gradient-one($color) {
+    background: $color;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

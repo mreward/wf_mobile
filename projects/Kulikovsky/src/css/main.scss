@@ -1,0 +1,205 @@
+// Elements
+@import "elements/button";
+@import "elements/inputs";
+@import "elements/checkbox";
+@import "elements/page";
+@import "elements/popover";
+@import "elements/progress";
+@import "elements/toast";
+@import "elements/dialog";
+// Components
+@import "components/list";
+@import "components/card";
+@import "components/alert";
+@import "components/select";
+@import "components/toolbar";
+@import "components/tabbar";
+@import "components/not-found-items";
+// Modules
+@import "modules/onboarding";
+// layout
+@import "layout/layout-cover";
+@import "layout/layout-tabs";
+
+//TODO move this code to ..?
+.layout-tab-cover {
+    .page__content {
+        padding: 0;
+    }
+
+    & .toolbar-main {
+        & * {
+            color: white !important;
+        }
+    }
+
+    .page__background--cover {
+        height: $layout-cover-page-background-height; // 160
+        background-color: $layout-cover-page-background-color; // $white
+
+        @include background(cover !important, center, no-repeat !important);
+    }
+
+    .page__background--text {
+        position: absolute;
+        left: map_get($margins, base);
+        width: 100%;
+        color: $white;
+
+        &-title {
+            position: absolute;
+            top: -84px;
+            font-size: rem(20);
+            line-height: rem(24);
+            letter-spacing: rem(0.2);
+        }
+
+        &-sub {
+            position: absolute;
+            top: -60px;
+            font-size: rem(15);
+            line-height: rem(20);
+            letter-spacing: rem(-0.24);
+        }
+    }
+
+    .page__background--color {
+        background-color: $grey-light-second;
+    }
+
+    .page__layout--cover {
+        margin-right: 16px;
+        margin-left: 16px;
+        margin-top: $layout-cover-page-layout-margin-top;
+        background-color: $grey-light-second !important;
+        padding-top: 0px !important;
+        border-radius: $border-radius;
+        overflow: visible;
+    }
+}
+
+.registration-terms {
+    margin-bottom: 16px;
+    text-align: center;
+    margin-top: 16px;
+    font-size: 13px;
+    color: $grey-dark;
+    padding-bottom: 40px;
+
+    span {
+        font-weight: 600;
+        color: $violet;
+    }
+}
+
+html[onsflag-iphonex-portrait] {
+    .layout-tab-cover {
+        .page__layout--cover {
+            margin-top: $layout-cover-page-layout-margin-top-iphonex;
+        }
+    }
+}
+
+.v-icon.v-icon, .v-icon {
+    //font-family: 'Material Icons' !important;
+    font-family: 'icons' !important;
+
+    &::before {
+        font-family: 'icons';
+    }
+}
+
+.is-underline {
+    &::after {
+        @extend .position--absolute;
+
+        @include size(100%, 1px);
+
+        left: 0;
+        bottom: 0;
+        content: '';
+        background-color: $grey-light-third;
+    }
+
+    &:last-child {
+        &::after {
+            display: none;
+        }
+    }
+}
+
+.onboarding {
+    .intro {
+        &--wrapper {
+            top: calc(50% - 30px);
+        }
+    }
+}
+
+.page__background {
+    opacity: 1 !important;
+}
+
+.toolbar__center {
+    color: #000;
+    text-transform: none;
+    font-weight: 600;
+    font-size: rem(22);
+    line-height: rem(24);
+    letter-spacing: 0.4px;
+}
+
+.pull-to-wrapper {
+    z-index: 2;
+
+    &--swipe:after {
+        content: '';
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-color: transparent;
+    }
+}
+
+.notifications-counter::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    right: calc(50% - 12px);
+    width: 6px;
+    height: 6px;
+    background-color: #ff0000;
+    border-radius: 50%;
+}
+
+html[unsafe-area]{
+    .page[status-bar-fill] > .page__content {
+        top: 35px;
+    }
+
+    .page[status-bar-fill] > .toolbar {
+        padding-top: 44px !important;
+    }
+
+    .page[status-bar-fill] > .toolbar:not(.toolbar--transparent) + .page__background, .page[status-bar-fill] > .toolbar:not(.toolbar--cover-content) + .page__background + .page__content {
+        top: 88px;
+    }
+
+    .page[page="adresses"] > .page__content {
+        top: 44px;
+    }
+
+    [page*=adresses] .list--fullpage {
+        top: 83px
+    }
+
+    ons-page[page="recovery-pass"] .page__content {
+        top: 0px;
+    }
+
+    .layout-raffle-details .page__background--cover {
+        padding-top: 40px;
+    }
+}

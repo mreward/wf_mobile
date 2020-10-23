@@ -1,0 +1,40 @@
+*[justify="center"] {
+    justify-content: center;
+}
+
+*[justify="left"] {
+    justify-content: flex-start;
+}
+
+*[justify="right"] {
+    justify-content: flex-end;
+}
+
+*[justify="space-between"] {
+    justify-content: space-between;
+}
+
+ons-splitter-side[mode="collapse"] {
+    -webkit-transform: translateZ(0);
+}
+
+.action-sheet-mask {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.action-sheet-button {
+    color: rgba(0, 122, 255, 1);
+    font-size: rem(20);
+    letter-spacing: 0.38px;
+
+    &.action-sheet-button--destructive {
+        font-weight: $bold;
+        color: #fe3824;
+    }
+}
+
+.action-sheet-label {
+    padding-left: 20px;
+    font-size: 1rem;
+    text-align: center;
+}

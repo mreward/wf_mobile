@@ -1,0 +1,128 @@
+.personal-avatar {
+    height: 140px;
+    min-height: 140px;
+
+    &__img {
+        width: 140px;
+        height: 140px;
+
+        min-height: 140px;
+        overflow: hidden;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        border-radius: 50%;
+        box-shadow: $shadow;
+
+        @extend .margin-horizontal--auto;
+    }
+}
+
+.personal-list {
+    margin-top: 35px;
+    > .list-item {
+        @extend .flex;
+        @extend .flex--column;
+
+        .left,
+ .center {
+            @extend .padding-right--none;
+            @extend .flex--justify-center;
+            @extend .width--full;
+        }
+
+        .left {
+            @extend .text--normal;
+            @extend .text--muted;
+        }
+
+        .center {
+            @extend .text--normal;
+            margin-bottom: 12px;
+
+            font-size: rem(20);
+        }
+    }
+
+    &__user {
+        //@extend .margin-vertical--base;
+
+        .user-name {
+            padding: 0 5px;
+            font-size: rem(26);
+
+            @extend .text--normal;
+        }
+    }
+    .identified {
+        display: flex;
+        .status {
+            padding-right: 10px;
+        }
+    }
+}
+
+.personal-edit {
+    .list {
+
+        background: $white;
+        border-radius: $personal-edit-border-radius;
+        box-shadow: $shadow;
+
+        @extend .padding--base;
+    }
+
+    .list-header {
+        @extend .flex;
+        @extend .flex--align-center;
+        min-height: 20px;
+        font-size: rem(15);
+
+        line-height: 20px;
+
+        @extend .padding-left--xmiddle;
+        @extend .text--normal;
+        @extend .text--muted;
+    }
+
+    .list-item {
+        .datepicker-custom--wrapper,
+        .input {
+            @extend .padding-vertical--none;
+            @extend .padding-left--xmiddle;
+            border-radius: 0;
+
+            box-shadow: none;
+
+            input {
+                min-height: 35px;
+                font-size: rem(20);
+                line-height: 30px;
+                border-bottom: 2px solid $personal-edit-border-bottom-color;
+                border-radius: 0;
+                transition: border-color 0.2s ease-in-out;
+
+                @extend .text--normal;
+
+                &:focus {
+                    border-color: $personal-edit-border-active-bottom-color;
+                }
+            }
+        }
+    }
+
+    .edit-profile__datepicker {
+        .center {
+            @extend .padding--none;
+
+            .datepicker-custom--wrapper {
+                > * {
+                    @extend .text--normal;
+                    @extend .padding-left--xmiddle;
+
+                    font-size: rem(20);
+                }
+            }
+        }
+    }
+}

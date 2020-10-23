@@ -1,0 +1,331 @@
+stages:
+# build app
+  - yarn validate build app
+  - yarn install build app
+  - build app
+# build app to store
+  - yarn validate store
+  - yarn install store
+  - all store
+# build app to store demo
+  - yarn validate demo
+  - yarn install demo
+  - all demo
+# verification build app
+  - yarn install verification build app
+  - verification quality code
+  - verification builds
+# generate wiki
+  - update wiki
+# upload website
+  - yarn validate upload website
+  - yarn install upload website
+  - build upload website
+# create MR from mirror repo
+  - create MR from mirror repo
+cache:
+  paths:
+    - node_modules/
+    - yarn.lock
+
+# Проверка npm пакетов
+.yarn_validate: &yarn_validate
+  script:
+    - yarn mwallet-init
+
+.yarn_install: &yarn_install
+  script:
+    - yarn
+    - yarn upgrade
+  when: on_failure
+
+# ====== Сборка приложений ========
+
+.only_tags: &only_tags
+  only:
+    variables:
+      - $SLACK_BUILD =~ /([A-Za-z]*)-(\w*)-build(-*)(\w*)/
+      - $CI_COMMIT_TAG =~ /([A-Za-z]*)-(\w*)-build(-*)(\w*)/
+      - $CI_COMMIT_TAG =~ /(\w*)-v(\d*).(\d*).(\d*)-(\d){5}-(\w*)/
+  tags:
+    - mwalletv4
+
+yarn validate build app:
+  stage: yarn validate build app
+  <<: *yarn_validate
+  <<: *only_tags
+
+yarn install build app:
+  stage: yarn install build app
+  <<: *yarn_install
+  <<: *only_tags
+
+build app:
+  <<: *only_tags
+  stage: build app
+  script:
+    - yarn mwallet-init --CI_COMMIT_TAG="$CI_COMMIT_TAG"
+    - yarn run all-r-d
+  cache:
+    paths:
+      - node_modules/
+      - yarn.lock
+    policy: pull
+#    - git add --all
+#    - git commit -m "GitLab CI/CD build $CI_COMMIT_TAG | $GITLAB_USER_NAME"
+#    - git push https://git@gitlab.walletfactory.com/mobileapp/mWallet_v4.git HEAD:dev
+
+# ====== Сборка приложений в App Store Connect ========
+
+.only_tags_store: &only_tags_store
+  only:
+    #Name-store (or -hashtag)
+    variables:
+      - $SLACK_BUILD =~ /([A-Za-z]*)-store(-*)(\w*)/
+      - $CI_COMMIT_TAG =~ /([A-Za-z]*)-store(-*)(\w*)/
+      - $CI_COMMIT_TAG =~ /(\w*)-v(\d*).(\d*).(\d*)-(\d){5}-(\w*)/
+  tags:
+    - mwalletv4
+
+yarn validate store:
+  stage: yarn validate store
+  <<: *yarn_validate
+  <<: *only_tags_store
+
+yarn install store:
+  stage: yarn install store
+  <<: *yarn_install
+  <<: *only_tags_store
+
+ios store:
+  <<: *only_tags_store
+  stage: all store
+  script:
+    - yarn mwallet-init --CI_COMMIT_TAG="$CI_COMMIT_TAG"
+    - yarn run all-store
+  cache:
+    paths:
+      - node_modules/
+      - yarn.lock
+    policy: pull
+
+# ====== Сборка приложений в App Store Connect Demo ========
+
+.only_tags_demo: &only_tags_demo
+  only:
+    #Name-store (or -hashtag)
+    variables:
+      - $CI_COMMIT_TAG =~ /([A-Za-z]*)-demo(-*)(\w*)/
+  tags:
+      - mwalletv4
+
+yarn validate demo:
+  stage: yarn validate demo
+  <<: *yarn_validate
+  <<: *only_tags_demo
+
+yarn install demo:
+  stage: yarn install demo
+  <<: *yarn_install
+  <<: *only_tags_demo
+
+store demo:
+  <<: *only_tags_demo
+  stage: all demo
+  script:
+    - yarn mwallet-init --CI_COMMIT_TAG="$CI_COMMIT_TAG"
+    - yarn run all-demo
+  cache:
+    paths:
+      - node_modules/
+      - yarn.lock
+    policy: pull
+
+# ====== Генерация документации ========
+
+update Wiki:
+  stage: update wiki
+  script:
+    - rm -rf ./docs/mWallet_v4.wiki
+    - git clone https://oauth2:$CI_PrivateToken_SLASH@gitlab.walletfactory.com/mobileapp/mWallet_v4.wiki.git  ./docs/mWallet_v4.wiki
+    - yarn documentation build CORE/directives/** -f md -o docs/mWallet_v4.wiki/Core/Directives.md
+    - yarn documentation build CORE/plugins/** -f md -o docs/mWallet_v4.wiki/Core/Plugins.md
+    - yarn documentation build CORE/filters/** -f md -o docs/mWallet_v4.wiki/Core/Filters.md
+    - yarn documentation build CORE/masks/** -f md -o docs/mWallet_v4.wiki/Core/Masks.md
+    - yarn documentation build CORE/utils/** -f md -o docs/mWallet_v4.wiki/Core/Utils.md
+    - yarn mwallet-init
+    - grunt docs-generate
+    - grunt docs-generate-projects
+    - cd ./docs/mWallet_v4.wiki
+    - git add .
+    - git commit -m "Update Wiki"
+    - git push https://oauth2:$CI_PrivateToken_SLASH@gitlab.walletfactory.com/mobileapp/mWallet_v4.wiki.git
+  tags:
+    - mwalletv4
+  only:
+    variables:
+      - $CI_COMMIT_MESSAGE =~ /wiki/
+      - $CI_COMMIT_TAG =~ /wiki/
+  allow_failure: true
+
+
+# ====== Проверка качества кода ========
+
+yarn install verification build app:
+  stage: yarn install verification build app
+  script:
+    - yarn
+  only:
+    - merge_requests
+  tags:
+    - mwalletv4.merge.request
+
+.verification: &verification
+#  <<: *except_tags
+  tags:
+    - mwalletv4.merge.request
+  only:
+    - merge_requests
+  cache:
+    paths:
+      - node_modules/
+      - yarn.lock
+    policy: pull
+
+verification quality code:
+  stage: verification quality code
+  <<: *verification
+  script:
+    - yarn mwallet-init
+    - yarn lint
+
+Vodafone-SIT-build:
+  stage: verification builds
+  <<: *verification
+  script:
+    - yarn mwallet-init --CI_COMMIT_TAG="Vodafone-SIT-build"
+    - yarn webpack-build
+
+TezSum-SIT-build:
+  stage: verification builds
+  <<: *verification
+  script:
+    - yarn mwallet-init --CI_COMMIT_TAG="TezSum-SIT-build"
+    - yarn webpack-build
+
+OneKwacha-SIT-build:
+  stage: verification builds
+  <<: *verification
+  script:
+    - yarn mwallet-init --CI_COMMIT_TAG="OneKwacha-SIT-build"
+    - yarn webpack-build
+
+mWallet-SIT-build:
+  stage: verification builds
+  <<: *verification
+  script:
+    - yarn mwallet-init --CI_COMMIT_TAG="mWallet-SIT-build"
+    - yarn webpack-build
+
+mWalletDemo-SIT-build:
+  stage: verification builds
+  <<: *verification
+  script:
+    - yarn mwallet-init --CI_COMMIT_TAG="mWalletDemo-SIT-build"
+    - yarn webpack-build
+
+MobiPayBelarus-SIT-build:
+  stage: verification builds
+  <<: *verification
+  script:
+    - yarn mwallet-init --CI_COMMIT_TAG="MobiPayBelarus-SIT-build"
+    - yarn webpack-build
+
+AllianceBank-SIT-build:
+  stage: verification builds
+  <<: *verification
+  script:
+    - yarn mwallet-init --CI_COMMIT_TAG="AllianceBank-SIT-build"
+    - yarn webpack-build
+
+QRPos-UAT-build:
+  stage: verification builds
+  <<: *verification
+  script:
+    - yarn mwallet-init --CI_COMMIT_TAG="QRPos-UAT-build"
+    - yarn webpack-build
+
+TrioClub-SIT-build:
+  stage: verification builds
+  <<: *verification
+  script:
+    - yarn mwallet-init --CI_COMMIT_TAG="TrioClub-SIT-build"
+    - yarn webpack-build
+
+PayPlus-SIT-build:
+  stage: verification builds
+  <<: *verification
+  script:
+    - yarn mwallet-init --CI_COMMIT_TAG="PayPlus-SIT-build"
+    - yarn webpack-build
+
+DizaPay-SIT-build:
+  stage: verification builds
+  <<: *verification
+  script:
+    - yarn mwallet-init --CI_COMMIT_TAG="DizaPay-SIT-build"
+    - yarn webpack-build
+
+Letscoin-SIT-build:
+  stage: verification builds
+  <<: *verification
+  script:
+    - yarn mwallet-init --CI_COMMIT_TAG="Letscoin-SIT-build"
+    - yarn webpack-build
+
+# ====== Сборка приложений ========
+
+.only_tags_upload_web: &only_tags_upload_web
+  only:
+    variables:
+      - $CI_COMMIT_TAG =~ /([A-Za-z]*)-(\w*)-webupload(-*)(\w*)/
+  tags:
+    - mwalletv4
+
+yarn validate upload website:
+  stage: yarn validate upload website
+  <<: *yarn_validate
+  <<: *only_tags_upload_web
+
+yarn install upload website:
+  stage: yarn install upload website
+  <<: *yarn_install
+  <<: *only_tags_upload_web
+
+build upload website:
+  <<: *only_tags_upload_web
+  stage: build upload website
+  script:
+    - yarn mwallet-init --CI_COMMIT_TAG="$CI_COMMIT_TAG"
+    - yarn web-upload
+  cache:
+    paths:
+      - node_modules/
+      - yarn.lock
+    policy: pull
+
+create MR from mirror repo:
+  stage: create MR from mirror repo
+  only:
+    variables:
+    - $CI_COMMIT_TAG =~ /MIRROR-REPO/
+  tags:
+    - mwalletv4
+  script:
+    - yarn mwallet-init --CI_COMMIT_TAG="$CI_NAME_APP-PROD-build-1"
+    - grunt copy-project-mirror --name="$CI_NAME_APP"
+  cache:
+    paths:
+      - node_modules/
+      - yarn.lock
+    policy: pull

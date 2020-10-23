@@ -1,0 +1,69 @@
+.screen-history {
+    .not-found-items {
+        position: relative;
+        left: unset;
+        width: 100%;
+        height: auto;
+        transform: none;
+    }
+
+    .status-icon {
+        position: absolute;
+        right: 16px;
+        bottom: 16px;
+    }
+}
+
+.history-wrapper {
+    @extend .margin-top--none;
+}
+
+.center.list-item__center.list-item--nodivider__center {
+    color: rgba(25, 24, 28, 1);
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 22px;
+    letter-spacing: 0.2px;
+    verflow: hidden;
+}
+
+.history-col {
+    .center {
+        .daterange-picker {
+            @extend .width--full;
+            @extend .text--center;
+
+            > span {
+                text-transform: capitalize;
+            }
+        }
+    }
+}
+
+.history-list {
+    &__item {
+        .top {
+            @extend .position--relative;
+        }
+    }
+}
+
+@media screen and (max-width: 374px) {
+    ons-col.history-col {
+        .expandable-list-datapicker {
+            // width: 100px;
+        }
+
+        &.is-single {
+            .expandable-list-datapicker {
+                width: 100%;
+            }
+        }
+
+        .top {
+            .center {
+                flex-wrap: nowrap;
+            }
+        }
+    }
+}

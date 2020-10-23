@@ -1,0 +1,54 @@
+@import "../../variables";
+
+// Base
+$major-gradient: linear-gradient(90deg, #006d8f 0%, #4f7a28 100%);
+$great-gradient-transparent: linear-gradient(90deg, rgba(0, 109, 143, 0.3) 0%, rgba(79, 122, 40, 0.3) 100%);
+
+$primary: rgba(0, 109, 143, 1);
+$secondary-gradient: $major-gradient;
+$primary-gradient: $major-gradient;
+// Global
+
+$alert-icon-success: $primary;
+$alert-icon-info: $primary;
+
+$button-outline-border-color: $major-gradient;
+$button-outline-color: $major-gradient;
+$button-primary-background: $major-gradient;
+$button-main-background: $major-gradient;
+
+$checkbox-square-checkmark-border: 2px solid $primary;
+$checkbox-square-border-color: $primary;
+
+$qr-scanner-laser-background: $primary;
+
+$tile-icon-background: $major-gradient;
+
+$tabbar-background: $primary;
+$tabbar-button-circle-background: $major-gradient;
+$tabbar-button-tab-background: $primary;
+
+$tabbar-button-tab-active-background: $major-gradient;
+$tabbar-button-tab-background: transparent;
+
+$tabbar-bottom-footer-background-color: transparent;
+$tabbar-bottom-footer-background-image: $great-gradient-transparent;
+
+$personal-edit-checkmark-active-dot-color: $major-gradient;
+$personal-edit-checkmark-border-active: $major-gradient;
+
+$input-checkmark-checked-border: 2px solid $primary;
+$input-checkmark-circle-active-dot-color: $major-gradient;
+$input-underbar-border-active: 2px solid $primary;
+
+$list-notifications-icon-background: $major-gradient;
+
+$layout-auth-code-color: $black;
+
+$languages-border-color: $primary;
+
+$history-calendar-cell-background: $primary;
+
+$sidebar-menu-icon-color: $major-gradient;
+
+$success-page-add-icon-background: $major-gradient;

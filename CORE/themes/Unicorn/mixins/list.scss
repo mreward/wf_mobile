@@ -1,0 +1,74 @@
+@mixin hook-list-item-default-center() {
+    @extend .padding-horizontal--base;
+    @extend .padding-vertical--small;
+}
+
+@mixin hook-list-item-default-left() {
+    @extend .padding-left--base;
+}
+
+@mixin hook-list-item-default-right() {
+    @extend .padding-right--base;
+}
+
+@mixin hook-list-header() {
+    //@extend .padding-top--base;
+}
+
+@mixin hook-list-misc() {
+    @include b(list) {
+        & .list-item__icon {
+            width: 28px;
+            height: auto;
+            margin-right: 12px;
+            font-size: rem(30);
+        }
+
+        &--card {
+            & .list-item__icon {
+                width: 36px;
+                & .ons-icon {
+                    padding-left: 0 !important;
+                }
+            }
+
+            &__list {
+                padding-top: 4px !important;
+                padding-right: 0 !important;
+                padding-bottom: 4px !important;
+                padding-left: 0 !important;
+            }
+
+            .list {
+                .list-item:last-child {
+                    border-bottom: none;
+
+                    & .list-item__center {
+                        padding-bottom: 12px;
+                    }
+                }
+            }
+        }
+    }
+
+    .list-header--inactive {
+        color: $black !important;
+        background-color: $list-header-default-background-color !important;
+    }
+}
+
+.list {
+    overflow: visible;
+}
+
+@mixin hook-list-card() {
+    & > .list-item {
+        &--notification .list-item__top {
+            & > .list-item__center,
+            & > .list-item__right,
+            & > .list-item__left {
+                min-height: $list-item-notification-height;
+            }
+        }
+    }
+}

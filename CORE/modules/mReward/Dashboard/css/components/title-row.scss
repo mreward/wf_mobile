@@ -1,0 +1,20 @@
+.title-row {
+    @extend .flex;
+    @extend .flex--justify-between;
+    @extend .flex--align-center;
+    @extend .text--bold;
+    @extend .margin-bottom--small-base;
+
+    font-size: rem(17);
+    line-height: rem(22);
+
+    .button--text {
+        @extend .padding-right--none;
+        @extend .padding-left--large;
+        @extend .background-color--none;
+        
+        min-height: unset;
+        font-size: rem(15);
+        line-height: rem(20);
+    }
+}

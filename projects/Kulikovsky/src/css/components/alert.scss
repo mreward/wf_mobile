@@ -1,0 +1,112 @@
+.alert {
+    &--default {
+        .alert__body {
+            @extend .padding--base;
+        }
+
+        .alert__heading {
+            font-size: rem(18);
+
+            @extend .text--center;
+            @extend .margin-bottom--base;
+        }
+
+        .alert__text {
+            @extend .text--muted;
+            @extend .text--center;
+            @extend .margin-bottom--base;
+
+            font-size: rem(15);
+        }
+
+        .alert__buttons {
+            .alert__button {
+                &-primary {
+                    @extend .button--main;
+                }
+
+                &-cancel {
+                    min-height: 48px;
+                }
+            }
+
+            &.is-length {
+
+            }
+        }
+    }
+
+    &--error {
+
+    }
+}
+
+.alert--default {
+    .dialog-container {
+
+        background: #FFFFFF;
+        box-shadow: 0px 8px 15px rgba(39, 45, 45, 0.06);
+        border-radius: 8px;
+
+        .alert__body {
+            width: calc(100vw - 32px);
+        }
+
+        .alert__heading {
+            font-weight: 600;
+            font-size: 15px;
+            line-height: 20px;
+            text-align: center;
+            letter-spacing: -0.24px;
+            color: #000000;
+            margin: 12px 0 2px 0;
+        }
+
+        .alert__text {
+            font-style: normal;
+            font-weight: normal;
+            font-size: 13px;
+            line-height: 18px;
+            text-align: center;
+            letter-spacing: -0.078px;
+            color: rgba(60, 60, 67, 0.6);
+            margin-top:2px;
+
+        }
+
+        .alert__buttons {
+            margin-top: 32px;
+        }
+
+        .alert__image {
+            img {
+                width: 100%;
+            }
+        }
+    }
+}
+
+.alert--confirm {
+    .alert__buttons {
+        flex-direction: row-reverse;
+        justify-content: space-between;
+
+        .alert__button-cancel {
+            background: #F5F7FA;
+            border-radius: 8px;
+            color: #000;
+        }
+        ons-button {
+            flex: 0.49;
+        }
+
+    }
+}
+.alert--success {
+    ons-button.alert__button-cancel.button.button--quiet {
+        background: #F5F7FA;
+        border-radius: 8px;
+        margin-top: 8px;
+        color: #000;
+    }
+}

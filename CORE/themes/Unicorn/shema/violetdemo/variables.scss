@@ -1,0 +1,103 @@
+@import "../../variables";
+// Base
+
+$orange: rgba(255, 123, 7, 1);
+$violet: rgba(102, 126, 234, 1);
+$black: rgba(27, 28, 32, 1);
+$grey-1: rgba(113, 117, 139, 1);
+$grey: $grey-light-second;
+
+$blue-dark-2: rgba(42, 48, 83, 1);
+$lower-gradient: linear-gradient(225deg, rgba(255, 123, 7, 1) 0%, rgba(247, 85, 28, 1) 100%);
+$mediocre-gradient: linear-gradient(225deg, rgba(102, 126, 234, 1) 0%, rgba(118, 75, 162, 1) 100%);
+$violet-gradient-deep: linear-gradient(225deg, rgba(80, 103, 208, 1) 0%, rgba(92, 53, 132, 1) 100%);
+$violet-gradient-deep-transparent: linear-gradient(225deg, rgba(80, 103, 208, 0.5) 0%, rgba(92, 53, 132, 0.5) 100%);
+$mediocre-gradient-transparent: linear-gradient(225deg, rgba(64, 84, 173, 1) 0%, rgba(82, 42, 122, 1) 100%);
+
+$violet-light: rgba(102, 126, 234, 1);
+$primary: $orange;
+$global-font-family: "Open Sans", sans-serif;
+
+// Global
+// $shadow-block: 0 8px 15px 0 rgba(43, 27, 59, 0.2);
+$shadow: 0 8px 15px 0 rgba(43, 27, 59, 0.2);
+$shadow-lite: 0 8px 15px 0 rgba(33, 49, 52, 0.2);
+
+$bold: 600;
+$border-radius: 6px;
+$primary: $orange;
+$secondary: $blue-dark;
+$success: $green;
+$muted: $grey-dark;
+$danger: rgba(208, 2, 27, 1);
+$warning: rgba(246, 98, 67, 1);
+
+$shadow: 0 8px 15px 0 rgba(43, 27, 59, 0.2);
+$shadow-slight: 0 8px 15px 0 rgba(43, 27, 59, 0.1);
+$shadow-lite: 0 8px 15px 0 rgba(43, 27, 59, 0.2);
+
+$layout-auth-code-color: $primary;
+$layout-auth-fingerprint-height: calc(100vh - 110px);
+$layout-auth-fingerprint-justify-content: space-between;
+
+$page-background: $mediocre-gradient;
+
+$qr-scanner-laser-background: $orange;
+
+$alert-button-cancel-color: $white;
+$alert-button-cancel-background: $mediocre-gradient;
+
+$tile-icon-background: $mediocre-gradient;
+$toolbar-auth-color: $white;
+$tabbar-button-circle-background: $lower-gradient;
+$tabbar-button-tab-lablel-justify-content: flex-end;
+
+$button-main-background: $lower-gradient;
+$button-primary-background: $lower-gradient;
+$button-main-background: $lower-gradient;
+$button-main-background: $lower-gradient;
+
+$input-underbar-border-active: 2px solid $primary;
+$input-checkmark-checked-border: 2px solid $primary;
+$input-checkmark-circle-active-dot-color: $major-gradient;
+
+$personal-edit-checkmark-active-dot-color: $primary;
+
+$sidebar-menu-icon-color: $primary;
+
+$toolbar-background-color: transparent;
+
+$toolbar-balances-background: none;
+$toolbar-balances-box-shadow: none;
+$toolbar-balances-amount-color: $white;
+$toolbar-balances-amount-currency-color: $white;
+$toolbar-main-tabbar-background: none;
+$toolbar-color: $white;
+$toolbar-base-right-font-size: rem(16);
+
+$tabbar-button-background: $valuable-gradient;
+$tabbar-background: $violet-gradient-deep;
+$tabbar-bottom-footer-background-color: $mediocre-gradient;
+$tabbar-bottom-footer-background-image: none;
+
+$create-request-main-color: $white;
+
+$history-calendar-cell-background: $primary;
+$history-calendar-cell-selected: 0.5;
+$history-calendar-cell-color: $black;
+$history-filters-calendar-holder-arrow-top: 4px;
+$history-filters-calendar-holder-width: calc(100vw - 44px);
+$history-filters-calendar-holder-left: -11px;
+$history-filters-select-block-expandable-content-top: 34px;
+$history-filters-select-block-expandable-content-right: -17px;
+$history-list-top-right-font-size: rem(15);
+$history-list-expandable-content-font-size: rem(15);
+$screen-auth-pin-message: 16px;
+
+$create-request-outline-color: $white;
+$create-request-outline-border-color: $white;
+
+//$status-icon-wight: 24px;
+//$status-icon-height: 24px;
+
+$status-icon-before-font-size: unset;

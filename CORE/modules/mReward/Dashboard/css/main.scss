@@ -1,0 +1,24 @@
+@import "components/title-row";
+@import "components/news-banner";
+
+.toolbar-btn-close {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    z-index: 9999;
+    height: 40px;
+    width: 40px;
+    min-width: 40px;
+    min-height: 40px;
+}
+
+.toolbar__back-button {
+    position: fixed !important;
+    left: 16px !important;
+    top: 40px !important;
+    background-color: $primary !important;
+
+    .v-btn__content {
+        color: #fff  !important;
+    }
+}

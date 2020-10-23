@@ -1,0 +1,13 @@
+@mixin hook-form-misc() {
+    .form__item ~ .form__item {
+        @extend .margin-top--base;
+    }
+}
+
+@mixin hook-form-label() {
+    color: $black;
+    font-weight: $bold;
+    font-size: rem(15);
+    line-height: rem(18);
+}
+

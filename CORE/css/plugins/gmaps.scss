@@ -1,0 +1,59 @@
+.gmaps-page {
+    .page__content {
+        padding-bottom: 0 !important;
+    }
+}
+
+html ._gmaps_cdv_ {
+    .gmaps-page {
+        .page__background {
+            display: none;
+            background: none !important;
+        }
+    }
+}
+
+
+.map-active {
+    ._gmaps_cdv_ .page:not(._gmaps_cdv_) {
+        display: none !important;
+    }
+
+    .page._gmaps_cdv_ .page__content {
+        -webkit-overflow-scrolling: auto;
+    }
+
+    .toolbar + .page__background {
+        background-color: transparent !important;
+    }
+
+    .toolbar + .page__content {
+        top: 0 !important;
+        margin-top: 0 !important;
+        overflow-x: hidden;
+    }
+
+    .map-base {
+        &::before {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            width: 16px;
+            height: 100%;
+            background-color: $page-background !important;
+            content: "";
+        }
+
+        &::after {
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 100;
+            width: 16px;
+            height: 100%;
+            background-color: $page-background !important;
+            content: "";
+        }
+    }
+}

@@ -1,0 +1,34 @@
+{
+  "src_folders" : ["tests/e2e/tests"],
+
+  "webdriver" : {
+    "start_process": true,
+    "server_path": "./node_modules/.bin/chromedriver",
+    "port": 9516,
+    "cli_args": [ "--port=9516" ]
+  },
+
+  "test_settings" : {
+    "default" : {
+      "desiredCapabilities": {
+        "browserName": "chrome",
+        "chromeOptions": {
+          "args" : ["--no-sandbox"]
+        },
+        "loggingPrefs": {"driver": "INFO", "server": "OFF", "browser": "INFO"}
+      }
+    },
+    "selenium_server" : {
+      "selenium" : {
+        "start_process": true,
+        "host": "localhost",
+        "log_path" : "",
+        "port" : 4444,
+        "cli_args" : {
+          "webdriver.chrome.driver" : "./tests/e2e/bin/chromedriver"
+        },
+        "server_path": "./tests/e2e/bin/selenium-server-standalone-4.0.0-alpha-1.jar"
+      }
+    }
+  }
+}

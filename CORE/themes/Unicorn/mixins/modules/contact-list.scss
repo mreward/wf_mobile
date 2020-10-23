@@ -1,0 +1,8 @@
+@mixin hook-contact-list() {
+    .list-item {
+        .left,
+ .center {
+            @extend .text--normal;
+        }
+    }
+}

@@ -1,0 +1,78 @@
+.sidebar {
+    @extend .flex;
+    @extend .flex--justify-between;
+    @extend .flex--align-center;
+    @extend .flex--column;
+
+    &__header {
+        @extend .padding-top--medium;
+        @extend .padding-bottom--base;
+        @extend .padding-horizontal--default;
+
+        width: 100%;
+
+        .user-name {
+            @extend .text--normal;
+
+            font-size: 200%;
+        }
+    }
+
+    &__status {
+        @extend .margin-top--small-m;
+        @extend .text--muted;
+        @extend .text--normal;
+
+        & .status {
+            display: inline;
+        }
+    }
+
+    &__menu {
+        & .list-item {
+            min-height: 34px;
+
+            .left,
+            .center {
+                @extend .padding-vertical--none;
+                @extend .text--normal;
+                @extend .flex--align-center;
+            }
+
+            .left {
+                @extend .padding-right--middle;
+
+                .ons-icon {
+                    line-height: 1.5rem !important;
+
+                    @include text-gradient-one($sidebar-menu-icon-color);
+                }
+            }
+
+            .center {
+                font-size: rem(16);
+            }
+
+            &:first-child {
+                @extend .margin-top--none;
+            }
+
+            &:last-child {
+                @extend .margin-bottom--none;
+            }
+        }
+    }
+
+    &__footer {
+        & .button {
+            //@extend .padding-top--base;
+            //@extend .padding-bottom--medium;
+            //@extend .text--muted;
+            //
+            //overflow: visible;
+            //min-height: 17px;
+            //font-size: rem(14);
+            //line-height: 17px;
+        }
+    }
+}

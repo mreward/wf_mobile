@@ -1,0 +1,9 @@
+.is-animation--none {
+    * { transition: none; }
+}
+
+.animation {
+    &--scale\@x2 {
+        transform: scale(2);
+    }
+}

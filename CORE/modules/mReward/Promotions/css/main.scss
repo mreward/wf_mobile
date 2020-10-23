@@ -1,0 +1,40 @@
+.promotions {
+    &__title {
+        color: $black;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 24px;
+        margin-bottom: 16px;
+    }
+
+    &__date {
+        color: $black;
+        font-size: 15px;
+
+        span {
+            font-weight: 600;
+            line-height: 20px;
+            color: $violet;
+            text-transform: capitalize;
+        }
+    }
+
+    &__separator {
+        margin: 16px 0;
+        border-bottom: 1px dashed $grey-light-third;
+    }
+
+    &__content {
+        color: $black;
+        line-height: 20px;
+        font-size: 15px;
+    }
+
+    &__created {
+        font-size: 12px;
+        line-height: 16px;
+        margin-top: 16px;
+        color: $grey-dark;
+    }
+}
+

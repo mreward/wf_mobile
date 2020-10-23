@@ -1,0 +1,15 @@
+@mixin hook-popover-content() {
+    width: 250px;
+    border-radius: $border-radius;
+
+    & .list-item {
+        @extend .padding-horizontal--base;
+
+        height: 46px;
+        font-size: rem(15);
+    }
+
+    & .list-item ~ .list-item {
+        border-top: 1px solid $grey-bg;
+    }
+}

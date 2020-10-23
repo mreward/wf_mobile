@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'InputPass';
+    src: url('InputPass.eot');
+    src: url('InputPass.eot?#iefix') format('embedded-opentype'),
+         url('InputPass.woff') format('woff'),
+         url('InputPass.ttf') format('truetype'),
+         url('InputPass.svg#InputPass') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+/*[class*='icon-']:before{
+	display: inline-block;
+   font-family: 'InputPass';
+   font-style: normal;
+   font-weight: normal;
+   line-height: 1;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale
+}*/

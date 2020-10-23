@@ -1,0 +1,48 @@
+@include b(card) {
+    @extend .background--none;
+
+    @if (mixin-exists(hook-card)) {
+        @include hook-card();
+    }
+
+    @include e(title) {
+        font-weight: $bold;
+
+        @if (mixin-exists(hook-card-title)) {
+            @include hook-card-title();
+        }
+    }
+
+    @include e(body) {
+        margin: 0;
+        padding: $card-padding;
+        background: $card-background;
+        border-radius: $card-border-radius;
+        box-shadow: $card-shadow;
+
+        @if (mixin-exists(hook-card-title)) {
+            @include hook-card-title();
+        }
+    }
+
+    @include m(large) {
+        padding: $card-padding-large;
+
+        @if (mixin-exists(hook-card-large)) {
+            @include hook-card-large();
+        }
+    }
+
+    @include m(secondary) {
+        color: $white;
+        background-color: $secondary;
+
+        @if (mixin-exists(hook-card-secondary)) {
+            @include hook-card-secondary();
+        }
+    }
+}
+
+@if (mixin-exists(hook-card-misc)) {
+    @include hook-card-misc();
+}

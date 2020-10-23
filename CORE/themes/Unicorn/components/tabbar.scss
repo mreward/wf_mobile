@@ -1,0 +1,351 @@
+@include b(tabbar-home) {
+    & .page__layout {
+        padding-top: 8px !important;
+    }
+
+    .tab-other {
+        .ons-icon {
+            padding-top: 10px;
+        }
+    }
+
+    .tabbar {
+        &__item {
+            .tabbar__button {
+                color: $tabbar-home-tabbar-button-color;
+                opacity: $tabbar-home-tabbar-button-opacity;
+                transition: opacity 0.3s;
+            }
+
+            &--circle,
+            &.active {
+                .tabbar__button {
+                    opacity: 1;
+                }
+            }
+
+            .tabbar__icon {
+                display: flex !important;
+
+                @extend .flex--justify-center;
+                @extend .flex--align-center;
+
+                height: $tabbar-home-tabbar-icon-height;
+
+                @extend .margin--none;
+                @extend .padding--none;
+
+                font-size: $tabbar-home-tabbar-icon-font-size;
+                line-height: $tabbar-home-tabbar-icon-line-height;
+
+                & + .tabbar__label {
+                    display: block;
+                    margin: 0;
+                    font-weight: 300;
+                    font-size: $tabbar-home-tabbar-icon-label-font-size;
+                    line-height: $tabbar-home-tabbar-icon-label-line-height;
+                }
+            }
+        }
+    }
+}
+
+@include b(tabbar-gift) {
+    .tabbar--top__content {
+        //top: $tabbar-gift-content-top;
+    }
+}
+
+.tabbar--bottom {
+    @extend .tabbar--top;
+}
+
+ons-tabbar {
+    &[position="top"] {
+        .tabbar__content {
+            bottom: 40px;
+        }
+
+        .tabbar {
+            &__item, &__item.active {
+                &:first-child {
+                    .tabbar__button {
+                        border-radius: $border-radius 0 0 0;
+                    }
+                }
+
+                &:last-child {
+                    .tabbar__button {
+                        border-radius: 0 $border-radius 0 0;
+                    }
+                }
+
+                &:only-child {
+                    .tabbar__button {
+                        border-radius: $border-radius $border-radius 0 0;
+                    }
+                }
+            }
+        }
+
+        .tabbar--top__button {
+            @extend .flex--justify-center;
+
+            .tabbar__badge {
+                color: $tabbar-button-tab-badge-color;
+                font-size: $tabbar-button-tab-badge-font-size;
+            }
+        }
+
+        .ons-tabbar__footer {
+            width: $tabbar-bottom-footer-width;
+            height: $tabbar-top-footer-height;
+            overflow: hidden;
+            background-color: $tabbar-bottom-footer-background-color;
+            background-image: $tabbar-bottom-footer-background-image;
+            border-radius: $tabbar-bottom-footer-border-radius;
+
+            @extend .padding-horizontal--none;
+            @extend .margin-horizontal--auto;
+            @extend .tabbar--top;
+
+            .tabbar__item {
+                .tabbar__button {
+                    height: $tabbar-button-tab-height;
+                    overflow: hidden;
+                    color: $tabbar-button-tab-lablel-color;
+                    background-color: $tabbar-button-tab-background;
+                    border: none;
+                    border-radius: 0;
+                    outline: none;
+                    //justify-content: $tabbar-button-tab-lablel-justify-content !important; // TODO @terifash: what is it
+                }
+
+                .tabbar__label {
+                    font-weight: $tabbar-button-tab-font-weight;
+                    font-size: $tabbar-button-tab-lablel-font-size;
+                    color: $tabbar-button-tab-label-color;
+                    letter-spacing: 0.2px;
+                    text-align: center;
+                    height: auto;
+                }
+
+                &.active {
+                    background-color: $tabbar-button-tab-active-background;
+                    border-radius: 6px 6px 0 0;
+
+                    .tabbar__label {
+                        color: $tabbar-button-tab-active-lablel-color;
+                        background: none;
+                    }
+                }
+            }
+        }
+    }
+
+    &[position="bottom"] {
+        @extend ons-tabbar[position="top"];
+    }
+}
+
+.tabbar__badge.notification {
+    line-height: 17px;
+}
+
+@include b(tabbar-large) {
+    @include m(wrapper) {
+        top: 0;
+        width: 100%;
+        height: 100%;
+        transition: all 0.3s ease-in;
+
+        @extend .position--relative;
+
+        &::before {
+            @extend .position--top-center;
+
+            z-index: 2;
+            min-height: $tabbar-large-min-height-size;
+            background: $tabbar-large-wrapper-before-background;
+            border-radius: $tabbar-large-wrapper-before-border-radius !important;
+            opacity: 1 !important;
+            content: '';
+
+            @include size(100% !important, $tabbar-large-height-size);
+
+            @extend .position--absolute;
+        }
+    }
+
+    .tabbar {
+        height: $tabbar-large-height-size !important;
+
+        @extend .padding-horizontal--none;
+
+        &__content {
+            top: $tabbar-large-height-size-content;
+            height: 100%;
+            overflow: visible;
+        }
+
+        &::before {
+            display: none;
+        }
+    }
+
+    &[position="top"] {
+        .ons-tabbar__footer {
+            display: flex;
+            background: $tabbar-large-top-background;
+
+            .tabbar__item {
+                background: $tabbar-large-top-background !important;
+                &.active {
+                    .tabbar__button {
+                        color: $tabbar-button-tab-active-lablel-color;
+                        background: $tabbar-large-top-background !important;
+                    }
+                }
+
+                .tabbar__button {
+                    height: auto;
+                    position: absolute;
+                    bottom: 17px;
+                    background: $tabbar-large-top-background !important;
+
+                    @extend .flex;
+                    @extend .flex--justify-center;
+                    @extend .flex--align-center;
+                    @extend .flex--column;
+
+                    .tabbar__icon {
+                        margin: $tabbar-large-top-icon-margin !important;
+                        font-size: $tabbar-large-top-icon-font-size;
+                        transition: all 0.3s ease-in;
+
+                        @include size($tabbar-large-top-icon-size, $tabbar-large-top-icon-size);
+                    }
+
+                }
+
+                &:first-child {
+                    .tabbar__button {
+                        &::after {
+                            right: 0;
+                            bottom: $tabbar-large-top-after-bottom;
+                            content: '';
+                            background-color: $tabbar-large-top-after;
+
+                            @extend .position--absolute;
+
+                            @include size(1px, 60px);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @include m(wrapper-collapsed) {
+        //top: -60px;
+        transform: translate3d(0, -60px, 0);
+
+        .tabbar__button {
+            &::after {
+                bottom: 30px;
+                height: 20px !important;
+            }
+
+            .tabbar__icon {
+                opacity: 0;
+            }
+
+            .tabbar__label {
+                display: flex !important;
+            }
+        }
+
+        .ons-tabbar__footer {
+            .tabbar__item {
+                &:first-child {
+                    .tabbar__button {
+                        &::after {
+                            bottom: $tabbar-large-top-after-bottom-small !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.invoices {
+    ons-tabbar[position="bottom"] {
+        .tabbar__button {
+            @extend .position--relative;
+        }
+
+        .ons-tabbar__footer .tabbar__badge {
+            top: 6px;
+            left: 2px;
+            background: $red;
+
+            @extend .position--absolute;
+        }
+
+        .tabbar__label {
+            color: $invoices-tabbar-label-color !important;
+        }
+    }
+}
+
+html[onsflag-iphonex-portrait] {
+    ons-tabbar[position="bottom"] {
+        .ons-tabbar__footer {
+            height: $tabbar-bottom-footer-height;
+
+            .tabbar__item {
+                .tabbar__button {
+                    height: $tabbar-bottom-footer-height;
+                    padding-bottom: $tabbar-bottom-footer-padding-bottom;
+                }
+            }
+
+            &::before {
+                height: $tabbar-bottom-footer-height;
+            }
+        }
+
+        .tabbar__content:not(.tabbar--top__content) {
+            bottom: $tabbar-bottom-footer-bottom;
+        }
+
+        .tabbar:not(.tabbar--top):not(.tabbar--top) {
+            padding-bottom: 0;
+        }
+    }
+
+    @include b(tabbar-large) {
+        @include m(wrapper) {
+            &::before {
+                height: $tabbar-large-iphonex-size-main !important;
+            }
+
+            .tabbar {
+                height: $tabbar-large-iphonex-size-main !important;
+
+                &__content {
+                    top: $tabbar-large-iphonex-size-main;
+                    height: 100%;
+                }
+            }
+        }
+
+        .tabbar {
+            &__content {
+                top: $tabbar-large-iphonex-height-size-content;
+                padding-top: 26px;
+            }
+        }
+    }
+}

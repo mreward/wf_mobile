@@ -1,0 +1,153 @@
+@import "~_CORE/css/mixins/function";
+
+// Base
+
+$white: rgba(255, 255, 255, 1) !default; // used
+$black: rgba(0, 0, 0, 1) !default; // used
+$black-lite: rgba(59, 57, 52, 1) !default;
+$blue-dark: rgba(34, 39, 72, 1) !default;
+$grey-light: rgba(245, 247, 250, 1); // used
+$grey-light-second: rgba(245, 247, 250, 1) !default; // used
+$grey-light-third: rgba(206, 206, 210, 1) !default; // used
+$grey-light-fore: rgba(227, 229, 238, 1) !default;
+$grey-dark: rgba(60, 60, 67, 0.6) !default;
+$green: rgba(49, 211, 33, 1) !default;
+$yellow: rgba(255, 200, 0, 1) !default;// #FFC800;
+
+$red-light: rgba(245, 7, 7, 1) !default;
+$red-second: rgba(227, 44, 44, 1) !default;
+$orange: rgba(255, 123, 7, 1) !default;
+$violet: rgba(109, 9, 120, 1) !default;
+$violet-second: rgba(181,92,191,1) !default;
+$purple: rgba(223, 184, 239, 1) !default;
+$muted: rgba(60, 60, 67, 0.6);
+
+$major-gradient: linear-gradient(90deg, #b500d4 0%, #5b007f 100%) !default;
+$great-gradient: linear-gradient(270deg, #423fb1 0%, #0b79bf 100%) !default;
+$valuable-gradient: linear-gradient(45deg, #202438 0%, #3c3e51 100%) !default;
+$mediocre-gradient: linear-gradient(225deg, #5067d0 0%, #5c3584 71%) !default;
+$indifferent-gradient: linear-gradient(225deg, #f50707 0%, #b41010 100%) !default;
+$shallow-gradient: linear-gradient(270deg, #13667a 0%, #2aa87f 100%) !default;
+$lower-gradient: linear-gradient(90deg, #ff7d00 0%, #f76b1c 100%) !default;
+
+$great-gradient-transparent: linear-gradient(270deg, rgba(66, 63, 177, 0.3) 0%, rgba(11, 121, 191, 0.31) 100%) !default;
+$mediocre-gradient-transparent: linear-gradient(225deg, #4054ad 0%, #522a7a 100%) !default;
+
+$red-negative-balance: $red-second !default;
+
+// Global
+$global-font-family: 'SF UI Text', sans-serif;
+$page-background: $grey-light;
+
+$shadow-block: 0 8px 15px 0 rgba(39, 45, 45, 0.06);
+$shadow: 0 8px 15px 0 rgba(227, 232, 239, 1);
+$shadow-lite: 0 8px 15px 0 rgba(33, 49, 52, 0.2);
+
+$normal: 300 !default;
+$bold: 600 !default;
+
+$primary: $violet;
+$secondary: $blue-dark !default;
+
+$letter-spacing: 0.2px;
+$card-shadow: $shadow-block;
+$border-radius: 8px !default;
+$success: $green !default;
+$muted: $grey-dark !default;
+$danger: rgba(208, 2, 27, 1) !default;
+$warning: rgba(255, 133, 0, 1);
+
+$primary-gradient: $major-gradient;
+$secondary-gradient: $major-gradient;
+
+$poll-red: rgba(255, 0, 0, 1);
+$poll-orange: rgba(255, 133, 0, 1);
+$poll-green: rgba(45, 176, 85, 1);
+
+// Elements
+
+//$layout-auth-button-shadow: $shadow-lite !default;
+
+$margins: (
+    xsmall: 2px,
+    small: 4px,
+    small-base: 8px,
+    middle: 12px,
+    base: 16px,
+    default: 28px,
+    medium: 35px,
+    large: 48px,
+    large-m: 65px,
+    xlarge: 100px,
+);
+
+$paddings: (
+    xsmall: 4px,
+    small: 8px,
+    middle: 12px,
+    base: 16px,
+    default: 20px,
+    medium: 35px,
+    large: 45px,
+    xlarge: 100px,
+);
+
+$colors: (
+    default: $black,
+    primary: $primary,
+    base: $white,
+    muted: $muted,
+    danger: $danger,
+    warning: $warning,
+    success: $success,
+);
+
+$gradients: (
+    major: $major-gradient,
+    great: $great-gradient,
+    valuable: $valuable-gradient,
+    mediocre: $mediocre-gradient,
+    indifferent: $indifferent-gradient,
+    shallow: $shallow-gradient,
+    lower: $lower-gradient,
+) !default;
+
+$toolbar-text-transform: none;
+
+$tabbar-top-background-color: $white;
+$tabbar-top-background-color-active: $primary;
+$tabbar-top-color-active: $white;
+$tabbar-top-background-color: transparent;
+$toolbar-background-color: $grey-light;
+$tabbar-background: $white;
+$tabbar-top-height: 32px;
+$tabbar-color-active: $black;
+
+$onboarding-button-intro-title-color: $black;
+$onboarding-button-intro-text-title-font-size: rem(20);
+$onboarding-button-intro-text-title-text-transform: unset;
+$onboarding-button-intro-text-color: map_get($colors, muted);
+$onboarding-button-intro-text-desc-font-size: rem(13);
+$onboarding-button-intro-text-padding: 0 32px 0;
+$onboarding-iphonex-intro-text-top: calc(100vw + 200px);
+
+$input-font-size: $text-font-size;
+$input-underbar-border: none;
+$input-underbar-border-active: $input-underbar-border;
+
+$input-default-placeholder-color: $muted;
+$input-default-max-height: 60px;
+
+$layout-auth-background: $white;
+
+$layout-cover-page-background-height: 65vw !default;
+$layout-cover-page-background-color: $white !default;
+$layout-cover-page-layout-margin-top: calc(65vw - 44px) !default;
+$layout-cover-page-layout-margin-top-iphonex: calc(65vw - 24px) !default;
+
+$grid-masonry-margin: map_get($margins, small-base);
+
+$onboarding-intro-text-iphonex-padding-button: 0px;
+$onboarding-intro-text-padding-button: 0px;
+$onboarding-dots-size: 6px !default;
+$onboarding-dots-size-active: 6px !default;

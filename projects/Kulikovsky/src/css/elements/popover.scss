@@ -1,0 +1,51 @@
+.popover {
+    &--status {
+        .popover-mask {
+            background-color: transparent;
+        }
+
+        .popover {
+            @extend .width--full;
+
+            top: 36px !important;
+            bottom: initial !important;
+
+            &__content {
+                @extend .padding--base;
+                @extend .margin-horizontal--auto;
+                @extend .flex;
+                @extend .flex--row;
+                @extend .flex--justify-left;
+                @extend .flex--align-center;
+
+                min-height: 48px;
+                overflow: visible;
+                box-shadow: $shadow-block;
+                width: calc(100% - 32px);
+                border-radius: $border-radius;
+            }
+
+            &__icon {
+                color: $primary;
+
+                @extend .margin-right--base;
+
+                .ons-icon {
+                    font-size: rem(46);
+                }
+
+                &.is-success {
+                    color: rgba(45, 176, 85, 1);
+                }
+            }
+
+            &__text {
+                @extend .text--bold;
+
+                font-size: rem(15);
+                line-height: rem(20);
+                letter-spacing: -0.24px;
+            }
+        }
+    }
+}

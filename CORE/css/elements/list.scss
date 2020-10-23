@@ -1,0 +1,243 @@
+$list-header-transparent-font-size: rem(15) !default;
+$list-header-transparent-height: rem(15) !default;
+$list-header-transparent-font-weight: normal !default;
+
+$list-item-icon-font-size: rem(24) !default;
+
+@include b(list-header) {
+    @include m('transparent') {
+        @extend .background--none;
+        height: $list-header-transparent-height;
+        padding-left: 0;
+        font-weight: $list-header-transparent-font-weight;
+        font-size: $list-header-transparent-font-size;
+
+        text-transform: none;
+        background-color: transparent;
+    }
+
+    @include m(muted) {
+        font-weight: normal;
+
+        @extend .text--center;
+        @extend .text--muted;
+    }
+
+    @if (mixin-exists(hook-list-header)) {
+        @include hook-list-header();
+    }
+}
+
+@include b(list-item) {
+    margin: 0;
+    padding: 0;
+
+    @include e(icon) {
+        padding: 0;
+        font-size: $list-item-icon-font-size;
+    }
+
+    @include e(description) {
+        font-size: $text-font-size;
+    }
+
+    @include e(header) {
+        font-size: $text-font-size;
+
+        @extend .text--bold;
+    }
+
+    @include e(time) {
+        @extend .text--muted;
+
+        font-size: rem(12);
+    }
+
+    &--chevron__right {
+        padding-right: 30px !important;
+    }
+
+    &__center,
+    &__left,
+    &__right {
+        @extend .background--none;
+
+        min-height: $list-item-height;
+        padding: 0;
+    }
+
+    @include m(expandable) {
+        @extend .background--none;
+
+        @if (mixin-exists(hook-list-item-expandable)) {
+            @include hook-list-item-expandable();
+        }
+    }
+
+    @include e(expandable-content) {
+        padding: 0;
+    }
+
+    @include e(center) {
+    }
+
+    @include e(left) {
+    }
+
+    @include e(right) {
+        text-align: right;
+    }
+}
+
+@include b(list) {
+    background-color: transparent;
+
+    @extend .width--full;
+    @extend .background--none;
+
+    &--transparent {
+        & > .list-header {
+            @extend .text--muted;
+        }
+
+        & > .list-item {
+            min-height: $list-item-transparent-height;
+        }
+    }
+
+    @include m(default) {
+        font-size: $text-font-size;
+
+        @extend .margin-bottom--small;
+
+        & > .list-header:not([class^="list-header--"]) {
+            height: $list-header-default-height;
+            color: $list-header-default-color;
+            font-size: $list-header-default-font-size;
+            line-height: $list-header-default-height;
+            text-transform: $list-header-default-text-transform;
+
+            background-color: $list-header-default-background-color;
+
+            @extend .background--none;
+
+            @extend .padding-left--base;
+
+            @if (mixin-exists(hook-list-header-default)) {
+                @include hook-list-header-default();
+            }
+        }
+
+        & > .list-item {
+            min-height: $list-item-default-height;
+            background-color: $list-item-default-background-color;
+            border-bottom: $list-item-default-border;
+        }
+
+        & .list-item__content {
+            display: flex !important;
+            flex-direction: column;
+            align-items: start;
+        }
+
+        & > .list-item,
+        & > .list-item--expandable .list-item__top {
+            & > .list-item__center {
+                @if (mixin-exists(hook-list-item-default-center)) {
+                    @include hook-list-item-default-center();
+                }
+            }
+
+            & > .list-item__left {
+                @if (mixin-exists(hook-list-item-default-left)) {
+                    @include hook-list-item-default-left();
+                }
+            }
+
+            & > .list-item__right {
+                @if (mixin-exists(hook-list-item-default-right)) {
+                    @include hook-list-item-default-right();
+                }
+            }
+        }
+
+        & .list-item__expandable-content {
+            background-color: $list-item-default-expandable-content-background-color;
+        }
+
+        @if (mixin-exists(hook-list-default)) {
+            @include hook-list-default();
+        }
+    }
+
+    @include m(card) {
+        & > .list-header:not([class^="list-header--"]) {
+            height: $list-header-card-height;
+            color: $list-header-card-color;
+            font-size: $list-header-card-font-size;
+            line-height: $list-header-card-height;
+            text-transform: $list-header-card-text-transform;
+
+            background-color: $list-header-card-background-color;
+
+            @extend .background--none;
+
+            @extend .padding-left--base;
+
+            @if (mixin-exists(hook-list-header-card)) {
+                @include hook-list-header-card();
+            }
+        }
+
+        & .list__item,
+        & > .list-item:not(.list-item--expandable) {
+            @extend .card__body;
+            @extend .margin-bottom--small;
+
+            min-height: $list-item-card-height;
+        }
+
+        & > .list-item--expandable .list-item__top {
+            @extend .card__body;
+            @extend .padding--none;
+
+            & > .list-item__center,
+            & > .list-item__right,
+            & > .list-item__left {
+                min-height: $list-item-card-height;
+            }
+
+            & > .list-item__center {
+                @extend .padding--small;
+            }
+
+            & > .list-item__left {
+                @extend .padding-left--base;
+            }
+
+            & > .list-item__right {
+                @extend .padding-right--base;
+            }
+        }
+
+        @if (mixin-exists(hook-list-card)) {
+            @include hook-list-card();
+        }
+
+        & .list-item__expandable-content {
+            background-color: $list-item-default-expandable-content-background-color;
+
+            & .list {
+                @extend .margin-bottom--none;
+            }
+        }
+
+        & .list-item--expandable.list-item {
+            @extend .margin-bottom--small;
+        }
+    }
+}
+
+@if (mixin-exists(hook-list-misc)) {
+    @include hook-list-misc();
+}

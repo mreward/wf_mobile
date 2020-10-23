@@ -1,0 +1,110 @@
+@import "../../variables";
+
+$primary: rgba(28, 55, 93, 1);
+$secondary: rgba(26, 166, 218, 1);
+$secondary-transparent: rgba(26, 166, 218, 0.5);
+$secondary-gradient: $primary;
+
+$success: rgba(43, 166, 129, 1);
+
+$card-color-first: rgba(86, 62, 155, 1);
+$card-color-second: rgba(155, 62, 135, 1);
+$card-color-third: $secondary;
+$card-color-fourth: $success;
+
+$add-document-add-button-color-icon: $primary;
+
+$alert-icon-success: $success;
+$alert-icon-info: $primary;
+
+$checkbox-square-border-color: $primary;
+$checkbox-square-checkmark-border: 2px solid $primary;
+$screen-gift-details-price-color: $primary;
+
+$checkout-amount-currency-line-height: rem(16);
+
+$contacts-icon-color: $primary;
+
+$create-request-main-color: $black;
+$screen-gift-price-color: $black;
+$screen-gift-icon-color: $primary;
+$screen-gift-a-link-border-color: $primary;
+
+$checkbox-square-checkmark-border: 2px solid $grey-light-second;
+$checkbox-square-checkmark-checked-border: 2px solid $primary;
+
+$tabbar-button-background: $secondary;
+$tabbar-background: $primary;
+$tabbar-button-circle-background: $secondary;
+$tabbar-button-tab-background: $primary;
+
+$tabbar-button-tab-active-background: $secondary;
+$tabbar-button-tab-background: $secondary;
+
+$tabbar-bottom-footer-background-color: $secondary-transparent;
+$tabbar-bottom-footer-background-image: $tabbar-bottom-footer-background-color;
+$tabbar-button-tab-background: $secondary-transparent;
+
+$tile-icon-background: $primary;
+
+$button-primary-background: $primary;
+$button-main-background: $primary;
+$button-outline-border-color: $primary;
+$button-outline-color: $primary;
+$button-main-background: $primary;
+
+$history-calendar-cell-background: $secondary;
+$history-calendar-cell-color: $black;
+//$history-expandable-position-left-right: calc(0vw - 22px);
+$history-filters-select-block-expandable-content-width: calc(100vw - 26px);
+$history-filters-select-block-expandable-content-right: -17px;
+$history-filters-calendar-holder-width: $history-filters-select-block-expandable-content-width;
+$history-filters-calendar-holder-left: $history-filters-select-block-expandable-content-right;
+$history-expandable-width: calc(100vw - 40px);
+
+$input-underbar-border-active: 2px solid $primary;
+$input-checkmark-checked-border: 2px solid $primary;
+$input-checkmark-circle-active-dot-color: $primary;
+
+$personal-edit-checkmark-active-dot-color: $primary;
+$personal-edit-border-active-bottom-color: $primary;
+
+$success-page-add-icon-background: $primary;
+
+$sidebar-menu-icon-color: $primary;
+
+$screen-gift-discount-background: $secondary;
+$screen-gift-discount-width: auto;
+$screen-gift-discount-border-radius: 0 0 0 $border-radius;
+$screen-gift-discount-padding: 7px 10px;
+
+$screen-gift-name-font-weight: 300;
+
+$screen-gift-price-font-size: rem(24);
+$screen-gift-price-font-weight: 300;
+$screen-gift-price-currency-top: 0;
+$screen-gift-price-currency-font-size: rem(14);
+
+$screen-gift-categories-image-min-height: vw(120);
+
+$layout-auth-code-color: $primary;
+$list-notifications-icon-background: $primary;
+$languages-border-color: $primary;
+$loader-square-fill-active: $secondary;
+
+$create-request-icon-background: $primary;
+$qr-scanner-laser-background: $secondary;
+$qr-progress-text-color: $black;
+
+$create-request-outline-color: $primary;
+$create-request-outline-border-color: $grey-light-second;
+
+$my-qr-title-color: $create-request-main-color;
+
+$create-request-button-add-color: $muted;
+$create-request-button-text-color: $muted;
+
+$my-qr-button-color: $black;
+
+//$status-icon-before-size: 24px;
+//$status-icon-before-font-size: rem(24);

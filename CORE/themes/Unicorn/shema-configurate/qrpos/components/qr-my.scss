@@ -1,0 +1,14 @@
+.my-qr {
+    &__wrapper {
+        @extend .position--relative;
+    }
+    
+    &__container {
+        .button--outline {
+            border-color: $create-request-outline-border-color;
+            color: $my-qr-button-color !important;
+            letter-spacing: 0.2px;
+        }
+    }
+
+}

@@ -1,0 +1,301 @@
+@import "mixins/function";
+
+// Base
+$white: rgb(255, 255, 255) !default;
+$black: #000 !default;
+$primary: #444 !default;
+$secondary: rgba(92, 53, 132, 1) !default;
+$grey: rgba(242, 243, 247, 1) !default;
+$grey-light: rgba(227, 232, 239, 1) !default;
+$success: green !default;
+$danger: red !default;
+$warning: yellow !default;
+$muted: gray !default;
+$icon-eye-gray: rgba(204, 204, 204, 1) !default;
+
+$major-gradient: linear-gradient(90deg, #b500d4 0%, #5b007f 100%) !default;
+$great-gradient: linear-gradient(45deg, #202438 0%, #3c3e51 100%) !default;
+$valuable-gradient: linear-gradient(270deg, #423fb1 0%, #0b79bf 100%) !default;
+$mediocre-gradient: linear-gradient(270deg, #13667a 0%, #2aa87f 100%) !default;
+$indifferent-gradient: linear-gradient(90deg, #ff7d00 0%, #f76b1c 100%) !default;
+$shallow-gradient: linear-gradient(225deg, #f50707 0%, #b41010 100%) !default;
+$lower-gradient: linear-gradient(225deg, #5067d0 0%, #5c3584 100%) !default;
+
+$shadow: none !default;
+$shadow-dark: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12) !default;
+$bold: 600 !default;
+$normal: 300 !default;
+$br-base: 6px !default;
+$border-base: 1px solid $muted !default;
+$base-size: 14px;
+$middle-size: 24px;
+
+$margins: (
+    xsmall: 2px,
+    small: 4px,
+    base: 16px,
+    default: 20px,
+    medium: 35px,
+    large: 45px,
+    xlarge: 100px,
+) !default;
+
+$paddings: (
+    xsmall: 4px,
+    small: 8px,
+    base: 16px,
+    default: 20px,
+    medium: 35px,
+    large: 45px,
+    xlarge: 100px,
+) !default;
+
+$colors: (
+    default: $black,
+    base: $white,
+    primary: $primary,
+    muted: $muted,
+    danger: $danger,
+    warning: $warning,
+    success: $success,
+);
+
+$gradients: (
+    major: $major-gradient,
+    great: $great-gradient,
+    valuable: $valuable-gradient,
+    mediocre: $mediocre-gradient,
+    indifferent: $indifferent-gradient,
+    shallow: $shallow-gradient,
+    lower: $lower-gradient,
+) !default;
+
+// Global
+$global-letter-spacing: 0.2px !default;
+$global-text-color: rgba(74, 74, 74, 1) !default;
+$global-background: $white !default;
+$global-font-family: "Open Sans", sans-serif !default;
+$global-selection-color: rgba(255, 189, 0, 0.5) !default;
+$global-margin: 16px !default;
+$global-font-size: 16px !default;
+
+$text-font-size: rem(15) !default;
+$text-font-size-small: rem(12) !default;
+$text-underline-border: 2px solid $primary !default;
+
+// Plugins, vendor, libs
+// Elements
+$action-sheet-phones-font-size: rem(16) !default;
+$action-sheet-phones-font-size-title: rem(18) !default;
+$action-sheet-phones-close-font-size: rem(14) !default;
+$action-sheet-phones-background: $white !default;
+$action-sheet-phones-box-shadow: 0 0 30px -2px rgba(0, 0, 0, 0.15) !default;
+$action-sheet-phones-border-radius: rem(12) rem(12) 0 0 !default;
+$action-sheet-phones-border: rem(1) solid $grey !default;
+$action-sheet-phones-item-height: 60px !default;
+
+$button-outline-border-width: 2px !default;
+$button-color: $black !default;
+$button-color-muted: $muted !default;
+$button-outline-border-color: $primary !default;
+$button-outline-border-width: 1px !default;
+$button-outline-color: $primary !default;
+$button-opacity-active-primary: 1 !default;
+$button-primary-color: $black !default;
+$button-primary-background: $primary !default;
+$button-control-height: 40px !default;
+$button-padding: 0 10px !default;
+$button-circle-font-size: rem(24) !default;
+$button-circle-size: 60px !default;
+$button-add-font-size: rem(16) !default;
+
+$badge-background-color: $primary !default;
+$badge-size: 18px !default;
+$badge-font-size: rem(10) !default;
+
+$card-shadow: $shadow-dark !default;
+$card-border-radius: $br-base !default;
+$card-background: $white !default;
+$card-padding: $global-margin !default;
+$card-padding-large: 45px !default;
+$card-margin: 0 16px !default;
+
+$card-list-item-border-color: $black !default;
+
+$popover-mask-background-color: rgba(0, 0, 0, 0.2) !default;
+
+$page-background: $white !default;
+$page-margin: 0 $global-margin !default;
+
+$input-height: 30px !default;
+$input-icon-color: $grey !default;
+$input-font-size: rem(18) !default;
+$input-prefix-font-size: rem(14) !default;
+$input-prefix-suffix-margin: 4px !default;
+$input-clear-button-icon-color: $muted !default;
+$input-clear-button-background-color: $grey-light !default;
+$input-clear-button-size: $middle-size !default;
+$input-clear-button-min-height: $middle-size !default;
+$input-clear-button-line-height: $middle-size !default;
+$input-clear-button-font-size: rem(10) !default;
+
+$input-autocomplete-icon-color: green !default;
+$input-autocomplete-clear-icon-color: $grey !default;
+$input-autocomplete-clear-icon-font-size: rem(20) !default;
+$input-autocomplete-font-size: rem(16) !default;
+$input-autocomplete-icon-font-size: rem(14) !default;
+$input-autocomplete-height: 50px !default;
+$input-autocomplete-results-item-border: 1px solid #ccc !default;
+
+$input-underbar-border: 2px solid $primary !default;
+$input-underbar-border-active: 2px solid $primary !default;
+$input-underbar-font-size: rem(16) !default;
+$input-underbar-border-error: 2px solid $danger !default;
+$input-pin-font-size: rem(16) !default;
+$input-min-height: 40px !default;
+$form-item-label-font-size: rem(14) !default;
+$form-item-label-text-transform: none !default;
+$form-item-label-font-weight: 500 !default;
+
+$list-item-height: rem(18) !default;
+
+$list-item-transparent-height: 30px !default;
+
+$list-item-card-height: 60px !default;
+
+$list-item-default-height: 60px !default;
+$list-item-default-border: 1px solid $grey !default;
+$list-item-default-background-color: $white !default;
+
+$list-header-default-color: $black !default;
+$list-header-default-background-color: $grey !default;
+$list-header-default-height: 30px !default;
+$list-header-default-text-transform: uppercase !default;
+$list-header-default-font-size: rem(12) !default;
+
+$list-header-card-color: $black !default;
+$list-header-card-background-color: $grey !default;
+$list-header-card-height: 30px !default;
+$list-header-card-text-transform: uppercase !default;
+$list-header-card-font-size: rem(12) !default;
+
+$list-item-default-expandable-content-background-color: $grey !default;
+
+$loader-square-background: $white !default;
+$loader-square-box-shadow: 0 8px 15px 0 rgba(39, 45, 45, 0.06) !default;
+$loader-square-fill: $black !default;
+$loader-square-fill-active: $primary !default;
+
+$sidebar-menu-color: $black !default;
+$sidebar-menu-left-color: rgba($black, 0.5) !default;
+$sidebar-background-color: $white !default;
+$sidebar-menu-background-color: $white !default;
+$sidebar-menu-background-image: none !default;
+
+$switch-background-color-active: #44db5e !default;
+$switch-box-shadow-active: inset 0 0 0 2px $switch-background-color-active !default;
+
+$tile-icon-size-small: 28px !default;
+$tile-icon-size: rem(40) !default;
+$tile-title-font-size: vw(14) !default;
+// Layout
+// Common
+// Components
+$alert-heading-font-size: rem(18) !default;
+$alert-body-shadow: $shadow-dark !default;
+$alert-mask-background-color: rgba(59, 57, 52, 1) !default;
+
+$carousel-dots-item-size: 6px !default;
+$carousel-dots-item-fill: rgba(32, 36, 56, 1) !default;
+$carousel-dots-item-spacing: map_get($margins, base) !default;
+
+$checkout-item-border: 1px solid $grey !default;
+$checkout-item-price-font-size: rem(32) !default;
+$checkout-header-height: 40px !important !default;
+$checkout-header-font-size: rem(18) !default;
+
+$progress-bar-fill: $primary !default;
+
+$not-found-items-icon-size: rem(40) !default;
+$not-found-items-height-size: 100% !default;
+
+$splitter-mask-background-color: rgba(0, 0, 0, 0.1) !default;
+
+$success-page-heading-font-size: rem(18) !default;
+$success-page-icon-size: rem(92) !default;
+
+$tabbar-color: rgba($white, 0.5) !default;
+$tabbar-color-active: $white !default;
+$tabbar-background-color: $secondary !default;
+$tabbar-background: $tabbar-background-color !default;
+
+$tabbar-top-top: 0 !default;
+$tabbar-top-color: $black !default;
+$tabbar-top-color-active: $black !default;
+$tabbar-top-background-color: $secondary !default;
+$tabbar-top-background-color-active: $white !default;
+$tabbar-top-margin: 0 map_get($margins, base) !default;
+$tabbar-top-height: 36px !default;
+$tabbar-top-button-border-radius: 2px !default;
+$tabbar-top-label-font-size: rem(14) !default;
+$tabbar-top-padding-top: 0 !default;
+
+$toolbar-background-color: $page-background !default;
+$toolbar-background-image: none !default;
+$toolbar-color: $black !default;
+$toolbar-font-weight: $bold !default;
+$toolbar-font-size: rem(18) !default;
+$toolbar-height: 44px !default;
+$toolbar-icon-font-size: rem(24) !default;
+$toolbar-line-height: rem(24) !default;
+$toolbar-text-transform: uppercase !default;
+
+$dropdown-list-height: 35px !default;
+
+// Pages
+
+$modal-title-font-size: rem(18) !default;
+$modal-subtitle-font-size: rem(15) !default;
+
+$carousel-arrows-button-background-color: $primary !default;
+$carousel-arrows-button-color: $white !default;
+
+/* Break-point
+-------------------------- */
+$--xxs: 320px !default;
+$--xs: 375px !default;
+$--sm: 768px !default;
+$--md: 992px !default;
+$--lg: 1200px !default;
+$--xl: 1920px !default;
+
+$--breakpoints: (
+    'xss' : (max-width: $--xxs),
+    'xs' : (min-width: $--xs),
+    'sm' : (min-width: $--sm),
+    'md' : (min-width: $--md),
+    'lg' : (min-width: $--lg),
+    'xl' : (min-width: $--xl)
+);
+//favorites colors
+$favorites-search-color: #cdd2d5;
+$favorites-name-color: #19181c;
+$favorites-description-color: #9b9fa2;
+$favorites-icon-color: #ccc;
+
+$grid-masonry-columns: 136px !default;
+$grid-masonry-margin: map_get($margins, base) !default;
+
+//$--breakpoints-spec: (
+//    'xs-only' : (max-width: $--sm - 1),
+//    'sm-and-up' : (min-width: $--sm),
+//    'sm-only': "(min-width: #{$--sm}) and (max-width: #{$--md} - 1)",
+//    'sm-and-down': (max-width: $--md - 1),
+//    'md-and-up' : (min-width: $--md),
+//    'md-only': "(min-width: #{$--md}) and (max-width: #{$--lg } - 1)",
+//    'md-and-down': (max-width: $--lg - 1),
+//    'lg-and-up' : (min-width: $--lg),
+//    'lg-only': "(min-width: #{$--lg}) and (max-width: #{$--xl } - 1)",
+//    'lg-and-down': (max-width: $--xl - 1),
+//    'xl-only' : (min-width: $--xl),
+//);

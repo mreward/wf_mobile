@@ -1,0 +1,47 @@
+@include b(success-page) {
+    height: 100%;
+
+    @extend .flex;
+    @extend .flex--align-center;
+
+    @include e(card) {
+        @extend .card__body;
+        @extend .card--large;
+        @extend .flex;
+        @extend .flex--align-center;
+        @extend .flex--justify-center;
+        @extend .flex--column;
+        @extend .width--full;
+    }
+
+    @include e(icon) {
+        @extend .text--center;
+
+        @include size($success-page-icon-size, $success-page-icon-size);
+    }
+
+    @include e(heading) {
+        @extend .margin-top--base;
+
+        font-size: $success-page-heading-font-size;
+
+        @extend .text--bold;
+        @extend .text--center;
+    }
+
+    @include e(text) {
+        @extend .margin-top--base;
+        @extend .text--center;
+    }
+
+    @include e(button) {
+        @extend .margin-top--medium;
+        @extend .button--primary;
+
+        width: 50%;
+    }
+}
+
+@if (mixin-exists(hook-success-page-misc)) {
+    @include hook-success-page-misc();
+}

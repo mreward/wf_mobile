@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 57.1 (83088) - https://sketch.com -->
+    <title>Icon/16x16/email</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Icon/16x16/email" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M14,2 C15.1045695,2 16,2.8954305 16,4 L16,12 C16,13.1045695 15.1045695,14 14,14 L2,14 C0.8954305,14 0,13.1045695 0,12 L0,4 C0,2.8954305 0.8954305,2 2,2 L14,2 Z M2,5.142 L2,12 L14,12 L14,5.313 L8.54531452,9.77418367 C8.20124675,10.0554883 7.71813486,10.0731574 7.35709167,9.83175861 L7.25270189,9.75157151 L2,5.142 Z M12.447,4 L3.731,4 L7.93527729,7.68957473 L12.447,4 Z" id="email" fill="#6D0978" fill-rule="nonzero"></path>
+    </g>
+</svg>

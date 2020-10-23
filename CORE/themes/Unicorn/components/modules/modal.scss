@@ -1,0 +1,113 @@
+.modal-main {
+
+    //background: transparent;
+    background: $grey-dark-second;
+    transition: 0.2s background ease-in-out;
+
+    &.modal--mask {
+        background: rgba(47, 52, 81, 0.8);
+    }
+
+    .button--close {
+        top: -42px;
+        right: 0;
+
+        @extend .position--absolute;
+
+        .ons-icon {
+            color: $white;
+            font-size: rem(28);
+        }
+    }
+
+    .modal__input {
+        @extend .padding--none;
+
+        input {
+            @extend .overflow-visible;
+
+            line-height: 30px;
+
+            &::-webkit-input-placeholder {
+                @extend .overflow-visible;
+
+                line-height: 30px;
+            }
+        }
+    }
+
+    .modal__content {
+        @extend .position--relative;
+
+        height: 100vh;
+        padding-bottom: 0;
+
+        @extend .flex;
+    }
+
+    .modal__body {
+        @extend .overflow-visible;
+        @extend .position--relative;
+
+        margin-top: 66px;
+        background-color: transparent;
+        border-radius: 6px 6px 0 0;
+        //overflow: hidden;
+
+        &::after {
+            @extend .position--absolute;
+            @include size(calc(100% - 16px), 100%);
+
+            bottom: 0;
+            left: 8px;
+            z-index: -1;
+            background-color: $white;
+            content: '';
+        }
+
+        .list {
+            @extend .margin-top--none;
+            @extend .margin-horizontal--auto;
+            @extend .overflow-touch;
+
+            height: 100%;
+            width: calc(100% - 16px);
+
+            .list-item {
+                min-height: 50px;
+                background-color: transparent;
+
+                &:last-child {
+                    border-bottom: none;
+                }
+            }
+
+            .center {
+                @extend .flex;
+                @extend .flex--justify-between;
+
+                .ons-icon {
+                    color: $green;
+                }
+            }
+        }
+    }
+
+    &.auth__modal {
+        background-color: rgba($grey-dark-second, 0.7);
+
+        &.modal {
+            .modal__body {
+                margin-top: 86px;
+
+                .list-item {
+                    height: auto;
+
+                    .center {
+                        flex-wrap: nowrap;
+                    }
+                }
+            }
+        }
+    }
+}

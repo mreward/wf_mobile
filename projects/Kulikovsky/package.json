@@ -1,0 +1,118 @@
+{
+  "devDependencies": {
+    "cordova-plugin-add-swift-support": "^2.0.2",
+    "cordova-plugin-android-fingerprint-auth": "git+https://github.com/oarsheo/cordova-plugin-android-fingerprint-auth.git",
+    "cordova-plugin-android-permissions": "^1.0.2",
+    "cordova-plugin-androidx": "^1.0.2",
+    "cordova-plugin-androidx-adapter": "^1.1.1",
+    "cordova-plugin-appavailability": "^0.4.2",
+    "cordova-plugin-camera": "^4.1.0",
+    "cordova-plugin-decimal-keyboard-wkwebview": "git+https://github.com/oarsheo/cordova-plugin-decimal-keyboard-wkwebview.git",
+    "cordova-plugin-device": "^2.0.3",
+    "cordova-plugin-device-motion": "^2.0.1",
+    "cordova-plugin-file": "^6.0.2",
+    "cordova-plugin-file-transfer": "^1.7.1",
+    "cordova-plugin-firebasex": "^9.1.1",
+    "cordova-plugin-inappbrowser": "^3.2.0",
+    "cordova-plugin-ionic-keyboard": "^2.2.0",
+    "cordova-plugin-ionic-webview": "^4.2.1",
+    "cordova-plugin-ios-keychain": "git+https://github.com/ionic-team/cordova-plugin-ios-keychain.git",
+    "cordova-plugin-listpicker": "^2.2.2",
+    "cordova-plugin-network-information": "^2.0.2",
+    "cordova-plugin-qrscanner": "^3.0.1",
+    "cordova-plugin-shake": "git+https://github.com/leecrossley/cordova-plugin-shake.git",
+    "cordova-plugin-splashscreen": "^5.0.3",
+    "cordova-plugin-statusbar": "git+https://github.com/oarsheo/cordova-plugin-statusbar.git",
+    "cordova-plugin-touch-id": "^3.4.0",
+    "cordova-plugin-whitelist": "^1.3.4",
+    "cordova-plugin-wkwebview-inputfocusfix": "^1.0.4",
+    "cordova-plugin-x-socialsharing": "^5.6.8",
+    "es6-promise-plugin": "^4.2.2"
+  },
+  "cordova": {
+    "plugins": {
+      "es6-promise-plugin": {},
+      "cordova-plugin-add-swift-support": {},
+      "cordova-plugin-android-permissions": {},
+      "cordova-plugin-device": {},
+      "cordova-plugin-device-motion": {},
+      "cordova-plugin-file": {},
+      "cordova-plugin-file-transfer": {},
+      "cordova-plugin-inappbrowser": {},
+      "cordova-plugin-network-information": {},
+      "cordova-plugin-shake": {},
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-touch-id": {
+        "FACEID_USAGE_DESCRIPTION": "For quick authentication."
+      },
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-x-socialsharing": {
+        "ANDROID_SUPPORT_V4_VERSION": "24.1.1+",
+        "PHOTO_LIBRARY_ADD_USAGE_DESCRIPTION": "This app requires photo library access to function properly.",
+        "PHOTO_LIBRARY_USAGE_DESCRIPTION": "This app requires photo library access to function properly."
+      },
+      "cordova-plugin-appavailability": {},
+      "cordova-plugin-ios-keychain": {},
+      "cordova-plugin-camera": {
+        "CAMERA_USAGE_DESCRIPTION": "The camera is used to scan QR codes.",
+        "PHOTOLIBRARY_USAGE_DESCRIPTION": "This app requires photo library access to function properly."
+      },
+      "cordova-plugin-listpicker": {},
+      "cordova-plugin-ionic-webview": {},
+      "cordova-plugin-android-fingerprint-auth": {},
+      "cordova-plugin-ionic-keyboard": {},
+      "com.verso.cordova.clipboard": {},
+      "cordova-plugin-statusbar": {},
+      "cordova-android-support-gradle-release": {
+        "ANDROID_SUPPORT_VERSION": "27.+"
+      },
+      "cordova-plugin-decimal-keyboard-wkwebview": {},
+      "cordova-plugin-qrscanner": {},
+      "cordova-plugin-wkwebview-inputfocusfix": {},
+      "cordova-plugin-androidx": {},
+      "cordova-plugin-androidx-adapter": {},
+      "cordova-plugin-googlemaps": {
+        "PLAY_SERVICES_VERSION": "15.0.1",
+        "ANDROID_SUPPORT_V4_VERSION": "27.+",
+        "LOCATION_WHEN_IN_USE_DESCRIPTION": "This app wants to get your location while this app runs only.",
+        "LOCATION_ALWAYS_USAGE_DESCRIPTION": "This app wants to get your location always, even this app runs in background."
+      },
+      "cordova-plugin-datepicker": {},
+      "cordova-plugin-firebasex": {
+        "FIREBASE_ANALYTICS_COLLECTION_ENABLED": "true",
+        "FIREBASE_PERFORMANCE_COLLECTION_ENABLED": "true",
+        "FIREBASE_CRASHLYTICS_COLLECTION_ENABLED": "true",
+        "ANDROID_ICON_ACCENT": "#FF00FFFF",
+        "ANDROID_PLAY_SERVICES_TAGMANAGER_VERSION": "17.0.0",
+        "ANDROID_PLAY_SERVICES_AUTH_VERSION": "18.0.0",
+        "ANDROID_FIREBASE_ANALYTICS_VERSION": "17.4.0",
+        "ANDROID_FIREBASE_MESSAGING_VERSION": "20.1.6",
+        "ANDROID_FIREBASE_CONFIG_VERSION": "19.1.4",
+        "ANDROID_FIREBASE_PERF_VERSION": "19.0.7",
+        "ANDROID_FIREBASE_AUTH_VERSION": "19.3.1",
+        "ANDROID_FIREBASE_INAPPMESSAGING_VERSION": "19.0.6",
+        "ANDROID_FIREBASE_FIRESTORE_VERSION": "21.4.3",
+        "ANDROID_CRASHLYTICS_VERSION": "2.10.1",
+        "ANDROID_CRASHLYTICS_NDK_VERSION": "2.1.1",
+        "ANDROID_GSON_VERSION": "2.8.6"
+      },
+      "cordova-plugin-android-notch": {}
+    },
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "dependencies": {
+    "CordovaClipboard": "https://github.com/VersoSolutions/CordovaClipboard",
+    "com.verso.cordova.clipboard": "^0.1.0",
+    "cordova-android": "^8.1.0",
+    "cordova-android-support-gradle-release": "^3.0.1",
+    "cordova-ios": "^5.1.1",
+    "cordova-plugin-android-notch": "^1.0.3",
+    "cordova-plugin-compat": "^1.2.0",
+    "cordova-plugin-datepicker": "^0.9.3",
+    "cordova-plugin-googlemaps": "^2.7.1",
+    "cordova-plugin-googlemaps-sdk": "git+https://github.com/mapsplugin/cordova-plugin-googlemaps-sdk.git"
+  }
+}

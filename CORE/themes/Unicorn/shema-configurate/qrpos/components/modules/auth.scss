@@ -1,0 +1,88 @@
+.layout-auth {
+    .toolbar__center {
+        @extend .height--full;
+        @extend .flex--align-bottom;
+
+        .layout-auth__logo {
+            max-height: vw(18);
+            min-height: vw(18);
+
+            @extend .margin-bottom--small-m;
+        }
+    }
+
+    &__card {
+        height: auto;
+        min-height: 295px;
+
+        @extend .padding-vertical--medium;
+
+        form {
+            @extend .flex;
+            @extend .flex--justify-between;
+            @extend .flex--align-center;
+            @extend .flex--column;
+
+            .screen-auth__text-message {
+                @extend .margin-top--base;
+
+                &:first-child {
+                    @extend .margin-top--none;
+                    @extend .margin-bottom--small-m;
+                }
+
+                &:last-child {
+                    @extend .margin-top--none;
+                }
+            }
+
+            .screen-auth__pin-message {
+                @extend .margin-top--medium;
+            }
+        }
+
+        //&--fingerprint {
+        //    .fingerprint__image {
+        //        img {
+        //            @include size(90px, 90px);
+        //        }
+        //    }
+        //}
+    }
+
+    &__input-pin {
+       &.is-active {
+           .input_main {
+               border-bottom: 2px solid $primary;
+           }
+       }
+    }
+
+    .button--text {
+        color: $black;
+
+        @extend .text--bold;
+    }
+
+    .button--clear {
+        @extend .margin-right--none;
+
+        background: $grey-light-second;
+
+        .ons-icon {
+            color: $muted;
+            font-size: rem(12);
+        }
+    }
+
+    ons-row {
+        margin-top: 0;
+    }
+}
+
+.fingerprint {
+    img {
+        @extend .margin-top--default;
+        @extend .margin-horizontal--auto;
+    }
+}

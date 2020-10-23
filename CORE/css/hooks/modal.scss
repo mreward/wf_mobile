@@ -1,0 +1,14 @@
+@mixin hook-modal-body() {
+    @extend .card__body;
+    @extend .margin-horizontal--base;
+    @extend .text--default;
+}
+
+@mixin hook-modal-title() {
+    @extend .margin-vertical--small;
+    @extend .text--bold;
+}
+
+@mixin hook-modal-subtitle() {
+    @extend .text--muted;
+}

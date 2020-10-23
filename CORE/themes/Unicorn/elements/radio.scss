@@ -1,0 +1,57 @@
+.input-radio--wrapper {
+    @extend .flex;
+    @extend .flex--justify-left;
+    @extend .flex--align-center;
+    @extend .width--full;
+
+    .input-radio {
+        @extend .flex;
+
+        .radio-button {
+            :checked + .radio-button__checkmark {
+                &::before {
+                    border: $input-checkmark-checked-border;
+                    transition: border-color 0.2s linear;
+                }
+            }
+
+            &__input {
+                @include size(20px, 20px);
+
+                line-height: rem(24);
+            }
+
+            &__checkmark {
+                @include size(22px, 22px);
+
+                border-radius: 50%;
+
+                &::before {
+                    border: $input-checkmark-circle-border;
+                    transition: border-color 0.2s linear;
+                }
+
+                &::after {
+                    @extend .position--center;
+
+                    @include size(14px, 14px);
+
+                    z-index: 2;
+                    background: $input-checkmark-circle-active-dot-color;
+                    border: none;
+                    border-radius: 50%;
+                    transition: background-color 0.2s linear;
+                }
+            }
+        }
+
+        label {
+            @extend .text--normal;
+            @extend .margin-left--small;
+            @extend .margin-right--base;
+
+            font-size: rem(20);
+            line-height: rem(24);
+        }
+    }
+}

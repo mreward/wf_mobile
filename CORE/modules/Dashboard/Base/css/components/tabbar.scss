@@ -1,0 +1,27 @@
+.tabbar__item {
+    text-align: center;
+
+    &--circle {
+        .tabbar {
+            &__button {
+                width: 60px;
+                height: 60px;
+                background: $tabbar-button-circle-background;
+                border-radius: 50%;
+                box-shadow: $tabbar-button-circle-shadow;
+                transform: translate3d(0, -21px, 0);
+                transition: all 0.2s;
+            }
+
+            &__icon {
+                color: $tabbar-button-circle-icon-color;
+                opacity: 1;
+                width: 17px;
+                height: 16px;
+                z-index: 5;
+                line-height: 10px;
+                font-size: 16px;
+            }
+        }
+    }
+}

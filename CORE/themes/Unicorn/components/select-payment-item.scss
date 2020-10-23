@@ -1,0 +1,181 @@
+.select-payment-item {
+    &--card-add {
+        .tile {
+            $button-add-height: 30px;
+            $amount-height: 30px;
+
+            .button--add {
+                @extend .padding-horizontal--none;
+                @extend .flex--justify-left;
+
+                height: 38px;
+                min-height: $button-add-height;
+                margin-top: -4px;
+                overflow: visible;
+                color: $muted;
+                line-height: $button-add-height;
+
+                .ons-icon {
+                    @include text-gradient-one($secondary-gradient);
+                }
+            }
+
+            .amount {
+                height: $amount-height;
+                line-height: $amount-height;
+
+                &__value {
+                    line-height: $amount-height;
+                }
+
+                .currency {
+                    line-height: 20px;
+                }
+            }
+
+            .amount__value {
+                line-height: $amount-height;
+            }
+
+            &__title {
+                @extend .flex;
+                @extend .flex--justify-between;
+                @extend .flex--align-top;
+                @extend .flex--column;
+            }
+        }
+    }
+
+    .input__inner {
+        font-size: rem(20) !important;
+        line-height: 30px !important;
+    }
+
+    &__header {
+        margin-bottom: 6px;
+        font-size: rem(14);
+        text-align: left;
+
+        @extend .text--muted;
+    }
+
+    &__amount {
+        display: flex !important;
+    }
+
+    .tile {
+        padding: 15px 16px 19px 16px !important;
+        border-radius: 8px;
+
+        &__title {
+            height: vw(46) !important;
+
+            @extend .text--left;
+            @extend .height--auto;
+            @extend .width--full;
+            @extend .margin--none;
+            @extend .padding--none;
+        }
+
+        & .amount {
+            &__value {
+                display: inline-block;
+            }
+
+            &__currency {
+                font-size: rem(14);
+            }
+        }
+
+        &__badge-container {
+            @extend .position--center-right;
+
+            top: 15%;
+            right: 6px;
+            color: $green;
+            font-size: rem(14);
+        }
+    }
+}
+
+.select-group {
+    &.input-payment-item {
+        .tile {
+            &__title {
+                @extend .margin-top--none;
+                @extend .padding-top--none;
+
+                @media screen and (max-width: 320px) {
+                    font-size: rem(14);
+                }
+            }
+
+            &__badge-container {
+                top: 5px !important;
+                right: 5px !important;
+                font-size: rem(14);
+
+                @extend .text--success;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 374px) {
+    .select-payment-item {
+        &--card-add {
+            .tile {
+                .button--add {
+                    height: 20px;
+                    min-height: 30px;
+                    margin-top: 0;
+                    line-height: 17px;
+
+                    @extend %flex--align-center;
+                    @extend %flex--justify-center;
+                    @extend %flex;
+
+                    &.is-small-font {
+                        font-size: rem(12);
+                    }
+                }
+
+                &:first-child {
+                    .tile__title {
+                        .select-payment-item__header {
+                            //margin-bottom: 6px;
+                        }
+                    }
+                }
+
+                &:last-child {
+                    .tile__title {
+                        .button--add {
+                            //padding-top: 0px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .select-group {
+        &.input-payment-item {
+            .tile {
+                &__title {
+                    margin-left: 8px!important;
+                    font-size: rem(14);
+                }
+            }
+        }
+    }
+
+    .balances__amount_red {
+        color: $red-negative-balance;
+
+        .amount__currency {
+            color: $red-negative-balance;
+        }
+    }
+
+}

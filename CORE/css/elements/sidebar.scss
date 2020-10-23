@@ -1,0 +1,50 @@
+@include b(sidebar) {
+    & .page__content {
+        background: $sidebar-background-color !important;
+    }
+
+    @if (mixin-exists(hook-sidebar)) {
+        @include hook-sidebar();
+    }
+
+    @include e(menu) {
+        @extend .width--full;
+
+        background: $sidebar-menu-background-color;
+
+        & .list-item {
+            padding-left: 0;
+            color: $sidebar-menu-color;
+        }
+
+        & .list-item__left {
+            color: $sidebar-menu-left-color;
+        }
+
+        & .list-item__center {
+            background-image: $sidebar-menu-background-image;
+        }
+
+        @if (mixin-exists(hook-sidebar-menu)) {
+            @include hook-sidebar-menu();
+        }
+    }
+
+    @include e(footer) {
+        @if (mixin-exists(hook-sidebar-footer)) {
+            @include hook-sidebar-footer();
+        }
+    }
+}
+
+@if (mixin-exists(hook-sidebar-misc)) {
+    @include hook-sidebar-misc();
+}
+
+html[onsflag-iphonex-portrait] {
+    @include b(sidebar) {
+        @if (mixin-exists(hook-sidebar-iphonex)) {
+            @include hook-sidebar-iphonex();
+        }
+    }
+}

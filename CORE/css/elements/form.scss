@@ -1,0 +1,45 @@
+@include b(form) {
+    height: auto;
+    transform: translate3d(0, 0, 0);
+
+    & .list--form {
+        height: auto;
+    }
+
+    @if (mixin-exists(hook-form)) {
+        @include hook-form();
+    }
+
+    @include e(item) {
+        & .list-header {
+            padding-left: 0;
+            font-weight: $form-item-label-font-weight;
+            font-size: $form-item-label-font-size;
+            text-transform: $form-item-label-text-transform;
+            background: none;
+
+            @if (mixin-exists(hook-form-label)) {
+                @include hook-form-label();
+            }
+        }
+
+        & label {
+            display: block;
+        }
+
+        @if (mixin-exists(hook-form-item)) {
+            @include hook-form-item();
+        }
+    }
+}
+
+@if (mixin-exists(hook-form-misc)) {
+    @include hook-form-misc();
+}
+
+.form {
+    &--fullheight {
+        height: 100%;
+        overflow: auto;
+    }
+}

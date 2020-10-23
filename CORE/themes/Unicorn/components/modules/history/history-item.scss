@@ -1,0 +1,110 @@
+.history-list {
+    &__item {
+        .top {
+            min-height: 99px;
+
+            .left {
+                img {
+                    width: rem(24);
+                }
+            }
+
+            .center {
+                width: calc(100vw - 165px);
+            }
+
+            .right {
+                width: 90px;
+                max-width: 90px;
+                color: $black;
+                font-size: $history-list-top-right-font-size; // rem(18)
+
+                @extend .text--normal;
+            }
+
+            .history-list__title {
+                overflow: hidden;
+                font-size: rem(18);
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+
+            .history-list__user-filed {
+                @extend .position--relative;
+                @extend .padding-top--xsmall;
+                @extend .text--normal;
+
+                color: $black;
+                font-size: rem(16);
+                word-break: break-all;
+            }
+
+            .time {
+                font-size: rem(12);
+            }
+
+            .list-item__center {
+                padding-right: 0 !important;
+            }
+        }
+
+        .expandable-content {
+            .list-item {
+                @extend .margin-bottom--small;
+
+                .center {
+                    display: inline-block;
+
+                    span {
+                        font-size: $history-list-expandable-content-font-size; // rem(16);
+                    }
+                }
+
+                &:first-child {
+                    .center {
+                        text-transform: capitalize;
+                    }
+                }
+
+                &:last-of-type {
+                    @extend .margin-bottom--none;
+                }
+            }
+
+            .center {
+                font-size: rem(16);
+                word-break: break-all;
+
+                span {
+                    @extend .text--normal;
+                }
+
+                .status {
+                    display: inline-block;
+
+                    &-icon {
+                        font-size: rem(14);
+                    }
+                }
+
+                .button--add {
+                    height: auto;
+                    min-height: 30px;
+                    line-height: 30px;
+
+                    @extend .margin-top--base;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 374px) {
+    .history-list {
+        &__item {
+            .history-list__title {
+                width: calc(100vw - 165px);
+            }
+        }
+    }
+}

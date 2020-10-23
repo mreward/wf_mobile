@@ -1,0 +1,38 @@
+.input-autocomplete {
+    background-color: white;
+    border-radius: $br-base;
+    box-shadow: $shadow-block;
+    &__input {
+        box-shadow: $shadow-block;
+
+        .ons-icon {
+            font-size: $input-autocomplete-clear-icon-font-size;
+            color: $input-autocomplete-clear-icon-color;
+        }
+
+        .input__clear-button {
+            padding-right: 0 !important;
+        }
+    }
+
+    &__results {
+        width: 100%;
+        max-height: 100vh;
+        overflow: scroll;
+        &-item {
+            font-size: $input-autocomplete-font-size;
+            height: $input-autocomplete-height;
+            padding-left: 16px;
+            padding-right: 16px;
+
+            .ons-icon {
+                font-size: $input-autocomplete-icon-font-size;
+                color: $input-autocomplete-icon-color;
+            }
+        }
+    }
+}
+
+.input-autocomplete__results-item ~ .input-autocomplete__results-item {
+    border-top: $input-autocomplete-results-item-border;
+}

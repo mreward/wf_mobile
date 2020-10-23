@@ -1,0 +1,96 @@
+
+@include b(dialog) {
+    @if (mixin-exists(hook-dialog)) {
+        @include hook-dialog();
+    }
+}
+
+@include b(alert) {
+    @if (mixin-exists(hook-alert)) {
+        @include hook-alert();
+    }
+
+    @include e(body) {
+        @if (mixin-exists(hook-alert-body)) {
+            @include hook-alert-body();
+        }
+    }
+
+    @include e(icon) {
+        @if (mixin-exists(hook-alert-icon)) {
+            @include hook-alert-icon();
+        }
+    }
+
+    @include e(heading) {
+        font-size: $alert-heading-font-size;
+
+        @if (mixin-exists(hook-alert-heading)) {
+            @include hook-alert-heading();
+        }
+    }
+
+    @include e(text) {
+        @if (mixin-exists(hook-alert-text)) {
+            @include hook-alert-text();
+        }
+    }
+
+    @include e(buttons) {
+        @extend .flex;
+
+        &.is-length {
+            @extend .flex--column;
+
+            .button {
+                @extend .margin-horizontal--none;
+            }
+        }
+
+        @if (mixin-exists(hook-alert-buttons)) {
+            @include hook-alert-buttons();
+        }
+    }
+
+    @include e(button-primary) {
+        @extend .button--primary;
+
+        @if (mixin-exists(hook-alert-button-primary)) {
+            @include hook-alert-button-primary();
+        }
+    }
+
+    @include e(button-cancel) {
+        @if (mixin-exists(hook-alert-button-cancel)) {
+            @include hook-alert-button-cancel();
+        }
+
+        &:active, &:hover {
+            @if (mixin-exists(hook-alert-button-cancel-active)) {
+                @include hook-alert-button-cancel-active();
+            }
+        }
+    }
+
+    @include m(default) {
+        @if (mixin-exists(hook-alert-default)) {
+            @include hook-alert-default();
+        }
+    }
+
+    @include m(confirm) {
+        @if (mixin-exists(hook-alert-confirm)) {
+            @include hook-alert-confirm();
+        }
+    }
+
+    @include m(notification) {
+        @if (mixin-exists(hook-alert-notification)) {
+            @include hook-alert-notification();
+        }
+    }
+}
+
+@if (mixin-exists(hook-alert-misc)) {
+    @include hook-alert-misc();
+}

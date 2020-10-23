@@ -1,0 +1,33 @@
+.carousel {
+    .ons-swiper-target {
+        @extend .flex;
+        @extend .text--center;
+        @extend .flex--row;
+    }
+
+    &__item {
+        @extend .margin-horizontal--auto;
+
+        padding: 0 4px !important;
+        overflow: visible;
+        //margin: 0 auto!important;
+        .banners-carousel__item {
+            height: $carousel-banners-height;
+            min-height: $carousel-banners-min-height;
+            margin: 0 auto;
+            overflow: hidden;
+            background-position: 50% 50%;
+            //outline: 1px solid blue;
+
+            @extend .padding--none;
+        }
+    }
+}
+
+.carousel-dots {
+    @extend .margin-bottom--base;
+}
+
+.swiper-custom-wrapper {
+    transform: scaleX(1.03);
+}

@@ -1,0 +1,82 @@
+@include b(position) {
+    @include m(absolute) {
+        position: absolute;
+    }
+
+    @include m(relative) {
+        position: relative;
+    }
+
+    @each $position in top, right, bottom, left {
+        @include m($position) {
+            #{$position}: 0;
+        }
+    }
+
+    @include m(cover) {
+        @extend .position--top;
+        @extend .position--right;
+        @extend .position--bottom;
+        @extend .position--left;
+    }
+
+    @include m(x-center) {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    @include m(y-center) {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    @include m(top-left) {
+        @extend .position--top;
+        @extend .position--left;
+    }
+
+    @include m(top-center) {
+        @extend .position--top;
+        @extend .position--x-center;
+    }
+
+    @include m(top-right) {
+        @extend .position--top;
+        @extend .position--right;
+    }
+
+    @include m(center) {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    @include m(center-left) {
+        @extend .position--left;
+        @extend .position--y-center;
+    }
+
+    @include m(center-right) {
+        @extend .position--right;
+        @extend .position--y-center;
+    }
+
+    @include m(bottom-left) {
+        @extend .position--bottom;
+        @extend .position--left;
+    }
+
+    @include m(bottom-center) {
+        @extend .position--bottom;
+        @extend .position--x-center;
+    }
+
+    @include m(bottom-right) {
+        @extend .position--bottom;
+        @extend .position--right;
+    }
+}
+
+[class^='position-']:not(.position-relative) {
+    @extend .position--absolute;
+}

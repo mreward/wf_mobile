@@ -1,0 +1,26 @@
+%flex-center {
+    @extend .flex;
+    @extend .flex--justify-center;
+    @extend .flex--align-center;
+}
+
+%flex {
+    @extend .flex;
+}
+
+%flex--justify-center {
+    @extend .flex--justify-center;
+}
+
+%flex--align-center {
+    @extend .flex--align-center;
+}
+
+%flex--column {
+    @extend .flex--column;
+}
+
+%flex--row {
+    @extend .flex--row;
+}
+

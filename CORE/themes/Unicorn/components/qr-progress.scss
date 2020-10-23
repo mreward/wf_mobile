@@ -1,0 +1,24 @@
+.qr-progress {
+    &__text {
+        color: $white;
+
+        @extend .text--center;
+        @extend .padding-horizontal--base;
+        @extend .margin-vertical--medium;
+    }
+
+    &__img {
+        overflow: hidden;
+        background: $white;
+        border-radius: 6px;
+        box-shadow: $shadow;
+
+        @include size(vw(40), vw(40));
+
+        @extend .margin-horizontal--auto;
+
+        img {
+            @include size(100%, 100%);
+        }
+    }
+}

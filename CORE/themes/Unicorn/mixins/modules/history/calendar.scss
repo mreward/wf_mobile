@@ -1,0 +1,36 @@
+@mixin hook-button-calendar() {
+    & .apply-btn {
+        .button {
+            @extend .button--primary;
+        }
+    }
+
+    & .cancel-btn {
+        @extend .margin-top--small;
+
+        .button {
+            @extend .button--text;
+            @extend .background-color--none;
+            @extend .text--muted;
+        }
+    }
+}
+
+@mixin hook-left-calendar() {
+    & .title {
+        font-size: rem(15);
+        line-height: 34px;
+
+        @extend .text--bold;
+    }
+}
+
+@mixin hook-left-calendar-table() {
+    .title {
+        text-transform: capitalize;
+    }
+
+    table {
+        @extend .margin-top--base;
+    }
+}

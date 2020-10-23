@@ -1,0 +1,21 @@
+@include b(popover) {
+    @if (mixin-exists(hook-popover)) {
+        @include hook-popover();
+    }
+
+    @include e(content) {
+        @if (mixin-exists(hook-popover-content)) {
+            @include hook-popover-content();
+        }
+    }
+
+    @include e(arrow) {
+        @if (mixin-exists(hook-popover-arrow)) {
+            @include hook-popover-arrow();
+        }
+    }
+}
+
+@include b(popover-mask) {
+    background-color: $popover-mask-background-color;
+}

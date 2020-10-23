@@ -1,0 +1,138 @@
+.merchant-info {
+    &__name {
+        color: $black;
+        font-size: rem(20);
+        font-weight: $normal;
+        line-height: rem(22);
+    }
+    &__nearby-button {
+        position: absolute;
+        right: 0;
+        font-size: rem(12) !important;
+        margin-left: auto;
+        margin-top: calc(50vw - 30px + 8px);
+        height: 46px !important;
+        min-width: 46px;
+        max-width: 46px;
+        border-radius: 23px;
+        background-color: $white;
+        box-shadow: $shadow-block;
+        color: $primary !important;
+        font-weight: $bold;
+        line-height: rem(14);
+
+        &.is-active {
+            max-width: 100px;
+            margin-right: $base-size;
+
+            & .ons-icon {
+                font-size: rem(14) !important;
+                margin-right: 5px;
+            }
+        }
+
+        & .ons-icon {
+            font-size: rem(18);
+        }
+    }
+    &__desc {
+        margin-top: 4px;
+        margin-bottom: $base-size;
+        color: #9B9FA2;
+        font-size: rem(14);
+        font-weight: $normal;
+        line-height: rem(16);
+    }
+    &__rating {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 40px;
+    }
+    &__rating-vote {
+        color: $black;
+        font-size: rem(14);
+        font-weight: $bold;
+        line-height: rem(16);
+
+        & .ons-icon {
+            font-size: rem(14);
+            color: $green;
+        }
+    }
+    &__rating-info {
+        display: flex;
+        align-items: center;
+        height: 40px;
+    }
+    &__rating-value {
+        color: $yellow;
+        font-size: rem(14);
+        font-weight: $bold;
+        line-height: rem(16);
+        margin-right: 6px;
+    }
+    &__rating-button {
+        height: 40px;
+        width: 80px;
+        border: 2px solid $grey-light-second;
+        border-radius: 25px;
+
+        & .button {
+            width: 100%;
+            color: $black;
+            font-size: rem(14);
+            font-weight: $bold;
+            line-height: rem(16);
+            text-align: center;
+        }
+    }
+    &__rating-stars {
+        display: flex;
+        justify-content: space-between;
+        color: $grey-light-third;
+        & .star--fill {
+            color: $yellow;
+        }
+    }
+    &__list {
+        margin-top: $base-size;
+        border-top: 1px solid $grey-light-second;
+    }
+    &__list-item {
+        padding-top: 18px;
+        padding-bottom: 18px;
+        border-bottom: 1px solid $grey-light-second;
+        display: flex;
+        align-items: center;
+
+        text-align: left;
+        color: $black;
+        font-size: rem(16);
+        font-weight: $normal;
+        line-height: rem(18);
+        & .left {
+            color: $primary;
+            text-align: left;
+            font-size: rem(16);
+            padding-right: 12px;
+        }
+        & .right {
+            margin-left: auto;
+            color: $primary;
+            font-size: rem(14);
+            font-weight: $bold;
+            line-height: rem(16);
+            text-align: right;
+        }
+    }
+    &__pay-button {
+        margin-top: $base-size;
+
+        & .button {
+            height: 46px;
+            width: 140px;
+            border-radius: 25px;
+        }
+    }
+}

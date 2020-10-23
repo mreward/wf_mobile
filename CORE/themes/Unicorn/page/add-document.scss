@@ -1,0 +1,162 @@
+.add-document {
+    border-radius: $add-document-border-radius;
+
+    &__title {
+        @extend .padding-top--base;
+
+        .center {
+            @extend .text--center;
+        }
+    }
+
+    &__sup_title {
+        min-height: $add-document-sup-title-min-height !important;
+        color: $add-document-sup-title-color;
+
+        .center {
+            @extend .text--bold;
+
+            height: $add-document-sup-title-center-height;
+            min-height: $add-document-sup-title-center-height;
+
+            @extend .padding-vertical--none;
+        }
+    }
+
+    &__select {
+        @extend .padding-horizontal--base;
+
+        min-height: $add-document-select-height !important;
+
+        .select-base {
+            .top {
+                height: $add-document-select-height;
+
+                border: 2px solid $add-document-select-border-color;
+                transition: border-radius 0.3s ease-in-out;
+
+                @extend .padding-vertical--none;
+            }
+
+            .expandable-content {
+                top: $add-document-select-expandable-top;
+                z-index: 999;
+                border: 2px solid $add-document-select-border-color;
+                border-radius: 0 0 6px 6px;
+                box-shadow: none;
+
+                .list-item {
+                    background: $add-document-select-expandable-content-background;
+                    border-bottom: 2px solid $add-document-select-border-color;
+
+                    &:last-of-type {
+                        border-bottom: none;
+                    }
+                }
+            }
+
+            .expanded {
+                .top {
+                    border-radius: 6px 6px 0 0;
+                    transition: border-radius 0.3s ease-in-out;
+                }
+            }
+        }
+    }
+
+    &__document-photo {
+        .center {
+            padding-top: 8px !important;
+        }
+
+        .grid {
+            width: $add-document-document-photo-width;
+        }
+
+        &--item {
+            min-height: vw(120);
+            overflow: hidden;
+            border: 2px solid $add-document-document-photo-border-color;
+            border-radius: $add-document-document-photo-border-radius;
+
+            @extend .flex;
+            @extend .flex--justify-center;
+            @extend .flex--align-center;
+            //@extend .position--relative;
+            &.passport {
+                width: 100% !important;
+                border-bottom: 2px solid $add-document-document-photo-border-color !important;
+
+                .document-description {
+                    @extend .width--full;
+
+                    white-space: nowrap;
+                }
+            }
+        }
+
+        .document-description {
+
+            bottom: -25px;
+            white-space: nowrap;
+            word-break: break-word;
+
+            @extend .text--muted;
+            @extend .position--relative;
+            @extend .position--x-center;
+        }
+
+        .document-add-button {
+            .button {
+                @extend .flex--justify-center;
+                //background: none!important;
+                .ons-icon {
+                    // background: none!important;
+                    @extend .margin-right--none;
+
+                    color: $add-document-add-button-color-icon;
+                }
+            }
+        }
+
+        .document-preview {
+            position: relative;
+            height: 100%;
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .button {
+                position: absolute;
+                top: 6px;
+                right: 6px;
+                z-index: 1;
+                width: 18px;
+                min-width: 18px !important;
+                height: 18px;
+                min-height: 20px !important;
+                color: $black;
+                font-size: 14px;
+                line-height: 18px;
+                background: $white;
+                border-radius: 50%;
+
+                ons-icon {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    line-height: 20px;
+                    transform: translate(-50%, -50%);
+                }
+            }
+        }
+    }
+
+    &.list--default > .list-item {
+        border-bottom: $add-document-list-item-border-bottom;
+    }
+}

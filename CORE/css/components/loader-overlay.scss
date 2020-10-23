@@ -1,0 +1,21 @@
+@include b(loader-overlay) {
+    @extend .position--relative;
+
+    @include m(mask) {
+        &::before {
+            @extend .position--absolute;
+            @extend .position--cover;
+            z-index: 999;
+
+            background-color: currentColor;
+            content: ' ';
+        }
+    }
+
+    @include e(loader) {
+        @extend .position--absolute;
+        @extend .position--center;
+
+        z-index: 1000;
+    }
+}

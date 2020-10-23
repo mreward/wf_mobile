@@ -1,0 +1,103 @@
+@include b(action-sheet-phones) {
+    & .action-sheet {
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: $action-sheet-phones-background;
+        border-radius: $action-sheet-phones-border-radius; // 12px 12px 0 0
+        box-shadow: $action-sheet-phones-box-shadow;
+    }
+
+    & .action-sheet-mask {
+        @if (mixin-exists(hook-action-sheet-phones-mask)) {
+            @include hook-action-sheet-phones-mask();
+        }
+    }
+
+    & .action-sheet-title {
+        color: $black;
+        font-size: $action-sheet-phones-font-size-title; // 18px
+        letter-spacing: 0.2px;
+        border-bottom: $action-sheet-phones-border; // 1px
+
+        @extend .text--bold;
+        @extend .text--center;
+        @extend .background-color--none;
+
+        @if (mixin-exists(hook-action-sheet-phones-title)) {
+            @include hook-action-sheet-phones-title();
+        }
+    }
+
+    @include e(item) {
+        @extend .background-color--none;
+        @extend .padding-horizontal--base;
+        height: $action-sheet-phones-item-height;
+        color: $black;
+        line-height: $action-sheet-phones-item-height; // 60px
+
+        border-bottom: $action-sheet-phones-border; // 1px
+
+        &:nth-last-of-type(2) {
+            border-bottom-right-radius: unset;
+            border-bottom-left-radius: unset;
+        }
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        &:hover,
+ &:visited,
+ &:active {
+            @if (mixin-exists(hook-action-sheet-phones-item-active)) {
+                @include hook-action-sheet-phones-item-active();
+            }
+        }
+
+        @include m(phone) {
+            @extend .text--normal;
+            @extend .text--left;
+            font-size: $action-sheet-phones-font-size;
+
+            letter-spacing: 0.2px;
+        }
+
+        &.is-close {
+            font-size: $action-sheet-phones-close-font-size; // 14px
+            line-height: 45px;
+            letter-spacing: 0.2px;
+
+            @extend .text--muted;
+            @extend .margin--none;
+            @extend .text--normal;
+            @extend .background-color--none;
+
+            &:hover,
+ &:visited,
+ &:active {
+                @if (mixin-exists(hook-action-sheet-phones-close-active)) {
+                    @include hook-action-sheet-phones-close-active();
+                }
+            }
+        }
+
+        @if (mixin-exists(hook-action-sheet-phones-item)) {
+            @include hook-action-sheet-phones-item();
+        }
+    }
+
+    @if (mixin-exists(hook-action-sheet-phones)) {
+        @include hook-action-sheet-phones();
+    }
+}
+
+html[onsflag-iphonex-portrait] {
+    @include b(action-sheet-phones) {
+        & .action-sheet {
+            bottom: 0;
+
+            @extend .padding-bottom--medium;
+        }
+    }
+}

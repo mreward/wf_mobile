@@ -1,0 +1,53 @@
+.card__range {
+    .range {
+        &__ruler {
+            display: flex;
+            justify-content: space-between;
+
+            > div {
+                width: 10%;
+                text-align: center;
+                font-size: 13px;
+                font-weight: 600;
+                line-height: 20px;
+                color: $grey-light-third;
+
+                &.selected {
+                    font-size: 22px;
+
+                    &.selected--red {
+                        color: $poll-red;
+                    }
+
+                    &.selected--orange {
+                        color: $poll-orange;
+                    }
+
+                    &.selected--green {
+                        color: $poll-green;
+                    }
+                }
+            }
+        }
+
+        &__slider {
+            width: 100%;
+            background-image: linear-gradient($grey-light-third, $grey-light-third);
+            margin-bottom: 32px;
+
+            .range__input {
+                background-image: linear-gradient($grey-light-third, $grey-light-third);
+            }
+        }
+    }
+}
+
+.is-muted {
+    .card__range .range__slider {
+        margin-bottom: 0 !important;
+    }
+}
+
+.card--vertical.is-muted .card__wrapper {
+    min-height: unset !important;
+}

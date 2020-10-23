@@ -1,0 +1,193 @@
+input[type="password"] {
+    font-size: 1.1rem !important;
+
+    &::placeholder {
+        font-size: 0.4rem !important;
+    }
+}
+
+.input {
+
+    // Elements
+    &__prefix {
+        & + ons-input {
+            padding: 0 5px;
+        }
+    }
+
+    &__inner {
+        color: $black;
+        letter-spacing: 0.2px;
+        height: auto;
+
+        &::selection {
+            background: rgba($secondary, 0.3);
+        }
+
+        @include placeholder($input-default-placeholder-color);
+    }
+
+    // Modificator
+    &--textarea {
+        max-height: 100% !important;
+
+        .input__inner {
+            line-height: $textarea-default-line-height;
+
+            &::placeholder {
+                line-height: $textarea-placeholder-line-height;
+            }
+        }
+    }
+
+    &--default {
+        @extend .card__body;
+
+        max-height: $input-default-max-height; // 60px
+        min-height: $input-default-max-height; // 60px
+
+        &[disabled] {
+            background: $grey-light-second;
+        }
+    }
+
+    &--underbar {
+        @extend .padding-horizontal--xmiddle;
+        @extend .padding-top--none;
+        @extend .padding-bottom--small-m;
+        @extend .flex--align-bottom;
+
+        .input__prefix {
+            @extend .flex;
+
+            line-height: rem(18);
+            margin-right: 8px;
+        }
+
+        input {
+            color: $layout-auth-input-inner-color;
+            font-weight: $layout-auth-input-inner-font-weight;
+            font-size: $layout-auth-input-inner-font-size;
+            line-height: $layout-auth-input-inner-line-height;
+            letter-spacing: $layout-auth-input-inner-letter-spacing;
+        }
+    }
+
+    &--amount {
+        & .input__suffix {
+            font-size: rem(14);
+            line-height: rem(16);
+            white-space: nowrap;
+        }
+
+        & .input__inner {
+            font-size: rem(32);
+        }
+
+        & .input__prefix,
+        & .input__inner,
+        & .input__suffix {
+            padding-top: 2px;  // TODO @terifash: to fix it
+
+            @extend .text--normal;
+        }
+    }
+
+    // Classes
+    .show-password-button {
+        color: $muted;
+        font-size: rem(24);
+    }
+}
+
+.input-pin {
+    &__inner {
+        height: $input-pin-height !important; // TODO @terifash: to fix it
+
+        @extend .padding--none;
+
+        :not([type=textarea]) {
+            height: $input-default-height;
+        }
+
+        input {
+            height: $input-pin-height !important;  // TODO @terifash: to fix it
+            padding-bottom: 0;
+            color: $black-lite;
+            font-weight: $bold;
+            line-height: rem(24);
+            text-align: center;
+        }
+    }
+}
+
+.input-phone {
+    & .input__prefix {
+        margin-right: 5px;
+        font-size: $input-font-size;
+    }
+
+    & .input__suffix {
+        .ons-icon {
+            font-size: rem(24);
+        }
+
+        .clearable {
+            & .ons-icon {
+                @include size(20px, 20px);
+
+                color: $input-clearable-icon-color !important; // $grey-light-third
+                font-size: rem(20);
+
+                &::before {
+                    @include size(20px, 20px);
+
+                    font-size: rem(20);
+                }
+            }
+        }
+    }
+}
+
+.is-clear-button {
+    .input_main {
+        input {
+            @extend .padding-right--large;
+        }
+    }
+}
+
+.favorites-search {
+    z-index: 1;
+    width: calc(100% + 10px);
+    margin-left: -5px;
+}
+
+.catalog-search,
+.favorites-search {
+    .input--default {
+        height: 62px;
+        max-height: 62px;
+
+        .input__inner {
+            @extend .text--normal;
+
+            font-size: rem(20);
+            line-height: rem(22);
+
+            &::placeholder {
+                color: $favorites-search-color;
+                font-size: rem(20);
+                line-height: rem(22);
+                letter-spacing: 0.2px;
+            }
+        }
+    }
+}
+
+.switch {
+    :checked + .switch__toggle {
+        background-color: $secondary;
+        box-shadow: inset 0 0 0 2px $secondary;
+    }
+}

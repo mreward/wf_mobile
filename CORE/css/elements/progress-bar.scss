@@ -1,0 +1,30 @@
+ons-progress-bar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 10001;
+
+    @include b(progress-bar) {
+        &--indeterminate::before,
+ &--indeterminate::after,
+ &__secondary,
+ &__primary {
+            background-color: $progress-bar-fill;
+        }
+    }
+
+    & + ons-tabbar {
+        & ons-progress-bar {
+            display: none;
+        }
+    }
+}
+
+ons-progress-circular {
+    @include b(progress-circular) {
+        &--indeterminate__primary {
+            stroke: $progress-bar-fill;
+        }
+    }
+}

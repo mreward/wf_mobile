@@ -1,0 +1,77 @@
+.screen-gift-pay {
+    .gift-pay__full-label {
+        .list-item {
+            flex-flow: wrap;
+        }
+    }
+
+    &__full-input {
+        .list-item {
+            @extend .flex;
+            @extend .flex--justify-center;
+            @extend .flex--align-center;
+            @extend .flex--column;
+        }
+    }
+
+    & .form__item {
+        label {
+            .ons-icon {
+                color: $primary;
+                font-size: rem(20);
+            }
+        }
+
+        .list-header {
+            @extend .text--bold;
+            @extend .text--default;
+        }
+
+        .input-phone {
+            .input__prefix {
+                @extend .margin-right--small;
+
+                font-size: rem(18);
+            }
+
+            .input__suffix {
+                .ons-icon {
+                    font-size: rem(24);
+                }
+            }
+        }
+
+        .list-item--expandable {
+            .top {
+                .right {
+                    @extend .flex;
+                    @extend .flex--justify-center;
+                    @extend .flex--align-center;
+                    @extend .position--relative;
+
+                    width: rem(44);
+
+                    &::after {
+                        @extend .position--absolute;
+
+                        @include size(2px, 60px);
+
+                        bottom: -16px;
+                        left: 0;
+                        content: '';
+                        background-color: $grey-bg;
+                    }
+
+                    .list-item__expand-chevron {
+                        @extend .margin-left--base;
+
+                        @include size(10px, 10px);
+
+                        border-right: rem(2) solid $primary;
+                        border-bottom: rem(2) solid $primary !important;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,163 @@
+.layout-auth {
+    .page__background {
+        background: $layout-auth-background;
+    }
+
+    .page__layout {
+        height: calc(100% - 44px);
+    }
+
+    &__input-pin {
+        @extend .flex;
+        @extend .flex--justify-center;
+        @extend .flex--align-center;
+
+        .input-pin__inner {
+            @extend .margin-right--none;
+
+            input {
+                color: $black;
+                font-size: rem(15) !important;
+            }
+        }
+    }
+
+    &__text-message {
+        @extend .margin-bottom--base;
+        @extend .text--muted;
+        @extend .text--center;
+
+        line-height: rem(18);
+        font-size: rem(13);
+    }
+
+    &__phone {
+        &.form__item .list-header {
+            padding-left: 52px !important;
+        }
+    }
+
+    &__form {
+        @extend .overflow-visible;
+        @extend .height--full;
+        @extend .position--relative;
+
+        .v-input {
+            &.v-text-field {
+                margin-top: 16px;
+            }
+
+            &.mobile-code {
+                input {
+                    text-align: center;
+                }
+            }
+        }
+
+        .form__item {
+            @extend .margin-bottom--base;
+
+            &.item-birthday {
+                margin-bottom: 22px;
+                margin-top: 5px;
+            }
+
+            .list-header {
+                line-height: 20px;
+                min-height: 20px;
+                font-size: $text-font-size-small;
+
+                @extend .text--normal;
+                @extend .text--muted;
+            }
+
+            .input {
+                &__prefix,
+                &__inner {
+                    @extend .padding-top--xsmall;
+                    @extend .padding-bottom--small;
+                }
+
+                &__prefix {
+                    @extend .padding-right--small;
+                }
+
+                &__inner {
+                    @include placeholder($muted);
+                }
+            }
+
+            &.is-large {
+                @extend .margin-bottom--default;
+            }
+        }
+
+        .button__wrapper {
+            @extend .flex;
+            @extend .flex--justify-between;
+            @extend .flex--align-center;
+            @extend .width--full;
+
+            flex-wrap: nowrap;
+
+            .v-btn.primary {
+                max-width: unset;
+
+                @extend .width--full;
+            }
+        }
+
+        .v-btn--secondary {
+            @extend .position--absolute;
+            @extend .width--full;
+
+            bottom: 20px;
+        }
+
+        .button {
+            &--main {
+
+            }
+
+            &--auth {
+                @extend .margin-left--base;
+
+                @include size(48px, 48px);
+
+                min-width: 48px;
+                background: $grey-light;
+                border-radius: $border-radius;
+
+                .ons-icon {
+                    font-size: rem(30);
+                    color: $black;
+                }
+            }
+        }
+
+        .text--muted {
+            color: $muted;
+            font-weight: normal;
+            font-size: rem(15);
+            line-height: rem(18);
+            letter-spacing: rem(-0.08);
+            text-align: center;
+        }
+    }
+
+    &__button {
+        span {
+            display: none;
+        }
+    }
+}
+
+html[onsflag-iphonex-portrait] {
+    .layout-auth {
+        &__form {
+            .v-btn--secondary {
+                bottom: 16px;
+            }
+        }
+    }
+}

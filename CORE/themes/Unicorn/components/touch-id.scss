@@ -1,0 +1,11 @@
+.touch-id {
+    @extend .margin-top--base;
+    @extend .margin-horizontal--auto;
+
+    @include size(60px, 60px);
+
+    opacity: 0.5;
+    img {
+        width: 100%;
+    }
+}

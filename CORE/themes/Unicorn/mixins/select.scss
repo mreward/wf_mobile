@@ -1,0 +1,99 @@
+@mixin hook-select-base() {
+    overflow: visible;
+
+    & .top {
+        .list-item__expand-chevron {
+            border-bottom: 2px solid #c7c7cc !important;
+        }
+    }
+
+    & .expandable-content {
+        box-shadow: $shadow-block;
+        background: none;
+
+        .center {
+            @extend .flex;
+            @extend .flex--justify-between;
+
+            .ons-icon {
+                color: $green;
+            }
+        }
+    }
+
+    &.withdraw-type {
+        .list-item__top {
+            .ons-icon {
+                margin-right: rem(18);
+                color: $primary;
+                font-size: rem(32);
+            }
+        }
+    }
+}
+
+@mixin hook-select-base-top() {
+    @extend .card__body;
+    @extend .input--default;
+
+    z-index: 1;
+    height: 60px;
+}
+
+@mixin hook-select-group() {
+    & .tile {
+
+        &:not(.tile--vertical) .tile__title {
+            @extend .margin-left--middle;
+            @extend .margin-top--none;
+            @extend .padding-top--none;
+        }
+
+        &__icon {
+            @extend .flex;
+            @extend .flex--align-center;
+        }
+
+        &__badge-container {
+            font-size: rem(12);
+            color: $green;
+        }
+    }
+    &.input-payment-item {
+        & .tile {
+            &__badge-container {
+                @extend .margin--none;
+                @extend .padding--none;
+
+                top: 6px !important;
+                right: 8px !important;
+            }
+        }
+    }
+}
+
+@mixin hook-select-base-expandable-list-item() {
+    @extend .card__body;
+
+    border-radius: 0;
+
+    &:first-child {
+        padding-top: 21px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+    &:last-child {
+        border-bottom-right-radius: 6px;
+        border-bottom-left-radius: 6px;
+    }
+}
+
+@mixin hook-select-base-expandable() {
+    position: absolute;
+    top: 55px;
+    z-index: 55;
+    min-height: 50px;
+    margin-top: 0;
+    box-shadow: $shadow;
+}

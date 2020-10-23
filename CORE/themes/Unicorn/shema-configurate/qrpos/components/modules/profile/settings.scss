@@ -1,0 +1,37 @@
+.settings--list {
+    .list {
+        &-item {
+            border-radius: 6px;
+            border-bottom: none !important;
+            box-shadow: $shadow-block;
+
+            &:last-child {
+                @extend .background-color--none;
+
+                box-shadow: none;
+
+                &:not(.is-last-item) {
+                    border-bottom: none;
+                }
+            }
+
+            .center {
+                @extend .text--bold;
+            }
+
+            .is-last-item {
+                @extend .text--muted;
+                @extend .text--bold;
+
+
+                min-height: 40px;
+
+                .center {
+                    @extend .padding--none;
+
+                    font-size: rem(14);
+                }
+            }
+        }
+    }
+}

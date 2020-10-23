@@ -1,0 +1,245 @@
+[type=reset],
+[type=submit],
+button,
+html [type=button] {
+    -webkit-appearance: none !important;
+}
+
+.v-btn.theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined) {
+    //background-color: unset;
+}
+
+.v-btn {
+    &.theme--light {
+        &.v-btn--disabled {
+            &:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined):not(.v-btn--secondary) {
+                background-color: rgba($primary, 0.4) !important;
+                border-radius: $border-radius;
+
+                .v-btn__content {
+                    color: $white;
+                }
+            }
+        }
+    }
+
+    &:not(.v-btn--fab) {
+        min-height: 48px;
+    }
+
+    &__content {
+        @extend .text--bold;
+
+        color: $black;
+        text-transform: none;
+        letter-spacing: -0.21px;
+        font-size: rem(13);
+    }
+
+    &--contained {
+        box-shadow: $shadow-block !important;
+    }
+
+    &--text {
+        .v-btn__content {
+            color: $primary;
+        }
+
+        &::before,
+        .v-ripple__container {
+            display: none;
+        }
+    }
+
+    &:not(.v-btn--outlined).secondary {
+        background-color: $grey-light-second !important;
+        border-radius: $border-radius;
+
+        .v-btn__content {
+            @extend .text--bold;
+
+            color: $black;
+        }
+    }
+
+    &:not(.v-btn--outlined).primary {
+        background-color: map_get($colors, primary) !important;
+        border-radius: $border-radius;
+
+        .v-btn__content {
+            color: $white;
+        }
+    }
+
+    &--third {
+        &:not(.v-btn--outlined).secondary {
+            background: $white !important;
+        }
+
+        .v-btn__content {
+            @extend .text--bold;
+
+            justify-content: flex-start;
+            color: $black;
+            font-size: rem(15);
+            line-height: rem(20);
+            letter-spacing: rem(-0.24);
+            text-transform: none;
+        }
+
+        i {
+            position: absolute;
+            top: 0;
+            right: 0;
+            color: $grey-light-third;
+            font-size: rem(10);
+        }
+    }
+
+    &-rounded--small {
+        align-self: center;
+        width: 65px !important;
+        height: 26px !important;
+        min-height: 26px !important;
+        background-color: $violet-second !important;
+        border-radius: 16px;
+
+        .v-btn__content {
+            justify-content: flex-start;
+            width: 49px;
+            color: $white;
+            font-weight: $bold;
+            font-size: rem(15);
+            line-height: 20px;
+            letter-spacing: rem(-0.24);
+        }
+
+        i {
+            position: absolute;
+            top: 5px;
+            right: 0;
+            font-size: rem(10);
+            transform: rotate(90deg);
+        }
+    }
+
+    &--fab {
+        &.v-size--default {
+            width: 46px;
+            height: 46px;
+        }
+
+        i {
+            font-size: rem(20);
+        }
+    }
+
+    &--fab.v-btn--edit {
+        position: absolute;
+        top: -23px;
+        right: 16px;
+        pointer-events: visible;
+
+        background-color: #F5F7FA;
+        box-shadow: unset !important;
+    }
+
+    &--fab.v-btn--nearby {
+        position: absolute;
+        right: 16px;
+        bottom: 32px;
+
+        i {
+            font-size: rem(16);
+        }
+
+        &:hover::before {
+            opacity: 0 !important;
+        }
+    }
+    &-rounded--white--small {
+        align-self: center;
+        width: 65px !important;
+        height: 26px !important;
+        min-height: 26px !important;
+        background-color: $white !important;
+        border-radius: 16px;
+        box-shadow: none !important;
+        border: 1px solid #CECED2;
+
+        .v-btn__content {
+            justify-content: center;
+            width: 49px;
+            color: $black;
+            font-weight: $bold;
+            font-size: rem(15);
+            line-height: 20px;
+            letter-spacing: rem(-0.24);
+        }
+    }
+    &-rounded--white--small.selected {
+        background-color: $violet-second !important;
+        border: none;
+        .v-btn__content {
+            color: $white;
+        }
+
+    }
+}
+
+.button,
+.v-btn {
+    &--default {
+        @extend .text--bold;
+        @extend .background-color--primary;
+
+        background: map_get($colors, primary);
+
+        min-height: 48px;
+        font-size: rem(13);
+        border-radius: $border-radius;
+        color: $white;
+
+        &:active,
+        &:hover {
+            @extend .background-color--primary;
+
+            color: $white;
+            opacity: 1;
+        }
+    }
+
+    &--main {
+        @extend .button--default;
+    }
+
+    &--quiet {
+        @extend .text--bold;
+        @extend .text--primary;
+
+        font-size: rem(13);
+
+        &:active,
+        &:hover {
+            opacity: 1;
+
+            @extend .text--primary;
+        }
+    }
+
+    &--secondary {
+        @extend .button--default;
+
+        letter-spacing: -0.21px;
+        min-height: 48px;
+        font-size: rem(13);
+        color: $black;
+        background: $grey-light;
+
+        &:active,
+        &:hover {
+            color: $black;
+            background: $grey-light;
+        }
+    }
+}

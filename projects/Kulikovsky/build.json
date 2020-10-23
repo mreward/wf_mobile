@@ -1,0 +1,11 @@
+{
+    "android": {
+        "release": {
+            "keystore": "mWallet.keystore",
+            "storePassword": "wpasskey",
+            "alias": "wpass",
+            "password" : "wpasskey",
+            "keystoreType": ""
+        }
+    }
+}

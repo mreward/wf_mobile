@@ -1,0 +1,31 @@
+.voucher-item {
+    @extend .card__body;
+    height: 74px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &__amount {
+        vertical-align: top;
+        & .amount__value {
+            line-height: 1;
+            font-size: rem(32);
+        }
+
+        & .amount__currency {
+            margin-top: 4px;
+            font-size: rem(14);
+        }
+    }
+    &__info {
+        width: 80%;
+    }
+    &__code {
+        @extend .text--ellipsis;
+        color: $muted;
+        font-size: rem(16);
+    }
+}
+
+.voucher-item ~ .voucher-item {
+    margin-top: 4px;
+}

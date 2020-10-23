@@ -1,0 +1,22 @@
+.settings--list.list {
+    .list-item {
+        .center {
+            @extend .padding-left--base;
+            @extend .text--bold;
+        }
+    }
+}
+
+.card--shadow {
+    .list-item {
+        box-shadow: $shadow-block;
+
+        &:first-child {
+            border-radius: $border-radius $border-radius 0 0;
+        }
+
+        &:last-child {
+            border-radius: 0 0 $border-radius $border-radius;
+        }
+    }
+}

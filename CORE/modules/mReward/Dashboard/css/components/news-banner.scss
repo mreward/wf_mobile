@@ -1,0 +1,80 @@
+.news-banner-wrapper {
+  padding: 0px 16px;
+}
+
+.news-banner {
+  height: calc((100vw - 32px) / 2.4406);
+  border-radius: 8px;
+  margin: 8px 0;
+  width: 100%;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+
+  .new {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: #FF0000;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    font-weight: 600;
+    font-size: rem(12);
+    line-height: rem(16);
+    color: #FFFFFF;
+    padding: 5px 8px;
+  }
+
+  .fishka-count {
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    padding: 8px;
+    background: #6D0978;
+    border-radius: 8px;
+    height: 40px;
+    display: flex;
+
+    font-size: 18px;
+    line-height: 20px;
+    letter-spacing: 0.4px;
+    color: #FFFFFF;
+    justify-content: center;
+    align-items: center;
+
+    i {
+      background-color: #fff;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 22px;
+      color: #6d0a78;
+    }
+
+    span {
+      padding-left: 8px;
+    }
+  }
+}
+
+.button-phone {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  height: 46px;
+  width: 46px;
+  background: #B55CBF;
+  border-radius: 50%;
+  font-size: 16px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+  box-shadow: 0px 4px 8px rgba(77, 50, 80, 0.3);
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}

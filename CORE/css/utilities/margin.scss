@@ -1,0 +1,67 @@
+@include b(margin) {
+    @include m(none) {
+        margin: 0 !important;
+    }
+
+    @each $size, $value in $margins {
+        @include m($size) {
+            margin: $value;
+        }
+    }
+}
+
+@each $position in top, right, bottom, left {
+    @include b(margin-#{$position}) {
+        @each $size, $value in $margins {
+            @include m(none) {
+                margin-#{$position}: 0 !important;
+            }
+
+            @include m($size) {
+                margin-#{$position}: $value;
+            }
+
+            @include m(auto) {
+                margin-#{$position}: auto;
+            }
+        }
+    }
+}
+
+@include b(margin-horizontal) {
+    @each $size, $value in $margins {
+        @include m($size) {
+            margin-right: $value;
+            margin-left: $value;
+        }
+
+        @include m(auto) {
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        @include m(none) {
+            margin-right: 0 !important;
+            margin-left: 0 !important;
+        }
+    }
+}
+
+@include b(margin-vertical) {
+    @each $size, $value in $margins {
+        @include m($size) {
+            margin-top: $value;
+            margin-bottom: $value;
+        }
+
+        @include m(auto) {
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+
+        @include m(none) {
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+        }
+    }
+}

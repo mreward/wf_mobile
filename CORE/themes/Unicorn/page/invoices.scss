@@ -1,0 +1,133 @@
+.invoices {
+    .list-invoices {
+        &.list--card {
+            .expandable-content,
+            .list-invoices__item {
+                background: $invoices-list-item-expandable-content-background;
+            }
+
+            .expandable-content {
+                @extend .margin-horizontal--auto;
+                @extend .width--full;
+
+                background: $invoices-list-item-expandable-content-background;
+
+                .button {
+                    &:last-child {
+                        @extend .margin-bottom--base;
+                    }
+
+                    &.button--text {
+                        @extend .margin-top--small;
+
+                        font-size: $invoices-list-item-expandable-content-button-text;
+
+                        @extend .text--bold;
+                        @extend .text--muted;
+                    }
+                }
+            }
+
+            .top {
+                box-shadow: none;
+            }
+        }
+
+        .invoice-list-header {
+            @extend .margin-top--base;
+
+            min-height: $invoices-header-min-height !important;
+            background: $invoices-header-background !important;
+            box-shadow: $invoices-header-box-shadow !important;
+
+            @extend .padding--none;
+
+            &:first-child {
+                @extend .margin-top--none;
+            }
+
+            .center {
+                min-height: $invoices-header-min-height;
+
+                @extend .text--bold;
+                @extend .flex;
+                @extend .flex--justify-center;
+                @extend .width--full;
+            }
+        }
+
+        &__item {
+            border-radius: $invoices-list-item-border-radius;
+            box-shadow: $invoices-list-item-box-shadow;
+
+            &.expanded {
+                .top {
+                    border-radius: 6px 6px 0 0;
+                }
+
+                .expandable-content {
+                    border-radius: 0 0 6px 6px;
+                }
+            }
+
+            &.top {
+                box-shadow: $invoices-list-item-top-box-shadow !important;
+
+                & .right {
+                    display: none;
+                }
+            }
+        }
+
+        .invoice-top-content {
+            @extend .width--full;
+
+            .content__header {
+                @extend .width--full;
+                @extend .flex;
+                justify-content: space-between;
+            }
+
+            .content__title {
+                @extend .text--normal;
+
+                font-size: $invoices-list-item-top-content-font-size;
+
+                @extend .margin-bottom--small;
+            }
+
+            .content__time {
+                @extend .text--muted;
+
+                font-size: $invoices-list-item-top-content-time-font-size;
+            }
+
+            .content__amount {
+                @extend .flex;
+                @extend .flex--align-center;
+                font-weight: 300;
+                font-size: $invoices-list-item-top-content-amount-font-size;
+                line-height: $invoices-list-item-top-content-amount-line-height;
+
+                @extend .margin-bottom--small;
+
+                .amount__currency {
+                    font-size: $invoices-list-item-top-content-currency-font-size;
+                    line-height: $invoices-list-item-top-content-currency-line-height;
+
+                    @extend .flex;
+                    @extend .flex--align-top;
+                }
+            }
+
+            .content__desc {
+                @extend .text--muted;
+            }
+        }
+    }
+
+    .notification {
+        @extend .padding-horizontal--none;
+        @extend .text--center;
+    }
+}

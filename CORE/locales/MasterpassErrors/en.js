@@ -1,0 +1,22 @@
+export default {
+    m_massterpass_1409: 'Password expired',
+    m_massterpass_1410: 'Password expired',
+    m_massterpass_5001: 'Enter LOOKUPCODE from your bank. To verify the validity of the card, your account will be debited and returned 1 UAH.',
+    m_massterpass_5192: 'Invalid card number',
+    m_massterpass_5195: 'This card is already registered',
+    m_massterpass_5196: 'This card is included in your purse',
+    m_massterpass_5210: 'Your card has expired',
+    m_massterpass_5225: 'CVV2 code is incorrect',
+    m_massterpass_5310: 'You have reached the maximum number of cards. To add a new one - delete one of the existing ones',
+    m_massterpass_5425: 'Such Card Name already exists',
+    m_massterpass_5440: 'Invalid card number',
+    m_massterpass_5445: 'This card is included in your purse',
+    m_massterpass_5450: 'Invalid card number',
+    m_massterpass_5454: 'The map name contains a valid card number. Enter a different map name.',
+    m_massterpass_5460: 'You already have Masterpass account, please contact it with {appName}',
+    m_massterpass_T_050: 'The bank that issued the card refused to conduct the transaction. For detailed information, please contact the bank',
+    m_massterpass_T_076: 'There is not enough money on your card',
+    m_massterpass_T_095: 'Your card has exceeded the payment limit',
+    m_massterpass_T_211: 'CVV2 code is incorrect',
+    m_massterpass_T_B0002: 'The bank that issued the card refused to conduct the transaction. For detailed information, please contact the bank'
+}

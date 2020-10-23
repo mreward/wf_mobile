@@ -1,0 +1,61 @@
+* {
+    box-sizing: border-box;
+    font-family: $global-font-family !important;
+}
+
+*[disabled] {
+    pointer-events: none;
+}
+
+html,
+body {
+    height: 100vh !important;
+    overflow: auto !important;
+}
+
+body {
+    color: $global-text-color;
+    font-size: $global-font-size;
+    letter-spacing: $global-letter-spacing;
+    background: $global-background;
+}
+
+//img {
+//    width: 100%;
+//}
+
+::selection {
+    background: $global-selection-color; /* Safari */
+}
+
+::-moz-selection {
+    background: $global-selection-color; /* Firefox */
+}
+
+dl {
+    margin: 0;
+}
+
+dt {
+    font-weight: normal;
+
+    @extend .text--muted;
+}
+
+dd {
+
+}
+
+ons-icon {
+    padding: 0 1px;
+    line-height: rem(16) !important;
+}
+
+ons-splitter-mask {
+    background-color: $splitter-mask-background-color;
+}
+
+.will-change--helper {
+    transform: translate3d(0, 0, 0);
+    will-change: auto;
+}
