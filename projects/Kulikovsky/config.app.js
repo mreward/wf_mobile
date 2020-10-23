@@ -56,7 +56,7 @@ const PROD = {
     termsUrl: 'https://kulikov.com/license.pdf', // required
     nameApp: 'Куликовский', // required
     bundleID: 'pro.mwallet.kulikovsky', // required
-    version: '1.1.1', // required
+    version: '1.2.1', // required
     options: {
         modules: {
             mReward: {
@@ -189,7 +189,7 @@ const Environment = {
 
 module.exports = defaultsDeep({
     name: 'Kulikovsky', // required
-    application: Environment.UAT,
+    application: Environment.PROD,
     notesHockeyapp: buildNotesHockeyapp(CHANGELOG)
 }, configDefault.app_config)
 
