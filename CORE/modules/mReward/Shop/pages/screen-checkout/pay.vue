@@ -47,7 +47,8 @@
                                     placeholder="0"
                                     type="number"
                                     inputmode="numeric"
-                                    oninput="if(Number(this.value) > Number(this.max)) this.value = this.max;"
+                                    pattern="[0-9]+([,\.][0-9]{2})?"
+                                    :oninput="onInputBonus"
                                     :max="totalAvailableBonuses"
                                     @focus="$emit('hideError')"
                             />
@@ -95,7 +96,7 @@
     import constants from '_vuex_constants'
     import InputBase from '_CORE/components/common/inputs/input-base'
     import ScreenStatusPay from '_screen_shop_pay_success'
-    import { maskAmount, maskNumeric } from '_masks'
+    import { maskNumeric } from '_masks'
 
     export default {
         name: 'checkout-pay',
@@ -117,7 +118,7 @@
                     },
                 ],
                 preCheckData: {},
-                maskNumeric,
+                maskNumeric
             }
         },
         computed: {
@@ -139,7 +140,7 @@
                 return this.deliveryList[0] || {}
             },
             totalAmount () {
-                if(this.paymentMethod === 'cash') {
+                if (this.paymentMethod === 'cash') {
                     return this.totalAmountCart + (this.delivery.price || 0)
                 } else {
                     return this.totalAmountCart + (this.delivery.price || 0) - this.bonuses
@@ -149,14 +150,25 @@
                 const balance = this.accounts.find(i => i.currency === `B${this.country.code}`)
                 return balance || {}
             },
+            onInputBonus() {
+                return `
+                    if (parseFloat(this.value) > parseFloat(this.max)) {
+                        this.value = this.max;
+                    }
+
+                    if (this.value.length > this.max.length) {
+                        this.value = this.max;
+                    }
+                `
+            },
             totalAvailableBonuses () {
                 if (this.preCheckData.receipt_details) {
                     let total = this.preCheckData.receipt_details.reduce((result, item) => {
-                        return result += item.discount_limit
+                        return result + item.discount_limit
                     }, 0)
 
                     const avialable = parseFloat(this.balanceBonuse.avialable.replace(',', '.'))
-                    if(total > (avialable || 0)) {
+                    if (total > (avialable || 0)) {
                         total = avialable || 0
                     }
 

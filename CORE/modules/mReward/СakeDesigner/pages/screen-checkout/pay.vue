@@ -58,7 +58,8 @@
                                 type="number"
                                 inputmode="numeric"
                                 :max="totalAvailableBonuses"
-                                oninput="if(Number(this.value) > Number(this.max)) this.value = this.max;"
+                                pattern="[0-9]+([,\.][0-9]{2})?"
+                                :oninput="onInputBonus"
                                 @focus="$emit('hideError')"
                             />
                         </div>
@@ -168,6 +169,17 @@
             balanceBonuse () {
                 const balance = this.accounts.find(i => i.currency === `B${this.country.code}`)
                 return balance || {}
+            },
+            onInputBonus() {
+                return `
+                    if (parseFloat(this.value) > parseFloat(this.max)) {
+                        this.value = this.max;
+                    }
+
+                    if (this.value.length > this.max.length) {
+                        this.value = this.max;
+                    }
+                `
             },
             totalAvailableBonuses () {
                 if (this.preCheckData.receipt_details) {
