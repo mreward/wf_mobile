@@ -97,6 +97,7 @@
     import InputBase from '_CORE/components/common/inputs/input-base'
     import ScreenStatusPay from '_screen_shop_pay_success'
     import { maskNumeric } from '_masks'
+    import round from 'lodash/round'
 
     export default {
         name: 'checkout-pay',
@@ -141,9 +142,9 @@
             },
             totalAmount () {
                 if (this.paymentMethod === 'cash') {
-                    return this.totalAmountCart + (this.delivery.price || 0)
+                    return round(this.totalAmountCart + (this.delivery.price || 0), 2)
                 } else {
-                    return this.totalAmountCart + (this.delivery.price || 0) - this.bonuses
+                    return round(this.totalAmountCart + (this.delivery.price || 0) - this.bonuses, 2)
                 }
             },
             balanceBonuse () {
