@@ -2,6 +2,7 @@ module.exports = [
     {
         version: '0.0.3',
         newFeatures: [
+            '[#KLKS-301](https://walletfactory.atlassian.net/browse/KLKS-301) - Оформление заказа в ИМ Киргизии',
             '[#KLKS-235](https://walletfactory.atlassian.net/browse/KLKS-235) - Контакты: актуализация данных',
             '[#KLKS-184](https://walletfactory.atlassian.net/browse/KLKS-184) - Профиль. Добавить контакты',
             '[#KLKS-135](https://walletfactory.atlassian.net/browse/KLKS-135) - Реализовать вывод в МП баланса в бонусных счетов в разных валютах',
