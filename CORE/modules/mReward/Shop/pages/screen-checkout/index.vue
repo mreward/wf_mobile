@@ -9,29 +9,18 @@
         <div class="checkout-step">
             <div class="checkout-step__item"
                  :class="{
-                 'checkout-step__item--active': tab === 'delivery',
-                 'checkout-step__item--success': tab !== 'delivery'
-            }">
-                <div class="checkout-step__item__number">
-                    <span v-if="tab === 'delivery'">1</span>
-                    <i v-if="tab !== 'delivery'" class="icon-checkmark"/>
-                </div>
-                <div class="checkout-step__item__title">{{$t('m_shop_delivery')}}</div>
-            </div>
-            <div class="checkout-step__item"
-                 :class="{
                 'checkout-step__item--active': tab === 'Pay',
                  'checkout-step__item--success': tab === 'PayIframe'
             }">
                 <div class="checkout-step__item__number">
-                    <span v-if="tab !== 'PayIframe'">2</span>
+                    <span v-if="tab !== 'PayIframe'">1</span>
                     <i v-if="tab === 'PayIframe'" class="icon-checkmark"/>
                 </div>
                 <div class="checkout-step__item__title">{{$t('m_shop_select_pay')}}</div>
             </div>
             <div class="checkout-step__item"
                  :class="{'checkout-step__item--active': tab === 'PayIframe'}">
-            <div class="checkout-step__item__number">3</div>
+            <div class="checkout-step__item__number">2</div>
                 <div class="checkout-step__item__title">{{$t('m_shop_pay')}}</div>
             </div>
         </div>
@@ -71,7 +60,7 @@
         ],
         data () {
             return {
-                tab: 'delivery',
+                tab: 'Pay',
                 delivery: {},
             }
         },
@@ -132,21 +121,12 @@
             async sendToPay(method, bonuses, totalAmount) {
                 try {
                     const preCheckData = await this.preCheck({
-                        type: method,
+                        type: 'card',
                         bonuses: bonuses
                     })
 
-                    if (method === 'cash' || totalAmount === 0) {
-                        await this.checkConfirm({
-                            check_number: `online_${moment().format('X')}`,
-                            pre_check_id: preCheckData.pre_check_id,
-                            money: preCheckData.payment.money,
-                        })
-                        this.goToPayStatus()
-                    } else if (method === 'card') {
-                        await this.paymentUrl(preCheckData)
-                        this.setActiveTab('PayIframe')
-                    }
+                    await this.paymentUrl(preCheckData)
+                    this.setActiveTab('PayIframe')
 
                     await this.onlineStoreApplication({
                         address: this.delivery.address,
@@ -173,11 +153,8 @@
                 this.setActiveTab('PayIframe')
             },
             onBack() {
-                debugger
-                if (this.tab === 'delivery') {
+                if (this.tab === 'Pay') {
                     this.popPage()
-                } else if (this.tab === 'Pay') {
-                    this.tab = 'delivery'
                 } else if (this.tab === 'PayIframe') {
                     this.tab = 'Pay'
                 }

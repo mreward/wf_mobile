@@ -46,7 +46,6 @@
                 popToPage: constants.App.Actions.popToPage,
             }),
             postMessage(e) {
-                debugger
                 console.log('iFrame postMessage');
 
                 if (e.data) {

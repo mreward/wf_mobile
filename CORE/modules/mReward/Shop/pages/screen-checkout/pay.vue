@@ -3,24 +3,9 @@
         <div class="page__content">
             <div class="checkout-pay">
                 <div class="will-change--helper">
-                    <v-select
-                            v-model="paymentMethod"
-                            :items="methods"
-                            class="tile-selected"
-                            :label="$t('m_shop_payment_methods')"
-                            item-text="name"
-                            item-value="type"
-                            :menu-props="{maxHeight: 400}"
-                            @change="$emit('hideError')"
-                    />
-
                     <div class="checkout-pay__pre-check">
                         <div class="checkout-pay__pre-check__title">{{$t('m_shop_payment_amount')}}</div>
                         <div class="checkout-pay__pre-check__value">{{totalAmountCart}} {{country.config.currency}}</div>
-                    </div>
-                    <div class="checkout-pay__pre-check">
-                        <div class="checkout-pay__pre-check__title">{{$t('m_shop_payment_delivery_amount')}}</div>
-                        <div class="checkout-pay__pre-check__value">{{delivery.price}} {{country.config.currency}}</div>
                     </div>
 
                     <div v-if="paymentMethod !== 'cash'"
@@ -125,7 +110,6 @@
         computed: {
             ...mapGetters({
                 accounts: constants.MrewardAccount.Getters.accounts,
-                deliveryList: constants.MrewardShop.Getters.deliveryList,
                 profile: constants.MrewardProfile.Getters.userProfile,
                 countries: constants.MrewardGeo.Getters.countries,
                 cart: constants.MrewardShop.Getters.cart,
@@ -137,15 +121,8 @@
                     return accumulator + total
                 }, 0)
             },
-            delivery () {
-                return this.deliveryList[0] || {}
-            },
             totalAmount () {
-                if (this.paymentMethod === 'cash') {
-                    return round(this.totalAmountCart + (this.delivery.price || 0), 2)
-                } else {
-                    return round(this.totalAmountCart + (this.delivery.price || 0) - this.bonuses, 2)
-                }
+                return round(this.totalAmountCart - this.bonuses, 2)
             },
             balanceBonuse () {
                 const balance = this.accounts.find(i => i.currency === `B${this.country.code}`)
