@@ -173,15 +173,18 @@
 
             },
         },
+        async created() {
+            await this.getDeliveryList()
+            await this.updatePreCheck()
+        },
         methods: {
             ...mapActions({
                 getCountries: constants.MrewardGeo.Actions.getCountries,
                 getCityById: constants.MrewardGeo.Actions.getCityById,
                 pushPage: constants.App.Actions.pushPage,
                 preCheck: constants.MrewardShop.Actions.preCheck,
-
+                getDeliveryList: constants.MrewardShop.Actions.getDeliveryList
             }),
-
             async updatePreCheck () {
                 this.preCheckData = await this.preCheck({
                     type: this.paymentMethod,
