@@ -87,6 +87,7 @@
             ...mapGetters({
                 cart: constants.MrewardShop.Getters.cart,
                 totalCartProduct: constants.MrewardShop.Getters.totalCartProduct,
+                productsCategory: constants.MrewardShop.Getters.productsCategory,
             }),
 
             showCancelButton () {
@@ -94,11 +95,11 @@
             },
 
             listData() {
-                if (!this.products.length) {
+                if (!this.productsCategory.length) {
                     return []
                 }
 
-                let list = this.products
+                let list = this.productsCategory
                 if (this.search) {
                     list = list.filter(item => item.product_name.toLowerCase().includes(this.search.toLowerCase()))
 
@@ -126,7 +127,8 @@
 
         async created () {
             try {
-                this.products = await this.getProductsCategory({
+                await this.clearProductsCategory();
+                await this.getProductsCategory({
                     group_id: this.category.group_id,
                 })
             } catch (e) {
@@ -142,6 +144,7 @@
                 popToPage: constants.App.Actions.popToPage,
                 getCountries: constants.MrewardGeo.Actions.getCountries,
                 getProductsCategory: constants.MrewardShop.Actions.getProductsCategory,
+                clearProductsCategory: constants.MrewardShop.Actions.clearProductsCategory,
             }),
 
             cleareSearchField () {

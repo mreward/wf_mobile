@@ -148,10 +148,17 @@ export default class ApiClient {
                 }
                 return `/partner/${json.partnerId}/branches`
             }
+            case this.APIEndPoints.Shop.ProductSearchTag.url:
             case this.APIEndPoints.Shop.ProductSearch.url: {
+                if (json.page) {
+                    return `${apiEndpoint.url}?product=${json.product}&page=${json.page}`
+                }
                 return `${apiEndpoint.url}?product=${json.product}`
             }
             case this.APIEndPoints.Shop.GetProductsCategory.url: {
+                if (json.page) {
+                    return `${apiEndpoint.url}?group_id=${json.group_id}&page=${json.page}`
+                }
                 return `${apiEndpoint.url}?group_id=${json.group_id}`
             }
             case this.APIEndPoints.Construct.GetAgreement.url:
@@ -167,6 +174,13 @@ export default class ApiClient {
             }
             case this.APIEndPoints.Construct.GetDecorGallery.url: {
                 return `${apiEndpoint.url}?partner_id=${json.partnerId}&decor_id=${json.decorId}&category_id=${json.categoryId}`
+            }
+
+            case this.APIEndPoints.Shop.GetProductsGroups.url: {
+                if (json.page) {
+                    return `${apiEndpoint.url}?page=${json.page}`
+                }
+                return apiEndpoint.url
             }
 
             default: {

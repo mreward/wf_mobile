@@ -48,6 +48,10 @@ export default {
             name: 'ADDRESS',
             nameGlobal: 'MrewardShop/ADDRESS'
         },
+        ProductsCategory: {
+            name: 'PRODUCTSCATEGORY',
+            nameGlobal: 'MrewardShop/PRODUCTSCATEGORY'
+        },
     },
     Actions: {
         getProducts: 'MrewardShop/getProducts',
@@ -65,6 +69,7 @@ export default {
         selectCountry: 'MrewardShop/selectCountry',
         getProduct: 'MrewardShop/getProduct',
         getProductSearch: 'MrewardShop/getProductSearch',
+        getProductSearchTag: 'MrewardShop/getProductSearchTag',
         getProductsCategory: 'MrewardShop/getProductsCategory',
         clearProductSearch: 'MrewardShop/clearProductSearch',
         getPriceDelivery: 'MrewardShop/getPriceDelivery',
@@ -77,6 +82,7 @@ export default {
         onlineStoreStatus: 'MrewardShop/onlineStoreStatus',
         listDeliveryAddress: 'MrewardShop/listDeliveryAddress',
         removeDeliveryAddress: 'MrewardShop/removeDeliveryAddress',
+        clearProductsCategory: 'MrewardShop/clearProductsCategory',
     },
     Getters: {
         products: 'MrewardShop/products',
@@ -92,5 +98,6 @@ export default {
         productSearchLoader: 'MrewardShop/productSearchLoader',
         orders: 'MrewardShop/orders',
         address: 'MrewardShop/address',
+        productsCategory: 'MrewardShop/productsCategory',
     }
 }

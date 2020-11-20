@@ -1,10 +1,10 @@
 <template>
     <v-ons-page>
         <div class="page__content" @scroll="scrollContent">
-            <template v-if="!mode">
+            <template v-if="!mode && !loader">
                 <v-ons-list
-                        v-for="(item, index) in productsGroups"
-                        :key="index"
+                        v-for="(item, index) in listGroup"
+                        :key="item.created_at"
                         class="dropdown-list catalog-list"
                 >
                     <v-ons-list-item
@@ -14,18 +14,21 @@
                             @click="() => !!item.child.length ? () => {} :  goToProducts(item)"
                     >
                         <div class="center catalog-item__name">
-<!--                            <div class="catalog-item__image"-->
-<!--                                 :style="`background-image: url('${item.icon}')`">-->
-<!--                            </div>-->
+                            <div class="catalog-item__image"
+                                 :style="`background-image: url('${getImg(item)}')`">
+                            </div>
                             <div style="flex: 1;">{{ item.name }}</div>
                         </div>
                         <div class="dropdown-list__content expandable-content">
                             <div
                                     v-for="(listItem, indexItem) in item.child"
-                                    :key="indexItem"
+                                    :key="listItem.created_at"
                                     class="catalog-item__info-wrap"
                                     @click="goToProducts(listItem)"
                             >
+                                <div class="catalog-item__info-point-wrap">
+                                    <div class="catalog-item__info-point" />
+                                </div>
                                 <div class="catalog-item__info-sub__name">
                                     <span class="contacts-subtitle">{{ listItem.name }}</span>
                                 </div>
@@ -43,7 +46,7 @@
             </template>
 
             <v-progress-circular
-                    v-else-if="productSearchLoader"
+                    v-else-if="productSearchLoader || loader"
                     :width="7"
                     :size="70"
                     indeterminate
@@ -65,6 +68,7 @@
     import ScreenProducts from '_screen_products'
     import NotFoundItems from '_not_found_items'
     import debounce from 'lodash/debounce'
+    import sortBy from 'lodash/sortBy'
 
     export default {
         name: 'screen-shop-catalog',
@@ -80,6 +84,7 @@
         },
         data () {
             return {
+                loader: true,
             }
         },
         computed: {
@@ -90,6 +95,32 @@
                 loaderVisible: constants.App.Getters.loaderVisible,
                 cart: constants.MrewardShop.Getters.cart,
             }),
+            listGroup() {
+                const activeItems = this.productsGroups.filter(item => item.view_is_online)
+                const items = sortBy(activeItems, 'parent_id')
+                const list = []
+
+                items.forEach((item) => {
+                    if (item.parent_id === 0) {
+                        list.push({
+                            ...item,
+                            child: [],
+                        })
+                    } else {
+                        const parent = list.find(el => el.group_id === item.parent_id)
+                        if(parent) {
+                            parent.child.push(item);
+                        } else {
+                            list.push({
+                                ...item,
+                                child: [],
+                            })
+                        }
+                    }
+                })
+
+                return list;
+            },
             listDataSearch() {
                 if (!this.productSearch.length) {
                     return []
@@ -127,6 +158,8 @@
             } catch (e) {
                 this.$Alert.Error(e)
             }
+
+            this.loader = false;
         },
         methods: {
             ...mapActions({
@@ -136,6 +169,12 @@
                 getCountries: constants.MrewardGeo.Actions.getCountries,
                 getProductsGroups: constants.MrewardShop.Actions.getProductsGroups
             }),
+            getImg(item) {
+                if(item && item.images && item.images[0]) {
+                    return item.images[0].mobile_420_420 || item.images[0].image_url_mobile
+                }
+                return '';
+            },
             goToProducts(item) {
                 this.pushPage({
                     extends: ScreenProducts,
@@ -164,7 +203,7 @@
 
                 box-shadow: 0px 8px 15px rgba(39, 45, 45, 0.06);
                 border-radius: 8px;
-                height: 48px !important;
+                height: 56px !important;
             }
         }
     }
@@ -178,15 +217,18 @@
             box-shadow: unset !important;
             border-radius: unset !important;
             padding: 0 !important;
-            text-shadow: 0 0 black;
+            /*text-shadow: 0 0 black;*/
         }
         &__image {
             background: #F5F7FA;
-            width: 48px;
-            height: 48px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             overflow: hidden;
             margin-right: 16px;
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
         }
 
         &__name {
@@ -195,7 +237,7 @@
             font-size: 15px;
             line-height: 20px;
             letter-spacing: -0.24px;
-            color: #000000;
+            color: #6D0978;
             flex: 1;
             order: 1;
             align-self: center;
@@ -203,15 +245,19 @@
         }
 
         &__info-wrap {
-            background: #FFFFFF;
-            box-shadow: 0px 8px 15px rgba(39, 45, 45, 0.06);
-            border-radius: 8px;
-            margin: 8px 0 8px 32px;
+            /*background: #FFFFFF;*/
+            /*box-shadow: 0px 8px 15px rgba(39, 45, 45, 0.06);*/
+            /*border-radius: 8px;*/
+            /*margin: 8px 0 8px 0px;*/
             padding: 0 16px;
-            height: 38px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #CECED2;
 
             &:last-child {
                 margin-bottom: 2px !important;
+                border-bottom: none;
             }
         }
 
@@ -220,10 +266,24 @@
                 font-weight: 600;
                 font-size: 13px;
                 line-height: 38px;
-                letter-spacing: -0.208px;
-                color: rgba(60, 60, 67, 0.6);
-
+                letter-spacing: -0.08px;
+                color: #000;
             }
+        }
+
+        &__info-point-wrap {
+            width: 38px;
+            height: 38px;
+            margin-right: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        &__info-point {
+            background: #6D0978;
+            border-radius: 100px;
+            width: 6px;
+            height: 6px;
         }
     }
 </style>

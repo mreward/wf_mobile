@@ -1,8 +1,8 @@
 import { store } from '_CORE/store'
 
-export default (response, action) => {
-    if (response._meta.currentPage < response._meta.pageCount) {
+export default async (response, action, payload) => {
+    if (response._meta && (response._meta.currentPage < response._meta.pageCount)) {
         const page = response._meta.currentPage + 1
-        store.dispatch(action, { page }, { root: true })
+        await store.dispatch(action, {...payload, page}, { root: true })
     }
 }

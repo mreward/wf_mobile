@@ -38,6 +38,7 @@ const state = {
     productSearchLoader: false,
     orders: [],
     address: [],
+    productsCategory: [],
 }
 
 const mutations = {
@@ -45,14 +46,18 @@ const mutations = {
         state.products = data
     },
     [ShopMutat.ProductsTop.name]: (state, data) => {
-        if (data._meta.currentPage > 1) {
+        if (data._meta && data._meta.currentPage > 1) {
             state.productsTop = state.productsTop.concat(data.items)
         } else {
             state.productsTop = [...data.items]
         }
     },
     [ShopMutat.ProductsGroups.name]: (state, data) => {
-        state.productsGroups = data
+        if (data._meta && data._meta.currentPage > 1) {
+            state.productsGroups = state.productsGroups.concat(data.items)
+        } else {
+            state.productsGroups = [...data.items]
+        }
     },
     [ShopMutat.Cart.name]: (state, data) => {
         const key = state.country.code.toLowerCase()
@@ -68,11 +73,23 @@ const mutations = {
             state.deliveryList = []
         }
     },
+    [ShopMutat.ProductsCategory.name]: (state, data) => {
+        if (data._meta && data._meta.currentPage > 1) {
+            state.productsCategory = state.productsCategory.concat(data.items)
+        } else {
+            state.productsCategory = [...data.items]
+        }
+    },
+
     [ShopMutat.Country.name]: (state, data) => {
         state.country = data
     },
     [ShopMutat.ProductSearch.name]: (state, data) => {
-        state.productSearch = data
+        if (data._meta && data._meta.currentPage > 1) {
+            state.productSearch = state.productSearch.concat(data.items)
+        } else {
+            state.productSearch = [...data.items]
+        }
     },
     [ShopMutat.PayData.name]: (state, data) => {
         state.payData = data
@@ -123,9 +140,7 @@ const actions = {
 
             validatePagination(response, constants.MrewardShop.Actions.getProductsTop)
 
-
             dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })
-
             return response
         } catch (error) {
             await dispatch(constants.App.Actions.validateError, {
@@ -144,56 +159,9 @@ const actions = {
                 partnerKey: state.country.config.key,
             })
 
-            const activeItems = response.items
-            .filter(item => item.view_is_online)
-            const items = sortBy(activeItems, 'parent_id')
-            const list = []
-            //
-            // const newList = [];
-            // items.forEach((item, index) => {
-            //     if (item.parent_id === 0) {
-            //         list.push({
-            //             ...item,
-            //             child: [],
-            //         })
-            //     } else {
-            //         newList.push(item)
-            //     }
-            // })
-            //
-            // newList.forEach((item, index) => {
-            //
-            // }
-            // const buildTree = (item) => {
-            //     const el = newList.find(i => i.parent_id === item.group_id)
-            //
-            //
-            //
-            // }
-            //
-            //
+            commit(ShopMutat.ProductsGroups.name, response)
 
-            items.forEach((item) => {
-                if (item.parent_id === 0) {
-                    list.push({
-                        ...item,
-                        child: [],
-                    })
-                } else {
-                    const parent = list.find(el => el.group_id === item.parent_id)
-                    if(parent) {
-                        parent.child.push(item);
-                    } else {
-                        list.push({
-                            ...item,
-                            child: [],
-                        })
-                    }
-                }
-            })
-
-
-            commit(ShopMutat.ProductsGroups.name, list)
+            await validatePagination(response, constants.MrewardShop.Actions.getProductsGroups)
 
             dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })
 
@@ -465,10 +433,11 @@ const actions = {
         try {
             dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
 
-            commit(ShopMutat.ProductSearch.name, [])
+            commit(ShopMutat.ProductSearch.name, {items: []})
             commit(ShopMutat.ProductSearchLoader.name, true)
 
             const response = await new MrewardShop().ProductSearch({
+                ...payload,
                 product: payload.name
             }, {
                 partnerKey: state.country.config.key,
@@ -487,8 +456,61 @@ const actions = {
                 }
             })
 
-            commit(ShopMutat.ProductSearch.name, list)
+            commit(ShopMutat.ProductSearch.name, {
+                items: list,
+                _meta: response._meta
+            })
             commit(ShopMutat.ProductSearchLoader.name, false)
+
+            validatePagination(response, constants.MrewardShop.Actions.getProductSearch, payload)
+
+            dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })
+
+            return response
+        } catch (error) {
+            await dispatch(constants.App.Actions.validateError, {
+                error,
+                log: 'STORE: MrewardShop Module - getProductSearch'
+            }, {root: true})
+        }
+    },
+
+    async getProductSearchTag({ commit, dispatch, rootState, state }, payload) {
+        console.log('STORE: MrewardShop Module - getProductSearchTag')
+        try {
+            dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
+
+            commit(ShopMutat.ProductSearch.name, {items: []})
+            commit(ShopMutat.ProductSearchLoader.name, true)
+
+            const response = await new MrewardShop().ProductSearchTag({
+                ...payload,
+                product: payload.name
+            }, {
+                partnerKey: state.country.config.key,
+            })
+
+            const list = response.products.map((item) => {
+                return {
+                    ...item,
+                    id: item.id,
+                    product_name: item.name,
+                    product_price: item.price,
+                    art_id: item.art_id,
+                    images: item.images || [],
+                    top: item.top,
+                    partner_id: '1',
+                }
+            })
+
+
+            commit(ShopMutat.ProductSearch.name, {
+                items: list,
+                _meta: response._meta
+            })
+            commit(ShopMutat.ProductSearchLoader.name, false)
+
+            validatePagination(response, constants.MrewardShop.Actions.getProductSearchTag, payload)
 
             dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })
 
@@ -503,7 +525,9 @@ const actions = {
 
     async clearProductSearch({ commit, state, rootState }, payload) {
         console.log('STORE: MrewardShop Module - clearProductSearch')
-        commit(ShopMutat.ProductSearch.name, [])
+        commit(ShopMutat.ProductSearch.name, {
+            items: []
+        })
     },
 
     async getProductsCategory({ commit, state, dispatch, rootState }, payload) {
@@ -512,7 +536,7 @@ const actions = {
             dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
 
             const response = await new MrewardShop().GetProductsCategory({
-                group_id: payload.group_id
+                ...payload
             }, {
                 partnerKey: state.country.config.key,
             })
@@ -529,6 +553,12 @@ const actions = {
                     partner_id: '1',
                 }
             })
+            commit(ShopMutat.ProductsCategory.name, {
+                items: list,
+                _meta: response._meta
+            })
+
+            validatePagination(response, constants.MrewardShop.Actions.getProductsCategory, payload)
             dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })
 
             return list
@@ -747,16 +777,20 @@ const actions = {
         }
     },
 
+    clearProductsCategory({ commit, state, rootState }, payload) {
+        console.log('STORE: MrewardShop Module - clearProductsCategory')
+        commit(ShopMutat.ProductsCategory.name, {items: []})
+    },
 }
 
 const getters = {
-    products(state) {
+    products (state) {
         return state.products.filter(i => i.partner_id === state.country.config.id)
     },
-    productsTop(state) {
+    productsTop (state) {
         return state.productsTop.filter(i => i.partner_id === state.country.config.id)
     },
-    productsGroups(state) {
+    productsGroups (state) {
         return state.productsGroups
     },
     cart (state) {
@@ -777,30 +811,33 @@ const getters = {
         }
         return 0
     },
-    productsFavorite(state) {
+    productsFavorite (state) {
         return state.productsFavorite.filter(i => i.partner_id === state.country.config.id)
     },
-    deliveryList(state) {
+    deliveryList (state) {
         return state.deliveryList
     },
-    country(state) {
+    country (state) {
         return state.country
     },
-    productSearch(state) {
+    productSearch (state) {
         return state.productSearch
     },
-    payData(state) {
+    payData (state) {
         return state.payData
     },
-    productSearchLoader(state) {
+    productSearchLoader (state) {
         return state.productSearchLoader
     },
-    orders(state) {
+    orders (state) {
         return state.orders
     },
-    address(state) {
+    address (state) {
         return state.address
-    }
+    },
+    productsCategory (state) {
+        return state.productsCategory
+    },
 }
 
 export default {
