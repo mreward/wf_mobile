@@ -76,7 +76,7 @@
             this.$bus.$on('goToPayStatus', this.goToPayStatus.bind(this))
 
             try {
-                await this.getDeliveryList()
+                // await this.getDeliveryList()
 
                 // const result = await this.preCheck()
                 //
@@ -100,7 +100,6 @@
                 pushPage: constants.App.Actions.pushPage,
                 popToPage: constants.App.Actions.popToPage,
                 getCountries: constants.MrewardGeo.Actions.getCountries,
-                getDeliveryList: constants.MrewardShop.Actions.getDeliveryList,
                 preCheck: constants.MrewardShop.Actions.preCheck,
                 paymentUrl: constants.MrewardShop.Actions.paymentUrl,
                 checkConfirm: constants.MrewardShop.Actions.checkConfirm,

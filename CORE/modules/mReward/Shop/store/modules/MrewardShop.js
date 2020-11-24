@@ -344,19 +344,19 @@ const actions = {
                 return data
             })
 
-            const deliveryList = state.deliveryList[0]
-            const deliveryReceiptDetails = {
-                position: receiptDetails.length + 1,
-                prod_code: deliveryList.art_id,
-                prod_price: deliveryList.price,
-                prod_amount: 1,
-                prod_sum: deliveryList.price,
-            }
-            if (payload.type === 'cash') {
-                deliveryReceiptDetails.bonus_restrict = '1'
-            }
+            // const deliveryList = state.deliveryList[0]
+            // const deliveryReceiptDetails = {
+            //     position: receiptDetails.length + 1,
+            //     prod_code: deliveryList.art_id,
+            //     prod_price: deliveryList.price,
+            //     prod_amount: 1,
+            //     prod_sum: deliveryList.price,
+            // }
+            // if (payload.type === 'cash') {
+            //     deliveryReceiptDetails.bonus_restrict = '1'
+            // }
 
-            receiptDetails.push(deliveryReceiptDetails)
+            // receiptDetails.push(deliveryReceiptDetails)
 
             const response = await new MrewardShop().PreCheck({
                 branch_id: state.country.config.code,

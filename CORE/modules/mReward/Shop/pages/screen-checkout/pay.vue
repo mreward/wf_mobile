@@ -174,7 +174,6 @@
             },
         },
         async created() {
-            await this.getDeliveryList()
             await this.updatePreCheck()
         },
         methods: {
