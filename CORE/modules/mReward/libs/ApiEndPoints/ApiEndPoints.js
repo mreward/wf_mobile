@@ -263,6 +263,12 @@ export default {
             apiVersion: 'v2',
             apiTag: '/partner'
         },
+        ProductSearchTag: {
+            url: '/products/product-search-tag',
+            method: 'GET',
+            apiVersion: 'v2',
+            apiTag: '/partner'
+        },
         GetProductsCategory: {
             url: '/products',
             method: 'GET',

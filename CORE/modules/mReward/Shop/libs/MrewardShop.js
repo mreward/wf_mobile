@@ -147,6 +147,18 @@ export default class MrewardShop extends ApiClient {
           }, config)
     }
 
+    ProductSearchTag(json, config) {
+        this.logger('MrewardShop:ProductSearchTag')
+        const requestData = { ...this.APIEndPoints.Shop.ProductSearchTag }
+
+        return this.sendRequest(
+          requestData,
+          {
+              ...json,
+              networkFirst: true,
+          }, config)
+    }
+
     GetProductsCategory(json, config) {
         this.logger('MrewardShop:GetProductsCategory')
         const requestData = { ...this.APIEndPoints.Shop.GetProductsCategory }

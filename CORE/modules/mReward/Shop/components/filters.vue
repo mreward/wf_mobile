@@ -163,7 +163,7 @@
                 popPage: constants.App.Actions.popPage,
                 pushPage: constants.App.Actions.pushPage,
                 popToPage: constants.App.Actions.popToPage,
-                getProductSearch: constants.MrewardShop.Actions.getProductSearch,
+                getProductSearchTag: constants.MrewardShop.Actions.getProductSearchTag,
             }),
 
             closeFilter() {
@@ -197,8 +197,8 @@
                 if (filter.length) {
                     this.$bus.$emit('goToSearch')
 
-                    await this.getProductSearch({
-                        name: filter.join(', ')
+                    await this.getProductSearchTag({
+                        name: filter.join('')
                     })
                 } else {
                     this.$bus.$emit('clearSearch')
