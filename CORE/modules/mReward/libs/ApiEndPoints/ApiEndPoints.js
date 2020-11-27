@@ -246,7 +246,7 @@ export default {
             apiTag: '/partner'
         },
         PaymentUrl: {
-            url: '/payment-url',
+            url: '/payment-url-namba',
             method: 'POST',
             apiVersion: 'v2',
             apiTag: '/client'

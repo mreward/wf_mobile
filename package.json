@@ -38,6 +38,7 @@
         "axios-cache-adapter": "git+https://oauth2:bs8xU_vbxb_S7Prrhkeo@github.com/acidbiscuit/axios-cache-adapter.git",
         "babel-runtime": "^6.26.0",
         "clipboard-polyfill": "^2.7.0",
+        "coffeescript": "^2.5.1",
         "crypto-js": "^3.1.9-1",
         "cyrillic-to-translit-js": "^2.1.0",
         "fontforge": "^0.0.4",

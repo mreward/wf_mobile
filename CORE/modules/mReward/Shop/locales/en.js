@@ -41,7 +41,7 @@ export default {
     m_shop_payment_delivery_amount: 'Delivery cost by courier',
     m_shop_payment_methods: 'Payment method',
     m_shop_products: 'Of goods',
-    m_shop_select_pay: 'Payment selection',
+    m_shop_select_pay: 'Bonuses',
     m_shop_shelf_life: 'Storage period',
     m_shop_status_cancel: 'Canceled',
     m_shop_status_inprogress: 'In the process',
