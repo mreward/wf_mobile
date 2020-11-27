@@ -822,7 +822,7 @@ const getters = {
         return state.address
     },
     productsCategory (state) {
-        return state.productsCategory
+        return state.productsCategory.filter(i => i.view_in_online === 1)
     },
 }
 
