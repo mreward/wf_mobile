@@ -116,10 +116,10 @@
                 country: constants.MrewardShop.Getters.country,
             }),
             totalAmountCart () {
-                return this.cart.reduce((accumulator, item) => {
+                return round(this.cart.reduce((accumulator, item) => {
                     const total = item.price * item.count
                     return accumulator + total
-                }, 0)
+                }, 0), 2)
             },
             totalAmount () {
                 return round(this.totalAmountCart - this.bonuses, 2)

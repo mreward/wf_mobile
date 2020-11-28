@@ -68,6 +68,7 @@
             ...mapGetters({
                 profile: constants.MrewardProfile.Getters.userProfile,
                 countries: constants.MrewardGeo.Getters.countries,
+                country: constants.MrewardShop.Getters.country,
             }),
         },
         async created () {
@@ -127,26 +128,38 @@
                     await this.paymentUrl(preCheckData)
                     this.setActiveTab('PayIframe')
 
-                    await this.onlineStoreApplication({
-                        address: this.delivery.address,
-                        pre_check_id: preCheckData.pre_check_id,
-                        date: this.delivery.date ? moment(this.delivery.date, 'YYYY-MM-DD').format('DD-MM-YYYY') : '',
-                        info: this.delivery.comment,
-                        time_from: this.delivery.time,
-                    })
+                    if(this.country.code === 'KG') {
+                        await this.onlineStoreApplication({
+                            address: this.delivery.address,
+                            pre_check_id: preCheckData.pre_check_id,
+                            date: this.delivery.date
+                              ? moment(this.delivery.date, 'YYYY-MM-DD').format('DD-MM-YYYY')
+                              : '',
+                            info: this.delivery.comment,
+                            time_from: this.delivery.time,
+                        })
+                    }
                 } catch (e) {
                     this.$Alert.Error(e)
                 }
             },
             async goToPayStatus(data) {
-                await this.clearCart()
+                if (data.status === 'success') {
+                    await this.clearCart()
 
-                this.pushPage({
-                    extends: ScreenStatusPay,
-                    options: {
-                        animation: 'lift'
-                    },
-                })
+                    this.pushPage({
+                        extends: ScreenStatusPay,
+                        options: {
+                            animation: 'lift'
+                        }
+                    })
+                } else if (data.status === 'error' || data.status === 'fail') {
+                    if (data.message) {
+                        this.$bus.$emit('showStatusPopover', { status: 2, title: data.message })
+                    }
+                    this.popPage()
+                    this.$bus.$emit('showCart')
+                }
             },
             goToPay() {
                 this.setActiveTab('PayIframe')
