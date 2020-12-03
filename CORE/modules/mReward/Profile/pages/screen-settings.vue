@@ -70,41 +70,41 @@
             </v-ons-list>
         </template>
 
-        <template v-if="country.country_name">
-            <div class="header-contacts">
-                <span>{{ $t('m_shop_delivery_country') }}</span>
-            </div>
-            <v-ons-list class="dropdown-list">
-                <v-ons-list-item
-                        ref="dropdownList"
-                        class="dropdown-list__item"
-                        expandable
-                >
-                    <div class="center">
-                        <img class="flag" :src="country.flag" alt="">
-                        {{country.country_name}}
-                    </div>
-                    <div class="dropdown-list__content expandable-content">
-                        <div
-                                v-for="(item, i) in countries"
-                                :key="i"
-                                class="contacts-info"
-                                @click="onSelectCountry(item)"
-                        >
-                            <div class="contacts-info-sub">
-                                <img class="flag" :src="item.flag" alt="">
-                                <span class="contacts-subtitle">{{ item.country_name }}</span>
-                            </div>
-                            <div class="contacts-icon">
-                                <v-list-item-icon v-if="item.country_id === country.country_id">
-                                    <i class="icon-checkmark"></i>
-                                </v-list-item-icon>
-                            </div>
-                        </div>
-                    </div>
-                </v-ons-list-item>
-            </v-ons-list>
-        </template>
+<!--        <template v-if="country.country_name">-->
+<!--            <div class="header-contacts">-->
+<!--                <span>{{ $t('m_shop_delivery_country') }}</span>-->
+<!--            </div>-->
+<!--            <v-ons-list class="dropdown-list">-->
+<!--                <v-ons-list-item-->
+<!--                        ref="dropdownList"-->
+<!--                        class="dropdown-list__item"-->
+<!--                        expandable-->
+<!--                >-->
+<!--                    <div class="center">-->
+<!--                        <img class="flag" :src="country.flag" alt="">-->
+<!--                        {{country.country_name}}-->
+<!--                    </div>-->
+<!--                    <div class="dropdown-list__content expandable-content">-->
+<!--                        <div-->
+<!--                                v-for="(item, i) in countries"-->
+<!--                                :key="i"-->
+<!--                                class="contacts-info"-->
+<!--                                @click="onSelectCountry(item)"-->
+<!--                        >-->
+<!--                            <div class="contacts-info-sub">-->
+<!--                                <img class="flag" :src="item.flag" alt="">-->
+<!--                                <span class="contacts-subtitle">{{ item.country_name }}</span>-->
+<!--                            </div>-->
+<!--                            <div class="contacts-icon">-->
+<!--                                <v-list-item-icon v-if="item.country_id === country.country_id">-->
+<!--                                    <i class="icon-checkmark"></i>-->
+<!--                                </v-list-item-icon>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </v-ons-list-item>-->
+<!--            </v-ons-list>-->
+<!--        </template>-->
 
         <div class="header-contacts">
             <span>{{ $t('m_profile_security') }}</span>

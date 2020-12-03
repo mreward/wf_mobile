@@ -30,6 +30,7 @@ export default {
     m_shop_go_to_checkout: 'Checkout',
     m_shop_kal: 'Energy value',
     m_shop_no: 'Not',
+    m_shop_not_available: 'You can order here soon!',
     m_shop_order: 'Order',
     m_shop_order_details_info: 'Dear friend, we want to warn you: if your delivery address is not included in the area with the standard amount of payment for delivery, then you will need to make a cash surcharge to the courier.',
     m_shop_orders: 'Orders',

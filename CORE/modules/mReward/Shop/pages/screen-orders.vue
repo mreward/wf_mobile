@@ -24,18 +24,18 @@
 
                     <div class="order-item__timeline">
                         <div class="order-item__timeline__item timeline__item--active"
-                             :class="{'timeline__item--current': item.application_details.application_status === 0}">
+                             :class="{'timeline__item--current': getStatusId(item) === 0}">
                         </div>
                         <div class="order-item__timeline__item"
                              :class="{
-                                    'timeline__item--active': item.application_details.application_status >= 1,
-                                    'timeline__item--current': item.application_details.application_status === 1,
+                                    'timeline__item--active': getStatusId(item) >= 1,
+                                    'timeline__item--current': getStatusId(item) === 1,
                                     }">
                         </div>
                         <div class="order-item__timeline__item"
                              :class="{
-                                    'timeline__item--active': item.application_details.application_status >= 2,
-                                      'timeline__item--current': item.application_details.application_status >=2}">
+                                    'timeline__item--active': getStatusId(item) >= 2,
+                                      'timeline__item--current': getStatusId(item) >=2}">
                         </div>
                         <!--                <div class="order-item__timeline__item"-->
                         <!--                     :class="{'timeline__item&#45;&#45;active': item.check_status === 3}">-->
@@ -44,9 +44,9 @@
                         <!--                    </span>-->
                         <!--                </div>-->
 
-                        <div class="order-item__timeline__line" :class="{[`status--${item.application_details.application_status}`]: true}"></div>
+                        <div class="order-item__timeline__line" :class="{[`status--${getStatusId(item)}`]: true}"></div>
 
-                        <div class="order-item__timeline__status" :class="{[`status--${item.application_details.application_status}`]: true}">
+                        <div class="order-item__timeline__status" :class="{[`status--${getStatusId(item)}`]: true}">
                             <span>{{getNameStatus(item)}}</span>
                         </div>
                     </div>
@@ -142,18 +142,41 @@
                 getOrders: constants.MrewardShop.Actions.getOrders,
             }),
             getNameStatus(item) {
-                const status = item.application_details.application_status
-                if (status === 0) {
-                    return this.$t('m_shop_status_new')
-                } else if (status === 1) {
-                    return this.$t('m_shop_status_inprogress')
-                } else if (status === 2) {
-                    return this.$t('m_shop_status_success')
-                } else if (status === 3) {
-                    return this.$t('m_shop_status_cancel')
+                const status = item.namba_order_status.toLowerCase();
+                switch (status) {
+                    case 'new':
+                        return this.$t('m_shop_status_new')
+                    case 'accepted':
+                    case 'approved':
+                    case 'courier':
+                        return this.$t('m_shop_status_inprogress')
+                    case 'delivered':
+                        return this.$t('m_shop_status_success')
+                    case 'cancelled':
+                    case 'rejected':
+                        return this.$t('m_shop_status_cancel')
+                    default:
+                        return ''
                 }
+            },
+            getStatusId(item) {
+                const status = item.namba_order_status.toLowerCase();
 
-                return ''
+                switch (status) {
+                    case 'new':
+                        return 0
+                    case 'accepted':
+                    case 'approved':
+                    case 'courier':
+                        return 1
+                    case 'delivered':
+                        return 2
+                    case 'cancelled':
+                    case 'rejected':
+                        return 3
+                    default:
+                        return 0
+                }
             },
             getDate (data) {
                 if (data) {

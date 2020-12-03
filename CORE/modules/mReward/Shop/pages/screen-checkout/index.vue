@@ -128,7 +128,8 @@
                     await this.paymentUrl(preCheckData)
                     this.setActiveTab('PayIframe')
 
-                    if(this.country.code === 'KG') {
+                    if (!this.profile.mobile.startsWith('996')) {
+                        debugger
                         await this.onlineStoreApplication({
                             address: this.delivery.address,
                             pre_check_id: preCheckData.pre_check_id,
@@ -160,6 +161,8 @@
                     this.popPage()
                     this.$bus.$emit('showCart')
                 }
+
+                this.hideKeyboard()
             },
             goToPay() {
                 this.setActiveTab('PayIframe')

@@ -28,7 +28,7 @@ import localforage from "localforage"
 
 <script>
     import constants from '_vuex_constants'
-    import { mapActions } from 'vuex'
+    import { mapActions, mapGetters } from 'vuex'
     import DashboardNewsBoard from '_dashboard_news_board'
     import MixinPushNotificationHandler from '_mixin_push_notification_handler_extend'
     import PullToWrapper from '_pull_to_wrapper'
@@ -53,6 +53,9 @@ import localforage from "localforage"
             }
         },
         computed: {
+            ...mapGetters({
+              countries: constants.MrewardGeo.Getters.countries
+            }),
             heightToolbar () {
                 if (this.$ons.platform.isIPhoneX()) {
                     return 136
@@ -80,6 +83,10 @@ import localforage from "localforage"
 
                 this.$refs.btnCall.style.transform = `translate3d(${this.positionX}px, ${this.positionY}px, 0)`
             }
+
+            if (!this.countries.length) {
+              await this.getCountries()
+            }
         },
         mounted() {
             this.$refs.btnCall.addEventListener('touchstart', this.touchStart)
@@ -94,6 +101,7 @@ import localforage from "localforage"
                 getPolls: constants.MrewardPoll.Actions.getPolls,
                 getNews: constants.MrewardNews.Actions.getNews,
                 getNotifications: constants.MrewardNotifications.Actions.getNotifications,
+                getCountries: constants.MrewardGeo.Actions.getCountries
             }),
             async updateDashboardContent(loaded) {
                 try {

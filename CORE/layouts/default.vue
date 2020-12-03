@@ -2,7 +2,7 @@
     <v-ons-page
         v-status-bar-fill
         class="layout-default"
-        :page="page"
+        :page.sync="page"
         @show="onShowPage"
         @deviceBackButton.prevent="onDeviceBackPressed"
     >

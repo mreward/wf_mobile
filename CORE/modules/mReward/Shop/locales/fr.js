@@ -30,6 +30,7 @@ export default {
     m_shop_go_to_checkout: 'Check-out',
     m_shop_kal: 'valeur énergétique',
     m_shop_no: 'ne pas',
+    m_shop_not_available: 'Vous pouvez commander ici bientôt!',
     m_shop_order: 'Ordre',
     m_shop_order_details_info: 'Cher ami, nous tenons à vous avertir: si votre adresse de livraison n\'est pas incluse dans la zone avec le montant standard de paiement pour la livraison, vous devrez alors faire un supplément en espèces au transporteur.',
     m_shop_orders: 'Ordres',

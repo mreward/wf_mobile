@@ -94,6 +94,7 @@
     import constants from '_vuex_constants'
     import ScreenCheckout from '_screen_checkout'
     import NotFoundItems from '_not_found_items'
+    import round from 'lodash/round'
 
     export default {
         name: 'cart',
@@ -166,10 +167,10 @@
                 totalCartProduct: constants.MrewardShop.Getters.totalCartProduct,
             }),
             totalAmount() {
-                return this.cart.reduce((accumulator, item) => {
+                return round(this.cart.reduce((accumulator, item) => {
                     const total = item.price * item.count
                     return accumulator + total
-                }, 0)
+                }, 0), 2)
             }
         },
         watch: {

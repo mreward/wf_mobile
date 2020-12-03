@@ -3,238 +3,250 @@
             :layout="layout"
             :title="$t('m_shop_title')"
             buttonLeft="none"
-            page="shop"
+            v-bind:page="isVisibleShop ? 'shop' : 'shop-not-available'"
     >
 
-        <template slot="toolbar">
-            <div
-                :class="['toolbar', 'toolbar--search', 'toolbar--shop', {
-                    'toolbar--constructor': isConstructor
-                }]"
-            >
-                <div class="tabbar-button__wrapper">
-                    <div class="country-row">
-                        <span class="country-row__title">
-                             {{$t('m_shop_delivery_country')}}
-                        </span>
-<!--                        // v-on="onSelectCountry"-->
+            <template slot="toolbar">
+                <div
+                    :class="['toolbar', 'toolbar--search', 'toolbar--shop', {
+                        'toolbar--constructor': isConstructor
+                    }]"
+                    v-show="isVisibleShop"
+                >
+                    <div class="tabbar-button__wrapper">
+                        <div class="country-row">
+                            <span class="country-row__title">
+                                 {{$t('m_shop_delivery_country')}}
+                            </span>
+    <!--                        // v-on="onSelectCountry"-->
+                            <v-btn
+                                    small
+                                    class="v-btn-rounded--small margin-left--small-base btn-country"
+                                    @click="countryDialog = true"
+                            >
+                                <img v-if="country.flag && !loaderUpdate"
+                                     class="flag"
+                                     :src="country.flag"
+                                     alt="">
+                                <v-progress-circular
+                                        v-else
+                                        :width="1"
+                                        :size="5"
+                                        indeterminate
+                                />
+
+                                <i class="icon-next-page right currency-right "/>
+                            </v-btn>
+                        </div>
+
+                        <div class="tabbar-button">
+                            <div class="tabbar-button__item"
+                                 :class="{'tabbar-button__item--active': tab === 'top'}"
+                                 @click="setActiveTab('top', 0)">
+                                <div class="tabbar-button__title">
+                                    {{$t('m_shop_top')}}
+                                </div>
+                            </div>
+                            <div class="tabbar-button__item"
+                                 :class="{'tabbar-button__item--active': tab === 'catalog'}"
+                                 @click="setActiveTab('catalog', 1)">
+                                <div class="tabbar-button__title">
+                                    {{$t('m_shop_catalog')}}
+                                </div>
+                            </div>
+                            <div class="tabbar-button__item"
+                                 :class="{'tabbar-button__item--active': tab === 'favorite'}"
+                                 @click="setActiveTab('favorite', 2)">
+                                <div class="tabbar-button__title">
+                                    {{$t('m_shop_favorite')}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="toolbar__wrapper">
+                        <v-text-field
+                                ref="inputSearch"
+                                slot="title"
+                                v-model="search"
+                                solo
+                                :label="$t('m_adresses_search')"
+                                class="input--search"
+                                prepend-inner-icon="icon-search"
+                                hide-details
+                        />
+
+                        <transition name="slide-fade">
+                            <v-btn
+                                    v-show="showCancelButton"
+                                    text
+                                    depressed
+                                    @click="clearSearchField"
+                            >
+                                {{ $t('m_adresses_cancel') }}
+                            </v-btn>
+                        </transition>
+
                         <v-btn
                                 small
-                                class="v-btn-rounded--small margin-left--small-base btn-country"
-                                @click="countryDialog = true"
+                                class="btn-filters"
+                                @click="isVisibleFilters = true"
                         >
-                            <img v-if="country.flag && !loaderUpdate"
-                                 class="flag"
-                                 :src="country.flag"
-                                 alt="">
-                            <v-progress-circular
-                                    v-else
-                                    :width="1"
-                                    :size="5"
-                                    indeterminate
-                            />
-
-                            <i class="icon-next-page right currency-right "/>
+                            <i class="icon-filters"/>
                         </v-btn>
                     </div>
-
-                    <div class="tabbar-button">
-                        <div class="tabbar-button__item"
-                             :class="{'tabbar-button__item--active': tab === 'top'}"
-                             @click="setActiveTab('top', 0)">
-                            <div class="tabbar-button__title">
-                                {{$t('m_shop_top')}}
-                            </div>
-                        </div>
-                        <div class="tabbar-button__item"
-                             :class="{'tabbar-button__item--active': tab === 'catalog'}"
-                             @click="setActiveTab('catalog', 1)">
-                            <div class="tabbar-button__title">
-                                {{$t('m_shop_catalog')}}
-                            </div>
-                        </div>
-                        <div class="tabbar-button__item"
-                             :class="{'tabbar-button__item--active': tab === 'favorite'}"
-                             @click="setActiveTab('favorite', 2)">
-                            <div class="tabbar-button__title">
-                                {{$t('m_shop_favorite')}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="toolbar__wrapper">
-                    <v-text-field
-                            ref="inputSearch"
-                            slot="title"
-                            v-model="search"
-                            solo
-                            :label="$t('m_adresses_search')"
-                            class="input--search"
-                            prepend-inner-icon="icon-search"
-                            hide-details
-                    />
-
-                    <transition name="slide-fade">
-                        <v-btn
-                                v-show="showCancelButton"
-                                text
-                                depressed
-                                @click="clearSearchField"
-                        >
-                            {{ $t('m_adresses_cancel') }}
-                        </v-btn>
-                    </transition>
-
                     <v-btn
-                            small
-                            class="btn-filters"
-                            @click="isVisibleFilters = true"
+                        v-if="isConstructor"
+                        small
+                        class="btn-constructor"
+                        :disabled="loaderUpdate"
+                        @click="contructorDialog = true"
                     >
-                        <i class="icon-filters"/>
+                        <img :src="ImgConstructor"/>
+                        <span>{{ $t('m_cake_designer_button_title') }}</span>
                     </v-btn>
                 </div>
-                <v-btn
-                    v-if="isConstructor"
-                    small
-                    class="btn-constructor"
-                    :disabled="loaderUpdate"
-                    @click="contructorDialog = true"
-                >
-                    <img :src="ImgConstructor"/>
-                    <span>{{ $t('m_cake_designer_button_title') }}</span>
-                </v-btn>
+            </template>
+
+            <div class="shop-content"  v-show="isVisibleShop">
+                <v-ons-tabbar swipeable>
+                    <template slot="pages">
+                        <transition>
+                            <keep-alive>
+                                <component :is="tab" :mode="mode"></component>
+                            </keep-alive>
+                        </transition>
+                    </template>
+                </v-ons-tabbar>
             </div>
-        </template>
 
-        <div class="shop-content">
-            <v-ons-tabbar swipeable>
-                <template slot="pages">
-                    <transition>
-                        <keep-alive>
-                            <component :is="tab" :mode="mode"></component>
-                        </keep-alive>
-                    </transition>
-                </template>
-            </v-ons-tabbar>
-        </div>
+            <cart :isVisible.sync="isVisibleCart"/>
+            <filters :isVisible.sync="isVisibleFilters"/>
 
-
-        <cart :isVisible.sync="isVisibleCart"/>
-        <filters :isVisible.sync="isVisibleFilters"/>
-
-        <div class="button-cart"
-             ref="btnCall"
-             @click="isVisibleCart = true">
-            <i class="icon-cart"/>
-            <div v-if="cart.length"
-                 class="button-cart__badge">
-                {{totalCartProduct}}
+            <div class="button-cart"
+                 v-show="isVisibleShop"
+                 ref="btnCall"
+                 @click="isVisibleCart = true">
+                <i class="icon-cart"/>
+                <div v-if="cart.length"
+                     class="button-cart__badge">
+                    {{totalCartProduct}}
+                </div>
             </div>
-        </div>
 
-        <v-ons-popover
-                cancelable
-                :visible.sync="popoverFavorite"
-                target=".page__content"
-                direction="'up'"
-                class="popover--status popover--favorite"
-        >
-            <slot>
-                <div class="popover__icon">
-                    <ons-icon icon="favorites" />
-                </div>
-                <div class="popover__text">
-                    {{ $t('m_shop_add_to_favorite_success') }}
-                </div>
-            </slot>
-        </v-ons-popover>
-
-        <v-dialog
-                v-model="countryDialog"
-                content-class="accounts--dialog country--dialog"
-        >
-            <v-list
-                    flat
+            <v-ons-popover
+                    cancelable
+                    :visible.sync="popoverFavorite"
+                    target=".page__content"
+                    direction="'up'"
+                    class="popover--status popover--favorite"
             >
-                <div class="dialog-header">
-                    <v-subheader>{{ $t('m_shop_delivery_country') }}</v-subheader>
-                    <v-btn
+                <slot>
+                    <div class="popover__icon">
+                        <ons-icon icon="favorites" />
+                    </div>
+                    <div class="popover__text">
+                        {{ $t('m_shop_add_to_favorite_success') }}
+                    </div>
+                </slot>
+            </v-ons-popover>
+
+            <v-dialog
+                    v-model="countryDialog"
+                    content-class="accounts--dialog country--dialog"
+            >
+                <v-list
+                        flat
+                >
+                    <div class="dialog-header">
+                        <v-subheader>{{ $t('m_shop_delivery_country') }}</v-subheader>
+                        <v-btn
+                                icon
+                                fab
+                                @click="countryDialog = false"
+                        >
+                            <i class="icon icon-close"/>
+                        </v-btn>
+                    </div>
+
+                    <v-list-item-group>
+                        <v-list-item
+                                v-for="(item, i) in countriesList"
+                                :key="i"
+                                @click="onSelectCountry(item)"
+                        >
+                            <v-list-item-content>
+                                <img class="flag" :src="item.flag" alt="">
+                                <v-list-item-title>
+
+                                    {{ item.country_name }}
+                                    <v-ons-icon
+                                            v-if="item.country_id === country.country_id"
+                                            icon="checkmark"
+                                    />
+                                </v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                    </v-list-item-group>
+                </v-list>
+            </v-dialog>
+
+            <v-dialog
+                v-if="isConstructor"
+                v-model="contructorDialog"
+                content-class="agreement--dialog"
+            >
+                <v-list
+                    flat
+                >
+                    <div class="dialog-header">
+                        <v-subheader>{{ $t('m_cake_designer_agreement_title') }}</v-subheader>
+                        <v-btn
                             icon
                             fab
-                            @click="countryDialog = false"
-                    >
-                        <i class="icon icon-close"/>
-                    </v-btn>
-                </div>
+                            @click="contructorDialog = false"
+                        >
+                            <i class="icon icon-close" />
+                        </v-btn>
+                    </div>
 
-                <v-list-item-group>
-                    <v-list-item
-                            v-for="(item, i) in countries"
-                            :key="i"
-                            @click="onSelectCountry(item)"
-                    >
-                        <v-list-item-content>
-                            <img class="flag" :src="item.flag" alt="">
-                            <v-list-item-title>
+                    <div
+                        class="dialog-content"
+                        v-html="agreement.agreement"
+                    />
 
-                                {{ item.country_name }}
-                                <v-ons-icon
-                                        v-if="item.country_id === country.country_id"
-                                        icon="checkmark"
-                                />
-                            </v-list-item-title>
-                        </v-list-item-content>
-                    </v-list-item>
-                </v-list-item-group>
-            </v-list>
-        </v-dialog>
+                    <v-checkbox
+                        v-model="agreementChecked"
+                        :label="$t('m_cake_designer_agreement_check')"
+                        off-icon=""
+                        on-icon="icon-checkmark"
+                        :ripple="false"
+                    />
 
-        <v-dialog
-            v-if="isConstructor"
-            v-model="contructorDialog"
-            content-class="agreement--dialog"
+                    <div class="designer__btn-submit">
+                        <v-btn
+                            block
+                            depressed
+                            color="primary"
+                            type="main"
+                            :disabled="!agreementChecked"
+                            @click="goToCakeDesigner"
+                        >
+                            {{ $t('m_next') }}
+                        </v-btn>
+                    </div>
+                </v-list>
+            </v-dialog>
+
+      <div v-show="isVisibleShop === false"
+           class="shop-content--not-available"
+           :style="{
+                    backgroundImage: `url(${img})`,
+                }">
+        <not-found-items
+            :message="$t('m_shop_not_available')"
         >
-            <v-list
-                flat
-            >
-                <div class="dialog-header">
-                    <v-subheader>{{ $t('m_cake_designer_agreement_title') }}</v-subheader>
-                    <v-btn
-                        icon
-                        fab
-                        @click="contructorDialog = false"
-                    >
-                        <i class="icon icon-close" />
-                    </v-btn>
-                </div>
-
-                <div
-                    class="dialog-content"
-                    v-html="agreement.agreement"
-                />
-
-                <v-checkbox
-                    v-model="agreementChecked"
-                    :label="$t('m_cake_designer_agreement_check')"
-                    off-icon=""
-                    on-icon="icon-checkmark"
-                    :ripple="false"
-                />
-
-                <div class="designer__btn-submit">
-                    <v-btn
-                        block
-                        depressed
-                        color="primary"
-                        type="main"
-                        :disabled="!agreementChecked"
-                        @click="goToCakeDesigner"
-                    >
-                        {{ $t('m_next') }}
-                    </v-btn>
-                </div>
-            </v-list>
-        </v-dialog>
+        </not-found-items>
+      </div>
     </layout>
 </template>
 
@@ -250,6 +262,8 @@
     import Top from './top'
     import Search from './search'
     import ScreenDesigner from '_screen_designer'
+    import { mapGetters } from 'vuex'
+    import constants from '_CORE/__configs.generate__/store/constants'
 
     export default {
         name: 'screen-shop',
@@ -274,6 +288,21 @@
                 countryDialog: false,
                 contructorDialog: false,
                 agreementChecked: false,
+            }
+        },
+        computed: {
+            ...mapGetters({
+                profile: constants.MrewardProfile.Getters.userProfile,
+                countries: constants.MrewardGeo.Getters.countries
+            }),
+            countriesList() {
+                return this.countries.filter(i => i.code === 'KG')
+            },
+            isVisibleShop() {
+              const country = this.countries.find(i => i.country_id === this.profile.country)
+
+              return country && country.code === 'KG'
+              // return this.profile.mobile.startsWith('996')
             }
         },
         methods: {
@@ -460,7 +489,7 @@
         align-items: center;
 
         position: fixed;
-        right: 16px;
+        left: 16px;
         bottom: 16px;
         z-index: 99;
         transform: translate3d(0, 0, 0);
@@ -571,5 +600,28 @@
             margin-top: 16px;
             margin-bottom: 14px;
         }
+    }
+
+    .page[page="shop-not-available"] {
+        .page__content {
+            padding: 0;
+            padding-bottom: 34px;
+
+            .not-found-items {
+                height: 60px;
+            }
+        }
+
+        .toolbar-main__left {
+            width: 0px;
+        }
+    }
+    .shop-content--not-available {
+        height: 100%;
+        justify-content: center;
+        align-items: flex-end;
+        overflow: visible;
+        background-size: contain;
+        display: flex;
     }
 </style>
