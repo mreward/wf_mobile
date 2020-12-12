@@ -45,7 +45,7 @@ export default {
     m_shop_select_pay: 'Выбар плацяжу',
     m_shop_shelf_life: 'Перыяд захоўвання',
     m_shop_status_cancel: 'Адменена',
-    m_shop_status_inprogress: 'У працэсе',
+    m_shop_status_inprogress: 'На маім шляху',
     m_shop_status_new: 'Новы',
     m_shop_status_pay_fail: 'Пры аплаце адбылася памылка',
     m_shop_status_pay_info: 'Наш аператар звяжацца з вамі для пацверджання замовы на працягу некалькіх хвілін',

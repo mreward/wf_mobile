@@ -83,6 +83,7 @@ export default {
         listDeliveryAddress: 'MrewardShop/listDeliveryAddress',
         removeDeliveryAddress: 'MrewardShop/removeDeliveryAddress',
         clearProductsCategory: 'MrewardShop/clearProductsCategory',
+        clearPayData: 'MrewardShop/clearPayData',
     },
     Getters: {
         products: 'MrewardShop/products',

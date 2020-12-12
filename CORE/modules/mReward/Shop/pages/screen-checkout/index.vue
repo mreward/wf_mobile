@@ -62,6 +62,7 @@
             return {
                 tab: 'Pay',
                 delivery: {},
+                isSendToPay: false,
             }
         },
         computed: {
@@ -72,9 +73,9 @@
             }),
         },
         async created () {
-            this.$bus.$on('goToPay', this.sendToPay.bind(this))
-            this.$bus.$on('goToTabCheckout', this.goToTabCheckout.bind(this))
-            this.$bus.$on('goToPayStatus', this.goToPayStatus.bind(this))
+            this.$bus.$on('goToPay', this.sendToPay)
+            this.$bus.$on('goToTabCheckout', this.goToTabCheckout)
+            this.$bus.$on('goToPayStatus', this.goToPayStatus)
 
             try {
                 // await this.getDeliveryList()
@@ -90,10 +91,12 @@
 
             this.loading = false
         },
-        beforeDestroy() {
-            this.$bus.$off('goToPay', this.sendToPay.bind(this))
-            this.$bus.$off('goToTabCheckout', this.goToTabCheckout.bind(this))
-            this.$bus.$off('goToPayStatus', this.goToPayStatus.bind(this))
+        beforeDestroy () {
+          this.$bus.$off('goToPay', this.sendToPay)
+          this.$bus.$off('goToTabCheckout', this.goToTabCheckout)
+          this.$bus.$off('goToPayStatus', this.goToPayStatus)
+
+          this.hideKeyboard()
         },
         methods: {
             ...mapActions({
@@ -120,28 +123,36 @@
             },
             async sendToPay(method, bonuses, totalAmount) {
                 try {
+                  if(!this.isSendToPay) {
+                    this.isSendToPay = true
                     const preCheckData = await this.preCheck({
-                        type: 'card',
-                        bonuses: bonuses
+                      type: 'card',
+                      bonuses: bonuses
                     })
 
                     await this.paymentUrl(preCheckData)
+
                     this.setActiveTab('PayIframe')
 
                     if (!this.profile.mobile.startsWith('996')) {
-                        debugger
-                        await this.onlineStoreApplication({
-                            address: this.delivery.address,
-                            pre_check_id: preCheckData.pre_check_id,
-                            date: this.delivery.date
-                              ? moment(this.delivery.date, 'YYYY-MM-DD').format('DD-MM-YYYY')
-                              : '',
-                            info: this.delivery.comment,
-                            time_from: this.delivery.time,
-                        })
+                      await this.onlineStoreApplication({
+                        address: this.delivery.address,
+                        pre_check_id: preCheckData.pre_check_id,
+                        date: this.delivery.date
+                            ? moment(this.delivery.date, 'YYYY-MM-DD').format('DD-MM-YYYY')
+                            : '',
+                        info: this.delivery.comment,
+                        time_from: this.delivery.time,
+                      })
                     }
+
+                    setTimeout(() => {
+                      this.isSendToPay = false
+                    }, 1000)
+                  }
                 } catch (e) {
                     this.$Alert.Error(e)
+                    this.isSendToPay = false
                 }
             },
             async goToPayStatus(data) {

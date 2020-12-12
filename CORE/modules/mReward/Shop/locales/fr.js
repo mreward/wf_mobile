@@ -45,7 +45,7 @@ export default {
     m_shop_select_pay: 'Sélection de paiement',
     m_shop_shelf_life: 'Période de stockage',
     m_shop_status_cancel: 'Annulé',
-    m_shop_status_inprogress: 'Dans le processus',
+    m_shop_status_inprogress: 'Sur mon chemin',
     m_shop_status_new: 'Nouveau',
     m_shop_status_pay_fail: 'Une erreur s\'est produite lors du paiement',
     m_shop_status_pay_info: 'Notre opérateur vous contactera pour confirmer la commande dans quelques minutes',

@@ -32,18 +32,20 @@
             }
         },
         mounted() {
-            console.log('iFrame mounted');
-            window.addEventListener('message', this.postMessage, false);
+            console.log('iFrame mounted')
+            window.addEventListener('message', this.postMessage, false)
         },
         destroyed() {
             console.log('iFrame destroyed');
-            window.removeEventListener('message', this.postMessage);
+            window.removeEventListener('message', this.postMessage)
+            this.clearPayData()
         },
         methods: {
             ...mapActions({
                 popPage: constants.App.Actions.popPage,
                 pushPage: constants.App.Actions.pushPage,
                 popToPage: constants.App.Actions.popToPage,
+                clearPayData: constants.MrewardShop.Actions.clearPayData,
             }),
             postMessage(e) {
                 console.log('iFrame postMessage');

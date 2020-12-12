@@ -34,7 +34,7 @@ export default {
         },
 
         isConstructor() {
-            return !isEmpty(this.agreement) && get(this.agreement, 'status', 0) === 1
+            return false; // !isEmpty(this.agreement) && get(this.agreement, 'status', 0) === 1
         }
     },
     watch: {
@@ -52,11 +52,12 @@ export default {
         }
     },
     async created() {
-        this.$bus.$on('showPopoverFavorite', this.showPopoverFavorite.bind(this))
-        this.$bus.$on('showCart', this.showCart.bind(this))
-        this.$bus.$on('showFilter', this.showFilter.bind(this))
-        this.$bus.$on('goToSearch', this.goToSearch.bind(this))
-        this.$bus.$on('clearSearch', this.clearSearchField.bind(this))
+        this.$bus.$on('showPopoverFavorite', this.showPopoverFavorite)
+        this.$bus.$on('showCart', this.showCart)
+        this.$bus.$on('showFilter', this.showFilter)
+        this.$bus.$on('goToSearch', this.goToSearch)
+        this.$bus.$on('clearSearch', this.clearSearchField)
+        this.$bus.$on('currentTab', this.currentTab)
 
         try {
             if (!this.countries.length) {
@@ -66,9 +67,11 @@ export default {
 
             await this.loadSelectCountry()
 
-            await this.getAgreement({
-                partnerId: get(this.country, 'config.id')
-            })
+            if(get(this.country, 'config.id')) {
+                await this.getAgreement({
+                    partnerId: get(this.country, 'config.id')
+                })
+            }
         } catch (e) {
             this.$Alert.Error(e)
         }
@@ -76,11 +79,12 @@ export default {
         this.loaderUpdate = false
     },
     beforeDestroy() {
-        this.$bus.$off('showPopoverFavorite', this.showPopoverFavorite.bind(this))
-        this.$bus.$off('showCart', this.showCart.bind(this))
-        this.$bus.$off('showFilter', this.showFilter.bind(this))
-        this.$bus.$off('clearSearch', this.clearSearchField.bind(this))
-        this.$bus.$off('goToSearch', this.goToSearch.bind(this))
+        this.$bus.$off('showPopoverFavorite', this.showPopoverFavorite)
+        this.$bus.$off('showCart', this.showCart)
+        this.$bus.$off('showFilter', this.showFilter)
+        this.$bus.$off('clearSearch', this.clearSearchField)
+        this.$bus.$off('goToSearch', this.goToSearch)
+        this.$bus.$off('currentTab', this.currentTab)
     },
     methods: {
         ...mapActions({
@@ -95,6 +99,12 @@ export default {
             loadSelectCountry: constants.MrewardShop.Actions.loadSelectCountry,
             getAgreement: constants.MrewardСakeDesigner.Actions.getAgreement,
         }),
+        currentTab(tab) {
+            if (tab === 'screen-shop') {
+                this.hideKeyboard()
+            }
+        },
+
         setActiveTab(name, index) {
             this.tab = name;
             this.tabbarIndex = index;
@@ -116,9 +126,12 @@ export default {
                 this.loaderUpdate = true
                 this.countryDialog = false
                 await this.selectCountry(item)
-                await this.getAgreement({
-                    partnerId: get(this.country, 'config.id')
-                })
+
+                if(get(this.country, 'config.id')) {
+                    await this.getAgreement({
+                        partnerId: get(this.country, 'config.id')
+                    })
+                }
             } catch (e) {
                 console.log(e)
             }

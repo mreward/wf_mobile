@@ -37,6 +37,7 @@
     import { mapActions, mapGetters } from 'vuex'
     import constants from '_vuex_constants'
     import ImgDefault from '../img/empty.jpg'
+    import round from 'lodash/round'
 
     export default {
         name: 'product-cart-item',
@@ -58,7 +59,7 @@
                 country: constants.MrewardShop.Getters.country,
             }),
             totalAmount() {
-                return this.item.count * this.item.price
+                return round(this.item.count * this.item.price, 2)
             }
         },
         methods: {

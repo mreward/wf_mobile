@@ -171,6 +171,7 @@
             padding: 8px 16px;
             flex: 1;
             overflow: scroll;
+            padding-bottom: 100px;
         }
 
         .toolbar__wrapper {

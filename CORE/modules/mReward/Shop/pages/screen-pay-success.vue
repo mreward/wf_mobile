@@ -54,6 +54,7 @@
             async goToOrder () {
                 this.popToPage('screen-dashboard')
                 this.$bus.$emit('home:goToTab', 'screen-home-tab')
+                this.hideKeyboard()
             },
         },
     }

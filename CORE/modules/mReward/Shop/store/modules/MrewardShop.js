@@ -129,19 +129,24 @@ const actions = {
     async getProductsTop({ commit, dispatch, rootState }, payload) {
         console.log('STORE: MrewardShop Module - getProductsTop')
         try {
-            dispatch(constants.App.Actions.addCountLoader, {}, { root: true })
+            if(state.country.config) {
+                dispatch(constants.App.Actions.addCountLoader, {}, {root: true})
 
-            const response = await new MrewardShop().GetProductsTop({
-                ...payload,
-                partnerId: state.country.config.id
-            })
+                const response = await new MrewardShop().GetProductsTop({
+                    ...payload,
+                    partnerId: state.country.config.id
+                })
 
-            commit(ShopMutat.ProductsTop.name, response)
+                commit(ShopMutat.ProductsTop.name, response)
 
-            validatePagination(response, constants.MrewardShop.Actions.getProductsTop)
+                validatePagination(response, constants.MrewardShop.Actions.getProductsTop)
 
-            dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })
-            return response
+                dispatch(constants.App.Actions.removeCountLoader, {}, {root: true})
+                return response
+            } else {
+                return [];
+            }
+
         } catch (error) {
             await dispatch(constants.App.Actions.validateError, {
                 error,
@@ -357,6 +362,11 @@ const actions = {
         }
     },
 
+    async clearPayData({ commit }) {
+        console.log('STORE: MrewardShop Module - clearPayData')
+        commit(ShopMutat.PayData.name, null)
+    },
+
     async selectCountry ({state, commit, rootState, dispatch}, payload) {
         console.log('STORE: MrewardShop Module - selectCountry')
         const country = rootState.App.settings.partnerKeys.find(i => i.country === payload.code)
@@ -366,6 +376,7 @@ const actions = {
             config: country,
         }
 
+        debugger
         const dataObject = new DbObject().GetDefaultObject(data)
         await localforage.setItem(DbObject.keys.mReward.shop.country.name, dataObject)
 
@@ -384,7 +395,7 @@ const actions = {
             const profile = rootState.MrewardProfile.userProfile
             if (profile && isNumber(profile.country)) {
                 const country = rootState.MrewardGeo.countries.find(i => i.country_id === profile.country)
-                if (country) {
+                if (country && country.code === 'KG') {
                     await dispatch(constants.MrewardShop.Actions.selectCountry, country, { root: true })
                 }
             }

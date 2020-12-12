@@ -361,7 +361,7 @@
 
         .page__content {
             background-color: #F5F7FA !important;
-            padding: 16px !important;
+          padding: 16px 16px 80px 16px !important;
         }
 
         .ons-tabbar__footer {
@@ -489,7 +489,7 @@
         align-items: center;
 
         position: fixed;
-        left: 16px;
+        right: 16px;
         bottom: 16px;
         z-index: 99;
         transform: translate3d(0, 0, 0);

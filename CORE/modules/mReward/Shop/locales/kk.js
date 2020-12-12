@@ -45,7 +45,7 @@ export default {
     m_shop_select_pay: 'Бонустар',
     m_shop_shelf_life: 'Сақтау мерзімі',
     m_shop_status_cancel: 'Бас тартылды',
-    m_shop_status_inprogress: 'Процесс барысында',
+    m_shop_status_inprogress: 'Жолымда',
     m_shop_status_new: 'Жаңа',
     m_shop_status_pay_fail: 'Төлеу кезінде қате пайда болды',
     m_shop_status_pay_info: 'Біздің оператор бірнеше минут ішінде тапсырысты растау үшін сізбен байланысады',

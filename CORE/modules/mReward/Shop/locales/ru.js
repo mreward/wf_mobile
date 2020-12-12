@@ -45,7 +45,7 @@ export default {
     m_shop_select_pay: 'Бонусы',
     m_shop_shelf_life: 'Срок хранения',
     m_shop_status_cancel: 'Отменен',
-    m_shop_status_inprogress: 'В процессе',
+    m_shop_status_inprogress: 'В пути',
     m_shop_status_new: 'Новый',
     m_shop_status_pay_fail: 'Произошла ошибка при оплате',
     m_shop_status_pay_info: 'Оператор свяжется с Вами для подтверждения заказа в течении нескольких минут',
