@@ -51,6 +51,8 @@
                     indeterminate
             />
 
+            <div style="height: 80px"></div>
+
             <div class="button-cart"
                  ref="btnCall"
                  @click="$bus.$emit('showCart')"
@@ -165,13 +167,14 @@
             flex: 1;
             display: flex;
             flex-direction: column;
+            overflow: hidden;
         }
 
         .content-wrap {
-            padding: 8px 16px;
-            flex: 1;
+            padding: 8px 16px !important;
+            //flex: 1;
+            height: 100%;
             overflow: scroll;
-            padding-bottom: 100px;
         }
 
         .toolbar__wrapper {

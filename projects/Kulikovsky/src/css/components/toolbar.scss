@@ -134,7 +134,7 @@
         .qr-block {
             padding-top: vw(21);
             text-align: center;
-            background: $white;
+            background: $white !important;
             border-radius: $border-radius;
 
             @extend .margin-horizontal--auto;
