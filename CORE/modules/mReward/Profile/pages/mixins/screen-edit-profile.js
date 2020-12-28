@@ -3,6 +3,7 @@ import { mapGetters, mapActions } from 'vuex'
 import DynamicInput from '_dynamic_input'
 import MaskPhone from '_PLUGINS/common/MaskPhone'
 import _isEqual from 'lodash/isEqual'
+import i18n from 'vue-polyglot/src/i18n'
 
 export default {
     components: {
@@ -107,6 +108,15 @@ export default {
         },
         async editProfile() {
             try {
+                this.profileFields.forEach((item) => {
+                    if(item.required && !this.dynamicInput[item.key]) {
+                        this.$set(this.errorMessages, item.key, this.$t('m_validation_required'))
+                    }
+                })
+
+                if(Object.keys(this.errorMessages).length) {
+                    return;
+                }
                 this.errorMessages = {}
                 // this is final model for api
                 const model = {

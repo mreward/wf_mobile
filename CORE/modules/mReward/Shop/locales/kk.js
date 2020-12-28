@@ -42,6 +42,7 @@ export default {
     m_shop_payment_delivery_amount: 'Жеткізу құны курьер арқылы',
     m_shop_payment_methods: 'Төлем тәсілі',
     m_shop_products: 'Тауарлардың',
+    m_shop_profile_check: 'Бонустарды пайдалану үшін сіз профильдегі барлық қажетті өрістерді толтыруыңыз керек',
     m_shop_select_pay: 'Бонустар',
     m_shop_shelf_life: 'Сақтау мерзімі',
     m_shop_status_cancel: 'Бас тартылды',

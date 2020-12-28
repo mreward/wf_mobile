@@ -42,6 +42,7 @@ export default {
     m_shop_payment_delivery_amount: 'Кошт дастаўкі кур\'ерам',
     m_shop_payment_methods: 'Спосаб аплаты',
     m_shop_products: 'З тавараў',
+    m_shop_profile_check: 'Каб скарыстацца бонусамі, неабходна запоўніць усе абавязковыя палі ў профілі',
     m_shop_select_pay: 'Выбар плацяжу',
     m_shop_shelf_life: 'Перыяд захоўвання',
     m_shop_status_cancel: 'Адменена',

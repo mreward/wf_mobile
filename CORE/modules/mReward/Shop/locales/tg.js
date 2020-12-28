@@ -42,6 +42,7 @@ export default {
     m_shop_payment_delivery_amount: 'Арзиши таҳвил тавассути хаткашон',
     m_shop_payment_methods: 'Намуди пардохт',
     m_shop_products: 'Аз молҳо',
+    m_shop_profile_check: 'Барои бартарии мукофотпулӣ, шумо бояд ҳамаи майдонҳои дар профил гузошташударо пур кунед',
     m_shop_select_pay: 'Интихоби пардохт',
     m_shop_shelf_life: 'Мӯҳлати нигоҳдорӣ',
     m_shop_status_cancel: 'Бекор карда шуд',

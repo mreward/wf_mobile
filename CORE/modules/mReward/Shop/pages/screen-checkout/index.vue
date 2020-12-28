@@ -47,6 +47,7 @@
     import constants from '_vuex_constants'
     import ValidationHelpers from '_plugins_validation_helpers'
     import ScreenStatusPay from '_screen_shop_pay_success'
+    import Illustration from '_screen_shop_img/cancel-order-illustration.svg'
 
     export default {
         name: 'screen-checkout',
@@ -70,6 +71,7 @@
                 profile: constants.MrewardProfile.Getters.userProfile,
                 countries: constants.MrewardGeo.Getters.countries,
                 country: constants.MrewardShop.Getters.country,
+                profileFields: constants.MrewardProfile.Getters.profileFields
             }),
         },
         async created () {
@@ -122,34 +124,50 @@
                 this.delivery = data
             },
             async sendToPay(method, bonuses, totalAmount) {
-                try {
-                  if(!this.isSendToPay) {
-                    this.isSendToPay = true
-                    const preCheckData = await this.preCheck({
-                      type: 'card',
-                      bonuses: bonuses
+                const isEmptyProfileData = this.profileFields.find((item) => {
+                    return item.required && !this.profile[item.key]
+                })
+                if (isEmptyProfileData && bonuses) {
+                    this.$Alert.Confirm({
+                        img: Illustration,
+                        title: this.$t('m_shop_profile_check'),
+                        nextName: this.$t('m_profile'),
+                        cancelName: this.$t('m_close'),
+                        nextEvent: async () => {
+                            this.$bus.$emit('goToPage', { page: 'edit-profile' })
+                        }
                     })
+                    return false;
+                }
 
-                    await this.paymentUrl(preCheckData)
+                try {
+                    if (!this.isSendToPay) {
+                        this.isSendToPay = true
+                        const preCheckData = await this.preCheck({
+                            type: 'card',
+                            bonuses: bonuses,
+                        })
 
-                    this.setActiveTab('PayIframe')
+                        await this.paymentUrl(preCheckData)
 
-                    if (!this.profile.mobile.startsWith('996')) {
-                      await this.onlineStoreApplication({
-                        address: this.delivery.address,
-                        pre_check_id: preCheckData.pre_check_id,
-                        date: this.delivery.date
-                            ? moment(this.delivery.date, 'YYYY-MM-DD').format('DD-MM-YYYY')
-                            : '',
-                        info: this.delivery.comment,
-                        time_from: this.delivery.time,
-                      })
+                        this.setActiveTab('PayIframe')
+
+                        if (!this.profile.mobile.startsWith('996')) {
+                            await this.onlineStoreApplication({
+                                address: this.delivery.address,
+                                pre_check_id: preCheckData.pre_check_id,
+                                date: this.delivery.date
+                                    ? moment(this.delivery.date, 'YYYY-MM-DD').format('DD-MM-YYYY')
+                                    : '',
+                                info: this.delivery.comment,
+                                time_from: this.delivery.time,
+                            })
+                        }
+
+                        setTimeout(() => {
+                            this.isSendToPay = false
+                        }, 1000)
                     }
-
-                    setTimeout(() => {
-                      this.isSendToPay = false
-                    }, 1000)
-                  }
                 } catch (e) {
                     this.$Alert.Error(e)
                     this.isSendToPay = false

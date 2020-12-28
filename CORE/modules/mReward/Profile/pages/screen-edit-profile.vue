@@ -19,7 +19,7 @@
                     :key="key"
                     :field="field"
                     :error-messages="errorMessages[field.key]"
-                    @hideError="() => errorMessages[field.key] = ''"
+                    @hideError="() => $delete(errorMessages, field.key)"
                 />
             </template>
 

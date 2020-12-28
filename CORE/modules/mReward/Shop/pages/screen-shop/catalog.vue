@@ -1,6 +1,6 @@
 <template>
     <v-ons-page>
-        <div class="page__content" @scroll="scrollContent">
+        <div class="page__content" page="catalog-tab" @scroll="scrollContent">
             <template v-if="!mode && !loader">
                 <v-ons-list
                         v-for="(item, index) in listGroup"
@@ -195,6 +195,13 @@
 </script>
 
 <style lang="scss">
+    .page__content[page="catalog-tab"] {
+      .list-item--expandable {
+        -webkit-flex-direction: column !important;
+        flex-direction: column !important;
+        display: flex !important;
+      }
+    }
     .catalog-list {
         ons-list-item {
             .list-item__top {

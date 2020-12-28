@@ -27,6 +27,7 @@ export default {
             totalCartProduct: constants.MrewardShop.Getters.totalCartProduct,
             country: constants.MrewardShop.Getters.country,
             agreement: constants.MrewardСakeDesigner.Getters.agreement,
+            profileFields: constants.MrewardProfile.Getters.profileFields
         }),
 
         showCancelButton() {
@@ -77,6 +78,14 @@ export default {
         }
 
         this.loaderUpdate = false
+
+        try {
+            if (!this.profileFields.length) {
+                await this.getProfileParams()
+            }
+        } catch (e) {
+            console.log(e)
+        }
     },
     beforeDestroy() {
         this.$bus.$off('showPopoverFavorite', this.showPopoverFavorite)
@@ -98,6 +107,7 @@ export default {
             clearProductSearch: constants.MrewardShop.Actions.clearProductSearch,
             loadSelectCountry: constants.MrewardShop.Actions.loadSelectCountry,
             getAgreement: constants.MrewardСakeDesigner.Actions.getAgreement,
+            getProfileParams: constants.MrewardProfile.Actions.getProfileParams,
         }),
         currentTab(tab) {
             if (tab === 'screen-shop') {

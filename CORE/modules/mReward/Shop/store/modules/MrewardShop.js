@@ -809,7 +809,7 @@ const getters = {
         return 0
     },
     productsFavorite (state) {
-        return state.productsFavorite.filter(i => i.partner_id === state.country.config.id)
+        return state.productsFavorite.filter(i => i.partner_id === state.country.config.id && i.view_in_online === 1)
     },
     deliveryList (state) {
         return state.deliveryList

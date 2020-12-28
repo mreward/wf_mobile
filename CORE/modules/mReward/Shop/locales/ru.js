@@ -42,6 +42,7 @@ export default {
     m_shop_payment_delivery_amount: 'Стомость доставки курьером',
     m_shop_payment_methods: 'Способ оплаты',
     m_shop_products: 'Товаров',
+    m_shop_profile_check: 'Чтобы воспользоваться бонусами, необходимо заполнить все обязательные поля в профиле',
     m_shop_select_pay: 'Бонусы',
     m_shop_shelf_life: 'Срок хранения',
     m_shop_status_cancel: 'Отменен',

@@ -42,6 +42,7 @@ export default {
     m_shop_payment_delivery_amount: 'Вартість доставки кур\'єром',
     m_shop_payment_methods: 'Спосіб оплати',
     m_shop_products: 'З товарів',
+    m_shop_profile_check: 'Щоб скористатися бонусами, ви повинні заповнити всі обов’язкові поля у профілі',
     m_shop_select_pay: 'Бонуси',
     m_shop_shelf_life: 'Період зберігання',
     m_shop_status_cancel: 'Скасовано',

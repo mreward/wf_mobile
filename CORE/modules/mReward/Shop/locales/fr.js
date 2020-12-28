@@ -42,6 +42,7 @@ export default {
     m_shop_payment_delivery_amount: 'Frais de livraison par coursier',
     m_shop_payment_methods: 'Mode de paiement',
     m_shop_products: 'Des marchandises',
+    m_shop_profile_check: 'Pour profiter des bonus, vous devez remplir tous les champs obligatoires dans le profil',
     m_shop_select_pay: 'Sélection de paiement',
     m_shop_shelf_life: 'Période de stockage',
     m_shop_status_cancel: 'Annulé',

@@ -42,6 +42,7 @@ export default {
     m_shop_payment_delivery_amount: 'Курьер аркылуу жеткирүү баасы',
     m_shop_payment_methods: 'Төлөө ыкмасы',
     m_shop_products: 'Товарлардын',
+    m_shop_profile_check: 'Бонустарды пайдалануу үчүн, профилдеги бардык талап кылынган талааларды толтурушуңуз керек',
     m_shop_select_pay: 'Төлөмдү тандоо',
     m_shop_shelf_life: 'Сактоо мөөнөтү',
     m_shop_status_cancel: 'Жокко чыгарылды',

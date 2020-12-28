@@ -42,6 +42,7 @@ export default {
     m_shop_payment_delivery_amount: 'تكلفة التوصيل عن طريق البريد',
     m_shop_payment_methods: 'طريقة الدفع او السداد',
     m_shop_products: 'من البضائع',
+    m_shop_profile_check: 'للاستفادة من المكافآت ، يجب عليك ملء جميع الحقول المطلوبة في ملف التعريف',
     m_shop_select_pay: 'اختيار الدفع',
     m_shop_shelf_life: 'فترة التخزين',
     m_shop_status_cancel: 'ألغيت',

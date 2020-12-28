@@ -132,15 +132,8 @@
         }
 
         .qr-block {
-            padding-top: vw(21);
+
             text-align: center;
-            background: $white !important;
-            border-radius: $border-radius;
-
-            @extend .margin-horizontal--auto;
-
-            width: vw(171) !important;
-            height: vw(171) !important;
 
             img {
                 @extend .margin-horizontal--auto;
@@ -149,9 +142,14 @@
                 height: vw(128) !important;
             }
 
-            canvas {
-                width: vw(128) !important;
-                height: vw(128) !important;
+            svg {
+
+                padding: 20px;
+                background: #fff !important;
+                border-radius: 8px;
+                background-image: linear-gradient(#ffffff, #ffffff);
+                width: 53.4375vw !important;
+                height: 53.4375vw !important;
             }
         }
     }

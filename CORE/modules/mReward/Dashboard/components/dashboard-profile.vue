@@ -121,6 +121,8 @@
                             :value="cardNumber || ''"
                             level="H"
                             :size="200"
+                            background="#fff"
+                            renderAs="svg"
                     />
                 </div>
                 <div class="toolbar-upper__hint">

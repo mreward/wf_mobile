@@ -42,6 +42,7 @@ export default {
     m_shop_payment_delivery_amount: 'Delivery cost by courier',
     m_shop_payment_methods: 'Payment method',
     m_shop_products: 'Of goods',
+    m_shop_profile_check: 'To take advantage of bonuses, you must fill in all required fields in the profile',
     m_shop_select_pay: 'Bonuses',
     m_shop_shelf_life: 'Storage period',
     m_shop_status_cancel: 'Canceled',
