@@ -21,6 +21,10 @@ package pro.mwallet.kulikovsky;
 
 import android.os.Bundle;
 import org.apache.cordova.*;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import androidx.webkit.WebViewFeature;
+import androidx.webkit.WebSettingsCompat;
 
 public class MainActivity extends CordovaActivity
 {
@@ -37,5 +41,15 @@ public class MainActivity extends CordovaActivity
 
         // Set by <content src="index.html" /> in config.xml
         loadUrl(launchUrl);
+
+      if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK)) {
+            WebView webView = (WebView) this.appView.getEngine().getView();
+            WebSettingsCompat.setForceDark(webView.getSettings(), WebSettingsCompat.FORCE_DARK_OFF);
+      }
+
+
+//         if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK)) {
+//             WebSettingsCompat.setForceDark(webView.settings, WebSettingsCompat.FORCE_DARK_OFF);
+//         }
     }
 }

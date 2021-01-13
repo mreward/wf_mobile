@@ -6,6 +6,7 @@ import md5 from 'crypto-js/md5';
 import InputPin from '_input_pin_sequence';
 import TouchId from '_CORE/plugins/common/TouchId';
 const ScreenOnBoarding = () => import('_screen_onboarding')
+const ScreenAuthorization = () => import('_screen_authorization')
 
 export default {
     data() {
@@ -139,5 +140,8 @@ export default {
                 }
             }
         },
+        goToRecoveryPassword() {
+            this.logout()
+        }
     },
 };

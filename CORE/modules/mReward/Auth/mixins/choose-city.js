@@ -19,7 +19,8 @@ export default {
             pushPage: constants.App.Actions.pushPage
         }),
         chooseCity({ city_name: name, city_id: id, region_id: regionId }) {
-            this.errorMessages['id_city'] = ''
+            this.$delete(this.errorMessages, 'id_city')
+
             this.city = {
                 name,
                 id,
