@@ -376,7 +376,7 @@ const actions = {
             config: country,
         }
 
-        debugger
+        //debugger
         const dataObject = new DbObject().GetDefaultObject(data)
         await localforage.setItem(DbObject.keys.mReward.shop.country.name, dataObject)
 
