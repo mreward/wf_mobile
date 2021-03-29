@@ -103,14 +103,14 @@
             }
         },
         watch: {
-            value(newVal) {
-                this.currentValue = newVal
+            value(val) {
+                this.currentValue = val
             },
             currentValue: {
                 immediate: true,
-                handler(newVal) {
-                    this.$emit('input', newVal)
-                    this.$emit('change', newVal)
+                handler(val) {
+                    this.$emit('input',  val)
+                    this.$emit('change', val)
                 }
             }
         },

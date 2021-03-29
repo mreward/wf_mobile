@@ -17,24 +17,32 @@ export default {
             password: ''
         },
         dynamicInput: {},
-        errorMessages: {}
+        errorMessages: {},
+        inputArray: []
     }),
     computed: {
         ...mapGetters({
             settings: constants.App.Getters.settings,
             loaderVisible: constants.App.Getters.loaderVisible,
             profileRequiredFields: constants.MrewardProfile.Getters.profileRequiredFields,
-            profileFields: constants.MrewardProfile.Getters.profileFields
+            dynamicInputState: constants.MrewardProfile.Getters.dynamicInput,
+            profileFields: constants.MrewardProfile.Getters.profileFields,
+            cityFields: constants.MrewardProfile.Getters.cityFields
         }),
+        cityParams(){
+            return this.cityFields.name ? this.cityFields : this.city
+        },
         mobileNumber() {
             return (`${this.selectedCountry.code} ${this.mobile}`).replace(/\s/g, '')
         }
     },
-    async created() {
+     async created() {
         try {
-            await this.getProfileParams()
-
-            this.addDynamicFieldsToData()
+            const dynamicInputStateStart = await  this.dynamicInputState
+            if ( Array.isArray( dynamicInputStateStart ) && dynamicInputStateStart.length === 0){
+                await this.getProfileParams()
+            }
+            await this.getArrayInput()
         } catch (e) {
             this.$Alert.Error(e)
         }
@@ -45,31 +53,38 @@ export default {
             pushPage: constants.App.Actions.pushPage,
             registrationUser: constants.MrewardUser.Actions.registrationUser,
             getProfileParams: constants.MrewardProfile.Actions.getProfileParams,
+            addDynamicFields: constants.MrewardProfile.Actions.addDynamicFields,
+            addCity: constants.MrewardProfile.Actions.addCity,
             registrationUserConfirm: constants.MrewardUser.Actions.registrationUserConfirm
         }),
+        async getArrayInput(){
+            this.inputArray = await (this.dynamicInputState.length > 0 ? this.dynamicInputState : this.profileFields)
+        },
         addDynamicFieldsToData() {
             if (this.profileFields.length) {
                 this.profileFields.forEach(({ key, data_type: type }) => {
                     if (type === 4) {
-                        this.$set(this.dynamicInput, key, 1)
+                        this.$set(this.inputArray, key, 1)
                         return
                     }
-                    this.$set(this.dynamicInput, key, '')
+                    this.$set(this.inputArray, key, '')
                 })
             }
         },
-        goToAuthorization() {
-            this.replacePage(ScreenAuthorization)
+       async goToAuthorization() {
+            await this.addDynamicFields(this.inputArray)
+           await this.replacePage(ScreenAuthorization)
         },
 
         async sendRegistration() {
             try {
                 this.errorMessages = {}
                 // this is final model for api
+                // this.addDynamicFieldsToData()
                 const model = {
-                    ...this.dynamicInput,
-                    id_city: this.city.id,
-                    id_region: this.city.regionId,
+                    ...this.inputArray,
+                    id_city: this.cityFields.id,
+                    id_region: this.cityFields.regionId,
                     id_country: this.selectedCountry.id,
                     password: this.user.password,
                     phone: this.mobileNumber

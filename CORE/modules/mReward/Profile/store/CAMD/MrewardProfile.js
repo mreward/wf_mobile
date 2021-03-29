@@ -1,5 +1,13 @@
 export default {
     Mutations: {
+        AddCityFields: {
+            name: 'CITY_FIELDS',
+            nameGlobal: 'MrewardProfile/CITY_FIELDS'
+        },
+        AddDynamicFields: {
+            name: 'DYNAMIC_INPUT',
+            nameGlobal: 'MrewardProfile/DYNAMIC_INPUT'
+        },
         UserProfile: {
             name: 'USER_PROFILE',
             nameGlobal: 'MrewardProfile/USER_PROFILE'
@@ -18,13 +26,17 @@ export default {
         }
     },
     Actions: {
+        addDynamicFields: 'MrewardProfile/addDynamicFields',
         initHook: 'MrewardProfile/initHook',
         getProfile: 'MrewardProfile/getProfile',
+        addCity: 'MrewardProfile/addCity',
         editProfile: 'MrewardProfile/editProfile',
         getProfileParams: 'MrewardProfile/getProfileParams',
         uploadAvatar: 'MrewardProfile/uploadAvatar'
     },
     Getters: {
+        cityFields: 'MrewardProfile/cityFields',
+        dynamicInput: 'MrewardProfile/dynamicInput',
         userName: 'MrewardProfile/userName',
         userProfile: 'MrewardProfile/userProfile',
         profileFields: 'MrewardProfile/profileFields',
