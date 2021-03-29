@@ -24,7 +24,7 @@
 
             <div>
                 <v-text-field
-                    v-model="city.name"
+                    v-model="cityParams.name"
                     readonly
                     :label="$t('m_auth_city', '', {required: '*'})"
                     :error-messages="errorMessages['id_city']"
@@ -35,8 +35,8 @@
 
             <template v-if="profileFields.length">
                 <dynamic-input
-                    v-for="(field, key) in profileFields"
-                    v-model="dynamicInput[field.key]"
+                    v-for="(field, key) in inputArray"
+                    v-model="inputArray[field.key]"
                     :key="key"
                     :field="field"
                     :error-messages="errorMessages[field.key]"

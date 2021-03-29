@@ -16,10 +16,12 @@ const state = {
         'id_city',
         'id_region'
     ],
+    cityFields: {},
     userProfile: {},
     profileParams: {},
     profileFields: [],
-    pushData: {}
+    pushData: {},
+    dynamicInput: []
 }
 
 const formatProfileFields = ({ staticFields }, list) => {
@@ -29,6 +31,17 @@ const formatProfileFields = ({ staticFields }, list) => {
         return item1.sort - item2.sort
     })
 }
+const formatProfileFieldsNew = ({ profileFields }, obj) => {
+    profileFields.forEach(function(item, i, arr) {
+        for (let key in obj) {
+            if (item.key === key) {
+                item.value = obj[key]
+            }
+        }
+    })
+    return profileFields
+}
+
 
 const mutations = {
     [ProfileMutat.UserProfile.name]: (state, data) => {
@@ -42,10 +55,23 @@ const mutations = {
     },
     [ProfileMutat.NotificationsPushData.name]: (state, data) => {
         state.pushData = data
-    }
+    },
+    [ProfileMutat.AddDynamicFields.name]: (state, data) => {
+        state.dynamicInput = formatProfileFieldsNew(state, data)
+    },
+    [ProfileMutat.AddCityFields.name]: (state, data) => {
+        state.cityFields = data
+    },
 }
 
 const actions = {
+    async addCity({ commit, state }, payload) {
+        commit(ProfileMutat.AddCityFields.name, payload)
+    },
+    async addDynamicFields({ commit, state }, payload) {
+        commit(ProfileMutat.AddDynamicFields.name, payload)
+    },
+
     initHook({ commit }) {
         console.warn('MrewardProfile Module - initHook')
         Vue.prototype.$bus.$on('VUEX:setPushToken', (payload) => {
@@ -53,6 +79,7 @@ const actions = {
             commit(ProfileMutat.NotificationsPushData.name, payload)
         })
     },
+
 
     /**
      * Get user profile
@@ -138,7 +165,6 @@ const actions = {
 
             commit(ProfileMutat.ProfileParams.name, response)
             commit(ProfileMutat.ProfileFields.name, response.fields)
-
             dispatch(constants.App.Actions.removeCountLoader, {}, { root: true })
 
             return response
@@ -181,6 +207,12 @@ const actions = {
 }
 
 const getters = {
+    cityFields(state) {
+        return state.cityFields
+    },
+    dynamicInput(state) {
+        return state.dynamicInput
+    },
     userProfile(state) {
         return state.userProfile
     },
