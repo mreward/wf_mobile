@@ -21,7 +21,8 @@ const state = {
     profileParams: {},
     profileFields: [],
     pushData: {},
-    dynamicInput: []
+    dynamicInput: [],
+    phoneFields: ''
 }
 
 const formatProfileFields = ({ staticFields }, list) => {
@@ -62,9 +63,17 @@ const mutations = {
     [ProfileMutat.AddCityFields.name]: (state, data) => {
         state.cityFields = data
     },
+    [ProfileMutat.AddPhoneFields.name]: (state, data) => {
+        console.log(55555555555555, data)
+        state.phoneFields = data
+    },
 }
 
 const actions = {
+    async addPhone({ commit, state }, payload) {
+        console.log(6666666666666666666, payload)
+        commit(ProfileMutat.AddPhoneFields.name, payload)
+    },
     async addCity({ commit, state }, payload) {
         commit(ProfileMutat.AddCityFields.name, payload)
     },
@@ -207,6 +216,9 @@ const actions = {
 }
 
 const getters = {
+    phoneFields(state) {
+        return state.phoneFields
+    },
     cityFields(state) {
         return state.cityFields
     },

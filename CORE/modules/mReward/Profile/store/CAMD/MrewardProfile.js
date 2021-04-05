@@ -1,5 +1,9 @@
 export default {
     Mutations: {
+        AddPhoneFields: {
+            name: 'PHONE_FIELDS',
+            nameGlobal: 'MrewardProfile/PHONE_FIELDS'
+        },
         AddCityFields: {
             name: 'CITY_FIELDS',
             nameGlobal: 'MrewardProfile/CITY_FIELDS'
@@ -30,11 +34,13 @@ export default {
         initHook: 'MrewardProfile/initHook',
         getProfile: 'MrewardProfile/getProfile',
         addCity: 'MrewardProfile/addCity',
+        addPhone: 'MrewardProfile/addPhone',
         editProfile: 'MrewardProfile/editProfile',
         getProfileParams: 'MrewardProfile/getProfileParams',
         uploadAvatar: 'MrewardProfile/uploadAvatar'
     },
     Getters: {
+        phoneFields: 'MrewardProfile/phoneFields',
         cityFields: 'MrewardProfile/cityFields',
         dynamicInput: 'MrewardProfile/dynamicInput',
         userName: 'MrewardProfile/userName',
