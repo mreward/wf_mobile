@@ -15,7 +15,8 @@ module.exports = [
             '[#45179](https://tm.walletfactory.com/issues/45179) - Валидация полей на всех экранах',
             '[#12809](https://tm.walletfactory.com/issues/12809) - Добавить в 3ds типы операций',
             '[#13014](https://tm.walletfactory.com/issues/13014) - Просмотр списка купонов iDiscount',
-            '[#KLKS-386](https://walletfactory.atlassian.net/browse/KLKS-386) - Сохранение данных при регистрации\n'
+            '[#KLKS-386](https://walletfactory.atlassian.net/browse/KLKS-386) - Сохранение данных при регистрации',
+            '[#KLKS-389](https://walletfactory.atlassian.net/browse/KLKS-389) - Сохранение номера телефона при переключении между экранами входа и регистрации'
         ],
         bugFixes: [
             '[#45309](https://tm.walletfactory.com/issues/45309) - кнопка Добавить в избранное в Истории',
