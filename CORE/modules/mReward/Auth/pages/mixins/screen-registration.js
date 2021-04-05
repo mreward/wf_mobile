@@ -27,7 +27,8 @@ export default {
             profileRequiredFields: constants.MrewardProfile.Getters.profileRequiredFields,
             dynamicInputState: constants.MrewardProfile.Getters.dynamicInput,
             profileFields: constants.MrewardProfile.Getters.profileFields,
-            cityFields: constants.MrewardProfile.Getters.cityFields
+            cityFields: constants.MrewardProfile.Getters.cityFields,
+            phoneFields: constants.MrewardProfile.Getters.phoneFields
         }),
         cityParams(){
             return this.cityFields.name ? this.cityFields : this.city
@@ -38,6 +39,7 @@ export default {
     },
      async created() {
         try {
+            this.mobile = this.phoneFields
             const dynamicInputStateStart = await  this.dynamicInputState
             if ( Array.isArray( dynamicInputStateStart ) && dynamicInputStateStart.length === 0){
                 await this.getProfileParams()
@@ -54,9 +56,13 @@ export default {
             registrationUser: constants.MrewardUser.Actions.registrationUser,
             getProfileParams: constants.MrewardProfile.Actions.getProfileParams,
             addDynamicFields: constants.MrewardProfile.Actions.addDynamicFields,
-            addCity: constants.MrewardProfile.Actions.addCity,
+            addPhone: constants.MrewardProfile.Actions.addPhone,
             registrationUserConfirm: constants.MrewardUser.Actions.registrationUserConfirm
         }),
+        setPhone(){
+            console.log(999999999999999, this.mobile)
+            this.addPhone(this.mobile)
+        },
         async getArrayInput(){
             this.inputArray = await (this.dynamicInputState.length > 0 ? this.dynamicInputState : this.profileFields)
         },
@@ -72,6 +78,7 @@ export default {
             }
         },
        async goToAuthorization() {
+           this.setPhone()
             await this.addDynamicFields(this.inputArray)
            await this.replacePage(ScreenAuthorization)
         },
@@ -108,6 +115,7 @@ export default {
                                 this.replacePage({
                                     extends: ScreenConfirmPin,
                                     data: () => {
+                                        console.log('99999999999999 ---', this.mobile)
                                         return {
                                             mobile: this.mobile,
                                             code: this.selectedCountry.code
